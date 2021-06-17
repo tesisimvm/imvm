@@ -13,13 +13,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { LoginComponent } from './login/login.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
+import { PagNosotrosComponent } from './nosotros/pag-nosotros/pag-nosotros.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainNavComponent,
     LoginComponent,
-    InicioSesionComponent
+    InicioSesionComponent,
+    PagNosotrosComponent
   ],
   imports: [
     BrowserModule,
