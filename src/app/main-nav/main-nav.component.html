@@ -3,11 +3,19 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a> 
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+    <mat-toolbar style="background-color: #3F51B5; color: white;">Menú</mat-toolbar>
+    <mat-nav-list class="button-menu">
+      <div class="perfil">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFvu4ovwGF1rmBrNYtl93L6NB0cmsTF3BlEg&usqp=CAU" alt="" id="perfil-imagen">
+        <p class="nombre-usuario">Usuario 1</p>
+      </div>
+
+      <a mat-list-item href="#"><img src="../../assets/img/icono-perfil.png" alt="" class="icono"> Perfil</a> 
+      <a mat-list-item href="#"><img src="../../assets/img/icono-reclamo.png" alt="" class="icono"> Reclamos</a>
+      <a mat-list-item href="#"><img src="../../assets/img/icono-historial.png" alt="" class="icono"> Historial</a>
+      <a mat-list-item href="#"><img src="../../assets/img/icono-mapa.png" alt="" class="icono"> Mapa</a>
+      <a mat-list-item href="#"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono"> Nosotros</a>
+      <a mat-list-item href="#"><img src="../../assets/img/icono-ayuda.png" alt="" class="icono"> Ayuda</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -18,7 +26,8 @@
         mat-icon-button
         (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        <mat-icon aria-label="Side nav toggle icon">menu
+        </mat-icon>
       </button>
       <span>Tesis-IMVM</span>
     </mat-toolbar>

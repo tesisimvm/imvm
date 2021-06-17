@@ -36,3 +36,25 @@
 .mat-toolbar a{
   display: inline-block;
 }
+
+#perfil-imagen{
+  height: 100px;
+  width: 100px;
+  margin-left: 25%;
+  margin-bottom: 5%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 100% auto;
+}
+
+.nombre-usuario{
+  text-align: center;
+}
+
+.icono{
+  height: 40px;
+  width: 40px;
+  margin-left: -6%;
+  margin-right: 6%;
+}
