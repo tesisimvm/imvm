@@ -8,7 +8,7 @@ import { PagNosotrosComponent } from './nosotros/pag-nosotros/pag-nosotros.compo
 const app_routes: Routes = [
 
     {path: 'home', component: InicioSesionComponent},
-    {path: 'nosotros', component: PagNosotrosComponent},
+    {path: 'Nosotros', component: PagNosotrosComponent},
     {path: 'menu', component: MainNavComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'home'}
 
