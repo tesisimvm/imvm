@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+//RUTAS
+import { app_routing } from './app.routes';
+
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,7 +36,8 @@ import { PagNosotrosComponent } from './nosotros/pag-nosotros/pag-nosotros.compo
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    app_routing
   ],
   providers: [],
   bootstrap: [AppComponent]
