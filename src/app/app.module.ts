@@ -14,6 +14,7 @@ import { MatListModule } from '@angular/material/list';
 import { LoginComponent } from './login/login.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { PagNosotrosComponent } from './nosotros/pag-nosotros/pag-nosotros.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 import { app_routing } from './app.routes';
 
@@ -23,7 +24,8 @@ import { app_routing } from './app.routes';
     MainNavComponent,
     LoginComponent,
     InicioSesionComponent,
-    PagNosotrosComponent
+    PagNosotrosComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
