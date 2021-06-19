@@ -9,11 +9,11 @@ import { PerfilComponent } from './perfil/perfil.component';
 
 const app_routes: Routes = [
 
-    {path: '', pathMatch: 'full', redirectTo: 'Login'},
-    {path: 'Home', component: InicioSesionComponent},
+    {path: '', pathMatch: 'full', redirectTo: 'Home'},
+    {path: 'InicioSesion', component: InicioSesionComponent},
     {path: 'Nosotros', component: PagNosotrosComponent},
     {path: 'Menu', component: MainNavComponent},
-    {path: 'Login', component: LoginComponent},
+    {path: 'Registrarse', component: LoginComponent},
     {path: 'Perfil', component: PerfilComponent},
     {path: '**', pathMatch: 'full', redirectTo: 'Home'}
 
