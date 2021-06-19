@@ -3,19 +3,19 @@
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
-    <mat-toolbar style="background-color: #3F51B5; color: white;">Menú</mat-toolbar>
+    <mat-toolbar style="background-color: #D94D2C; color: white;">Menú</mat-toolbar>
     <mat-nav-list class="button-menu">
       <div class="perfil">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFvu4ovwGF1rmBrNYtl93L6NB0cmsTF3BlEg&usqp=CAU" alt="" id="perfil-imagen">
-        <p class="nombre-usuario">Usuario 1</p>
+        <img src="../../assets/PerfilAndrea.jpg" alt="" id="perfil-imagen">
+        <p class="nombre-usuario">Andrea Dalerba</p>
       </div>
 
-      <a mat-list-item href="#"><img src="../../assets/img/icono-perfil.png" alt="" class="icono"> Perfil</a> 
-      <a mat-list-item href="#"><img src="../../assets/img/icono-reclamo.png" alt="" class="icono"> Reclamos</a>
-      <a mat-list-item href="#"><img src="../../assets/img/icono-historial.png" alt="" class="icono"> Historial</a>
-      <a mat-list-item href="#"><img src="../../assets/img/icono-mapa.png" alt="" class="icono"> Mapa</a>
-      <a mat-list-item href="#"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono"> Nosotros</a>
-      <a mat-list-item href="#"><img src="../../assets/img/icono-ayuda.png" alt="" class="icono"> Ayuda</a>
+      <a mat-list-item href="#" [routerLink]="['/Perfil']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-perfil.png" alt="" class="icono"> Perfil</a> 
+      <a mat-list-item href="#" [routerLink]="['/Reclamos']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-reclamo.png" alt="" class="icono"> Reclamos</a>
+      <a mat-list-item href="#" [routerLink]="['/Historial']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-historial.png" alt="" class="icono"> Historial</a>
+      <a mat-list-item href="#" [routerLink]="['/Mapa']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-mapa.png" alt="" class="icono"> Mapa</a>
+      <a mat-list-item href="#" [routerLink]="['/Nosotros']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono"> Nosotros</a>
+      <a mat-list-item href="#" [routerLink]="['/Ayuda']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-ayuda.png" alt="" class="icono"> Ayuda</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -29,8 +29,14 @@
         <mat-icon aria-label="Side nav toggle icon">menu
         </mat-icon>
       </button>
-      <span>Tesis-IMVM</span>
+      <span>Tesis-RVM</span>
     </mat-toolbar>
     <!-- Add Content Here -->
+
+    <div class="container p-12">
+      <router-outlet></router-outlet>
+    </div>
+      
+      
   </mat-sidenav-content>
 </mat-sidenav-container>
