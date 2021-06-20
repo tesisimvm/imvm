@@ -39,14 +39,14 @@
               </div>
               <div class="row">
                  <div class="col col-12">
-                  <input type="submit" value="Iniciar Sesión" class="btn">
+                  <input type="submit" value="Iniciar Sesión" class="btn" [routerLink]="['/main-nav']">
                  </div>
                
               </div>
             </form>
           </div>
           <div class="row">
-            <p>No tienes una cuenta? <a href="#">Registrate ahora!</a></p>
+            <p>No tienes una cuenta? <a routerLink="/login">Registrate ahora!</a></p>
           </div>
         </div>
       </div>

@@ -10,7 +10,7 @@
         <p class="nombre-usuario">Usuario 1</p>
       </div>
 
-      <a mat-list-item href="#"><img src="../../assets/img/icono-perfil.png" alt="" class="icono"> Perfil</a> 
+      <a mat-list-item routerLink="/main-nav/perfil"><img src="../../assets/img/icono-perfil.png" alt="" class="icono"  [routerLink]="['/perfil']"> Perfil</a> 
       <a mat-list-item href="#"><img src="../../assets/img/icono-reclamo.png" alt="" class="icono"> Reclamos</a>
       <a mat-list-item href="#"><img src="../../assets/img/icono-historial.png" alt="" class="icono"> Historial</a>
       <a mat-list-item href="#"><img src="../../assets/img/icono-mapa.png" alt="" class="icono"> Mapa</a>
@@ -32,5 +32,10 @@
       <span>Tesis-IMVM</span>
     </mat-toolbar>
     <!-- Add Content Here -->
+    <div class="container p-4">
+
+      <router-outlet></router-outlet>
+      
+    </div> 
   </mat-sidenav-content>
 </mat-sidenav-container>
