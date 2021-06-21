@@ -1,25 +1,38 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport
+  <mat-sidenav   #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
+<<<<<<< HEAD
     <mat-toolbar style="background-color: #D94D2C; color: white;">Menú</mat-toolbar>
+=======
+    <mat-toolbar class="menu" >Menú</mat-toolbar>
+>>>>>>> nico
     <mat-nav-list class="button-menu">
       <div class="perfil">
         <img src="../../assets/PerfilAndrea.jpg" alt="" id="perfil-imagen">
         <p class="nombre-usuario">Andrea Dalerba</p>
       </div>
 
+<<<<<<< HEAD
       <a mat-list-item href="#" [routerLink]="['/Perfil']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-perfil.png" alt="" class="icono"> Perfil</a> 
       <a mat-list-item href="#" [routerLink]="['/Reclamos']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-reclamo.png" alt="" class="icono"> Reclamos</a>
       <a mat-list-item href="#" [routerLink]="['/Historial']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-historial.png" alt="" class="icono"> Historial</a>
       <a mat-list-item href="#" [routerLink]="['/Mapa']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-mapa.png" alt="" class="icono"> Mapa</a>
       <a mat-list-item href="#" [routerLink]="['/Nosotros']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono"> Nosotros</a>
       <a mat-list-item href="#" [routerLink]="['/Ayuda']" routerLinkActive="router-link-active"><img src="../../assets/img/icono-ayuda.png" alt="" class="icono"> Ayuda</a>
+=======
+      <a mat-list-item class="btn-grad" routerLink="/main-nav/perfil"><img src="../../assets/img/icono-perfil.png" alt="" class="icono"  [routerLink]="['/perfil']"> Perfil</a> 
+      <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-reclamo.png" alt="" class="icono"> Reclamos</a>
+      <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-historial.png" alt="" class="icono"> Historial</a>
+      <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-mapa.png" alt="" class="icono"> Mapa</a>
+      <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono"> Nosotros</a>
+      <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-ayuda.png" alt="" class="icono"> Ayuda</a>
+>>>>>>> nico
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar id="cabecera" color="primary">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -29,14 +42,13 @@
         <mat-icon aria-label="Side nav toggle icon">menu
         </mat-icon>
       </button>
-      <span>Tesis-RVM</span>
+      <span id="textoCabecera">Tesis-IMVM</span>
     </mat-toolbar>
     <!-- Add Content Here -->
+    <div class="container p-4">
 
-    <div class="container p-12">
       <router-outlet></router-outlet>
-    </div>
       
-      
+    </div> 
   </mat-sidenav-content>
 </mat-sidenav-container>
