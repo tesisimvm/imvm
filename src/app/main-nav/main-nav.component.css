@@ -2,7 +2,7 @@
 .mat-sidenav {
   background-image: linear-gradient(
     94.3deg,
-    #325E94 100%,
+    #061568 100%,
     rgb(255, 255, 255) 87.1%
   );
 }
@@ -37,7 +37,7 @@
     rgba(0, 194, 209, 1) 95.9%
   ); */
 
-  background: rgb(20,58,103);
+  background: #B1B8BF;
   /* background: linear-gradient(170deg, rgba(20,58,103,1) 0%, rgba(50,94,148,1) 42%, rgba(254,254,254,1) 100%); */
 	
 }
@@ -117,8 +117,8 @@ ir a https://cssgradient.io/gradient-backgrounds/ */
   background-image: linear-gradient(
     to right,
     #ffffff 0%,
-    #325E94 51%,
-    #325E94 100%
+    #061568 51%,
+    #061568 100%
   );
 }
 .btn-grad {
@@ -129,7 +129,7 @@ ir a https://cssgradient.io/gradient-backgrounds/ */
   transition: 0.5s;
   background-size: 200% auto;
   color: rgb(0, 0, 0);
-  box-shadow: 3px 3px 1px rgb(63, 63, 63);
+  
   border-radius: 10px;
   display: block;
 }
