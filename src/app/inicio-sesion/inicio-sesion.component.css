@@ -1,3 +1,6 @@
+.company_title{
+	text-shadow: 4px 4px 1px rgb(43, 43, 43);
+}
 
 .main-content{
 	width: 50%;
@@ -7,7 +10,8 @@
 	display: flex;
 }
 .company__info{
-	background-image: linear-gradient(-20deg, #00cdac 0%, #8ddad5 100%);
+	background: rgb(20,58,103);
+  background: linear-gradient(170deg, rgba(20,58,103,1) 0%, rgba(50,94,148,1) 42%, rgba(254,254,254,1) 100%);
 	
 	border-top-left-radius: 20px;
 	border-bottom-left-radius: 20px;
@@ -33,7 +37,7 @@
 	.main-content{width: 70%;}
 }
 .row > h2{
-	color:#008080;
+	color:#325E94;
 }
 .login_form{
 	background-color: #fff;
@@ -57,24 +61,22 @@ form{
 	transition: all .5s ease;
 }
 .form__input:focus{
-	border-bottom-color: #008080;
-	box-shadow: 0 0 5px rgba(0,80,80,.4); 
+	border-bottom-color: #325E94;
+	box-shadow: 0 0 5px #1d3757; 
 	border-radius: 4px;
 }
 .btn{
 	transition: all .5s ease;
 	width: 70%;
 	border-radius: 30px;
-	color:#008080;
+	color:#325E94;
 	font-weight: 600;
 	background-color: #fff;
-	border: 1px solid #008080;
+	border: 1px solid #325E94;
 	margin-top: 1.5em;
 	margin-bottom: 1em;
 }
 .btn:hover, .btn:focus{
-	background-color: #008080;
+	background-color: #325E94;
 	color:#fff;
 }
-
-/* background-image: linear-gradient(15deg, #13547a 0%, #80d0c7 100%); */

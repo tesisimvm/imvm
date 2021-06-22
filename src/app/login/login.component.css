@@ -13,18 +13,19 @@
 }
 
 .btn-twitter {
-  background: #42aeec;
+  background: #2c9ee0;
   border: none;
 }
 
 .btn-twitter:hover,
 .btn-twitter:focus {
-  background: #1799e4;
+  background: #1875af;
 }
 
 body {
   min-height: 100vh;
-  background-image: linear-gradient(to top, #30cfd0 0%, #330867 100%);
+  background: rgb(20,58,103);
+  background: linear-gradient(170deg, rgba(20,58,103,1) 0%, rgba(50,94,148,1) 42%, rgba(254,254,254,1) 100%);
 }
 
 .form-control:not(select) {
@@ -34,6 +35,15 @@ body {
 select.form-control {
   height: 52px;
   padding-left: 0.5rem;
+}
+
+.navbar-brand{
+  margin-left: 30%;
+}
+
+.navbar-brand img{
+  height: 160px;
+  width: 390px;
 }
 
 .form-control::placeholder {
@@ -50,4 +60,9 @@ select.form-control {
 
    color: white;
    text-align: center;
+   text-shadow: 5px 5px 1px rgb(61, 61, 61);
+}
+
+#registrado{
+  color: white;
 }
