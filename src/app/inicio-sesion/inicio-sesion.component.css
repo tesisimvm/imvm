@@ -85,7 +85,7 @@ form{
 /* ------------------------ */
 
 /*footer*/
-.col_white_amrc { color:#FFF;}
+/* .col_white_amrc { color:#FFF;}
 footer { width:100%; background-color:#505E6E; min-height:250px; padding:10px 0px 25px 0px ;}
 .pt2 { padding-top:40px ; margin-bottom:20px ;}
 footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
@@ -118,4 +118,24 @@ footer p { font-size:13px; color:#CCC; padding-bottom:0px; margin-bottom:8px;}
 .social_footer_ul { display:table; margin:15px auto 0 auto; list-style-type:none;  }
 .social_footer_ul li { padding-left:20px; padding-top:10px; float:left; }
 .social_footer_ul li a { color:#CCC; border:1px solid #CCC; padding:8px;border-radius:50%;}
-.social_footer_ul li i {  width:20px; height:20px; text-align:center;}
+.social_footer_ul li i {  width:20px; height:20px; text-align:center;} */
+
+.footers a {color:#696969;}
+.footers p {color:#696969;}
+.footers ul {line-height:30px;}
+#social-fb:hover {
+     color: #3B5998;
+     transition:all .001s;
+ }
+ #social-tw:hover {
+     color: #4099FF;
+     transition:all .001s;
+ }
+ #social-gp:hover {
+     color: #d34836;
+     transition:all .001s;
+ }
+ #social-em:hover {
+     color: #f39c12;
+     transition:all .001s;
+ }

@@ -15,6 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { PagNosotrosComponent } from './nosotros/pag-nosotros/pag-nosotros.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ReclamosComponent } from './reclamos/reclamos.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { PerfilComponent } from './perfil/perfil.component';
     LoginComponent,
     InicioSesionComponent,
     PagNosotrosComponent,
-    PerfilComponent
+    PerfilComponent,
+    ReclamosComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
