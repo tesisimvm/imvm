@@ -15,6 +15,8 @@ import { LoginComponent } from './login/login.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { PagNosotrosComponent } from './nosotros/pag-nosotros/pag-nosotros.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { ReclamosComponent } from './reclamos/reclamos.component';
+import { FooterComponent } from './footer/footer.component';
 
 import { app_routing } from './app.routes';
 
@@ -25,7 +27,9 @@ import { app_routing } from './app.routes';
     LoginComponent,
     InicioSesionComponent,
     PagNosotrosComponent,
-    PerfilComponent
+    PerfilComponent,
+    ReclamosComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
