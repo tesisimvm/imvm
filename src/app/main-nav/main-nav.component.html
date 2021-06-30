@@ -1,8 +1,8 @@
-<mat-sidenav-container class="sidenav-container">
+<mat-sidenav-container class="sidenav-container" style="font-family: 'Open Sans',sans-serif;">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="menu">Menú</mat-toolbar>
-    <mat-nav-list class="button-menu">
+    <mat-toolbar class="menu" style="font-family: 'Open Sans',sans-serif;">Menú</mat-toolbar>
+    <mat-nav-list class="button-menu" style="font-family: 'Open Sans',sans-serif;">
       <div class="perfil">
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFvu4ovwGF1rmBrNYtl93L6NB0cmsTF3BlEg&usqp=CAU"
           alt="" id="perfil-imagen">
@@ -19,6 +19,8 @@
         Mapa</a>
       <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono">
         Nosotros</a>
+        <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono">
+        Reportes</a>
       <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-ayuda.png" alt="" class="icono">
         Ayuda</a>
     </mat-nav-list>
@@ -30,7 +32,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu
         </mat-icon>
       </button>
-      <span id="textoCabecera">Tesis-IMVM</span>
+      <span id="textoCabecera" style="font-family: 'Open Sans',sans-serif;">RVM</span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <div class="container p-4">
@@ -42,11 +44,3 @@
 
   </mat-sidenav-content>
 </mat-sidenav-container>
-
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-  integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
