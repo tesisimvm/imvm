@@ -17,6 +17,7 @@ import { PagNosotrosComponent } from './nosotros/pag-nosotros/pag-nosotros.compo
 import { PerfilComponent } from './perfil/perfil.component';
 import { ReclamosComponent } from './reclamos/reclamos.component';
 import { FooterComponent } from './footer/footer.component';
+import { PprincipalComponent } from './pprincipal/pprincipal.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { FooterComponent } from './footer/footer.component';
     PagNosotrosComponent,
     PerfilComponent,
     ReclamosComponent,
-    FooterComponent
+    FooterComponent,
+    PprincipalComponent
   ],
   imports: [
     BrowserModule,

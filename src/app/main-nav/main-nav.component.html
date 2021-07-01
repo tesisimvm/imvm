@@ -17,8 +17,8 @@
         Historial</a>
       <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-mapa.png" alt="" class="icono">
         Mapa</a>
-      <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono">
-        Nosotros</a>
+      <a mat-list-item class="btn-grad" routerLink="/main-nav/nosotros">
+        <img src="../../assets/img/icono-nosotros.png" alt="" class="icono" [routerLink]="['/nosotros']"> Nosotros</a>
         <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono">
         Reportes</a>
       <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-ayuda.png" alt="" class="icono">
@@ -39,6 +39,8 @@
       <router-outlet></router-outlet>
     </div>
       
+    
+
       <app-footer></app-footer>
 
 

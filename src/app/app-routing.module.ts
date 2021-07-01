@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { MainNavComponent } from './main-nav/main-nav.component';
 import { PagNosotrosComponent } from './nosotros/pag-nosotros/pag-nosotros.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { PprincipalComponent } from './pprincipal/pprincipal.component';
 import { ReclamosComponent } from './reclamos/reclamos.component';
 
 const routes: Routes = [
@@ -14,9 +15,13 @@ const routes: Routes = [
   {path: 'nosotros', component: PagNosotrosComponent},
   {path: 'perfil', component: PerfilComponent},
   {path: 'reclamos', component: ReclamosComponent},
-  {path: 'main-nav', component: MainNavComponent, children:[
+  {path: 'pantallaprincipal', component: PprincipalComponent},
+  {path: 'main-nav', component: MainNavComponent, 
+    children:[
     {path: 'perfil', component: PerfilComponent},
-    {path: 'reclamos', component: ReclamosComponent}
+    {path: 'reclamos', component: ReclamosComponent},
+    {path: 'nosotros', component: PagNosotrosComponent},
+    {path: 'pantallaprincipal', component: PprincipalComponent}
   ]}, /* menu principal */
   {path: '**', component: InicioSesionComponent}, /* por defecto - cuando hay problemas o se escribe mal la url */
   
