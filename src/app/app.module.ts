@@ -17,6 +17,8 @@ import { PagNosotrosComponent } from './nosotros/pag-nosotros/pag-nosotros.compo
 import { PerfilComponent } from './perfil/perfil.component';
 import { ReclamosComponent } from './reclamos/reclamos.component';
 import { FooterComponent } from './footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { FooterComponent } from './footer/footer.component';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FormsModule, /* agregado */
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

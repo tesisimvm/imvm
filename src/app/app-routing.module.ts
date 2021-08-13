@@ -16,7 +16,8 @@ const routes: Routes = [
   {path: 'reclamos', component: ReclamosComponent},
   {path: 'main-nav', component: MainNavComponent, children:[
     {path: 'perfil', component: PerfilComponent},
-    {path: 'reclamos', component: ReclamosComponent}
+    {path: 'reclamos', component: ReclamosComponent},
+    {path: 'nosotros', component: PagNosotrosComponent}
   ]}, /* menu principal */
   {path: '**', component: InicioSesionComponent}, /* por defecto - cuando hay problemas o se escribe mal la url */
   
