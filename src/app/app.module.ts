@@ -20,6 +20,7 @@ import { FooterComponent } from './footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { PprincipalComponent } from './pprincipal/pprincipal.component';
+import { ConfiguracionComponent } from './configuracion/configuracion.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PprincipalComponent } from './pprincipal/pprincipal.component';
     PerfilComponent,
     ReclamosComponent,
     FooterComponent,
-    PprincipalComponent
+    PprincipalComponent,
+    ConfiguracionComponent
   ],
   imports: [
     BrowserModule,
