@@ -6,4 +6,5 @@ export class Reclamo {
     //Foto?:Byte;
     hora?:string;
     ubicacion?:number;
+    
 }
