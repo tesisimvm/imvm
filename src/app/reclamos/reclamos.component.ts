@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { BackenApiService } from '../service/backen-api.service';
+import { Reclamo } from '../model/reclamo';
 
 @Component({
   selector: 'app-reclamos',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReclamosComponent implements OnInit {
 
-  constructor() { }
+  recla:Reclamo[]=[];
+
+  constructor( private service: BackenApiService) {
+    
+    this.service.getReclamo().subscribe(data=>
+      {console.log(data)
+      this.recla =data;
+
+      }, error=>{console.log(error)})
+
+   }
 
   ngOnInit(): void {
   }

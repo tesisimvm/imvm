@@ -18,6 +18,8 @@ import { PerfilComponent } from './perfil/perfil.component';
 import { ReclamosComponent } from './reclamos/reclamos.component';
 import { FooterComponent } from './footer/footer.component';
 import { PprincipalComponent } from './pprincipal/pprincipal.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { PprincipalComponent } from './pprincipal/pprincipal.component';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FormsModule, /* agregado */
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
