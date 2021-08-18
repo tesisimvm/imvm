@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BackenApiService } from '../service/backen-api.service';
-import { Reclamo } from '../model/reclamo';
+import { BackenApiService } from '../../../service/backen-api.service';
+import { Reclamo } from '../../../model/reclamo';
 
 @Component({
   selector: 'app-reclamos',
