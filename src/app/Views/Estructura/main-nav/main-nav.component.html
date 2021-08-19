@@ -1,27 +1,24 @@
 <mat-sidenav-container class="sidenav-container" style="font-family: 'Open Sans',sans-serif;">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="menu" style="font-family: 'Open Sans',sans-serif;">Menú</mat-toolbar>
+    <mat-toolbar class="menu" style="font-family: 'Open Sans',sans-serif;"></mat-toolbar>
     <mat-nav-list class="button-menu" style="font-family: 'Open Sans',sans-serif;">
       <div class="perfil">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQFvu4ovwGF1rmBrNYtl93L6NB0cmsTF3BlEg&usqp=CAU"
-          alt="" id="perfil-imagen">
-        <p class="nombre-usuario">Usuario 1 </p>
+        <img src="../assets/img/fotoOmar.jpeg " alt="" id="perfil-imagen">
+        <p class="nombre-usuario"> hacer un engranaje para las opciones de edicion de perfil</p>
       </div>
 
-      <a mat-list-item class="btn-grad" routerLink="/main-nav/perfil"><img src="../../assets/img/icono-perfil.png"
-          alt="" class="icono" [routerLink]="['/perfil']"> Perfil</a>
-      <a mat-list-item class="btn-grad" routerLink="/main-nav/reclamos"><img src="../../assets/img/icono-reclamo.png"
-          alt="" class="icono" [routerLink]="['/reclamos']"> Reclamos</a>
-      <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-historial.png" alt="" class="icono">
+      <a mat-list-item class="btn-grad" routerLink="/main-nav/perfil"> <i class="fas fa-user-circle fa-2x" routerLink="/main-nav/perfil"></i>  Perfil</a>
+      <a mat-list-item class="btn-grad" routerLink="/main-nav/reclamos"> <i class="fas fa-file-alt fa-2x" routerLink="/main-nav/reclamos"></i> Reclamos</a>
+      <a mat-list-item class="btn-grad" href="#"> <i class="fas fa-heading fa-2x"></i>
         Historial</a>
-      <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-mapa.png" alt="" class="icono">
+      <a mat-list-item class="btn-grad" href="#"> <i class="fas fa-map-marked-alt fa-2x"></i> 
         Mapa</a>
-      <a mat-list-item class="btn-grad" href="#" routerLink="/main-nav/nosotros" ><img src="../../assets/img/icono-nosotros.png" alt="" class="icono">
+      <a mat-list-item class="btn-grad" href="#" routerLink="/main-nav/nosotros" > <i class="fas fa-users fa-2x"></i>
         Nosotros</a>
-        <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-nosotros.png" alt="" class="icono">
+        <a mat-list-item class="btn-grad" href="#"><i class="fas fa-clipboard fa-2x"></i>
         Reportes</a>
-      <a mat-list-item class="btn-grad" href="#"><img src="../../assets/img/icono-ayuda.png" alt="" class="icono">
+      <a mat-list-item class="btn-grad" href="#"> <i class="fas fa-info fa-2x"></i>
         Ayuda</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -32,7 +29,7 @@
         <mat-icon aria-label="Side nav toggle icon">menu
         </mat-icon>
       </button>
-      <span id="textoCabecera" style="font-family: 'Open Sans',sans-serif;">RVM</span>
+      <span id="textoCabecera" style="font-family: 'Open Sans',sans-serif;">Reclamos Villa María</span>
     </mat-toolbar>
     <!-- Add Content Here -->
     <div class="container p-4">
