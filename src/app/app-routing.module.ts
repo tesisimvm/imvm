@@ -5,6 +5,7 @@ import { LoginComponent } from './Views/Sesion/login/login.component';
 import { MainNavComponent } from './Views/Estructura/main-nav/main-nav.component';
 import { PerfilComponent } from './Views/Usuario/perfil/perfil.component';
 import { ReclamosComponent } from './Views/Reclamo/reclamos/reclamos.component';
+import { HistorialComponent } from './Views/Reclamo/historial/historial.component';
 
 const routes: Routes = [
   {path: '', component: InicioSesionComponent}, /* cuando se inicia el proyecto o cuando la url esta vacia */
@@ -17,6 +18,7 @@ const routes: Routes = [
     children:[
     {path: 'perfil', component: PerfilComponent},
     {path: 'reclamos', component: ReclamosComponent},
+    {path: 'historial', component: HistorialComponent}
   ]}, /* menu principal */
   {path: '**', component: InicioSesionComponent}, /* por defecto - cuando hay problemas o se escribe mal la url */
 ];

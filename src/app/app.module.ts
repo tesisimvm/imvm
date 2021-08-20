@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { LoginComponent } from './Views/Sesion/login/login.component';
 import { InicioSesionComponent } from './Views/Sesion/registro/inicio-sesion.component';
-
 import { PerfilComponent } from './Views/Usuario/perfil/perfil.component';
 import { ReclamosComponent } from './Views/Reclamo/reclamos/reclamos.component';
 import { FooterComponent } from './Views/Estructura/footer/footer.component';
