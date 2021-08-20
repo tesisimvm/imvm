@@ -10,18 +10,15 @@ const routes: Routes = [
   {path: '', component: InicioSesionComponent}, /* cuando se inicia el proyecto o cuando la url esta vacia */
   {path: 'inicio-sesion', component: InicioSesionComponent}, /* cuando te logueas para entrar a tu usuario */
   {path: 'login', component: LoginComponent}, /* para registrate */
-  
   {path: 'perfil', component: PerfilComponent},
   {path: 'reclamos', component: ReclamosComponent},
-  {path: 'pantallaprincipal', component: PprincipalComponent},
-  {path: 'main-nav', component: MainNavComponent, 
+  // {path: 'pantallaprincipal', component: PprincipalComponent},
+  {path: 'main-nav', component: MainNavComponent,
     children:[
     {path: 'perfil', component: PerfilComponent},
     {path: 'reclamos', component: ReclamosComponent},
-    
   ]}, /* menu principal */
   {path: '**', component: InicioSesionComponent}, /* por defecto - cuando hay problemas o se escribe mal la url */
-  
 ];
 
 @NgModule({

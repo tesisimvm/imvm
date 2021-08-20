@@ -30,7 +30,6 @@ import { ConfiguracionComponent } from './Views/Configuracion/configuracion/conf
     MainNavComponent,
     LoginComponent,
     InicioSesionComponent,
-    
     PerfilComponent,
     ReclamosComponent,
     FooterComponent,

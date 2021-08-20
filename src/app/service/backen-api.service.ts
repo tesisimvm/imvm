@@ -30,7 +30,7 @@ export class BackenApiService {
     // cabecera.append('Content-Type', 'application/json');
     //debugger
     console.log(usuario);
-    return this.http.post('https://localhost:44363/usuario',usuario,this.httpOptions);
+    return this.http.post('https://localhost:44363/usuario', usuario, this.httpOptions);
   }
 
 

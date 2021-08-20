@@ -17,7 +17,6 @@ export class LoginComponent implements OnInit {
   /* usu: any;
 
   usuariArray: producto[] = []; */
-  
   constructor() { }
 
 
@@ -29,9 +28,8 @@ export class LoginComponent implements OnInit {
 
   registrarUsuario(){
     //variable que va a tener todos los datos capturados del usuario
-    
     var RegistroU ={
-
+      
     }
   }
 
