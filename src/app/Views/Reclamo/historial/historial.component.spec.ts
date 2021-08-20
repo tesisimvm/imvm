@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PagNosotrosComponent } from './pag-nosotros.component';
+import { HistorialComponent } from './historial.component';
 
-describe('PagNosotrosComponent', () => {
-  let component: PagNosotrosComponent;
-  let fixture: ComponentFixture<PagNosotrosComponent>;
+describe('HistorialComponent', () => {
+  let component: HistorialComponent;
+  let fixture: ComponentFixture<HistorialComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PagNosotrosComponent ]
+      declarations: [ HistorialComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PagNosotrosComponent);
+    fixture = TestBed.createComponent(HistorialComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
