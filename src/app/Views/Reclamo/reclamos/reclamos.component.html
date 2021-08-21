@@ -1,0 +1,84 @@
+<div class="container" style="border: solid rgb(175, 175, 175); padding: 5%; border-radius: 10%;  font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol" >
+  <h2 style="text-align: center; padding-bottom: 2%;">
+    Crear Reclamo
+  </h2>
+  <div class="row">
+    <div class="well well-sm">
+      <form class="form-horizontal" method="post">
+        <fieldset>
+          <div class="row" style="margin: 0 auto">
+            <div class="col-md-5">
+              <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-tasks" style="font-size: 25px;">
+                  </i> </span>
+                <div class="col-md-12 text-center">
+                  <select name="example" style="width: 100%;">
+                    <option value="A">Reclamo Ambiental</option>
+                    <option value="B">Reclamo Vial</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"
+                    style="color: black; font-size: 25px;" ></i></span>
+                <div class="col-md-12 text-center">
+                  <input id="Fecha" name="name" type="date" placeholder="Fecha" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-clock-o bigicon"
+                    style="color: black; font-size: 25px;"></i></span>
+                <div class="col-md-12 text-center">
+                  <input id="Hora" name="email" type="time" placeholder="Hora" class="form-control">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-map-marker bigicon"
+                    style="color: black; font-size: 25px;"></i></span>
+                <div class="col-md-12 text-center">
+                  <input id="Ubicacion" name="phone" type="text" placeholder="Ubicación" class="form-control">
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-7">
+              <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"
+                    style="color: black; font-size: 25px;"></i></span>
+                <div class="col-md-12 text-center">
+                  <textarea class="form-control" id="Descripcion" name="message" placeholder="Descripción"
+                    rows="7"></textarea>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <span class="col-md-1 col-md-offset-2 text-center">
+                  <i class="fa fa-camera bigicon" style="color: black; font-size: 25px;"></i>
+                </span>
+              </div>
+             
+              <div class="form-group">
+                <div class="col-xs-12">
+                  <input type="file" class="btn btn-light" name="imagen1" />
+                </div>
+              </div>
+            </div>
+
+          </div>
+          
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button type="button" class="btn btn-success" style="width: 80%;" onclick="LimpiarCampos()">Enviar
+                Reclamo</button>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+
+     
+    </div>
+  </div>
+</div>

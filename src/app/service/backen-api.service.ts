@@ -18,4 +18,20 @@ export class BackenApiService {
   getReclamo(): Observable<Reclamo[]> {
     return this.http.get<Reclamo[]>('https://localhost:44363/reclamo');
   }
+
+
+
+  /* Pantalla Login (registro de usuario) */
+
+  postUsuario(usuario: any ):Observable<any>{
+
+    //let produ = JSON.stringify(prod);
+    // let cabecera = new HttpHeaders();
+    // cabecera.append('Content-Type', 'application/json');
+    //debugger
+    console.log(usuario);
+    return this.http.post('https://localhost:44363/usuario', usuario, this.httpOptions);
+  }
+
+
 }
