@@ -33,5 +33,12 @@ export class BackenApiService {
     return this.http.post('https://localhost:44363/usuario', usuario, this.httpOptions);
   }
 
+  getPerfil( usuario : any ): Observable<any>{
+    
+    console.log(usuario);
+    return this.http.get('http://localhost:4200/usuario' , usuario);
+
+  }
+  
 
 }
