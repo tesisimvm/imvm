@@ -15,7 +15,7 @@ import { InicioSesionComponent } from './Views/Sesion/registro/inicio-sesion.com
 import { PerfilComponent } from './Views/Usuario/perfil/perfil.component';
 import { ReclamosComponent } from './Views/Reclamo/reclamos/reclamos.component';
 import { FooterComponent } from './Views/Estructura/footer/footer.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { UsuarioComponent } from './Views/Usuario/usuario/usuario.component';
 import { HistorialComponent } from './Views/Reclamo/historial/historial.component';
@@ -47,7 +47,8 @@ import { ConfiguracionComponent } from './Views/Configuracion/configuracion/conf
     MatIconModule,
     MatListModule,
     FormsModule, /* agregado */
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Reclamo } from '../model/reclamo';
+import { sesionUsuario } from '../model/sesion';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,8 @@ export class BackenApiService {
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+
+  dato:any;
 
   constructor(private http: HttpClient) {}
 
@@ -22,15 +25,18 @@ export class BackenApiService {
 
 
   /* Pantalla Login (registro de usuario) */
-
   postUsuario(usuario: any ):Observable<any>{
-
-    //let produ = JSON.stringify(prod);
-    // let cabecera = new HttpHeaders();
-    // cabecera.append('Content-Type', 'application/json');
     //debugger
     console.log(usuario);
     return this.http.post('https://localhost:44363/usuario', usuario, this.httpOptions);
+  }
+
+
+  /* Pantalla sesion - validar usuario */
+  getValidacionUsuario(data:any): Observable<any> {
+    console.log(data);
+    debugger
+    return this.http.get<sesionUsuario[]>('https://localhost:44363/sesion',data); /* email=example@hotmail.com&password=123'); */
   }
 
 
