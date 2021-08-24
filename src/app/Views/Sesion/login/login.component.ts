@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
+import { BackenApiService } from 'src/app/service/backen-api.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,14 @@ import { FormControl } from '@angular/forms';
 })
 export class LoginComponent implements OnInit {
 
-    
+    nombreCtrl = new FormControl('',[Validators.required]);
+    usuarioCtrl = new FormControl('',[Validators.required]);
+    correoCtrl = new FormControl('',[Validators.required]);
+    celularCtrl = new FormControl('',[Validators.required]);
+    contraseniaCtrl = new FormControl('',[Validators.required]);
+    contrasenia2Ctrl = new FormControl('',[Validators.required]);
+
+    /* [formControl]="userCtrl" */
 
 
   /* public formGroup: FormGroup = new FormGroup({
@@ -19,7 +27,7 @@ export class LoginComponent implements OnInit {
   }); */
   /* usu: any;
   usuariArray: producto[] = []; */
-  constructor() { }
+  constructor(public service: BackenApiService) { }
 
 
 
