@@ -13,8 +13,8 @@ export class LoginComponent implements OnInit {
     usuarioCtrl = new FormControl('',[Validators.required]);
     correoCtrl = new FormControl('',[Validators.required]);
     celularCtrl = new FormControl('',[Validators.required]);
-    contraseniaCtrl = new FormControl('',[Validators.required]);
-    contrasenia2Ctrl = new FormControl('',[Validators.required]);
+    contraseniaCtrl = new FormControl('',[Validators.required,Validators.minLength(8)]);
+    contrasenia2Ctrl = new FormControl('',[Validators.required,Validators.minLength(8)]);
 
     /* [formControl]="userCtrl" */
 
