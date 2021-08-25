@@ -1,7 +1,8 @@
 <mat-sidenav-container class="sidenav-container" style="font-family: 'Open Sans',sans-serif;">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="menu" style="font-family: 'Open Sans',sans-serif;"></mat-toolbar>
+    <mat-toolbar class="menu" style="font-family: 'Open Sans',sans-serif;">
+    <!-- <img  id="logo" src="../../../../assets/img/mejorada3.png" alt="logo"> --></mat-toolbar>
     <mat-nav-list class="button-menu" style="font-family: 'Open Sans',sans-serif;">
       <div class="row">
 

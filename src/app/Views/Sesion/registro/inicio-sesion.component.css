@@ -104,3 +104,10 @@ form {
   
 
 }
+
+#logo{
+ max-zoom: 400px;
+  max-width: 100%;
+  height: auto;
+  width: 600px;
+}
