@@ -67,6 +67,34 @@ select.form-control {
   color: white;
 }
 
+#formularioRegistro{
+  padding-top: 2%;
+  border-radius: 30px;
+  box-shadow: 2px 2px rgb(254, 254, 255),
+              -2px -2px rgb(254, 254, 255);
+}
+
+.mensajeAlerta{
+  color:rgb(255, 255, 255);
+  font-size: 18px;
+  font-family: 'Open Sans', sans-serif;
+}
+.mensaje{
+  padding-left: 10px;
+}
+/* edicion del controlador tipo numerico, para que no aprezan
+letras, solamente numeros */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 /* ---------------------- */
 /* ------------------------ */

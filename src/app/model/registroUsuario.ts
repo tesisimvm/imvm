@@ -2,7 +2,7 @@ export interface RegistroUsuario{
     IDUsuario?:number
     Nombre?:string
     Apellido?:string
-    Celular?:Byte
+    Celular?:string
     DNI?:string
     Correo?:string
     ID_Perfil?:number
