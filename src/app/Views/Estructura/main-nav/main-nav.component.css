@@ -19,7 +19,7 @@
   color: white;
   text-align: center;
   font-size: 30px;
-  padding-left: 30%;
+  /* padding-left: 30%; */
 }
 
 #textoCabecera{
@@ -166,6 +166,12 @@ background-color: #414c58;
 .fas{
   padding-right:10%;
 }
+
+#logo{
+  max-width: 100%;
+  height: auto;
+  width: 600px;
+ }
 
 
 

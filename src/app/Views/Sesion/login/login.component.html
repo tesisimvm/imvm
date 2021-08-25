@@ -4,9 +4,10 @@
     <!-- Navbar-->
     <header class="header">
         <nav class="navbar navbar-expand-lg navbar-light py-3">
-            <div class="container">
-                <!-- Navbar Brand -->
-                <img src="../../assets/img/Grupo 1@2x.png" alt="" class="navbar-brand">
+            <div id="cabecera" class="container-fluid">
+                <div class="abs-center">
+                    <img id="logo" src="../../../../assets/img/mejorada3.png" alt="logo">
+                </div>
             </div>
         </nav>
     </header>
@@ -35,8 +36,7 @@
                                 </span>
                             </div>
                             <input [formControl]="nombreCtrl" id="firstName" type="text" name="firstname"
-                                placeholder="Nombre" class="form-control bg-white border-left-0 border-md"
-                                >
+                                placeholder="Nombre" class="form-control bg-white border-left-0 border-md">
                         </div>
 
 
@@ -50,14 +50,16 @@
                             <input [formControl]="usuarioCtrl" id="lastName" type="text" name="lastname"
                                 placeholder="Usuario" class="form-control bg-white border-left-0 border-md">
                         </div>
-                        <div *ngIf="nombreCtrl.hasError('required') && nombreCtrl.dirty "  style="margin-top: -4%;" class="col-6 mensajeAlerta">
-                            <span  >
-                                <i class="fa fa-times "><small  class="mensaje">Nombre requerido</small></i>
+                        <div *ngIf="nombreCtrl.hasError('required') && nombreCtrl.dirty " style="margin-top: -4%;"
+                            class="col-6 mensajeAlerta">
+                            <span>
+                                <i class="fa fa-times "><small class="mensaje">Nombre requerido</small></i>
                             </span>
                         </div>
-                        <div *ngIf="usuarioCtrl.hasError('required') && usuarioCtrl.dirty " style="margin-top: -4%;" class="col-6  mensajeAlerta">
-                            <span >
-                                <i class="fa fa-times "><small  class="mensaje" >Usuario requerido</small></i>
+                        <div *ngIf="usuarioCtrl.hasError('required') && usuarioCtrl.dirty " style="margin-top: -4%;"
+                            class="col-6  mensajeAlerta">
+                            <span>
+                                <i class="fa fa-times "><small class="mensaje">Usuario requerido</small></i>
                             </span>
                         </div>
 
@@ -71,9 +73,10 @@
                             <input [formControl]="correoCtrl" id="email" type="email" name="email" placeholder="Email"
                                 class="form-control bg-white border-left-0 border-md">
                         </div>
-                        <div *ngIf="correoCtrl.hasError('required') && correoCtrl.dirty " style="margin-top: -4%;" class="col-6 mensajeAlerta">
-                            <span >
-                                <i class="fa fa-times "><small class="mensaje"  >Se necesita su correo</small></i>
+                        <div *ngIf="correoCtrl.hasError('required') && correoCtrl.dirty " style="margin-top: -4%;"
+                            class="col-6 mensajeAlerta">
+                            <span>
+                                <i class="fa fa-times "><small class="mensaje">Se necesita su correo</small></i>
                             </span>
                         </div>
 
@@ -84,23 +87,25 @@
                                     <i class="fa fa-phone-square text-muted"></i>
                                 </span>
                             </div>
-                            <select  id="countryCode" name="countryCode"
-                                style="max-width: 80px"
+                            <select id="countryCode" name="countryCode" style="max-width: 80px"
                                 class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
                                 <option value="">+54</option>
                                 <option value="">+12</option>
                                 <option value="">+13</option>
                                 <option value="">+14</option>
                             </select>
-                            <input  [formControl]="celularCtrl" id="phoneNumber" type="number" name="phone" placeholder="Número de celular"
+                            <input [formControl]="celularCtrl" id="phoneNumber" type="number" name="phone"
+                                placeholder="Número de celular"
                                 class="form-control bg-white border-md border-left-0 pl-3">
                         </div>
-                        <div  *ngIf="celularCtrl.hasError('required') && celularCtrl.dirty " style="margin-top: -4%;" class="col-6 mensajeAlerta">
-                            <span  >
-                                <i class="fa fa-times "><small class="mensaje"  >Se necesita su número de teléfono</small></i>
+                        <div *ngIf="celularCtrl.hasError('required') && celularCtrl.dirty " style="margin-top: -4%;"
+                            class="col-6 mensajeAlerta">
+                            <span>
+                                <i class="fa fa-times "><small class="mensaje">Se necesita su número de
+                                        teléfono</small></i>
                             </span>
                         </div>
-                        
+
 
                         <!-- Job -->
 
@@ -115,10 +120,13 @@
                             <input [formControl]="contraseniaCtrl" id="password" type="password" name="password"
                                 placeholder="Contraseña" class="form-control bg-white border-left-0 border-md">
                         </div>
-                        <div *ngIf="contraseniaCtrl.errors && contraseniaCtrl.dirty "  style="margin-top: -4%;" class="col-6 mensajeAlerta">
+                        <div *ngIf="contraseniaCtrl.errors && contraseniaCtrl.dirty " style="margin-top: -4%;"
+                            class="col-6 mensajeAlerta">
                             <span>
-                                <i *ngIf="contraseniaCtrl.hasError('required')" class="fa fa-times "><small class="mensaje" >Se solicita el ingreso de una contraseña</small></i>
-                                <i *ngIf="contraseniaCtrl.hasError('minlength')" class="fa fa-times "><small class="mensaje" >Ingrese más de 8 caracteres</small></i>
+                                <i *ngIf="contraseniaCtrl.hasError('required')" class="fa fa-times "><small
+                                        class="mensaje">Se solicita el ingreso de una contraseña</small></i>
+                                <i *ngIf="contraseniaCtrl.hasError('minlength')" class="fa fa-times "><small
+                                        class="mensaje">Ingrese más de 8 caracteres</small></i>
                             </span>
                         </div>
 
@@ -133,10 +141,13 @@
                                 name="passwordConfirmation" placeholder="Confirmá tu contraseña"
                                 class="form-control bg-white border-left-0 border-md">
                         </div>
-                        <div *ngIf="contrasenia2Ctrl.errors && contrasenia2Ctrl.dirty "  style="margin-top: -4%;" class="col-6 mensajeAlerta">
+                        <div *ngIf="contrasenia2Ctrl.errors && contrasenia2Ctrl.dirty " style="margin-top: -4%;"
+                            class="col-6 mensajeAlerta">
                             <span>
-                                <i *ngIf="contrasenia2Ctrl.hasError('required')" class="fa fa-times "><small class="mensaje" >Se solicita el ingreso de una contraseña</small></i>
-                                <i *ngIf="contrasenia2Ctrl.hasError('minlength')" class="fa fa-times "><small class="mensaje" >Ingrese más de 8 caracteres</small></i>
+                                <i *ngIf="contrasenia2Ctrl.hasError('required')" class="fa fa-times "><small
+                                        class="mensaje">Se solicita el ingreso de una contraseña</small></i>
+                                <i *ngIf="contrasenia2Ctrl.hasError('minlength')" class="fa fa-times "><small
+                                        class="mensaje">Ingrese más de 8 caracteres</small></i>
                             </span>
                         </div>
 

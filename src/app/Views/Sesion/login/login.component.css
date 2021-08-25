@@ -96,6 +96,26 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+#logo{
+  max-width: 100%;
+  height: auto;
+  width: 400px;
+ }
+ .header{
+   padding: 0%;
+ }
+
+ #cabecera{
+   padding-top: 5px;
+   padding-bottom: 5px;
+   padding-left: 35%;
+
+   border-radius: 17px;
+background: linear-gradient(225deg, #234c7b, #1e4068);
+box-shadow:  -35px 35px 69px #0d1c2e,
+             35px -35px 69px #20446e;
+ }
+
 /* ---------------------- */
 /* ------------------------ */
 
