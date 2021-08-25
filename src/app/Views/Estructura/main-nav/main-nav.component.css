@@ -156,6 +156,11 @@ ir a https://cssgradient.io/gradient-backgrounds/ */
   border-radius: 10px; /* nuevo */
 }
 
+.botonConfiguracion{
+  margin: 0 auto;
+
+}
+
 .btn-grad:hover {
   background-position: right center; 
 background-color: #414c58;
