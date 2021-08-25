@@ -19,7 +19,7 @@
   color: white;
   text-align: center;
   font-size: 30px;
-  padding-left: 30%;
+  /* padding-left: 30%; */
 }
 
 #textoCabecera{
@@ -156,6 +156,11 @@ ir a https://cssgradient.io/gradient-backgrounds/ */
   border-radius: 10px; /* nuevo */
 }
 
+.botonConfiguracion{
+  margin: 0 auto;
+
+}
+
 .btn-grad:hover {
   background-position: right center; 
 background-color: #414c58;
@@ -166,6 +171,12 @@ background-color: #414c58;
 .fas{
   padding-right:10%;
 }
+
+#logo{
+  max-width: 100%;
+  height: auto;
+  width: 600px;
+ }
 
 
 

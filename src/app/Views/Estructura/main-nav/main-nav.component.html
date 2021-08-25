@@ -1,24 +1,39 @@
 <mat-sidenav-container class="sidenav-container" style="font-family: 'Open Sans',sans-serif;">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar class="menu" style="font-family: 'Open Sans',sans-serif;"></mat-toolbar>
+    <mat-toolbar class="menu" style="font-family: 'Open Sans',sans-serif;">
+    <!-- <img  id="logo" src="../../../../assets/img/mejorada3.png" alt="logo"> --></mat-toolbar>
     <mat-nav-list class="button-menu" style="font-family: 'Open Sans',sans-serif;">
-      <div class="perfil">
-        <img src="../assets/img/fotoOmar.jpeg " alt="" id="perfil-imagen">
-        <p class="nombre-usuario"> hacer un engranaje para las opciones de edicion de perfil</p>
+      <div class="row">
+
+        <div class="col-md-12">
+          <img src="../../../../assets/img/avatar.png " alt="" id="perfil-imagen">
+         
+          <button mat-icon-button color="basic">
+            <mat-icon>settings</mat-icon>
+          </button>
+        </div>
+
+      <div class="col-md-12">
+        
+      </div>
       </div>
 
-      <a mat-list-item class="btn-grad" routerLink="/main-nav/perfil"> <i class="fas fa-user-circle fa-2x" routerLink="/main-nav/perfil"></i>  Perfil</a>
-      <a mat-list-item class="btn-grad" routerLink="/main-nav/reclamos"> <i class="fas fa-file-alt fa-2x" routerLink="/main-nav/reclamos"></i> Reclamos</a>
-      <a mat-list-item class="btn-grad" routerLink="/main-nav/historial"> <i class="fas fa-heading fa-2x" routerLink="/main-nav/historial"></i>
+      <a mat-list-item class="btn-grad" routerLink="/main-nav/perfil"> <i class="fas fa-user-circle"
+          style="font-size:  22px;" routerLink="/main-nav/perfil"></i> Perfil</a>
+      <a mat-list-item class="btn-grad" routerLink="/main-nav/reclamos"> <i class="fas fa-file-alt"
+          style="font-size:  22px;" routerLink="/main-nav/reclamos"></i> Reclamos</a>
+      <a mat-list-item class="btn-grad" routerLink="/main-nav/historial"> <i class="fas fa-heading"
+          style="font-size:  22px;" routerLink="/main-nav/historial"></i>
         Historial</a>
-      <a mat-list-item class="btn-grad" href="#"> <i class="fas fa-map-marked-alt fa-2x"></i> 
+      <a mat-list-item class="btn-grad" href="#"> <i class="fas fa-map-marked-alt" style="font-size:  22px;"></i>
         Mapa</a>
-      <a mat-list-item class="btn-grad" href="#" routerLink="/main-nav/nosotros" > <i class="fas fa-users fa-2x"></i>
+      <a mat-list-item class="btn-grad" href="#" routerLink="/main-nav/nosotros"> <i class="fas fa-users"
+          style="font-size:  22px;"></i>
         Nosotros</a>
-        <a mat-list-item class="btn-grad" href="#"><i class="fas fa-clipboard fa-2x"></i>
+      <a mat-list-item class="btn-grad" href="#"><i class="fas fa-clipboard" style="font-size:  22px;"></i>
         Reportes</a>
-      <a mat-list-item class="btn-grad" href="#"> <i class="fas fa-info fa-2x"></i>
+      <a mat-list-item class="btn-grad" href="#"> <i class="fas fa-info" style="font-size:  22px;"></i>
         Ayuda</a>
     </mat-nav-list>
   </mat-sidenav>
@@ -35,10 +50,10 @@
     <div class="container p-4">
       <router-outlet></router-outlet>
     </div>
-      
-    
 
-      <app-footer></app-footer>
+
+
+    <app-footer></app-footer>
 
 
   </mat-sidenav-content>
