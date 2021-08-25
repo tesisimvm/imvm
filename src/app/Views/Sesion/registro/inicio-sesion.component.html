@@ -22,27 +22,35 @@
           </div>
           <!-- colocar usuario/correo -->
           <div class="row">
-            
+
             <div class="col-12">
               <input [formControl]="userCtrl" type="text" class="form__input" placeholder="Usuario o e-mail">
-              <p>
-                <small id="mensajeUser" *ngIf="userCtrl.hasError('required') && userCtrl.dirty " >Este campo es requerido</small>
-              </p>
+
+              <span>
+                <small id="mensajeUser" *ngIf="userCtrl.hasError('required') && userCtrl.dirty ">
+                  <i class="fa fa-times fa-2x"></i>
+                  Este campo es requerido
+                </small> 
+              </span>
             </div>
-            
+
 
             <div class="col-12">
               <input [formControl]="passwCtrl" type="password" class="form__input" placeholder="Contraseña">
-              <p>
-                <small id="mensajeUser" *ngIf="passwCtrl.hasError('required') && passwCtrl.dirty " >Este campo es requerido</small>
-              </p>
+              <span>
+                <small id="mensajeUser" *ngIf="passwCtrl.hasError('required') && passwCtrl.dirty ">
+                  <i class="fa fa-times fa-2x"></i>
+                  Este campo es requerido
+                </small> 
+              </span>
             </div>
             <div class="row">
               <div class="col col-12">
-                <button [disabled]="userCtrl.invalid ||  passwCtrl.invalid" type="button" (click)="getEmail($event)" class="btn">Iniciar Sesión</button>
+                <button [disabled]="userCtrl.invalid ||  passwCtrl.invalid" type="button" (click)="getEmail($event)"
+                  class="btn" routerLink="/main-nav">Iniciar Sesión</button>
               </div>
             </div>
-            
+
 
             <!-- <form [formGroup]="formGroup" control="" class="form-group" >
               <div class="row">
