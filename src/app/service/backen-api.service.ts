@@ -34,10 +34,11 @@ export class BackenApiService {
 
 
   /* Pantalla sesion - validar usuario */
-  getValidacionUsuario(data:any): Observable<any> {
-    console.log(data);
+  getValidacionUsuario(email:any,pass:any): Observable<any> {
+    console.log(email);
+    console.log(pass);
     debugger
-    return this.http.get<sesionUsuario[]>('https://localhost:44363/sesion',data); /* email=example@hotmail.com&password=123'); */
+    return this.http.get<sesionUsuario[]>('https://localhost:44363/sesion?'+"email="+email+"&"+"password="+pass); /* email=example@hotmail.com&password=123'); */
   }
 
 

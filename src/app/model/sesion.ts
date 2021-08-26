@@ -1,4 +1,4 @@
 export interface sesionUsuario{
-    usuario?:string
+    email?:string
     password?:string
 }
