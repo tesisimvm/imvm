@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Reclamo } from '../model/reclamo';
 import { sesionUsuario } from '../model/sesion';
+import { datosperfil } from '../model/perfil';
 
 @Injectable({
   providedIn: 'root',
@@ -31,20 +32,26 @@ export class BackenApiService {
     return this.http.post('https://localhost:44363/usuario', usuario, this.httpOptions);
   }
 
-  getPerfil( usuario : any ): Observable<any>{
+  // getPerfil( usuario : any ): Observable<any>{
     
-    console.log(usuario);
-    return this.http.get('http://localhost:4200/usuario' , usuario);
+  //   console.log(usuario);
+  //   return this.http.get('http://localhost:4200/usuario' , usuario);
 
-  }
+  // }
   
 
   /* Pantalla sesion - validar usuario */
   getValidacionUsuario(data:any): Observable<any> {
     console.log(data);
-    debugger
+    //debugger
     return this.http.get<sesionUsuario[]>('https://localhost:44363/sesion',data); /* email=example@hotmail.com&password=123'); */
   }
 
+  /*Obtener los datos del usuario segun el ID*/
+  getdatosPerfil(id:any): Observable<datosperfil[]>{
+    console.log(id)
+    //debugger
+    return this.http.get<datosperfil[]>('https://localhost:44363/usuario/' + id);    
+  }
 
 }
