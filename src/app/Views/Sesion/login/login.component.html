@@ -1,4 +1,4 @@
-<script src="./validarRegsitro().js"></script>
+
 
 <body>
     <!-- Navbar-->
@@ -25,7 +25,7 @@
 
             <!-- Registeration Form -->
             <div id="formularioRegistro" class="col-md-7 col-lg-6 ml-auto">
-                <form>
+                <form >
                     <div class="row">
 
                         <!-- Nombre Usuario -->
@@ -64,7 +64,7 @@
                         </div>
 
                         <!-- Correo -->
-                        <div class="input-group col-lg-12 mb-4">
+                        <div  class="input-group col-lg-12 mb-4">
                             <div class="input-group-prepend">
                                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                                     <i class="fa fa-envelope text-muted"></i>
@@ -96,7 +96,8 @@
                             </select>
                             <input [formControl]="celularCtrl" id="phoneNumber" type="number" name="phone"
                                 placeholder="Número de celular"
-                                class="form-control bg-white border-md border-left-0 pl-3">
+                                class="form-control bg-white border-md border-left-0 pl-3"  onkeydown="javascript: return event.keyCode === 8 ||
+                                event.keyCode === 46 ? true : !isNaN(Number(event.key))" >
                         </div>
                         <div *ngIf="celularCtrl.hasError('required') && celularCtrl.dirty " style="margin-top: -4%;"
                             class="col-6 mensajeAlerta">
@@ -156,7 +157,7 @@
                             <div class="col col-12 ">
                                 <button
                                     [disabled]="nombreCtrl.invalid || usuarioCtrl.invalid || correoCtrl.invalid || celularCtrl.invalid || contraseniaCtrl.invalid || contrasenia2Ctrl.invalid"
-                                    type="button" class=" btn btn-primary btn-block py-2 font-weight-bold" routerLink = '/main-nav'>Creá tu
+                                    type="button" class=" btn btn-primary btn-block py-2 font-weight-bold" (click)="registrarUsuario()">Creá tu
                                     cuenta</button>
                             </div>
                         </div>

@@ -22,12 +22,12 @@
   /* padding-left: 30%; */
 }
 
-#textoCabecera{
+/* #textoCabecera{
   margin: 0 auto;
   background: -webkit-linear-gradient(#eee, rgb(0, 0, 0));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
+} */
 
 /* contenedor del texto de la cabecera */
 #cabecera {
@@ -78,12 +78,11 @@
 }
 
 .mat-toolbar.mat-primary {
-  /* position: sticky;
+  position: sticky;
   top: 0;
   z-index: 1;
-  padding-left: 43%;
-  font-size: 30px; */
-
+  padding-left: 43%; /* verificar aca */
+  font-size: 30px;
 }
 
 .btn {
@@ -171,12 +170,12 @@ background-color: #414c58;
 .fas{
   padding-right:10%;
 }
-
+/* 
 #logo{
   max-width: 100%;
   height: auto;
   width: 600px;
- }
+ } */
 
 
 

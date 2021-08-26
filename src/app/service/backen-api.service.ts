@@ -11,7 +11,7 @@ import { datosperfil } from '../model/perfil';
 export class BackenApiService {
   //cabeceras http
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   dato:any;
@@ -32,8 +32,9 @@ export class BackenApiService {
 
   /* Pantalla Login (registro de usuario) */
   postUsuario(usuario: any ):Observable<any>{
-    //debugger
+   
     console.log(usuario);
+    debugger
     return this.http.post('https://localhost:44363/usuario', usuario, this.httpOptions);
   }
 
