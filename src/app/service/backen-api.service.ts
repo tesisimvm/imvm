@@ -23,6 +23,11 @@ export class BackenApiService {
     return this.http.get<Reclamo[]>('https://localhost:44363/reclamo');
   }
 
+  postReclamo(Reclamo: any ):Observable<any>{
+    //debugger
+    console.log(Reclamo);
+    return this.http.post('https://localhost:44363/reclamo', Reclamo, this.httpOptions);
+  }
 
 
   /* Pantalla Login (registro de usuario) */
@@ -44,14 +49,13 @@ export class BackenApiService {
   getValidacionUsuario(data:any): Observable<any> {
     console.log(data);
     //debugger
-    return this.http.get<sesionUsuario[]>('https://localhost:44363/sesion',data); /* email=example@hotmail.com&password=123'); */
+    return this.http.get<sesionUsuario[]>('https://localhost:44363/sesion', data); /* email=example@hotmail.com&password=123'); */
   }
 
   /*Obtener los datos del usuario segun el ID*/
   getdatosPerfil(id:any): Observable<datosperfil[]>{
     console.log(id)
     //debugger
-    return this.http.get<datosperfil[]>('https://localhost:44363/usuario/' + id);    
+    return this.http.get<datosperfil[]>('https://localhost:44363/usuario/' + id);
   }
-
 }
