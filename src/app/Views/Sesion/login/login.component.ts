@@ -49,8 +49,11 @@ export class LoginComponent implements OnInit {
       Correo: this.correoCtrl.value+"",
       Celular: this.celularCtrl.value+"",
       Contrasenia: this.contraseniaCtrl.value+"",
+      DNI:"-",
+      Apellido:"-",
       ID_Perfil: 3,
       ID_Estado: 10
+      
     }
     console.log(RegistroU);
     debugger
