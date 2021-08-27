@@ -11,7 +11,7 @@ import { datosperfil } from '../model/perfil';
 export class BackenApiService {
   //cabeceras http
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   dato:any;
@@ -27,8 +27,9 @@ export class BackenApiService {
 
   /* Pantalla Login (registro de usuario) */
   postUsuario(usuario: any ):Observable<any>{
-    //debugger
+   
     console.log(usuario);
+    debugger
     return this.http.post('https://localhost:44363/usuario', usuario, this.httpOptions);
   }
 
@@ -41,10 +42,11 @@ export class BackenApiService {
   
 
   /* Pantalla sesion - validar usuario */
-  getValidacionUsuario(data:any): Observable<any> {
-    console.log(data);
-    //debugger
-    return this.http.get<sesionUsuario[]>('https://localhost:44363/sesion',data); /* email=example@hotmail.com&password=123'); */
+  getValidacionUsuario(email:any,pass:any): Observable<any> {
+    console.log(email);
+    console.log(pass);
+    debugger
+    return this.http.get<sesionUsuario[]>('https://localhost:44363/sesion?'+"email="+email+"&"+"password="+pass); /* email=example@hotmail.com&password=123'); */
   }
 
   /*Obtener los datos del usuario segun el ID*/

@@ -1,7 +1,10 @@
+
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="author" content="Yinka Enoch Adedokun">
+
   <title>Inicio Sesión</title>
 </head>
 
@@ -10,12 +13,12 @@
   <div class="container-fluid" id="hola" style="font-family: 'Open Sans',sans-serif;">
     <div class="row main-content bg-success text-center">
       <div class="col-md-4 text-center company__info">
-      
-        
-          <div >
-              <img id="logo" src="../../../../assets/img/mejorada3.png" alt="logo">
-          </div>
-      
+
+
+        <div>
+          <img id="logo" src="../../../../assets/img/mejorada3.png" alt="logo">
+        </div>
+
       </div>
       <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
         <div class="container-fluid">
@@ -29,10 +32,10 @@
               <input [formControl]="userCtrl" type="text" class="form__input" placeholder="Usuario o e-mail">
 
               <span>
-                <small id="mensajeUser" *ngIf="userCtrl.hasError('required') && userCtrl.dirty ">
+                <small id="mensajeUser" *ngIf="(userCtrl.hasError('required') && userCtrl.dirty) || (bandera) ">
                   <i class="fa fa-times fa-2x"></i>
                   Este campo es requerido
-                </small> 
+                </small>
               </span>
             </div>
 
@@ -40,16 +43,21 @@
             <div class="col-12">
               <input [formControl]="passwCtrl" type="password" class="form__input" placeholder="Contraseña">
               <span>
-                <small id="mensajeUser" *ngIf="passwCtrl.hasError('required') && passwCtrl.dirty ">
+                <small id="mensajeUser" *ngIf="(passwCtrl.hasError('required') && passwCtrl.dirty) || (bandera) ">
                   <i class="fa fa-times fa-2x"></i>
                   Este campo es requerido
-                </small> 
+                </small>
               </span>
             </div>
             <div class="row">
               <div class="col col-12">
-                <button [disabled]="userCtrl.invalid ||  passwCtrl.invalid" type="button" (click)="getEmail($event)"
-                  class="btn" routerLink="/main-nav">Iniciar Sesión</button>
+                <button [disabled]="(userCtrl.invalid ||  passwCtrl.invalid)" type="button" (click)="Validacion()"
+                  class="btn">Iniciar Sesión</button>
+
+                      <small *ngIf="bandera as true">
+
+                          <button routerLink="/main-nav"> boton</button>
+                       </small>
               </div>
             </div>
 
@@ -98,3 +106,14 @@
   <app-footer></app-footer>
 
 </body>
+
+
+<script type="text/javascript">
+
+  /* caso 1 - cuandos e carga la pagina */
+
+  window.onload = function ejemplo1() {
+    alert("este es el ejemplo 1");
+  }
+
+</script>
