@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BackenApiService } from '../../../service/backen-api.service';
 import { Reclamo } from '../../../model/reclamo';
 import { Router, ActivatedRoute } from '@angular/router';
+import { TipoReclamo } from 'src/app/model/tipoReclamo';
 
 @Component({
   selector: 'app-reclamos',
@@ -20,8 +21,10 @@ export class ReclamosComponent implements OnInit {
     IDDetalleReclamo: 1
   };
 
+
+  Tiporecla:TipoReclamo[] = new Array<TipoReclamo>();
+
   constructor( private service: BackenApiService, private router: Router, private activatedRoute: ActivatedRoute) {
-    
     // this.service.getReclamo().subscribe(data=>
     //   {console.log(data)
     //   this.recla =data;
@@ -31,6 +34,7 @@ export class ReclamosComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.getListTipoReclamos();
   }
 
   listarReclamos(): void{
@@ -53,6 +57,15 @@ export class ReclamosComponent implements OnInit {
   //   );
   // }
 
+
+  getListTipoReclamos():void{
+    this.service.getTipoReclamo().subscribe(
+      res => {
+        this.Tiporecla = res;
+      },
+      err => console.error(err)
+    );
+  }
 
   createReclamo(): void{
     this.service.postReclamo(this.recla).subscribe(

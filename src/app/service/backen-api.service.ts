@@ -4,6 +4,12 @@ import { Observable } from 'rxjs';
 import { Reclamo } from '../model/reclamo';
 import { sesionUsuario } from '../model/sesion';
 import { datosperfil } from '../model/perfil';
+import { TipoReclamo } from '../model/tipoReclamo';
+import { ReclamoAmbiental } from '../model/reclamoAmbiental';
+import { marca } from '../model/marca';
+import { modelo } from '../model/modelo';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -24,9 +30,24 @@ export class BackenApiService {
   }
 
   postReclamo(Reclamo: any ):Observable<any>{
-    //debugger
     console.log(Reclamo);
     return this.http.post('https://localhost:44363/reclamo', Reclamo, this.httpOptions);
+  }
+
+  getTipoReclamo(): Observable<TipoReclamo[]> {
+    return this.http.get<TipoReclamo[]>('https://localhost:44363/tiporeclamo');
+  }
+
+  getReclamoAmbiental(): Observable<ReclamoAmbiental[]> {
+    return this.http.get<ReclamoAmbiental[]>('https://localhost:44363/reclamoambiental');
+  }
+
+  getMarca(): Observable<marca[]> {
+    return this.http.get<marca[]>('https://localhost:44363/marca');
+  }
+
+  getModelo(): Observable<modelo[]> {
+    return this.http.get<modelo[]>('https://localhost:44363/modelo');
   }
 
 
