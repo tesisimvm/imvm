@@ -43,11 +43,11 @@ export class BackenApiService {
   }
 
   getMarca(): Observable<marca[]> {
-    return this.http.get<marca[]>('https://localhost:44363/marca');
+    return this.http.get<marca[]>('https://localhost:44363/marcavehiculo');
   }
 
   getModelo(): Observable<modelo[]> {
-    return this.http.get<modelo[]>('https://localhost:44363/modelo');
+    return this.http.get<modelo[]>('https://localhost:44363/modeloVehiculo');
   }
 
 
@@ -68,7 +68,7 @@ export class BackenApiService {
   
 
   /* Pantalla sesion - validar usuario */
-  getValidacionUsuario(email:any,pass:any): Observable<any> {
+  getValidacionUsuario(email:any, pass:any): Observable<any> {
     console.log(email);
     console.log(pass);
     debugger

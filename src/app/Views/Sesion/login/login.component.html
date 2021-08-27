@@ -1,193 +1,193 @@
 <body>
-    <!-- Navbar-->
-    <header class="header">
-        <nav class="navbar navbar-expand-lg navbar-light py-3">
-            <div id="cabecera" class="container-fluid">
-                <div class="abs-center">
-                    
-                </div>
-            </div>
-        </nav>
-    </header>
+  <!-- Navbar-->
+  <header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light py-3">
+      <div id="cabecera" class="container-fluid">
+        <div class="abs-center">
 
-    <div class="container">
-        <div class="row py-5 mt-4 align-items-center">
-            <!-- For Demo Purpose -->
-            <!-- <div class="col-md-5 pr-lg-5 mb-5 mb-md-0"> -->
-            <!-- <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block"> -->
-            <div class="col-md-5 mb-5 mb-md-0">
-                <h1 id="titulo" style=" margin-top: -30%;">Creá una cuenta <br> o <br> inicía sesión</h1>
-            </div>
-            <!-- </div> -->
-
-            <!-- Registeration Form -->
-            <div id="formularioRegistro" class="col-md-7 col-lg-6 ml-auto">
-                <form >
-                    <div class="row">
-
-                        <!-- Nombre Usuario -->
-                        <div class="input-group col-lg-6 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-user text-muted"></i>
-                                </span>
-                            </div>
-                            <input [formControl]="nombreCtrl" id="firstName" type="text" name="firstname"
-                                placeholder="Nombre" class="form-control bg-white border-left-0 border-md">
-                        </div>
-
-
-                        <!-- Nick usuario -->
-                        <div class="input-group col-lg-6 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-user text-muted"></i>
-                                </span>
-                            </div>
-                            <input [formControl]="usuarioCtrl" id="lastName" type="text" name="lastname"
-                                placeholder="Usuario" class="form-control bg-white border-left-0 border-md">
-                        </div>
-                        <div *ngIf="nombreCtrl.hasError('required') && nombreCtrl.dirty " style="margin-top: -4%;"
-                            class="col-6 mensajeAlerta">
-                            <span>
-                                <i class="fa fa-times "><small class="mensaje">Nombre requerido</small></i>
-                            </span>
-                        </div>
-                        <div *ngIf="usuarioCtrl.hasError('required') && usuarioCtrl.dirty " style="margin-top: -4%;"
-                            class="col-6  mensajeAlerta">
-                            <span>
-                                <i class="fa fa-times "><small class="mensaje">Usuario requerido</small></i>
-                            </span>
-                        </div>
-
-                        <!-- Correo -->
-                        <div  class="input-group col-lg-12 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-envelope text-muted"></i>
-                                </span>
-                            </div>
-                            <input [formControl]="correoCtrl" id="email" type="email" name="email" placeholder="Email"
-                                class="form-control bg-white border-left-0 border-md">
-                        </div>
-                        <div *ngIf="correoCtrl.hasError('required') && correoCtrl.dirty " style="margin-top: -4%;"
-                            class="col-6 mensajeAlerta">
-                            <span>
-                                <i class="fa fa-times "><small class="mensaje">Se necesita su correo</small></i>
-                            </span>
-                        </div>
-
-                        <!-- Phone Number -->
-                        <div class="input-group col-lg-12 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-10 border-md border-right-0">
-                                    <i class="fa fa-phone-square text-muted"></i>
-                                </span>
-                            </div>
-                            <select id="countryCode" name="countryCode" style="max-width: 80px"
-                                class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
-                                <option value="">+54</option>
-                                <option value="">+12</option>
-                                <option value="">+13</option>
-                                <option value="">+14</option>
-                            </select>
-                            <input [formControl]="celularCtrl" id="phoneNumber" type="number" name="phone"
-                                placeholder="Número de celular"
-                                class="form-control bg-white border-md border-left-0 pl-3"  onkeydown="javascript: return event.keyCode === 8 ||
-                                event.keyCode === 46 ? true : !isNaN(Number(event.key))" >
-                        </div>
-                        <div *ngIf="celularCtrl.hasError('required') && celularCtrl.dirty " style="margin-top: -4%;"
-                            class="col-6 mensajeAlerta">
-                            <span>
-                                <i class="fa fa-times "><small class="mensaje">Se necesita su número de
-                                        teléfono</small></i>
-                            </span>
-                        </div>
-
-
-                        <!-- Job -->
-
-
-                        <!-- Password -->
-                        <div class="input-group col-lg-12 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-lock text-muted"></i>
-                                </span>
-                            </div>
-                            <input [formControl]="contraseniaCtrl" id="password" type="password" name="password"
-                                placeholder="Contraseña" class="form-control bg-white border-left-0 border-md">
-                        </div>
-                        <div *ngIf="contraseniaCtrl.errors && contraseniaCtrl.dirty " style="margin-top: -4%;"
-                            class="col-6 mensajeAlerta">
-                            <span>
-                                <i *ngIf="contraseniaCtrl.hasError('required')" class="fa fa-times "><small
-                                        class="mensaje">Se solicita el ingreso de una contraseña</small></i>
-                                <i *ngIf="contraseniaCtrl.hasError('minlength')" class="fa fa-times "><small
-                                        class="mensaje">Ingrese más de 8 caracteres</small></i>
-                            </span>
-                        </div>
-
-                        <!-- Password Confirmation -->
-                        <div class="input-group col-lg-12 mb-4">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text bg-white px-4 border-md border-right-0">
-                                    <i class="fa fa-lock text-muted"></i>
-                                </span>
-                            </div>
-                            <input [formControl]="contrasenia2Ctrl" id="passwordConfirmation" type="password"
-                                name="passwordConfirmation" placeholder="Confirmá tu contraseña"
-                                class="form-control bg-white border-left-0 border-md">
-                        </div>
-                        <div *ngIf="contrasenia2Ctrl.errors && contrasenia2Ctrl.dirty " style="margin-top: -4%;"
-                            class="col-6 mensajeAlerta">
-                            <span>
-                                <i *ngIf="contrasenia2Ctrl.hasError('required')" class="fa fa-times "><small
-                                        class="mensaje">Se solicita el ingreso de una contraseña</small></i>
-                                <i *ngIf="contrasenia2Ctrl.hasError('minlength')" class="fa fa-times "><small
-                                        class="mensaje">Ingrese más de 8 caracteres</small></i>
-                            </span>
-                        </div>
-
-                        <!-- Submit Button -->
-                        <div class=" col-lg-12 mx-auto mb-0">
-                            <div class="col col-12 ">
-                                <button
-                                    [disabled]="nombreCtrl.invalid || usuarioCtrl.invalid || correoCtrl.invalid || celularCtrl.invalid || contraseniaCtrl.invalid || contrasenia2Ctrl.invalid"
-                                    type="button" class=" btn btn-primary btn-block py-2 font-weight-bold" (click)="registrarUsuario()">Creá tu
-                                    cuenta</button>
-                            </div>
-                        </div>
-
-                        <!-- Divider Text -->
-                        <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
-                            <div class="border-bottom w-100 ml-5"></div>
-                            <span class="px-2 small text-muted font-weight-bold text-muted">O</span>
-                            <div class="border-bottom w-100 mr-5"></div>
-                        </div>
-
-                        <!-- Social Login -->
-                        <div class="form-group col-lg-12 mx-auto">
-                            <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
-                                <i class="fa fa-facebook-f mr-2"></i>
-                                <span class="font-weight-bold">Continuá con tu cuenta de Facebook</span>
-                            </a>
-                            <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
-                                <i class="fa fa-twitter mr-2"></i>
-                                <span class="font-weight-bold">Continua con tu cuenta de Twitter</span>
-                            </a>
-                        </div>
-
-                        <!-- Already Registered -->
-                        <div class="text-center w-100">
-                            <p class="text-muted font-weight-bold">Ya estás registrado? <a href="#"
-                                    routerLink="/inicio-sesion" class="text-primary ml-2">Iniciar Sesión</a></p>
-                        </div>
-
-                    </div>
-                </form>
-            </div>
         </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+      <!-- For Demo Purpose -->
+      <!-- <div class="col-md-5 pr-lg-5 mb-5 mb-md-0"> -->
+      <!-- <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block"> -->
+      <div class="col-md-5 mb-5 mb-md-0">
+        <h1 id="titulo" style=" margin-top: -30%;">Creá una cuenta <br> o <br> inicía sesión</h1>
+      </div>
+      <!-- </div> -->
+
+      <!-- Registeration Form -->
+      <div id="formularioRegistro" class="col-md-7 col-lg-6 ml-auto">
+        <form>
+          <div class="row">
+
+            <!-- Nombre Usuario -->
+            <div class="input-group col-lg-6 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                  <i class="fa fa-user text-muted"></i>
+                </span>
+              </div>
+              <input [formControl]="nombreCtrl" id="firstName" type="text" name="firstname" placeholder="Nombre"
+                class="form-control bg-white border-left-0 border-md">
+            </div>
+
+
+            <!-- Nick usuario -->
+            <div class="input-group col-lg-6 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                  <i class="fa fa-user text-muted"></i>
+                </span>
+              </div>
+              <input [formControl]="usuarioCtrl" id="lastName" type="text" name="lastname" placeholder="Usuario"
+                class="form-control bg-white border-left-0 border-md">
+            </div>
+            <div *ngIf="nombreCtrl.hasError('required') && nombreCtrl.dirty " style="margin-top: -4%;"
+              class="col-6 mensajeAlerta">
+              <span>
+                <i class="fa fa-times "><small class="mensaje">Nombre requerido</small></i>
+              </span>
+            </div>
+            <div *ngIf="usuarioCtrl.hasError('required') && usuarioCtrl.dirty " style="margin-top: -4%;"
+              class="col-6  mensajeAlerta">
+              <span>
+                <i class="fa fa-times "><small class="mensaje">Usuario requerido</small></i>
+              </span>
+            </div>
+
+            <!-- Correo -->
+            <div class="input-group col-lg-12 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                  <i class="fa fa-envelope text-muted"></i>
+                </span>
+              </div>
+              <input [formControl]="correoCtrl" id="email" type="email" name="email" placeholder="Email"
+                class="form-control bg-white border-left-0 border-md">
+            </div>
+            <div *ngIf="correoCtrl.hasError('required') && correoCtrl.dirty " style="margin-top: -4%;"
+              class="col-6 mensajeAlerta">
+              <span>
+                <i class="fa fa-times "><small class="mensaje">Se necesita su correo</small></i>
+              </span>
+            </div>
+
+            <!-- Phone Number -->
+            <div class="input-group col-lg-12 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-white px-10 border-md border-right-0">
+                  <i class="fa fa-phone-square text-muted"></i>
+                </span>
+              </div>
+              <select id="countryCode" name="countryCode" style="max-width: 80px"
+                class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                <option value="">+54</option>
+                <option value="">+12</option>
+                <option value="">+13</option>
+                <option value="">+14</option>
+              </select>
+              <input [formControl]="celularCtrl" id="phoneNumber" type="number" name="phone"
+                placeholder="Número de celular" class="form-control bg-white border-md border-left-0 pl-3" onkeydown="javascript: return event.keyCode === 8 ||
+                                event.keyCode === 46 ? true : !isNaN(Number(event.key))">
+            </div>
+            <div *ngIf="celularCtrl.hasError('required') && celularCtrl.dirty " style="margin-top: -4%;"
+              class="col-6 mensajeAlerta">
+              <span>
+                <i class="fa fa-times "><small class="mensaje">Se necesita su número de
+                    teléfono</small></i>
+              </span>
+            </div>
+
+
+            <!-- Job -->
+
+
+            <!-- Password -->
+            <div class="input-group col-lg-12 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                  <i class="fa fa-lock text-muted"></i>
+                </span>
+              </div>
+              <input [formControl]="contraseniaCtrl" id="password" type="password" name="password"
+                placeholder="Contraseña" class="form-control bg-white border-left-0 border-md">
+            </div>
+            <div *ngIf="contraseniaCtrl.errors && contraseniaCtrl.dirty " style="margin-top: -4%;"
+              class="col-6 mensajeAlerta">
+              <span>
+                <i *ngIf="contraseniaCtrl.hasError('required')" class="fa fa-times "><small class="mensaje">Se solicita
+                    el ingreso de una contraseña</small></i>
+                <i *ngIf="contraseniaCtrl.hasError('minlength')" class="fa fa-times "><small class="mensaje">Ingrese más
+                    de 8 caracteres</small></i>
+              </span>
+            </div>
+
+            <!-- Password Confirmation -->
+            <div class="input-group col-lg-12 mb-4">
+              <div class="input-group-prepend">
+                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                  <i class="fa fa-lock text-muted"></i>
+                </span>
+              </div>
+              <input [formControl]="contrasenia2Ctrl" id="passwordConfirmation" type="password"
+                name="passwordConfirmation" placeholder="Confirmá tu contraseña"
+                class="form-control bg-white border-left-0 border-md">
+            </div>
+            <div *ngIf="contrasenia2Ctrl.errors && contrasenia2Ctrl.dirty " style="margin-top: -4%;"
+              class="col-6 mensajeAlerta">
+              <span>
+                <i *ngIf="contrasenia2Ctrl.hasError('required')" class="fa fa-times "><small class="mensaje">Se solicita
+                    el ingreso de una contraseña</small></i>
+                <i *ngIf="contrasenia2Ctrl.hasError('minlength')" class="fa fa-times "><small class="mensaje">Ingrese
+                    más de 8 caracteres</small></i>
+              </span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class=" col-lg-12 mx-auto mb-0">
+              <div class="col col-12 ">
+                <button
+                  [disabled]="nombreCtrl.invalid || usuarioCtrl.invalid || correoCtrl.invalid || celularCtrl.invalid || contraseniaCtrl.invalid || contrasenia2Ctrl.invalid"
+                  type="button" class=" btn btn-primary btn-block py-2 font-weight-bold"
+                  (click)="registrarUsuario()" routerLink="/inicio-sesion">Creá tu
+                  cuenta</button>
+              </div>
+            </div>
+
+            <!-- Divider Text -->
+            <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+              <div class="border-bottom w-100 ml-5"></div>
+              <span class="px-2 small text-muted font-weight-bold text-muted">O</span>
+              <div class="border-bottom w-100 mr-5"></div>
+            </div>
+
+            <!-- Social Login -->
+            <div class="form-group col-lg-12 mx-auto">
+              <a href="#" class="btn btn-primary btn-block py-2 btn-facebook">
+                <i class="fa fa-facebook-f mr-2"></i>
+                <span class="font-weight-bold">Continuá con tu cuenta de Facebook</span>
+              </a>
+              <a href="#" class="btn btn-primary btn-block py-2 btn-twitter">
+                <i class="fa fa-twitter mr-2"></i>
+                <span class="font-weight-bold">Continua con tu cuenta de Twitter</span>
+              </a>
+            </div>
+
+            <!-- Already Registered -->
+            <div class="text-center w-100">
+              <p class="text-muted font-weight-bold">Ya estás registrado? <a href="#" routerLink="/inicio-sesion"
+                  class="text-primary ml-2">Iniciar Sesión</a></p>
+            </div>
+
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 
 </body>

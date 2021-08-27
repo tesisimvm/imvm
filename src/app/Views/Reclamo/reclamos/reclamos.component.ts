@@ -3,6 +3,9 @@ import { BackenApiService } from '../../../service/backen-api.service';
 import { Reclamo } from '../../../model/reclamo';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TipoReclamo } from 'src/app/model/tipoReclamo';
+import { ReclamoAmbiental } from 'src/app/model/reclamoAmbiental';
+import { marca } from 'src/app/model/marca';
+import { modelo } from 'src/app/model/modelo';
 
 @Component({
   selector: 'app-reclamos',
@@ -21,16 +24,19 @@ export class ReclamosComponent implements OnInit {
     IDDetalleReclamo: 1
   };
 
-
   Tiporecla:TipoReclamo[] = new Array<TipoReclamo>();
 
+  ReclamoAmbie:ReclamoAmbiental[] = [];
+
+  Mar:marca[] = [];
+
+  Mod:modelo[] = [];
+
   constructor( private service: BackenApiService, private router: Router, private activatedRoute: ActivatedRoute) {
-    // this.service.getReclamo().subscribe(data=>
-    //   {console.log(data)
-    //   this.recla =data;
 
-    //   }, error=>{console.log(error)})
-
+    this.getListReclamoAmbiental();
+    this.getListMarca();
+    this.getListModelo();
    }
 
   ngOnInit(): void {
@@ -52,16 +58,38 @@ export class ReclamosComponent implements OnInit {
     );
   }
 
-  // listarReclamoAmbiental(): void{
-  //   this.router.navigate(['Reclamo']
-  //   );
-  // }
-
-
   getListTipoReclamos():void{
     this.service.getTipoReclamo().subscribe(
       res => {
         this.Tiporecla = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  getListReclamoAmbiental():void{
+    this.service.getReclamoAmbiental().subscribe(
+      res => {
+        console.log(res);
+        this.ReclamoAmbie = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  getListMarca():void{
+    this.service.getMarca().subscribe(
+      res => {
+        this.Mar = res;
+      },
+      err => console.error(err)
+    );
+  }
+
+  getListModelo():void{
+    this.service.getModelo().subscribe(
+      res => {
+        this.Mod = res;
       },
       err => console.error(err)
     );
@@ -75,6 +103,10 @@ export class ReclamosComponent implements OnInit {
       },
       err => console.error(err)
     );
+  }
+
+  ocultarElemento():void{
+    
   }
 
 }

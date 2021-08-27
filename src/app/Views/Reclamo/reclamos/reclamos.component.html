@@ -12,53 +12,57 @@
 
               <!-- Tipo Reclamo -->
               <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-tasks" style="font-size: 25px;">
-                  </i> </span>
-                <div class="col-md-12 text-center" >
+                <span class=" titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-tasks"
+                    style="font-size: 25px;">
+                  </i> Tipo Reclamo</span>
+                <div class="col-md-12 text-center">
                   <select name="example" style="width: 100%;">
-                    <option *ngFor="let item of Tiporecla" (click)="expression"> {{item.nombre}}</option>
+                    <option (click)="ocultarElemento()" name="Tipos" *ngFor="let item of Tiporecla">{{item.nombre}}</option>
                   </select>
                 </div>
               </div>
 
               <!-- Reclamo Ambiental -->
-              <div class="form-group" *ngIf="">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-exclamation-triangle"
+              <div class="form-group" id="ReclamoAmbiental">
+                <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-exclamation-triangle"
                     style="font-size: 25px;">
-                  </i> </span>
+                  </i> Reclamo Ambiental</span>
                 <div class="col-md-12 text-center">
                   <select name="example" style="width: 100%;">
-
+                    <option style="color: black;" *ngFor="let item of ReclamoAmbie">{{item.nombreRecAmbiental}}</option>
                   </select>
                 </div>
               </div>
 
               <!-- Marca Auto -->
-              <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-car-side" style="font-size: 25px;">
-                  </i> </span>
+              <div class="form-group" id="ReclamoVial">
+                <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-car-side"
+                    style="font-size: 25px;">
+                  </i> Marca de auto</span>
                 <div class="col-md-12 text-center">
                   <select name="example" style="width: 100%;">
-
+                    <option style="color: black;" *ngFor="let item of Mar">{{item.marcaVehiculo}}</option>
                   </select>
+
                 </div>
               </div>
 
               <!-- Modelo Auto -->
-              <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fas fa-car" style="font-size: 25px;">
-                  </i> </span>
+              <div class="form-group" id="ReclamoVial">
+                <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-car"
+                    style="font-size: 25px;">
+                  </i> Modelo de auto</span>
                 <div class="col-md-12 text-center">
                   <select name="example" style="width: 100%;">
-
+                    <option style="color: black;" *ngFor="let item of Mod">{{item.modeloVehiculo}}</option>
                   </select>
                 </div>
               </div>
 
               <!-- Fecha -->
               <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"
-                    style="color: black; font-size: 25px;"></i></span>
+                <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"
+                    style="color: black; font-size: 25px;"></i> Fecha</span>
                 <div class="col-md-12 text-center">
                   <input id="Fecha" name="name" type="date" placeholder="Fecha" class="form-control">
                 </div>
@@ -66,8 +70,8 @@
 
               <!-- Hora -->
               <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-clock-o bigicon"
-                    style="color: black; font-size: 25px;"></i></span>
+                <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-clock-o bigicon"
+                    style="color: black; font-size: 25px;"></i> Hora</span>
                 <div class="col-md-12 text-center">
                   <input id="Hora" name="email" type="time" placeholder="Hora" class="form-control">
                 </div>
@@ -75,8 +79,8 @@
 
               <!-- Ubicacion -->
               <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-map-marker bigicon"
-                    style="color: black; font-size: 25px;"></i></span>
+                <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-map-marker bigicon"
+                    style="color: black; font-size: 25px;"></i> Ubicacion</span>
                 <div class="col-md-12 text-center">
                   <input id="Ubicacion" name="phone" type="text" placeholder="Ubicación" class="form-control">
                 </div>
@@ -86,8 +90,8 @@
             <!-- Descripcion -->
             <div class="col-md-7">
               <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"
-                    style="color: black; font-size: 25px;"></i></span>
+                <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"
+                    style="color: black; font-size: 25px;"></i> Descripcion</span>
                 <div class="col-md-12 text-center">
                   <textarea class="form-control" id="Descripcion" name="message" placeholder="Descripción"
                     rows="7"></textarea>
@@ -96,9 +100,9 @@
 
               <!-- Foto -->
               <div class="form-group">
-                <span class="col-md-1 col-md-offset-2 text-center">
+                <span class="titulos col-md-1 col-md-offset-2 text-center">
                   <i class="fa fa-camera bigicon" style="color: black; font-size: 25px;"></i>
-                </span>
+                  Foto</span>
               </div>
               <div class="form-group">
                 <input type="file" accept="image/*" capture="camera" id="camera" class="inputget">
@@ -118,4 +122,21 @@
       </form>
     </div>
   </div>
+
+  <script>
+    
+    var rAmbiental;
+    rAmbiental=document.getElementsByName("Tipos");
+
+    console.log(rAmbiental);
+
+    function ocultarElemento() {
+      debugger
+      rAmbiental=document.getElementsByName("Tipos");
+
+      console.log(rAmbiental);
+    }
+
+  </script>
+
 </div>

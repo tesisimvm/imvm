@@ -1,5 +1,5 @@
 export interface marca{
    IDMarca?: number;
-   nombre?: string;
+   marcaVehiculo?: string;
    IDModelo?: number;
  }

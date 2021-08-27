@@ -1,5 +1,3 @@
-
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,7 +30,7 @@
               <input [formControl]="userCtrl" type="text" class="form__input" placeholder="Usuario o e-mail">
 
               <span>
-                <small id="mensajeUser" *ngIf="(userCtrl.hasError('required') && userCtrl.dirty) || (bandera) ">
+                <small id="mensajeUser" *ngIf="(userCtrl.hasError('required') && userCtrl.dirty)">
                   <i class="fa fa-times fa-2x"></i>
                   Este campo es requerido
                 </small>
@@ -43,7 +41,7 @@
             <div class="col-12">
               <input [formControl]="passwCtrl" type="password" class="form__input" placeholder="Contraseña">
               <span>
-                <small id="mensajeUser" *ngIf="(passwCtrl.hasError('required') && passwCtrl.dirty) || (bandera) ">
+                <small id="mensajeUser" *ngIf="(passwCtrl.hasError('required') && passwCtrl.dirty)">
                   <i class="fa fa-times fa-2x"></i>
                   Este campo es requerido
                 </small>
@@ -53,48 +51,10 @@
               <div class="col col-12">
                 <button [disabled]="(userCtrl.invalid ||  passwCtrl.invalid)" type="button" (click)="Validacion()"
                   class="btn">Iniciar Sesión</button>
-
-                      <small *ngIf="bandera as true">
-
-                          <button routerLink="/main-nav"> boton</button>
-                       </small>
               </div>
             </div>
-
-
-            <!-- <form [formGroup]="formGroup" control="" class="form-group" >
-              <div class="row">
-                <input id="nombreSesion" formControlName="nomUsuario" type="text" name="username" id="username"
-                  class="form__input" placeholder="Usuario ó e-mail">
-
-              </div>
-
-             
-              <div class="row">
-               
-                <input id="contraseñaSesion" formControlName="passUsuario" type="password" name="password" id="password"
-                  class="form__input" placeholder="Contraseña">
-              </div>
-
-              <div class="row">
-                <div class="col col-12">
-                  <input type="checkbox" name="remember_me" id="remember_me" class="">
-
-                  <label for="remember_me" style="padding-left: 2%;">Recordarme</label>
-                </div>
-
-              </div>
-              
-              <div class="row">
-                <div class="col col-12">
-                  <input value="Iniciar Sesión" (click)="getEmail($event)" class="btn">
-                  
-                </div>
-
-              </div>
-
-            </form> -->
           </div>
+
           <div class="row">
             <p>¿No tenés una cuenta? <a routerLink="/login">Registrate ahora!</a></p>
           </div>
@@ -106,14 +66,3 @@
   <app-footer></app-footer>
 
 </body>
-
-
-<script type="text/javascript">
-
-  /* caso 1 - cuandos e carga la pagina */
-
-  window.onload = function ejemplo1() {
-    alert("este es el ejemplo 1");
-  }
-
-</script>

@@ -1,4 +1,4 @@
-export class ReclamoAmbiental {
+export interface ReclamoAmbiental {
    IDReclamoAmbiental?: number;
-   nombre?: string;
+   nombreRecAmbiental?: string;
  }

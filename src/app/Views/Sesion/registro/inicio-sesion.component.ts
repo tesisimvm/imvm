@@ -51,25 +51,20 @@ export class InicioSesionComponent implements OnInit {
       email: this.userCtrl.value,
       password: this.passwCtrl.value,
     };
-    debugger
     this.service
       .getValidacionUsuario(usuarioV.email, usuarioV.password)
       .subscribe(
         (data) => {
-          debugger;
           if (data[0]) {
-
            this.bandera = true;
-
-            
             this.router.navigate(['main-nav']);
           } else {
             this.bandera = false;
+            alert("Usuario y contraseña incorrectos");
           }
         },
         (error) => {
           console.error(error);
-
           this.bandera = false;
         }
       );
