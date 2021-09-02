@@ -16,20 +16,6 @@ export class LoginComponent implements OnInit {
     contraseniaCtrl = new FormControl('',[Validators.required,Validators.minLength(8)]);
     contrasenia2Ctrl = new FormControl('',[Validators.required,Validators.minLength(8)]);
 
-    /* [formControl]="userCtrl" */
-
-    
-    
-    
-
-  /* public formGroup: FormGroup = new FormGroup({
-    nombreU: new FormControl(''),
-    apellidoU: new FormControl(''),
-    correo: new FormControl(''),
-    contraseniaU: new FormControl(''),
-  }); */
-  /* usu: any;
-  usuariArray: producto[] = []; */
   constructor(public service: BackenApiService) {}
 
 
