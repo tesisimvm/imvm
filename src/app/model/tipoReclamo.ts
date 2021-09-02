@@ -1,5 +1,5 @@
 export class TipoReclamo {
-   IDTipoReclamo?: number;
+  idTipoReclamo?: number;
    nombre?: string;
    descripcion?: string;
  }

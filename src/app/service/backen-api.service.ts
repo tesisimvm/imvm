@@ -30,12 +30,12 @@ export class BackenApiService {
   }
 
   postReclamo(Reclamo: any ):Observable<any>{
+    debugger
     console.log(Reclamo);
     return this.http.post('https://localhost:44363/reclamo', Reclamo, this.httpOptions);
   }
 
   postDetalleReclamo(Detallereclamo: any ):Observable<any>{
-    console.log(Reclamo);
     return this.http.post('https://localhost:44363/detallereclamo', Detallereclamo, this.httpOptions);
   }
 

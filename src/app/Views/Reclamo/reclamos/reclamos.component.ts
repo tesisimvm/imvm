@@ -8,13 +8,30 @@ import { marca } from 'src/app/model/marca';
 import { modelo } from 'src/app/model/modelo';
 import { FormControl, Validators } from '@angular/forms';
 import { DetalleReclamo } from 'src/app/model/detalleReclamo';
+
 @Component({
   selector: 'app-reclamos',
   templateUrl: './reclamos.component.html',
   styleUrls: ['./reclamos.component.css'],
 })
 export class ReclamosComponent implements OnInit {
-  
+  recla: Reclamo = {
+    fecha: '',
+    foto: '',
+    hora: '',
+    ID_Sesion: '1',
+    ID_TipoReclamo: '1',
+    ID_Estado: 1
+  };
+
+  Tiporecla: TipoReclamo[] = new Array<TipoReclamo>();
+
+  ReclamoAmbie: ReclamoAmbiental[] = [];
+
+  Mar: marca[] = [];
+
+  Mod: modelo[] = [];
+
   tipoReclamoCtrl = new FormControl('', [Validators.required]);
   reclamoAmbientalCtrl = new FormControl('', [Validators.required]);
   marcaAutoCtrl = new FormControl('', [Validators.required]);
@@ -26,28 +43,13 @@ export class ReclamosComponent implements OnInit {
   urlFotoCtrl = new FormControl('', [Validators.required]);
   ID_Reclamo = new FormControl('', [Validators.required]);
 
-
-  callType(value){
-    console.log(value);
-  }
-}
-
-  Tiporecla: TipoReclamo[] = new Array<TipoReclamo>();
-
-  // public let RegistroDetReclamo;
-
-  ReclamoAmbie: ReclamoAmbiental[] = [];
-
-  Mar: marca[] = [];
-
-  Mod: modelo[] = [];
+  selectIdTipoReclamo?:number;
 
   constructor(
     private service: BackenApiService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-  )
-  {
+    private activatedRoute: ActivatedRoute
+  ) {
     this.getListReclamoAmbiental();
     this.getListMarca();
     this.getListModelo();
@@ -61,6 +63,7 @@ export class ReclamosComponent implements OnInit {
     this.service.getTipoReclamo().subscribe(
       (res) => {
         this.Tiporecla = res;
+        console.log("Recla:",this.Tiporecla);
       },
       (err) => console.error(err)
     );
@@ -97,13 +100,13 @@ export class ReclamosComponent implements OnInit {
   registrarReclamo() {
     debugger;
 
-    var RegistroRecl = {
+    var RegistroRecl:Reclamo = {
       fecha: this.fechaCtrl.value + '',
       foto: this.urlFotoCtrl.value + '',
       hora: this.horaCtrl.value + '',
-      IDSesion: 1,
-      IDTipoReclamo: this.tipoReclamoCtrl.value,
-      IDEstado: 1,
+      ID_Sesion: "1",
+      ID_TipoReclamo: this.selectIdTipoReclamo + '',
+      ID_Estado: 1,
     };
     console.log(RegistroRecl);
     this.service.postReclamo(RegistroRecl).subscribe(
@@ -115,17 +118,15 @@ export class ReclamosComponent implements OnInit {
     );
   }
 
-  registrarDetalleReclamo(variable:any) {
-    debugger
-    console.log(variable[0]);
-    
-     var RegistroDetReclamo = {
+  registrarDetalleReclamo(variable: any) {
+
+    var RegistroDetReclamo:DetalleReclamo = {
       descripcion: this.descripcionCtrl.value + '',
       direccion: this.descripcionCtrl.value + '',
-      altura: '200',
+      altura: 200,
       IDReclamoAmbiental: 1,
       IDVehiculo: 1,
-      ID_Reclamo: variable[0]
+      ID_Reclamo: this.selectIdTipoReclamo,
     };
     console.log(RegistroDetReclamo);
     debugger;
@@ -137,4 +138,8 @@ export class ReclamosComponent implements OnInit {
     );
   }
 
+  dataChanged(ev:any){
+    this.selectIdTipoReclamo=ev.target.value;
+    console.log(this.selectIdTipoReclamo);
+  }
 }

@@ -16,8 +16,8 @@
                     style="font-size: 25px;">
                   </i> Tipo Reclamo</span>
                 <div class="col-md-12 text-center">
-                  <select name="example" style="width: 100%;" [formControl]="tipoReclamoCtrl">
-                    <option value="{{item.IDTipoReclamo}}" (click)="ocultarElemento()" name="Tipos" *ngFor="let item of Tiporecla">{{item.nombre}}</option>
+                  <select name="example" style="width: 100%;" [formControl]="tipoReclamoCtrl" (change)="dataChanged($event)">
+                    <option value="{{item.idTipoReclamo}}" name="Tipos" *ngFor="let item of Tiporecla">{{item.nombre}}</option>
                   </select>
                 </div>
               </div>
@@ -116,7 +116,7 @@
           </div>
           <div class="row">
             <div class="col-md-12 text-center">
-              <button type="button" class="btn btn-success" style="width: 80%;" >Enviar
+              <button type="button" class="btn btn-success" style="width: 80%;" (click)="registrarReclamo()">Enviar
                 Reclamo</button>
             </div>
           </div>
