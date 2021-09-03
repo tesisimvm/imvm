@@ -1,12 +1,11 @@
 import { Byte } from '@angular/compiler/src/util';
 
-export class Reclamo {
+export interface Reclamo {
   IDReclamo?: number;
   fecha?: string;
   foto?: string;
   hora?: string;
-  IDSesion?: number;
-  IDTipoReclamo?: number;
-  IDEstado?: number;
-  IDDetalleReclamo?: number;
+  ID_Sesion?: string;
+  ID_TipoReclamo?: string;
+  ID_Estado?: number;
 }

@@ -16,8 +16,8 @@
                     style="font-size: 25px;">
                   </i> Tipo Reclamo</span>
                 <div class="col-md-12 text-center">
-                  <select name="example" style="width: 100%;">
-                    <option (click)="ocultarElemento()" name="Tipos" *ngFor="let item of Tiporecla">{{item.nombre}}</option>
+                  <select name="example" style="width: 100%;" [formControl]="tipoReclamoCtrl" (change)="dataChanged($event)">
+                    <option value="{{item.idTipoReclamo}}" name="Tipos" *ngFor="let item of Tiporecla">{{item.nombre}}</option>
                   </select>
                 </div>
               </div>
@@ -28,8 +28,8 @@
                     style="font-size: 25px;">
                   </i> Reclamo Ambiental</span>
                 <div class="col-md-12 text-center">
-                  <select name="example" style="width: 100%;">
-                    <option style="color: black;" *ngFor="let item of ReclamoAmbie">{{item.nombreRecAmbiental}}</option>
+                  <select name="example" style="width: 100%;" [formControl]="reclamoAmbientalCtrl">
+                    <option value="{{item.IDReclamoAmbiental}}" style="color: black;" *ngFor="let item of ReclamoAmbie">{{item.nombreRecAmbiental}}</option>
                   </select>
                 </div>
               </div>
@@ -40,8 +40,8 @@
                     style="font-size: 25px;">
                   </i> Marca de auto</span>
                 <div class="col-md-12 text-center">
-                  <select name="example" style="width: 100%;">
-                    <option style="color: black;" *ngFor="let item of Mar">{{item.marcaVehiculo}}</option>
+                  <select name="example" style="width: 100%;" [formControl]="marcaAutoCtrl">
+                    <option value="{{item.IDMarca}}" style="color: black;" *ngFor="let item of Mar">{{item.marcaVehiculo}}</option>
                   </select>
 
                 </div>
@@ -53,8 +53,8 @@
                     style="font-size: 25px;">
                   </i> Modelo de auto</span>
                 <div class="col-md-12 text-center">
-                  <select name="example" style="width: 100%;">
-                    <option style="color: black;" *ngFor="let item of Mod">{{item.modeloVehiculo}}</option>
+                  <select name="example" style="width: 100%;" [formControl]="modeloAutoCtrl">
+                    <option value="{{item.IDModelo}}" style="color: black;" *ngFor="let item of Mod">{{item.modeloVehiculo}}</option>
                   </select>
                 </div>
               </div>
@@ -64,7 +64,7 @@
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-calendar bigicon"
                     style="color: black; font-size: 25px;"></i> Fecha</span>
                 <div class="col-md-12 text-center">
-                  <input id="Fecha" name="name" type="date" placeholder="Fecha" class="form-control">
+                  <input id="Fecha" name="name" type="date" placeholder="Fecha" class="form-control" [formControl]="fechaCtrl">
                 </div>
               </div>
 
@@ -73,7 +73,7 @@
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-clock-o bigicon"
                     style="color: black; font-size: 25px;"></i> Hora</span>
                 <div class="col-md-12 text-center">
-                  <input id="Hora" name="email" type="time" placeholder="Hora" class="form-control">
+                  <input id="Hora" name="email" type="time" placeholder="Hora" class="form-control" [formControl]="horaCtrl">
                 </div>
               </div>
 
@@ -82,7 +82,7 @@
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-map-marker bigicon"
                     style="color: black; font-size: 25px;"></i> Ubicacion</span>
                 <div class="col-md-12 text-center">
-                  <input id="Ubicacion" name="phone" type="text" placeholder="Ubicación" class="form-control">
+                  <input id="Ubicacion" name="phone" type="text" placeholder="Ubicación" class="form-control" [formControl]="ubicacionCtrl">
                 </div>
               </div>
             </div>
@@ -94,7 +94,7 @@
                     style="color: black; font-size: 25px;"></i> Descripcion</span>
                 <div class="col-md-12 text-center">
                   <textarea class="form-control" id="Descripcion" name="message" placeholder="Descripción"
-                    rows="7"></textarea>
+                    rows="7" [formControl]="descripcionCtrl"></textarea>
                 </div>
               </div>
 
@@ -105,16 +105,18 @@
                   Foto</span>
               </div>
               <div class="form-group">
-                <input type="file" accept="image/*" capture="camera" id="camera" class="inputget">
+                <!-- <input type="file" accept="image/*" capture="camera" id="camera" class="inputget">
                 <div class="container-photo">
                   <img id="photo" class="photo">
-                </div>
+                </div> -->
+                <textarea class="form-control" id="UrlFoto" name="urlFoto" placeholder="Descripción"
+                    rows="7" [formControl]="urlFotoCtrl"></textarea>
               </div>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12 text-center">
-              <button type="button" class="btn btn-success" style="width: 80%;" onclick="LimpiarCampos()">Enviar
+              <button type="button" class="btn btn-success" style="width: 80%;" (click)="registrarReclamo()">Enviar
                 Reclamo</button>
             </div>
           </div>

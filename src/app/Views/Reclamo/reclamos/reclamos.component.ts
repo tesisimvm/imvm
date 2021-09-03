@@ -6,107 +6,140 @@ import { TipoReclamo } from 'src/app/model/tipoReclamo';
 import { ReclamoAmbiental } from 'src/app/model/reclamoAmbiental';
 import { marca } from 'src/app/model/marca';
 import { modelo } from 'src/app/model/modelo';
+import { FormControl, Validators } from '@angular/forms';
+import { DetalleReclamo } from 'src/app/model/detalleReclamo';
 
 @Component({
   selector: 'app-reclamos',
   templateUrl: './reclamos.component.html',
-  styleUrls: ['./reclamos.component.css']
+  styleUrls: ['./reclamos.component.css'],
 })
 export class ReclamosComponent implements OnInit {
-
   recla: Reclamo = {
     fecha: '',
     foto: '',
     hora: '',
-    IDSesion: 0,
-    IDTipoReclamo: 1,
-    IDEstado: 1,
-    IDDetalleReclamo: 1
+    ID_Sesion: '1',
+    ID_TipoReclamo: '1',
+    ID_Estado: 1
   };
 
-  Tiporecla:TipoReclamo[] = new Array<TipoReclamo>();
+  Tiporecla: TipoReclamo[] = new Array<TipoReclamo>();
 
-  ReclamoAmbie:ReclamoAmbiental[] = [];
+  ReclamoAmbie: ReclamoAmbiental[] = [];
 
-  Mar:marca[] = [];
+  Mar: marca[] = [];
 
-  Mod:modelo[] = [];
+  Mod: modelo[] = [];
 
-  constructor( private service: BackenApiService, private router: Router, private activatedRoute: ActivatedRoute) {
+  tipoReclamoCtrl = new FormControl('', [Validators.required]);
+  reclamoAmbientalCtrl = new FormControl('', [Validators.required]);
+  marcaAutoCtrl = new FormControl('', [Validators.required]);
+  modeloAutoCtrl = new FormControl('', [Validators.required]);
+  fechaCtrl = new FormControl('', [Validators.required]);
+  horaCtrl = new FormControl('', [Validators.required]);
+  ubicacionCtrl = new FormControl('', [Validators.required]);
+  descripcionCtrl = new FormControl('', [Validators.required]);
+  urlFotoCtrl = new FormControl('', [Validators.required]);
+  ID_Reclamo = new FormControl('', [Validators.required]);
 
+  selectIdTipoReclamo?:number;
+
+  constructor(
+    private service: BackenApiService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+  ) {
     this.getListReclamoAmbiental();
     this.getListMarca();
     this.getListModelo();
-   }
+  }
 
   ngOnInit(): void {
     this.getListTipoReclamos();
   }
 
-  listarReclamos(): void{
-    this.router.navigate(['Reclamo']
-    );
-  }
-
-  listarTipoReclamo(): void{
-    this.router.navigate(['Reclamo']
-    );
-  }
-
-  listarReclamoAmbiental(): void{
-    this.router.navigate(['Reclamo']
-    );
-  }
-
-  getListTipoReclamos():void{
+  getListTipoReclamos(): void {
     this.service.getTipoReclamo().subscribe(
-      res => {
+      (res) => {
         this.Tiporecla = res;
+        console.log("Recla:",this.Tiporecla);
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 
-  getListReclamoAmbiental():void{
+  getListReclamoAmbiental(): void {
     this.service.getReclamoAmbiental().subscribe(
-      res => {
+      (res) => {
         console.log(res);
         this.ReclamoAmbie = res;
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 
-  getListMarca():void{
+  getListMarca(): void {
     this.service.getMarca().subscribe(
-      res => {
+      (res) => {
         this.Mar = res;
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 
-  getListModelo():void{
+  getListModelo(): void {
     this.service.getModelo().subscribe(
-      res => {
+      (res) => {
         this.Mod = res;
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 
-  createReclamo(): void{
-    this.service.postReclamo(this.recla).subscribe(
-      res => {
+  registrarReclamo() {
+    debugger;
+
+    var RegistroRecl:Reclamo = {
+      fecha: this.fechaCtrl.value + '',
+      foto: this.urlFotoCtrl.value + '',
+      hora: this.horaCtrl.value + '',
+      ID_Sesion: "1",
+      ID_TipoReclamo: this.selectIdTipoReclamo + '',
+      ID_Estado: 1,
+    };
+    console.log(RegistroRecl);
+    this.service.postReclamo(RegistroRecl).subscribe(
+      (res) => {
         console.log(res);
-        // Limpiar campos
+        this.registrarDetalleReclamo(res);
       },
-      err => console.error(err)
+      (err) => console.error(err)
     );
   }
 
-  ocultarElemento():void{
-    
+  registrarDetalleReclamo(variable: any) {
+
+    var RegistroDetReclamo:DetalleReclamo = {
+      descripcion: this.descripcionCtrl.value + '',
+      direccion: this.descripcionCtrl.value + '',
+      altura: 200,
+      IDReclamoAmbiental: 1,
+      IDVehiculo: 1,
+      ID_Reclamo: this.selectIdTipoReclamo,
+    };
+    console.log(RegistroDetReclamo);
+    debugger;
+    this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => console.error(err)
+    );
   }
 
+  dataChanged(ev:any){
+    this.selectIdTipoReclamo=ev.target.value;
+    console.log(this.selectIdTipoReclamo);
+  }
 }
