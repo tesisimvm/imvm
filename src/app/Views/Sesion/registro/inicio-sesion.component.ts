@@ -18,10 +18,8 @@ export class InicioSesionComponent implements OnInit {
   mas abajo se encuentra el metodo para realziar la validacion */
   arraySesion?: string[];
 
-  /* public formGroup: FormGroup = new FormGroup({
-    nomUsuario: new FormControl('',[Validators.required]),
-    passUsuario: new FormControl('',[Validators.required]),
-  }); */
+
+
 
   constructor(
     public service: BackenApiService,
@@ -40,11 +38,6 @@ export class InicioSesionComponent implements OnInit {
     console.log(this.passwCtrl.value);
   }
 
-  /*  getEmailFG(event: Event){
-    event.preventDefault();
-    console.log(this.userCtrl.value);
-    console.log(this.passwCtrl.value);
-  } */
 
   Validacion() {
     var usuarioV = {
@@ -57,6 +50,7 @@ export class InicioSesionComponent implements OnInit {
         (data) => {
           if (data[0]) {
            this.bandera = true;
+           
             this.router.navigate(['main-nav']);
           } else {
             this.bandera = false;
