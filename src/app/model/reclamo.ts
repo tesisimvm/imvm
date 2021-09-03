@@ -5,7 +5,7 @@ export interface Reclamo {
   fecha?: string;
   foto?: string;
   hora?: string;
-  ID_Sesion?: string;
-  ID_TipoReclamo?: string;
+  ID_Sesion?: number;
+  ID_TipoReclamo?: number;
   ID_Estado?: number;
 }

@@ -9,6 +9,7 @@ import { modelo } from 'src/app/model/modelo';
 import { FormControl, Validators } from '@angular/forms';
 import { DetalleReclamo } from 'src/app/model/detalleReclamo';
 
+
 @Component({
   selector: 'app-reclamos',
   templateUrl: './reclamos.component.html',
@@ -19,9 +20,9 @@ export class ReclamosComponent implements OnInit {
     fecha: '',
     foto: '',
     hora: '',
-    ID_Sesion: '1',
-    ID_TipoReclamo: '1',
-    ID_Estado: 1
+    ID_Sesion: 1,
+    ID_TipoReclamo:1,
+    ID_Estado: 1,
   };
 
   Tiporecla: TipoReclamo[] = new Array<TipoReclamo>();
@@ -101,12 +102,12 @@ export class ReclamosComponent implements OnInit {
     debugger;
 
     var RegistroRecl:Reclamo = {
-      fecha: this.fechaCtrl.value + '',
+      fecha: this.fechaCtrl.value+'',
       foto: this.urlFotoCtrl.value + '',
-      hora: this.horaCtrl.value + '',
-      ID_Sesion: "1",
-      ID_TipoReclamo: this.selectIdTipoReclamo + '',
-      ID_Estado: 1,
+      hora: this.horaCtrl.value+'',
+      ID_Sesion: 1,
+      ID_TipoReclamo: Number(this.selectIdTipoReclamo) ,/* lo converti a numero porque lo recibe como string */
+      ID_Estado: 1
     };
     console.log(RegistroRecl);
     this.service.postReclamo(RegistroRecl).subscribe(
@@ -122,9 +123,9 @@ export class ReclamosComponent implements OnInit {
 
     var RegistroDetReclamo:DetalleReclamo = {
       descripcion: this.descripcionCtrl.value + '',
-      direccion: this.descripcionCtrl.value + '',
+      direccion: this.ubicacionCtrl.value + '',
       altura: 200,
-      IDReclamoAmbiental: 1,
+      IDReclamoAmbiental: 1,/* revisar bien este apartado */
       IDVehiculo: 1,
       ID_Reclamo: this.selectIdTipoReclamo,
     };
