@@ -1,4 +1,6 @@
 import { Byte } from '@angular/compiler/src/util';
+import { DetalleReclamo } from './detalleReclamo';
+
 
 export interface Reclamo {
   IDReclamo?: number;
@@ -8,4 +10,5 @@ export interface Reclamo {
   ID_Sesion?: number;
   ID_TipoReclamo?: number;
   ID_Estado?: number;
+  detalleReclamo?: DetalleReclamo;
 }

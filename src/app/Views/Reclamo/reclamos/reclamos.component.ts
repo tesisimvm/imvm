@@ -109,18 +109,6 @@ export class ReclamosComponent implements OnInit {
       ID_TipoReclamo: Number(this.selectIdTipoReclamo) ,/* lo converti a numero porque lo recibe como string */
       ID_Estado: 1
     };
-    console.log(RegistroRecl);
-    this.service.postReclamo(RegistroRecl).subscribe(
-      (res) => {
-        console.log(res);
-        this.registrarDetalleReclamo(res);
-      },
-      (err) => console.error(err)
-    );
-  }
-
-  registrarDetalleReclamo(variable: any) {
-
     var RegistroDetReclamo:DetalleReclamo = {
       descripcion: this.descripcionCtrl.value + '',
       direccion: this.ubicacionCtrl.value + '',
@@ -129,15 +117,39 @@ export class ReclamosComponent implements OnInit {
       IDVehiculo: 1,
       ID_Reclamo: this.selectIdTipoReclamo,
     };
-    console.log(RegistroDetReclamo);
-    debugger;
-    this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
+
+    RegistroRecl.detalleReclamo=RegistroDetReclamo;
+
+    console.log(RegistroRecl);
+    this.service.postReclamo(RegistroRecl, RegistroDetReclamo).subscribe(
       (res) => {
+        debugger
         console.log(res);
+        // this.registrarDetalleReclamo(res);
       },
       (err) => console.error(err)
     );
   }
+
+  // registrarDetalleReclamo(variable: any) {
+
+  //   var RegistroDetReclamo:DetalleReclamo = {
+  //     descripcion: this.descripcionCtrl.value + '',
+  //     direccion: this.ubicacionCtrl.value + '',
+  //     altura: 200,
+  //     IDReclamoAmbiental: 1,/* revisar bien este apartado */
+  //     IDVehiculo: 1,
+  //     ID_Reclamo: this.selectIdTipoReclamo,
+  //   };
+  //   console.log(RegistroDetReclamo);
+  //   debugger;
+  //   this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
+  //     (res) => {
+  //       console.log(res);
+  //     },
+  //     (err) => console.error(err)
+  //   );
+  // }
 
   dataChanged(ev:any){
     this.selectIdTipoReclamo=ev.target.value;
