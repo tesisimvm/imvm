@@ -4,6 +4,12 @@ import { Observable } from 'rxjs';
 import { Reclamo } from '../model/reclamo';
 import { sesionUsuario } from '../model/sesion';
 import { datosperfil } from '../model/perfil';
+import { TipoReclamo } from '../model/tipoReclamo';
+import { ReclamoAmbiental } from '../model/reclamoAmbiental';
+import { marca } from '../model/marca';
+import { modelo } from '../model/modelo';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +29,31 @@ export class BackenApiService {
     return this.http.get<Reclamo[]>('https://localhost:44363/reclamo');
   }
 
+  postReclamo(Reclamo: any, DetalleReclamo: any ):Observable<any>{
+    debugger
+    console.log(Reclamo);
+    return this.http.post('https://localhost:44363/reclamo', Reclamo, this.httpOptions);
+  }
+
+  postDetalleReclamo(Detallereclamo: any ):Observable<any>{
+    return this.http.post('https://localhost:44363/detallereclamo', Detallereclamo, this.httpOptions);
+  }
+
+  getTipoReclamo(): Observable<TipoReclamo[]> {
+    return this.http.get<TipoReclamo[]>('https://localhost:44363/tiporeclamo');
+  }
+
+  getReclamoAmbiental(): Observable<ReclamoAmbiental[]> {
+    return this.http.get<ReclamoAmbiental[]>('https://localhost:44363/reclamoambiental');
+  }
+
+  getMarca(): Observable<marca[]> {
+    return this.http.get<marca[]>('https://localhost:44363/marcavehiculo');
+  }
+
+  getModelo(): Observable<modelo[]> {
+    return this.http.get<modelo[]>('https://localhost:44363/modeloVehiculo');
+  }
 
 
   /* Pantalla Login (registro de usuario) */
@@ -42,7 +73,7 @@ export class BackenApiService {
   
 
   /* Pantalla sesion - validar usuario */
-  getValidacionUsuario(email:any,pass:any): Observable<any> {
+  getValidacionUsuario(email:any, pass:any): Observable<any> {
     console.log(email);
     console.log(pass);
     debugger
@@ -53,7 +84,6 @@ export class BackenApiService {
   getdatosPerfil(id:any): Observable<datosperfil[]>{
     console.log(id)
     //debugger
-    return this.http.get<datosperfil[]>('https://localhost:44363/usuario/' + id);    
+    return this.http.get<datosperfil[]>('https://localhost:44363/usuario/' + id);
   }
-
 }

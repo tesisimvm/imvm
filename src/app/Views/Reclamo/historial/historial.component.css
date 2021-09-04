@@ -1,0 +1,32 @@
+.colorletrasnegras{
+
+   color:#000000;
+}
+
+.bordecard {
+   border-color: #CC0033 !important;
+ }
+
+.botoneslilas {
+ color: #fff  !important;
+ background-color: #41b424  !important;
+ border-color: #41b424  !important;
+}
+
+.botoneslilas:hover {
+ color: #fff !important;
+ background-color: #42e242 !important;
+ border-color: #42e242 !important;
+}
+
+.botoneseliminar{
+ color: #fff  !important;
+ background-color: #CC0033  !important;
+ border-color: #CC0033  !important;
+}
+
+.botoneseliminar:hover {
+ color: #fff !important;
+ background-color: rgb(201, 40, 83) !important;
+ border-color: rgb(201, 40, 83) !important;
+}
