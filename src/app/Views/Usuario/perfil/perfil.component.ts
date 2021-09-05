@@ -3,17 +3,22 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { datosperfil } from 'src/app/model/perfil';
 import { BackenApiService } from 'src/app/service/backen-api.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
+
 export class PerfilComponent implements OnInit {
 
   datosPerfil: any;
-  
-  constructor(public dPerfil: BackenApiService) { 
+  //idUsuarioMostrar : datosperfil.IDU;
+
+  constructor(public dPerfil: BackenApiService) {
+   
     this.dPerfil.getdatosPerfil(4).subscribe(
       (info) => {
         console.log(info);
