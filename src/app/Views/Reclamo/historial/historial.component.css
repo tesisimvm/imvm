@@ -44,7 +44,7 @@ body {
 
 .card {
   background: rgb(84, 10, 26); /* Color del fondo de la tarjeta */
-  border: 1px solid #2e2629;
+  border: 1px solid #918f8f;
   color: rgba(250, 250, 250, 0.8);
 
   margin-bottom: 2rem;
