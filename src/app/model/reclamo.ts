@@ -10,5 +10,4 @@ export interface Reclamo {
   ID_Sesion?: number;
   ID_TipoReclamo?: number;
   ID_Estado?: number;
-  detalleReclamo?: DetalleReclamo;
 }
