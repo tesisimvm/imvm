@@ -21,6 +21,7 @@ import { UsuarioComponent } from './Views/Usuario/usuario/usuario.component';
 import { HistorialComponent } from './Views/Reclamo/historial/historial.component';
 import { VehiculoComponent } from './Views/Vehiculo/vehiculo/vehiculo.component';
 import { ConfiguracionComponent } from './Views/Configuracion/configuracion/configuracion.component';
+import { NosotrosComponent } from './Views/Estructura/nosotros/nosotros.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ConfiguracionComponent } from './Views/Configuracion/configuracion/conf
     UsuarioComponent,
     HistorialComponent,
     VehiculoComponent,
-    ConfiguracionComponent
+    ConfiguracionComponent,
+    NosotrosComponent
   ],
   imports: [
     BrowserModule,

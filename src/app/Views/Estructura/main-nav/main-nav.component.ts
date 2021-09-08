@@ -21,7 +21,7 @@ export class MainNavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver, private _route : ActivatedRoute) {
 
-    console.log(this._route.snapshot.paramMap.get('id'));
+    // console.log(this._route.snapshot.paramMap.get('id'));
 
   }
 

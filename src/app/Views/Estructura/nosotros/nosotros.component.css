@@ -1,0 +1,46 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'Open Sans,sans-serif';
+}
+
+.home{
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+.body{
+    background-color:rgb(199, 202, 202);
+}
+
+.in-flex{
+    flex : 1;
+    padding: 25px;
+    background-color: white;
+    margin-bottom: 0px;
+} 
+
+.in-flex:first-child {
+    flex : 2;
+    padding: 25px;
+    background-color: white;
+    margin-bottom: 0px;
+}
+
+.in-flex div{
+    background-color: white;
+    padding: 25px;
+    margin : 20px;
+}
+
+.titulo{
+    text-align: center;
+}
+
+.reclamos{
+    flex : 2;
+    padding: 25px;
+    background-color: white;
+    margin-bottom: 0px;
+}

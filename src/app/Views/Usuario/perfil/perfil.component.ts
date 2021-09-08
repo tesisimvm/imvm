@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { datosperfil } from 'src/app/model/perfil';
 import { BackenApiService } from 'src/app/service/backen-api.service';
 import { ActivatedRoute } from '@angular/router';
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 
 
 @Component({
@@ -12,12 +13,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./perfil.component.css']
 })
 
+
 export class PerfilComponent implements OnInit {
 
   datosPerfil: any;
-  //idUsuarioMostrar : datosperfil.IDU;
+  // idUsuarioMostrar : any;
 
-  constructor(public dPerfil: BackenApiService) {
+  constructor(public dPerfil: BackenApiService, private route : ActivatedRoute) {
    
     this.dPerfil.getdatosPerfil(4).subscribe(
       (info) => {
@@ -29,10 +31,13 @@ export class PerfilComponent implements OnInit {
         console.log(error);
       }
     )
+    
   }
 
   ngOnInit(): void {
+   
     // console.log(this.dPerfil.getdatosPerfil(4).subscribe(data => console.log(data)));
+    
   }
 
 }
