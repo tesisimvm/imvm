@@ -20,7 +20,7 @@ export class InicioSesionComponent implements OnInit {
 
 
 
-
+  
   constructor(
     public service: BackenApiService,
     private router: Router,
@@ -38,7 +38,6 @@ export class InicioSesionComponent implements OnInit {
     console.log(this.passwCtrl.value);
   }
 
-
   Validacion() {
     var usuarioV = {
       email: this.userCtrl.value,
@@ -50,8 +49,8 @@ export class InicioSesionComponent implements OnInit {
         (data) => {
           if (data[0]) {
            this.bandera = true;
-           
-            this.router.navigate(['main-nav']);
+           debugger
+            this.router.navigate(['main-nav']); /* this.router.navigate(['main-nav', data[0].idUser]); */
           } else {
             this.bandera = false;
             alert("Usuario y contraseña incorrectos");
