@@ -61,7 +61,7 @@ export class BackenApiService {
   postUsuario(usuario: any ):Observable<any>{
    
     console.log(usuario);
-    debugger
+    
     return this.http.post('https://localhost:44363/usuario', usuario, this.httpOptions);
   }
 
@@ -77,7 +77,7 @@ export class BackenApiService {
   getValidacionUsuario(email:any, pass:any): Observable<any> {
     console.log(email);
     console.log(pass);
-    debugger
+    
     return this.http.get<sesionUsuario[]>('https://localhost:44363/sesion?'+"email="+email+"&"+"password="+pass); /* email=example@hotmail.com&password=123'); */
   }
 
