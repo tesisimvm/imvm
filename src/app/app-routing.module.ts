@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'perfil', component: PerfilComponent},
   {path: 'reclamos', component: ReclamosComponent},
   // {path: 'pantallaprincipal', component: PprincipalComponent},
-  {path: 'main-nav', component: MainNavComponent,
+  {path: 'main-nav/:id', component: MainNavComponent,
     children:[
     {path: 'perfil', component: PerfilComponent},
     {path: 'reclamos', component: ReclamosComponent},
