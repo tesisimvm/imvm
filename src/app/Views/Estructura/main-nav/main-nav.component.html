@@ -1,3 +1,4 @@
+
 <mat-sidenav-container class="sidenav-container" style="font-family: 'Open Sans',sans-serif;">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
@@ -26,14 +27,14 @@
       <a mat-list-item class="btn-grad" routerLink="/main-nav/historial"> <i class="fas fa-heading"
           style="font-size:  22px;" routerLink="/main-nav/historial"></i>
         Historial</a>
-      <a mat-list-item class="btn-grad" href="#"> <i class="fas fa-map-marked-alt" style="font-size:  22px;"></i>
+      <a mat-list-item class="btn-grad" > <i class="fas fa-map-marked-alt" style="font-size:  22px;"></i>
         Mapa</a>
-      <a mat-list-item class="btn-grad" href="#" routerLink="/main-nav/nosotros"> <i class="fas fa-users"
+      <a mat-list-item class="btn-grad"  routerLink="/main-nav/nosotros"> <i class="fas fa-users"
           style="font-size:  22px;"></i>
         Nosotros</a>
-      <a mat-list-item class="btn-grad" href="#"><i class="fas fa-clipboard" style="font-size:  22px;"></i>
+      <a mat-list-item class="btn-grad" ><i class="fas fa-clipboard" style="font-size:  22px;"></i>
         Reportes</a>
-      <a mat-list-item class="btn-grad" href="#"> <i class="fas fa-info" style="font-size:  22px;"></i>
+      <a mat-list-item class="btn-grad" > <i class="fas fa-info" style="font-size:  22px;"></i>
         Ayuda</a>
     </mat-nav-list>
   </mat-sidenav>

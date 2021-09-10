@@ -3,7 +3,7 @@ export interface DetalleReclamo {
   descripcion?: string;
   direccion?: string;
   altura?: number;
-  IDReclamoAmbiental?: number;
-  IDVehiculo?: number;
+  ID_ReclamoAmbiental?: number;
+  ID_Vehiculo?: number;
   ID_Reclamo?:number;
 }

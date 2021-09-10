@@ -17,7 +17,7 @@ export class MainNavComponent {
       shareReplay()
     );
 
-
+  
 
   constructor(private breakpointObserver: BreakpointObserver, private _route : ActivatedRoute) {
 

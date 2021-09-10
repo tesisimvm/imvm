@@ -23,6 +23,11 @@ const routes: Routes = [
     {path: 'historial', component: HistorialComponent},
     {path: 'nosotros', component: NosotrosComponent}
   ]}, /* menu principal */
+
+  {path: 'main-nav/historial', component: MainNavComponent, /* Estando en el historial se puede ir a reclamo para editar ese detalle o reclamo */
+    children:[
+    {path: 'reclamos', component: ReclamosComponent}
+  ]}, 
   {path: '**', component: InicioSesionComponent}, /* por defecto - cuando hay problemas o se escribe mal la url */
 ];
 

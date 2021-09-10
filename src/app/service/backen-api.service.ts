@@ -8,6 +8,7 @@ import { TipoReclamo } from '../model/tipoReclamo';
 import { ReclamoAmbiental } from '../model/reclamoAmbiental';
 import { marca } from '../model/marca';
 import { modelo } from '../model/modelo';
+import { DetalleReclamo } from '../model/detalleReclamo';
 
 
 
@@ -29,7 +30,7 @@ export class BackenApiService {
     return this.http.get<Reclamo[]>('https://localhost:44363/reclamo');
   }
 
-  postReclamo(Reclamo: any, DetalleReclamo: any ):Observable<any>{
+  postReclamo(Reclamo: any):Observable<any>{
     debugger
     console.log(Reclamo);
     return this.http.post('https://localhost:44363/reclamo', Reclamo, this.httpOptions);
@@ -85,5 +86,11 @@ export class BackenApiService {
     console.log(id)
     //debugger
     return this.http.get<datosperfil[]>('https://localhost:44363/usuario/' + id);
+  }
+
+  /* Metodo para obtener todos reclamos (historial) */
+  getDetalleReclamo(): Observable<any> {
+    /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo');
   }
 }

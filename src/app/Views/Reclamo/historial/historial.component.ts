@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackenApiService } from 'src/app/service/backen-api.service';
 
 @Component({
   selector: 'app-historial',
@@ -7,7 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HistorialComponent implements OnInit {
 
-  constructor() { }
+  Dreclamos:any;
+
+  constructor(public detalleReclamo:BackenApiService) { 
+    this.detalleReclamo.getDetalleReclamo().subscribe(
+      (info) => {
+        console.log(info);
+       // debugger
+        this.Dreclamos = info;
+        console.log(this.Dreclamos)
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
+  }
 
   ngOnInit(): void {
   }
