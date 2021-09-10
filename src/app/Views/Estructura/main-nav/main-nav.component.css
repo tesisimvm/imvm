@@ -177,7 +177,12 @@ background-color: #414c58;
   width: 600px;
  } */
 
-
+.fondo{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  
+}
 
 
 

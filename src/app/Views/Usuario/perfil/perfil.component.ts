@@ -19,7 +19,7 @@ export class PerfilComponent implements OnInit {
   datosPerfil: any;
   // idUsuarioMostrar : any;
 
-  constructor(public dPerfil: BackenApiService, private route : ActivatedRoute) {
+  constructor(public dPerfil: BackenApiService, private _route : ActivatedRoute) {
    
     this.dPerfil.getdatosPerfil(4).subscribe(
       (info) => {
@@ -32,6 +32,10 @@ export class PerfilComponent implements OnInit {
       }
     )
     
+    // var id : any;
+    // id = this._route.snapshot.paramMap.get('id');
+    // console.log(id);
+
   }
 
   ngOnInit(): void {
