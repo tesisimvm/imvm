@@ -109,47 +109,36 @@ export class ReclamosComponent implements OnInit {
       ID_TipoReclamo: Number(this.selectIdTipoReclamo) ,/* lo converti a numero porque lo recibe como string */
       ID_Estado: 1
     };
-    var RegistroDetReclamo:DetalleReclamo = {
-      descripcion: this.descripcionCtrl.value + '',
-      direccion: this.ubicacionCtrl.value + '',
-      altura: 200,
-      IDReclamoAmbiental: 1,/* revisar bien este apartado */
-      IDVehiculo: 1,
-      ID_Reclamo: this.selectIdTipoReclamo,
-    };
-
-    RegistroRecl.detalleReclamo=RegistroDetReclamo;
+   
 
     console.log(RegistroRecl);
-    this.service.postReclamo(RegistroRecl, RegistroDetReclamo).subscribe(
+    this.service.postReclamo(RegistroRecl).subscribe(
       (res) => {
         debugger
         console.log(res);
-        // this.registrarDetalleReclamo(res);
+        this.registrarDetalleReclamo(res);
       },
       (err) => console.error(err)
     );
   }
 
-  // registrarDetalleReclamo(variable: any) {
-
-  //   var RegistroDetReclamo:DetalleReclamo = {
-  //     descripcion: this.descripcionCtrl.value + '',
-  //     direccion: this.ubicacionCtrl.value + '',
-  //     altura: 200,
-  //     IDReclamoAmbiental: 1,/* revisar bien este apartado */
-  //     IDVehiculo: 1,
-  //     ID_Reclamo: this.selectIdTipoReclamo,
-  //   };
-  //   console.log(RegistroDetReclamo);
-  //   debugger;
-  //   this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
-  //     (res) => {
-  //       console.log(res);
-  //     },
-  //     (err) => console.error(err)
-  //   );
-  // }
+   registrarDetalleReclamo(res: any) {
+     var RegistroDetReclamo:DetalleReclamo = {
+      descripcion: this.descripcionCtrl.value + '',
+      direccion: this.ubicacionCtrl.value + '',
+      altura: 200,
+      ID_ReclamoAmbiental: 1,
+      ID_Vehiculo: 1,
+      ID_Reclamo: res.idReclamo
+    };
+     console.log(RegistroDetReclamo);
+    this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => console.error(err)
+     );
+   }
 
   dataChanged(ev:any){
     this.selectIdTipoReclamo=ev.target.value;

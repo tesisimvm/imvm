@@ -4,31 +4,31 @@
 }
 
 .bordecard {
-   border-color: #CC0033 !important;
- }
+  border-color: #CC0033 !important;
+}
 
 .botoneslilas {
- color: #fff  !important;
- background-color: #41b424  !important;
- border-color: #41b424  !important;
+  color: #fff !important;
+  background-color: #41b424 !important;
+  border-color: #41b424 !important;
 }
 
 .botoneslilas:hover {
- color: #fff !important;
- background-color: #42e242 !important;
- border-color: #42e242 !important;
+  color: #fff !important;
+  background-color: #42e242 !important;
+  border-color: #42e242 !important;
 }
 
-.botoneseliminar{
- color: #fff  !important;
- background-color: #CC0033  !important;
- border-color: #CC0033  !important;
+.botoneseliminar {
+  color: #fff !important;
+  background-color: #CC0033 !important;
+  border-color: #CC0033 !important;
 }
 
 .botoneseliminar:hover {
- color: #fff !important;
- background-color: rgb(201, 40, 83) !important;
- border-color: rgb(201, 40, 83) !important;
+  color: #fff !important;
+  background-color: rgb(201, 40, 83) !important;
+  border-color: rgb(201, 40, 83) !important;
 }
  */
 
@@ -42,23 +42,29 @@ body {
   background: #111 !important;
 }
 
+
 .card {
   background: rgb(84, 10, 26); /* Color del fondo de la tarjeta */
   border: 1px solid #918f8f;
   color: rgba(250, 250, 250, 0.8);
-
   margin-bottom: 2rem;
+}
+
+.card-title{
+  font-family: 'Courier New', Courier, monospace;
 }
 
 #principal {
   border-radius: 63px;
 background: #252527;
-box-shadow:  -15px -15px 30px #171719,
-             15px 15px 30px #333335;
-
+box-shadow:  20px 20px 20px #171719;
   padding-top: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+h6{
+  font-family: 'Courier New', Courier, monospace;
 }
 
 /* .btn {

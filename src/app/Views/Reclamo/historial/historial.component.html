@@ -7,96 +7,23 @@
           <img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
   
           <div class="card-body">
-            <h5 class="card-title"> <i class="far fa-user"> Usuario: {{item.usuarioR}} </i></h5>
-            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Nrº Reclamo: {{item.iDrecla}}</i></h6>
-            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Estado: {{item.estadoR}}</i></h6>
-            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Tipo: {{item.estadoT}}</i></h6>
+            <h5 class="card-title"> <i class="far fa-user"> Usuario: {{item.nick}} </i></h5>
+            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Nrº Reclamo: {{item.iD_Reclamo}}</i></h6>
+            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Estado: {{item.nombre}}</i></h6>
+            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Tipo: {{item.nombreTEstado}}</i></h6>
            
-            <p class="card-text"> <i class="far fa-comment-dots"> Motivo: {{item.descripcionDR}}</i></p>
-            <p class="card-text"> <i class="far fa-calendar-alt"> Fecha: {{item.fechaR}}</i></p>
-            <p class="card-text"> <i class="far fa-clock"> Hora: {{item.horaR}}</i></p>
-            <p class="card-text"> <i class="fas fa-map-signs"> Dirección: {{item.direccionR}}</i></p>
-            <p class="card-text"> <i class="fas fa-map-signs"> Altura: {{item.alturaR}}</i></p>
+            <p class="card-text"> <i class="far fa-comment-dots"> Motivo: {{item.descripcion}}</i></p>
+            <p class="card-text"> <i class="far fa-calendar-alt"> Fecha: {{item.fecha}}</i></p>
+            <p class="card-text"> <i class="far fa-clock"> Hora: {{item.hora}}</i></p>
+            <p class="card-text"> <i class="fas fa-map-signs"> Dirección: {{item.direccion}}</i></p>
+            <p class="card-text"> <i class="fas fa-map-signs"> Altura: {{item.altura}}</i></p>
           
-          
-  
-  
             <button type="button" class="btn mr-2 btn-light" routerLink="/main-nav/historial/reclamos"><i class="fas fa-edit"> Editar</i> </button>
             <button type="button" class="btn mr-2  btn-danger"><i class="fas fa-trash-alt"> Eliminar</i> </button>
-  
-  
-            <!-- <a  class="btn mr-2"><i class="fas fa-edit"></i> Editar</a> -->
-            <!-- <a  class="btn "><i class="fab fa-trash-restore"></i> Eliminar</a> -->
+
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-  <!--     
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <a href="#" class="btn  mr-2"><i class="fas fa-link"></i> Visit Site</a>
-          <a href="#" class="btn"><i class="fab fa-github"></i> Github</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <a href="#" class="btn mr-2"><i class="fas fa-link"></i> Visit Site</a>
-          <a href="#" class="btn "><i class="fab fa-github"></i> Github</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <a href="#" class="btn mr-2"><i class="fas fa-link"></i> Visit Site</a>
-          <a href="#" class="btn"><i class="fab fa-github"></i> Github</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <a href="#" class="btn mr-2"><i class="fas fa-link"></i> Visit Site</a>
-          <a href="#" class="btn"><i class="fab fa-github"></i> Github</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card" style="width: 18rem;">
-        <img src="https://i.imgur.com/ZTkt4I5.jpg" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <a href="#" class="btn mr-2"><i class="fas fa-link"></i> Visit Site</a>
-          <a href="#" class="btn"><i class="fab fa-github"></i> Github</a>
-        </div>
-      </div>
-    </div> -->
