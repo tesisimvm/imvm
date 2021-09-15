@@ -50,7 +50,7 @@ export class InicioSesionComponent implements OnInit {
           if (data[0]) {
            this.bandera = true;
            
-            this.router.navigate(['main-nav',data[0].idUser]); /* this.router.navigate(['main-nav', data[0].idUser]); */
+            this.router.navigate(['main-nav', data[0].idUser]); /* this.router.navigate(['main-nav', data[0].idUser]); */
           } else {
             this.bandera = false;
             alert("Usuario y contraseña incorrectos");
