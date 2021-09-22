@@ -1,41 +1,48 @@
-
 <mat-sidenav-container class="sidenav-container" style="font-family: 'Open Sans',sans-serif;">
   <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
     <mat-toolbar class="menu" style="font-family: 'Open Sans',sans-serif;">
-    <!-- <img  id="logo" src="../../../../assets/img/mejorada3.png" alt="logo"> --></mat-toolbar>
+      <!-- <img  id="logo" src="../../../../assets/img/mejorada3.png" alt="logo"> -->
+    </mat-toolbar>
     <mat-nav-list class="button-menu" style="font-family: 'Open Sans',sans-serif;">
       <div class="row">
-
+        
         <div class="col-md-12">
           <img src="../../../../assets/img/avatar.png " alt="" id="perfil-imagen">
-         
+
           <!-- <button mat-icon-button color="basic">
             <mat-icon>settings</mat-icon>
           </button> -->
         </div>
 
-      <div class="col-md-12">
-        
+        <div class="col-md-12">
+
+        </div>
+
       </div>
+      <!-- 1= administrador y 3= usuario -->
+      <div *ngIf="(IDRol==1 || IDRol==3)">
+        <a mat-list-item class="btn-grad" routerLink="./perfil" routerLinkActive="active"> <i class="fas fa-user-circle"
+            style="font-size:  22px;" routerLink="./perfil" routerLinkActive="active"></i> Perfil</a>
+        <a mat-list-item class="btn-grad" routerLink="./reclamos"> <i class="fas fa-file-alt" style="font-size:  22px;"
+            routerLink="./reclamos"></i> Reclamos</a>
+        <a mat-list-item class="btn-grad" routerLink="./historial"> <i class="fas fa-heading" style="font-size:  22px;"
+            routerLink="./historial"></i>
+          Historial</a>
+        <a mat-list-item class="btn-grad"> <i class="fas fa-map-marked-alt" style="font-size:  22px;"></i>
+          Mapa</a>
+        <a mat-list-item class="btn-grad" routerLink="/main-nav/nosotros"> <i class="fas fa-users"
+            style="font-size:  22px;"></i>
+          Nosotros</a>
+        <a *ngIf="(IDRol==1)" mat-list-item class="btn-grad"><i class="fas fa-clipboard" style="font-size:  22px;"></i>
+          Reportes</a>
+          <a *ngIf="(IDRol==1)" mat-list-item class="btn-grad"><i class="fas fa-tools" style="font-size:  22px;"></i>
+            Configuración</a>
+        <a mat-list-item class="btn-grad"> <i class="fas fa-info" style="font-size:  22px;"></i>
+          Ayuda</a>
+
       </div>
 
-      <a mat-list-item class="btn-grad" routerLink="./perfil" routerLinkActive="active" > <i class="fas fa-user-circle"
-          style="font-size:  22px;" routerLink="./perfil" routerLinkActive="active" ></i> Perfil</a>
-      <a mat-list-item class="btn-grad" routerLink="./reclamos"> <i class="fas fa-file-alt"
-          style="font-size:  22px;" routerLink="./reclamos"></i> Reclamos</a>
-      <a mat-list-item class="btn-grad" routerLink="./historial"> <i class="fas fa-heading"
-          style="font-size:  22px;" routerLink="./historial"></i>
-        Historial</a>
-      <a mat-list-item class="btn-grad" > <i class="fas fa-map-marked-alt" style="font-size:  22px;"></i>
-        Mapa</a>
-      <a mat-list-item class="btn-grad"  routerLink="/main-nav/nosotros"> <i class="fas fa-users"
-          style="font-size:  22px;"></i>
-        Nosotros</a>
-      <a mat-list-item class="btn-grad" ><i class="fas fa-clipboard" style="font-size:  22px;"></i>
-        Reportes</a>
-      <a mat-list-item class="btn-grad" > <i class="fas fa-info" style="font-size:  22px;"></i>
-        Ayuda</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

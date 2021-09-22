@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { datosperfil } from 'src/app/model/perfil';
 import { BackenApiService } from 'src/app/service/backen-api.service';
 import { ActivatedRoute } from '@angular/router';
+import { TouchSequence } from 'selenium-webdriver';
 
 
 @Component({
@@ -16,9 +17,8 @@ export class PerfilComponent implements OnInit {
 
   datosPerfil: any;
   ruta:any;
-  ruta2:any;
-  ruta3:any;
 
+  public IDusuario:any;
   
   //idUsuarioMostrar : datosperfil.IDU;
 
@@ -26,19 +26,18 @@ export class PerfilComponent implements OnInit {
     /* aca seesta tratando de dividir la ruta de la url para obtener el id que esta entre
     '/main-nav/ y /perfil/  */
     debugger
-    /* /main-nav/2/perfil */
-    this.ruta = window.location.pathname;
-    this.ruta2 = this.ruta.split('/main-nav/',1);
-    console.log(this.ruta2);
-
-    let  ID = this._route.snapshot.paramMap.get('id');
-    console.log(ID);
-
-    this.dPerfil.getdatosPerfil(ID).subscribe(
+   
+    //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
+    this.ruta = window.location.pathname.split('/');
+    
+    //En base a ese array le digo que voy a usar la
+    //celda 2 la cual tiene el id del usuario
+    this.dPerfil.getdatosPerfil(this.ruta[2]).subscribe(
       (info) => {
         console.log(info);
-       // debugger
+        debugger
         this.datosPerfil = info;
+        console.log(this.datosPerfil);
       },
       (error) => {
         console.log(error);

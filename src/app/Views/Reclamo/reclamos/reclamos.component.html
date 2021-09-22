@@ -1,3 +1,4 @@
+
 <div class="container"
   style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol">
   <h2 style="text-align: center; padding-bottom: 2%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
@@ -23,19 +24,26 @@
               </div>
 
               <!-- Reclamo Ambiental -->
-              <div class="form-group" id="ReclamoAmbiental">
+              <div class="form-group" id="ReclamoAmbiental" *ngIf="selectIdTipoReclamo==1">
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-exclamation-triangle"
                     style="font-size: 25px;">
                   </i> Reclamo Ambiental</span>
                 <div class="col-md-12 text-center">
-                  <select name="example" style="width: 100%;" [formControl]="reclamoAmbientalCtrl">
-                    <option value="{{item.IDReclamoAmbiental}}" style="color: black;" *ngFor="let item of ReclamoAmbie">{{item.nombreRecAmbiental}}</option>
+
+                  <select id="TipoReclamo" name="example" style="width: 100%;"
+                  [formControl]="reclamoAmbientalCtrl">
+
+                    <option id="dato" value="{{item.IDReclamoAmbiental}}" style="color: black;"
+                     *ngFor="let item of ReclamoAmbie">{{item.nombreRecAmbiental}}
+                    </option>
+
                   </select>
+
                 </div>
               </div>
 
               <!-- Marca Auto -->
-              <div class="form-group" id="ReclamoVial">
+              <div class="form-group" id="ReclamoVial" *ngIf="selectIdTipoReclamo==2">
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-car-side"
                     style="font-size: 25px;">
                   </i> Marca de auto</span>
@@ -48,7 +56,7 @@
               </div>
 
               <!-- Modelo Auto -->
-              <div class="form-group" id="ReclamoVial">
+              <div class="form-group" id="ReclamoVial" *ngIf="selectIdTipoReclamo==2">
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-car"
                     style="font-size: 25px;">
                   </i> Modelo de auto</span>

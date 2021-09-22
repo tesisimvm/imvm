@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'perfil', component: PerfilComponent},
   {path: 'reclamos', component: ReclamosComponent},
   // {path: 'pantallaprincipal', component: PprincipalComponent},
-  {path: 'main-nav/:id', component: MainNavComponent,
+  {path: 'main-nav/:id/:id', component: MainNavComponent,
     children:[
     {path: 'perfil', component: PerfilComponent},
     {path: 'reclamos', component: ReclamosComponent},
@@ -25,6 +25,7 @@ const routes: Routes = [
     children:[
     {path: 'reclamos', component: ReclamosComponent}
   ]}, 
+  
   {path: '**', component: InicioSesionComponent}, /* por defecto - cuando hay problemas o se escribe mal la url */
 ];
 
