@@ -15,72 +15,54 @@
     </div>
   </div>
 
-
-
-
-
-
-
   <div class="container-fluid busquedaFiltros">
     <div class="row">
       <div class="col col-sm-4 col-lg-3 ">
 
         <h5>Tipo de Reclamo</h5>
-        
-        <select class="form-select" aria-label=""> <!-- Default select example -->
-          <option selected>Clic para abrir</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+        <div class="seleccionFiltros"> 
+        <select class="form-select" placeholder="Clic para abrir" aria-label=""> <!-- Default select example -->
+          <option *ngFor="let item of TR" selected>{{item.nombre}}</option>
+          
         </select>
+        </div>
 
       </div>
 
       <div class="col col-sm-4 col-lg-3 ">
 
         <h5>Estado</h5>
-        <select class="form-select" aria-label="">
+        <div class="seleccionFiltros"> 
+          <select class="form-select" aria-label="">
           <option selected>Clic para abrir</option>
           <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
         </select>
-
+        </div>
+       
       </div>
 
       <div class="col col-sm-4 col-lg-3 ">
-        <h5>Fecha</h5>
+        
         <div class="row">
           <div class="col-6">
+            <h5 for="">Desde</h5>
             <input id="Fecha" name="name" type="date" placeholder="Fecha">
           </div>
           <div class="col-6">
+            <h5 for="">Hasta</h5>
             <input id="Fecha" name="name" type="date" placeholder="Fecha">
           </div>
-
         </div>
 
       </div>
-      <div class="col col-sm-4  col-lg-3 ">
+      <div *ngIf="(IDRol==1)" class="col col-sm-4  col-lg-3 ">
         <h5>Usuario</h5>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre Usuario">
-
+        <div class="seleccionFiltros"> 
+        <input type="text" class="form-control" id="nombreUsuario" placeholder="Nombre">
+        </div>
       </div>
-
-
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
 </div>
 
 

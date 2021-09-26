@@ -43,6 +43,7 @@ export class BackenApiService {
   getTipoReclamo(): Observable<TipoReclamo[]> {
     return this.http.get<TipoReclamo[]>('https://localhost:44363/tiporeclamo');
   }
+ 
 
   getReclamoAmbiental(): Observable<ReclamoAmbiental[]> {
     return this.http.get<ReclamoAmbiental[]>('https://localhost:44363/reclamoambiental');
