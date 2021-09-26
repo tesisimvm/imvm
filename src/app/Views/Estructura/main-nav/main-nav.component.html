@@ -55,7 +55,11 @@
       <span id="textoCabecera" style="font-family: 'Open Sans',sans-serif;">Reclamos Villa María</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    <div class="container p-4">
+    
+    <div class="container-fluid"> 
+      <!-- p-4 - antes tenia ese formato pero se modifico para que el historila tome todo el ancho del contenedor  -->
+      <!-- En las demas pantallas no hay modificaciones pero en la que se nota para mejor es en el historial -->
+      <!-- Se puede modificar -->
       <router-outlet></router-outlet>
     </div>
 

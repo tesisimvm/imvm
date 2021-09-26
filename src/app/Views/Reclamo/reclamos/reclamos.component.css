@@ -20,3 +20,10 @@
 .titulos{
    font-size: 20px;
 }
+#tituloComponente{
+   font-size: 25px;
+}
+
+.inputs{
+   border-color: brown;
+}
