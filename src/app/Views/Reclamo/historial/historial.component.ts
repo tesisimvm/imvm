@@ -43,7 +43,8 @@ export class HistorialComponent implements OnInit {
     this.detalleReclamo.getDetalleReclamoUsuario(this.IDUsuario).subscribe(
       (info) => {
         console.log(info);
-       // debugger
+        debugger
+
         this.Dreclamos = info;
         console.log(this.Dreclamos)
       },

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-main-nav',
@@ -20,7 +20,7 @@ export class MainNavComponent {
     IDRol:any;
     public IDusuario:any;
 
-  constructor(private breakpointObserver: BreakpointObserver, private _route : ActivatedRoute) {
+  constructor(private breakpointObserver: BreakpointObserver, private _route : ActivatedRoute, private router:Router) {
     
     //console.log(this._route.snapshot.paramMap.get('id'));
     /* aca se captura el id de la url */
@@ -36,10 +36,11 @@ export class MainNavComponent {
     console.log('IDRol o Perfil: ',this.IDRol);
 
     console.clear();
-    
-
-   
-
+  
   }
+  /* de regreso al login */
+  goBack() {
+    this.router.navigate(['']);
+    }
 
 }

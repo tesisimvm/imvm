@@ -6,7 +6,7 @@
     </mat-toolbar>
     <mat-nav-list class="button-menu" style="font-family: 'Open Sans',sans-serif;">
       <div class="row">
-        
+
         <div class="col-md-12">
           <img src="../../../../assets/img/avatar.png " alt="" id="perfil-imagen">
 
@@ -36,10 +36,12 @@
           Nosotros</a>
         <a *ngIf="(IDRol==1)" mat-list-item class="btn-grad"><i class="fas fa-clipboard" style="font-size:  22px;"></i>
           Reportes</a>
-          <a *ngIf="(IDRol==1)" mat-list-item class="btn-grad"><i class="fas fa-tools" style="font-size:  22px;"></i>
-            Configuración</a>
+        <a *ngIf="(IDRol==1)" mat-list-item class="btn-grad"><i class="fas fa-tools" style="font-size:  22px;"></i>
+          Configuración</a>
         <a mat-list-item class="btn-grad"> <i class="fas fa-info" style="font-size:  22px;"></i>
           Ayuda</a>
+        <a mat-list-item class="btn-grad" (click)="goBack()" > <i class="fas fa-times" (click)="goBack()" style="font-size:  22px;"></i>
+          Cerrar Sesión</a>
 
       </div>
 
@@ -55,8 +57,8 @@
       <span id="textoCabecera" style="font-family: 'Open Sans',sans-serif;">Reclamos Villa María</span>
     </mat-toolbar>
     <!-- Add Content Here -->
-    
-    <div class="container-fluid"> 
+
+    <div class="container-fluid">
       <!-- p-4 - antes tenia ese formato pero se modifico para que el historila tome todo el ancho del contenedor  -->
       <!-- En las demas pantallas no hay modificaciones pero en la que se nota para mejor es en el historial -->
       <!-- Se puede modificar -->
