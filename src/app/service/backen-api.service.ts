@@ -9,6 +9,7 @@ import { ReclamoAmbiental } from '../model/reclamoAmbiental';
 import { marca } from '../model/marca';
 import { modelo } from '../model/modelo';
 import { DetalleReclamo } from '../model/detalleReclamo';
+import { EstadoReclamo } from '../model/filtrosHistorial/estadoReclamo';
 
 
 
@@ -93,5 +94,18 @@ export class BackenApiService {
   getDetalleReclamo(): Observable<any> {
     /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
     return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo');
+  }
+ /* Metodo para obtener todos reclamos del usuario (historial) */
+  getDetalleReclamoUsuario(idUsuario:number): Observable<any> {
+    /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo/'+idUsuario);
+  }
+
+  /****** Filtros Histrial ******/
+
+
+  getFiltroEstadoHistorial(id:number): Observable<EstadoReclamo[]>{
+    return this.http.get<EstadoReclamo[]>('https://localhost:44363/estadoreclamo/'+id);
+
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransferState } from '@angular/platform-browser';
+import { EstadoReclamo } from 'src/app/model/filtrosHistorial/estadoReclamo';
 import { TipoReclamo } from 'src/app/model/tipoReclamo';
 import { BackenApiService } from 'src/app/service/backen-api.service';
 
@@ -11,15 +12,22 @@ import { BackenApiService } from 'src/app/service/backen-api.service';
 export class HistorialComponent implements OnInit {
 
   ruta:any;
+  IDUsuario: any;
   IDRol:any;
+  
   Dreclamos:any;
   TR: TipoReclamo[]=[]; /* le asigno el nombre del modelo a una variable */
   /* tiene que ser el mismo nombre sino angular no encuentra el modelo */
 
+  FER:EstadoReclamo[]=[]; /* filtro estadoRecmo.ts */
+
+  selectIDTipReclamo=0; /* Variable para capturar el valor del tipo de reclamo */
+
   constructor(public detalleReclamo:BackenApiService) { 
-    debugger
+    
     //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
     this.ruta = window.location.pathname.split('/');
+    this.IDUsuario =this.ruta[2];
     this.IDRol=this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
     console.log(this.IDRol);
     
@@ -32,7 +40,7 @@ export class HistorialComponent implements OnInit {
   }
 
   getDetalleReclamos(){
-    this.detalleReclamo.getDetalleReclamo().subscribe(
+    this.detalleReclamo.getDetalleReclamoUsuario(this.IDUsuario).subscribe(
       (info) => {
         console.log(info);
        // debugger
@@ -53,6 +61,26 @@ export class HistorialComponent implements OnInit {
       },
       (err) => console.error(err)
     );
+  }
+
+  obtenerIDTipoReclamo(ev: any) {
+    debugger
+    this.selectIDTipReclamo = ev.target.value;
+    console.log(this.selectIDTipReclamo);
+    this.getEstadoReclamo(this.selectIDTipReclamo);
+  }
+
+  getEstadoReclamo(idTipoReclamo:number){
+    debugger
+    this.detalleReclamo.getFiltroEstadoHistorial(idTipoReclamo).subscribe(
+      (res)=>{
+        this.FER=res;
+        console.log("Estados Reclamos", this.FER);
+      },
+      (err)=> console.error(err)
+      
+    );
+
   }
 
 }

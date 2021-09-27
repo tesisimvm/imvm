@@ -21,8 +21,8 @@
 
         <h5>Tipo de Reclamo</h5>
         <div class="seleccionFiltros"> 
-        <select class="form-select" placeholder="Clic para abrir" aria-label=""> <!-- Default select example -->
-          <option *ngFor="let item of TR" selected>{{item.nombre}}</option>
+        <select class="form-select" placeholder="Clic para abrir" (change)="obtenerIDTipoReclamo($event)" aria-label=""> <!-- Default select example -->
+          <option *ngFor="let item of TR" value="{{item.idTipoReclamo}}" selected>{{item.nombre}}</option>
           
         </select>
         </div>
@@ -34,8 +34,8 @@
         <h5>Estado</h5>
         <div class="seleccionFiltros"> 
           <select class="form-select" aria-label="">
-          <option selected>Clic para abrir</option>
-          <option value="1">One</option>
+          <option *ngFor="let item of FER" selected>{{item.nombre}}</option>
+          
         </select>
         </div>
        
