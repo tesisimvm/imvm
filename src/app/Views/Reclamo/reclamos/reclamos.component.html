@@ -31,9 +31,9 @@
                 <div class="col-md-12 text-center">
 
                   <select class="inputs" id="TipoReclamo" name="example" style="width: 100%;"
-                  [formControl]="reclamoAmbientalCtrl">
+                  [formControl]="reclamoAmbientalCtrl" (change)="obtenerID($event)">
 
-                    <option id="dato" value="{{item.IDReclamoAmbiental}}" style="color: black;"
+                    <option id="dato" value="{{item.idReclamoAmbiental}}" style="color: black;"
                      *ngFor="let item of ReclamoAmbie">{{item.nombreRecAmbiental}}
                     </option>
 
@@ -49,7 +49,7 @@
                   </i> Marca de auto</span>
                 <div class="col-md-12 text-center">
                   <select class="inputs" name="example" style="width: 100%;" [formControl]="marcaAutoCtrl">
-                    <option value="{{item.IDMarca}}" style="color: black;" *ngFor="let item of Mar">{{item.marcaVehiculo}}</option>
+                    <option value="{{item.idMarca}}" style="color: black;" *ngFor="let item of Mar">{{item.marcaVehiculo}}</option>
                   </select>
 
                 </div>
@@ -62,7 +62,7 @@
                   </i> Modelo de auto</span>
                 <div class="col-md-12 text-center">
                   <select class="inputs" name="example" style="width: 100%;" [formControl]="modeloAutoCtrl">
-                    <option value="{{item.IDModelo}}" style="color: black;" *ngFor="let item of Mod">{{item.modeloVehiculo}}</option>
+                    <option value="{{item.idModelo}}" style="color: black;" *ngFor="let item of Mod">{{item.modeloVehiculo}}</option>
                   </select>
                 </div>
               </div>

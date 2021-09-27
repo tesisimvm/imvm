@@ -1,4 +1,4 @@
 export interface ReclamoAmbiental {
-   IDReclamoAmbiental?: number;
+  idReclamoAmbiental?: number;
    nombreRecAmbiental?: string;
  }

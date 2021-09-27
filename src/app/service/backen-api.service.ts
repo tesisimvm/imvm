@@ -23,6 +23,7 @@ export class BackenApiService {
   };
 
   dato:any;
+   respuesta:any;
 
   constructor(private http: HttpClient) {}
 
@@ -61,10 +62,12 @@ export class BackenApiService {
 
   /* Pantalla Login (registro de usuario) */
   postUsuario(usuario: any ):Observable<any>{
-   
-    console.log(usuario);
-    
     return this.http.post('https://localhost:44363/usuario', usuario, this.httpOptions);
+  }
+
+  /* Post inicio sesion - se registra el logueo del usuario */
+  postInicioSesionUsuario(usuarioLogueado: any):Observable<any>{
+    return this.http.post('https://localhost:44363/sesion', usuarioLogueado, this.httpOptions);
   }
 
   // getPerfil( usuario : any ): Observable<any>{

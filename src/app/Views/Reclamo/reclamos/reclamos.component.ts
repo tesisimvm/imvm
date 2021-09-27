@@ -15,6 +15,18 @@ import { DetalleReclamo } from 'src/app/model/detalleReclamo';
   styleUrls: ['./reclamos.component.css'],
 })
 export class ReclamosComponent implements OnInit {
+  tipoReclamoCtrl = new FormControl('', [Validators.required]);
+  reclamoAmbientalCtrl = new FormControl('', [Validators.required]);
+  marcaAutoCtrl = new FormControl('', [Validators.required]);
+  modeloAutoCtrl = new FormControl('', [Validators.required]);
+  fechaCtrl = new FormControl('', [Validators.required]);
+  horaCtrl = new FormControl('', [Validators.required]);
+  ubicacionCtrl = new FormControl('', [Validators.required]);
+  descripcionCtrl = new FormControl('', [Validators.required]);
+  urlFotoCtrl = new FormControl('', [Validators.required]);
+  ID_Reclamo = new FormControl('', [Validators.required]);
+  
+  
   recla: Reclamo = {
     fecha: '',
     foto: '',
@@ -32,19 +44,17 @@ export class ReclamosComponent implements OnInit {
 
   Mod: modelo[] = [];
 
-  tipoReclamoCtrl = new FormControl('', [Validators.required]);
-  reclamoAmbientalCtrl = new FormControl('', [Validators.required]);
-  marcaAutoCtrl = new FormControl('', [Validators.required]);
-  modeloAutoCtrl = new FormControl('', [Validators.required]);
-  fechaCtrl = new FormControl('', [Validators.required]);
-  horaCtrl = new FormControl('', [Validators.required]);
-  ubicacionCtrl = new FormControl('', [Validators.required]);
-  descripcionCtrl = new FormControl('', [Validators.required]);
-  urlFotoCtrl = new FormControl('', [Validators.required]);
-  ID_Reclamo = new FormControl('', [Validators.required]);
+  selectIdTipoReclamo: number = 0; //se establece en 0 para que no se muestren los combobox de los reclamos
+  selectIdinfoReclamo:number=0;
+  nombreTipoReclamo?: string;
+  ruta:any;
+  IDUsuario: any;
+  IDRol:any;
+  IDsesion:any;
 
-  selectIdTipoReclamo: number=0; //se establece en 0 para que no se muestren los combobox de los reclamos
-  nombreTipoReclamo?:string;
+  idrecambie:number=0;
+
+
 
   constructor(
     private service: BackenApiService,
@@ -54,6 +64,13 @@ export class ReclamosComponent implements OnInit {
     this.getListReclamoAmbiental();
     this.getListMarca();
     this.getListModelo();
+
+    //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
+    this.ruta = window.location.pathname.split('/');
+    this.IDUsuario =this.ruta[2];
+    this.IDRol=this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
+    console.log(this.IDRol);
+    this.IDsesion=this.ruta[4];
   }
 
   ngOnInit(): void {
@@ -74,7 +91,10 @@ export class ReclamosComponent implements OnInit {
     this.service.getReclamoAmbiental().subscribe(
       (res) => {
         console.log(res);
+        debugger
+         
         this.ReclamoAmbie = res;
+        
       },
       (err) => console.error(err)
     );
@@ -83,6 +103,7 @@ export class ReclamosComponent implements OnInit {
   getListMarca(): void {
     this.service.getMarca().subscribe(
       (res) => {
+        debugger
         this.Mar = res;
       },
       (err) => console.error(err)
@@ -92,6 +113,7 @@ export class ReclamosComponent implements OnInit {
   getListModelo(): void {
     this.service.getModelo().subscribe(
       (res) => {
+        debugger
         this.Mod = res;
       },
       (err) => console.error(err)
@@ -105,11 +127,11 @@ export class ReclamosComponent implements OnInit {
       fecha: this.fechaCtrl.value + '',
       foto: this.urlFotoCtrl.value + '',
       hora: this.horaCtrl.value + '',
-      ID_Sesion: 1,
+      ID_Sesion: Number(this.IDsesion),
       ID_TipoReclamo: Number(
         this.selectIdTipoReclamo
       ) /* lo converti a numero porque lo recibe como string */,
-      ID_Estado: 1,
+      ID_Estado: 1, /* estado Activo */
     };
 
     console.log(RegistroRecl);
@@ -124,11 +146,12 @@ export class ReclamosComponent implements OnInit {
   }
 
   registrarDetalleReclamo(res: any) {
+    debugger
     var RegistroDetReclamo: DetalleReclamo = {
       descripcion: this.descripcionCtrl.value + '',
       direccion: this.ubicacionCtrl.value + '',
       altura: 200,
-      ID_ReclamoAmbiental: 1,
+      ID_ReclamoAmbiental: this.selectIdinfoReclamo,
       ID_Vehiculo: 1,
       ID_Reclamo: res.idReclamo,
     };
@@ -142,21 +165,22 @@ export class ReclamosComponent implements OnInit {
   }
 
   dataChanged(ev: any) {
-    debugger
+    debugger;
     this.selectIdTipoReclamo = ev.target.value;
-    console.log(this.selectIdTipoReclamo);
-    console.log(this.nombreTipoReclamo);
+    
   }
-  
- /*  obtenerNombreTipoReclamo(dato:any){
+/* metodo especifico para obtener el id del la seleccion de la causa del reclamo 
+ambiental */
+  obtenerID(ev: any){
+    debugger
+    this.selectIdinfoReclamo = ev.target.value;
+  }
+
+  /*  obtenerNombreTipoReclamo(dato:any){
     debugger
     this.nombreTipoReclamo= dato.target.value;
     console.log(this.nombreTipoReclamo);
 
 
   } */
-
-
-
- 
 }

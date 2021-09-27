@@ -35,7 +35,7 @@ export class MainNavComponent {
     this.IDRol=this.ruta[3];
     console.log('IDRol o Perfil: ',this.IDRol);
 
-    console.clear();
+    
   
   }
   /* de regreso al login */

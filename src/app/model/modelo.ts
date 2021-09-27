@@ -1,4 +1,4 @@
 export interface modelo{
-   IDModelo?: number;
+   idModelo?: number;
    modeloVehiculo?: string;
  }

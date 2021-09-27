@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BackenApiService } from 'src/app/service/backen-api.service';
 import { debounceTime } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
+import { inicioSesion } from 'src/app/model/InicioSesion';
+
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -16,7 +18,13 @@ export class InicioSesionComponent implements OnInit {
   public bandera : boolean = false;
   /* Array en donde se van a guardar los datos de validacion del usuario
   mas abajo se encuentra el metodo para realziar la validacion */
-  arraySesion?: string[];
+
+  date:Date = new Date();
+  fecha:string="";
+  hora:string="";
+  IDusuario:string="";
+  IDRol:string="";
+  IDsesion:number=0;
 
 
 
@@ -27,15 +35,14 @@ export class InicioSesionComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     /* array para guardar los datos del usuario */
-    
+    this.obtenerFechaDeHoy()
   }
 
   ngOnInit(): void {}
 
   getEmail(event: Event) {
     event.preventDefault();
-    console.log(this.userCtrl.value);
-    console.log(this.passwCtrl.value);
+    
   }
 
   Validacion() {
@@ -49,8 +56,12 @@ export class InicioSesionComponent implements OnInit {
         (data) => {
           if (data[0]) {
            this.bandera = true;
-           debugger
-            this.router.navigate(['main-nav', data[0].idUser,data[0].idPerfil]); /* this.router.navigate(['main-nav', data[0].idUser]); */
+           this.IDusuario = data[0].idUser;/* variables para usarlas en el otro metodo */
+           this.IDRol = data[0].idPerfil;
+          
+            this.postInicioSesionUsuario(data[0].idUser)
+           
+            
           } else {
             this.bandera = false;
             alert("Usuario y contraseña incorrectos");
@@ -62,4 +73,37 @@ export class InicioSesionComponent implements OnInit {
         }
       );
   }
+
+  public postInicioSesionUsuario(idUsua:any){
+   
+    var ReginicioSesion:inicioSesion ={
+      fechaInicio: this.fecha,
+      fechaFin:" - ",
+      horaInicio:this.hora,
+      horaFin:" - ",
+      
+      ID_Usuario: idUsua,
+    }
+    
+    this.service.postInicioSesionUsuario(ReginicioSesion).subscribe(
+      (data) => {
+        
+        /* desde aca ya se para al menu principal, despues de registrar la sesion */
+        this.IDsesion = data.idSesion;
+        this.router.navigate(['main-nav', this.IDusuario,this.IDRol,this.IDsesion]); /* this.router.navigate(['main-nav', data[0].idUser]); */
+       
+    
+      },
+      (err) => console.error(err),
+    );
+  
+  }
+
+  obtenerFechaDeHoy(){
+    this.fecha = String(this.date.getFullYear()+"-"+this.date.getMonth()+"-"+this.date.getDate());
+    this.hora= String(this.date.getHours()+":"+this.date.getMinutes());
+    console.log(this.fecha);
+    console.log(this.hora);
+  }
+
 }
