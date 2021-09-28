@@ -17,13 +17,18 @@ export class MainNavComponent {
       shareReplay()
     );
 
+    public IDusuario:any;
+
   
 
   constructor(private breakpointObserver: BreakpointObserver, private _route : ActivatedRoute) {
+    
+    //console.log(this._route.snapshot.paramMap.get('id'));
+    /* aca se captura el id de la url que es enviada a trave */
+    debugger
+     this.IDusuario = this._route.snapshot.paramMap.get('id');
+    console.log(this.IDusuario);
 
-    // var id : any;
-    // id = this._route.snapshot.paramMap.get('id');
-    // console.log(id);
   }
 
 }
