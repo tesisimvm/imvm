@@ -4,64 +4,71 @@
 
 <div id="filtros" class="container-fluid">
   <div class="row">
-    <div class="col col-sm-4">
+    <div class="col-md-4">
 
     </div>
     <div id="tituloFiltros" class="col col-sm-4">
-      <h4> Filtros </h4>
-    </div>
-    <div class="col col-sm-4">
-
+      <h4>Filtros</h4>
     </div>
   </div>
 
   <div class="container-fluid busquedaFiltros">
     <div class="row">
-      <div class="col col-sm-4 col-lg-3 ">
 
-        <h5>Tipo de Reclamo</h5>
-        <div class="seleccionFiltros"> 
-        <select class="form-select" placeholder="Clic para abrir" (change)="obtenerIDTipoReclamo($event)" aria-label=""> <!-- Default select example -->
-          <option *ngFor="let item of TR" value="{{item.idTipoReclamo}}" selected>{{item.nombre}}</option>
-          
-        </select>
+      <div class="col-md-4">
+
+        <h5 style="text-align: center;">Tipo de Reclamo</h5>
+        <div class="seleccionFiltros">
+          <select class="form-select" placeholder="Clic para abrir" (change)="obtenerIDTipoReclamo($event)"
+            aria-label="">
+            <!-- Default select example -->
+            <option *ngFor="let item of TR" value="{{item.idTipoReclamo}}" selected>{{item.nombre}}</option>
+
+          </select>
         </div>
 
       </div>
 
-      <div class="col col-sm-4 col-lg-3 ">
+      <div class="col-md-4">
 
-        <h5>Estado</h5>
-        <div class="seleccionFiltros"> 
+        <h5 style="text-align: center;">Estado</h5>
+        <div class="seleccionFiltros">
           <select class="form-select" aria-label="">
-          <option *ngFor="let item of FER" selected>{{item.nombre}}</option>
-          
-        </select>
+            <option *ngFor="let item of FER" selected>{{item.nombre}}</option>
+
+          </select>
         </div>
-       
+
       </div>
 
-      <div class="col col-sm-4 col-lg-3 ">
-        
+      <div class="col-md-4 ">
+
         <div class="row">
-          <div class="col-6">
+          <div class="col-md-6">
             <h5 for="">Desde</h5>
             <input id="Fecha" name="name" type="date" placeholder="Fecha">
           </div>
-          <div class="col-6">
+          <div class="col-md-6">
             <h5 for="">Hasta</h5>
             <input id="Fecha" name="name" type="date" placeholder="Fecha">
           </div>
         </div>
-
-      </div>
-      <div *ngIf="(IDRol==1)" class="col col-sm-4  col-lg-3 ">
-        <h5>Usuario</h5>
-        <div class="seleccionFiltros"> 
-        <input type="text" class="form-control" id="nombreUsuario" placeholder="Nombre">
-        </div>
       </div>
     </div>
+
+   <div class="row">
+    <div *ngIf="(IDRol==1)" class="col-md-6">
+      <h5 style="text-align: center;">Usuario</h5>
+      <div class="seleccionFiltros">
+        <input type="text" class="form-control" id="nombreUsuario" placeholder="Nombre">
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <button type="button" class="btn btn-primary">Primary</button>
+    </div>
+   </div>
+
   </div>
 </div>
 
@@ -81,7 +88,7 @@
             </h6>
             <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Estado: {{item.nombre}}</i></h6>
             <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Tipo: {{item.nombreTRec}}</i></h6>
-           
+
 
             <p class="card-text"> <i class="far fa-comment-dots"> Motivo: {{item.descripcion}}</i></p>
             <p class="card-text"> <i class="far fa-calendar-alt"> Fecha: {{item.fecha}}</i></p>
@@ -91,9 +98,9 @@
 
             <div class="container">
               <div class="row">
-                <div class="col col-6"> 
+                <div class="col col-6">
                   <button type="button" class="btn mr-2 btn-light" routerLink="/main-nav/historial/reclamos"><i
-                    class="fas fa-edit"> Editar</i> </button>
+                      class="fas fa-edit"> Editar</i> </button>
                 </div>
                 <div class="col col-6">
                   <button type="button" class="btn mr-2  btn-danger"><i class="fas fa-trash-alt"> Eliminar</i> </button>
@@ -102,8 +109,8 @@
               </div>
 
             </div>
-            
-           
+
+
 
           </div>
         </div>
