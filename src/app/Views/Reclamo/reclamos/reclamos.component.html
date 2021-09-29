@@ -62,12 +62,14 @@
               <div class="form-group" id="ReclamoVial" *ngIf="selectIdTipoReclamo==2">
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-car"
                     style="font-size: 25px;">
-                  </i> Modelo de auto</span>
+                  </i> Dominio del Vehículo</span>
                 <div class="col-md-12 text-center">
-                  <select class="inputs" name="example" style="width: 100%;" [formControl]="modeloAutoCtrl">
+                  <input id="dominio" name="" type="text" placeholder="Dominio" class="form-control inputs"
+                  [formControl]="dominioCtrl">
+                  <!-- <select class="inputs" name="example" style="width: 100%;" [formControl]="modeloAutoCtrl">
                     <option value="{{item.idModelo}}" style="color: black;" *ngFor="let item of Mod">
                       {{item.modeloVehiculo}}</option>
-                  </select>
+                  </select> -->
                 </div>
               </div>
 

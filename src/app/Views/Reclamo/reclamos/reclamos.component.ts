@@ -25,6 +25,7 @@ export class ReclamosComponent implements OnInit {
   descripcionCtrl = new FormControl('', [Validators.required]);
   urlFotoCtrl = new FormControl('', [Validators.required]);
   alturaCtrl = new FormControl('', [Validators.required]);
+  dominioCtrl=new FormControl('', [Validators.required]);
   ID_Reclamo = new FormControl('', [Validators.required]);
   
 
@@ -152,7 +153,8 @@ export class ReclamosComponent implements OnInit {
     var RegistroDetReclamo: DetalleReclamo = {
       descripcion: this.descripcionCtrl.value + '',
       direccion: this.ubicacionCtrl.value + '',
-      altura: Number(this.alturaCtrl),
+      altura: this.alturaCtrl.value,
+      dominio: this.dominioCtrl.value + '',
       ID_ReclamoAmbiental: Number(this.selectIdinfoReclamo),
       ID_Vehiculo: Number(this.selectIdMarcaVehiculo),
       ID_Reclamo: res.idReclamo,
