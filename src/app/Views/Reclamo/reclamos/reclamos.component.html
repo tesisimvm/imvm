@@ -66,10 +66,6 @@
                 <div class="col-md-12 text-center">
                   <input id="dominio" name="" type="text" placeholder="Dominio" class="form-control inputs"
                   [formControl]="dominioCtrl">
-                  <!-- <select class="inputs" name="example" style="width: 100%;" [formControl]="modeloAutoCtrl">
-                    <option value="{{item.idModelo}}" style="color: black;" *ngFor="let item of Mod">
-                      {{item.modeloVehiculo}}</option>
-                  </select> -->
                 </div>
               </div>
 
@@ -89,7 +85,7 @@
                     style="color: black; font-size: 25px;"></i> Hora</span>
                 <div class="col-md-12 text-center">
                   <input id="Hora" name="email" type="time" placeholder="Hora" class="form-control inputs"
-                    [formControl]="horaCtrl">
+                    [formControl]="horaCtrl" [(ngModel)]="obtenerHoraActual">
                 </div>
               </div>
 
@@ -152,6 +148,8 @@
           Reclamo</button>
       </div>
     </div>
+
+    <button class="btn btn-primary" (click)="showSuccess()">reclamo</button>
 
     <div id="Alerta" class="container" style="display: none;">
       <div class="alert alert-success d-flex align-items-center" role="alert">
