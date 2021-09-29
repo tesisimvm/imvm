@@ -65,6 +65,7 @@ export class ReclamosComponent implements OnInit {
     this.getListReclamoAmbiental();
     this.getListMarca();
     this.getListModelo();
+    this.obtenerHoraActual();
 
     //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
     this.ruta = window.location.pathname.split('/');
@@ -182,5 +183,10 @@ ambiental */
   obtenerID(ev: any){
     debugger
     this.selectIdinfoReclamo = ev.target.value;
+  }
+
+  obtenerHoraActual(){
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes();
   }
 }
