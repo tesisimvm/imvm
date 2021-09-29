@@ -1,7 +1,7 @@
 
 <div class="container"
   style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol">
-  <h2 id="tituloComponente"style="text-align: center; padding-bottom: 2%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+  <h2  id="tituloComponente"style="text-align: center; padding-bottom: 2%; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin-top: 10px;">
     Crear Reclamo
   </h2>
   <div class="row">
@@ -126,14 +126,25 @@
           </div>
           <div class="row">
             <div class="col-md-12 text-center">
-              <button type="button" class="btn btn-success" style="width: 80%;" (click)="registrarReclamo()">Enviar
+              <button type="button" class="btn btn-success" style="width: 80%;" (click)="registrarReclamo()" onclick="MostrarAlerta()">Enviar
                 Reclamo</button>
             </div>
           </div>
+         
+          <div id="Alerta" class="container" style="display: none;" >
+            <div  class="alert alert-success d-flex align-items-center" role="alert" >
+              <i class="far fa-check-circle fa-2x">  <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"></svg></i>
+              <div>
+                Reclamo creado - espere confirmación
+              </div>
+            </div>
+          </div>
+         
         </fieldset>
       </form>
     </div>
   </div>
+
 
   <script>
     

@@ -71,6 +71,8 @@ export class ReclamosComponent implements OnInit {
     this.IDRol=this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
     console.log(this.IDRol);
     this.IDsesion=this.ruta[4];
+
+    console.clear();
   }
 
   ngOnInit(): void {
@@ -151,7 +153,7 @@ export class ReclamosComponent implements OnInit {
       descripcion: this.descripcionCtrl.value + '',
       direccion: this.ubicacionCtrl.value + '',
       altura: 200,
-      ID_ReclamoAmbiental: this.selectIdinfoReclamo,
+      ID_ReclamoAmbiental: Number(this.selectIdinfoReclamo),
       ID_Vehiculo: 1,
       ID_Reclamo: res.idReclamo,
     };
