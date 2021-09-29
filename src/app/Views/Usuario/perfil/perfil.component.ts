@@ -4,7 +4,11 @@ import { Observable } from 'rxjs';
 import { datosperfil } from 'src/app/model/perfil';
 import { BackenApiService } from 'src/app/service/backen-api.service';
 import { ActivatedRoute } from '@angular/router';
+<<<<<<< HEAD
 import { TouchSequence } from 'selenium-webdriver';
+=======
+import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
+>>>>>>> javi
 
 
 @Component({
@@ -12,6 +16,7 @@ import { TouchSequence } from 'selenium-webdriver';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
+
 
 export class PerfilComponent implements OnInit {
 
@@ -43,10 +48,17 @@ export class PerfilComponent implements OnInit {
         console.log(error);
       }
     )
+    
+    // var id : any;
+    // id = this._route.snapshot.paramMap.get('id');
+    // console.log(id);
+
   }
 
   ngOnInit(): void {
+   
     // console.log(this.dPerfil.getdatosPerfil(4).subscribe(data => console.log(data)));
+    
   }
 
 }

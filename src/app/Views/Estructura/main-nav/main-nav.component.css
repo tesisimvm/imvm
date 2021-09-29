@@ -151,7 +151,23 @@ ir a https://cssgradient.io/gradient-backgrounds/ */
 .fas{
   padding-right:10%;
 }
+<<<<<<< HEAD
 
+=======
+/* 
+#logo{
+  max-width: 100%;
+  height: auto;
+  width: 600px;
+ } */
+
+.fondo{
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  
+}
+>>>>>>> javi
 
 
 
