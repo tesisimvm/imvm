@@ -177,16 +177,8 @@ ambiental */
     this.selectIdinfoReclamo = ev.target.value;
   }
 
-  // Metodo para obtener hora actual del sistema 
   obtenerHoraActual(){
-    debugger
-    let today = new Date();
-    let time = today.getHours() + ":" + today.getMinutes();
-
-    console.log(time);
-  }
-
-  showSuccess() {
-    this.toastr.success('Reclamo enviado', 'Toastr fun!');
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes();
   }
 }
