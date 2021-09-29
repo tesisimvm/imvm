@@ -16,11 +16,7 @@ const routes: Routes = [
   {path: 'reclamos', component: ReclamosComponent},
   {path: 'nosotros', component: NosotrosComponent},
   // {path: 'pantallaprincipal', component: PprincipalComponent},
-<<<<<<< HEAD
   {path: 'main-nav/:id/:id/:id', component: MainNavComponent,/* usuario/rol/idsesion */
-=======
-  {path: 'main-nav', component: MainNavComponent,
->>>>>>> javi
     children:[
     {path: 'perfil', component: PerfilComponent},
     {path: 'reclamos', component: ReclamosComponent},

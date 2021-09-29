@@ -1,58 +1,23 @@
-/* .colorletrasnegras{
-
-   color:#000000;
-}
-
-.bordecard {
-  border-color: #CC0033 !important;
-}
-
-.botoneslilas {
-  color: #fff !important;
-  background-color: #41b424 !important;
-  border-color: #41b424 !important;
-}
-
-.botoneslilas:hover {
-  color: #fff !important;
-  background-color: #42e242 !important;
-  border-color: #42e242 !important;
-}
-
-.botoneseliminar {
-  color: #fff !important;
-  background-color: #CC0033 !important;
-  border-color: #CC0033 !important;
-}
-
-.botoneseliminar:hover {
-  color: #fff !important;
-  background-color: rgb(201, 40, 83) !important;
-  border-color: rgb(201, 40, 83) !important;
-}
- */
-
-/*  */
-
 body {
   background: #111 !important;
 }
 h5{
   font-size: 16px;
+  text-align: justify;
+  padding: 3px;
 }
 h6{
   font-family: 'Courier New', Courier, monospace;
 }
 img{
- 
   height: 200px;
 }
 input{
-  border: rgb(17, 3, 148) 2px solid;
+  border: rgb(237, 83, 59) 2px solid;
   border-radius: 10px;
 }
 select{
-  border: rgb(17, 3, 148) 2px solid;
+  border: rgb(237, 83, 59) 2px solid;
   border-radius: 10px;
 }
 /*************  ID *************/
@@ -97,9 +62,6 @@ box-shadow:  20px 20px 20px #171719;
   /* border: rgb(182, 180, 180) 1px solid; */
   border-radius: 50px;
   padding: 20px;
-  
- 
-  
 }
 
 
@@ -129,9 +91,10 @@ box-shadow:  20px 20px 20px #171719;
   
 width: 300px;
 }
-.seleccionFiltros{
+
+/* .seleccionFiltros{
   margin-left: 50px;
-}
+} */
 
 
 

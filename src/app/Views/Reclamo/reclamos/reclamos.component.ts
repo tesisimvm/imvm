@@ -24,9 +24,10 @@ export class ReclamosComponent implements OnInit {
   ubicacionCtrl = new FormControl('', [Validators.required]);
   descripcionCtrl = new FormControl('', [Validators.required]);
   urlFotoCtrl = new FormControl('', [Validators.required]);
+  alturaCtrl = new FormControl('', [Validators.required]);
   ID_Reclamo = new FormControl('', [Validators.required]);
   
-  
+
   recla: Reclamo = {
     fecha: '',
     foto: '',
@@ -46,6 +47,7 @@ export class ReclamosComponent implements OnInit {
 
   selectIdTipoReclamo: number = 0; //se establece en 0 para que no se muestren los combobox de los reclamos
   selectIdinfoReclamo:number=0;
+  selectIdMarcaVehiculo:number=0;
   nombreTipoReclamo?: string;
   ruta:any;
   IDUsuario: any;
@@ -53,8 +55,6 @@ export class ReclamosComponent implements OnInit {
   IDsesion:any;
 
   idrecambie:number=0;
-
-
 
   constructor(
     private service: BackenApiService,
@@ -152,9 +152,9 @@ export class ReclamosComponent implements OnInit {
     var RegistroDetReclamo: DetalleReclamo = {
       descripcion: this.descripcionCtrl.value + '',
       direccion: this.ubicacionCtrl.value + '',
-      altura: 200,
+      altura: Number(this.alturaCtrl),
       ID_ReclamoAmbiental: Number(this.selectIdinfoReclamo),
-      ID_Vehiculo: 1,
+      ID_Vehiculo: Number(this.selectIdMarcaVehiculo),
       ID_Reclamo: res.idReclamo,
     };
     console.log(RegistroDetReclamo);
@@ -166,10 +166,14 @@ export class ReclamosComponent implements OnInit {
     );
   }
 
-  dataChanged(ev: any) {
+  dataChangedTipoReclamo(ev: any) {
     debugger;
     this.selectIdTipoReclamo = ev.target.value;
     
+  }
+  dataChangedIdMarcaVehiculo(ev: any) {
+    debugger;
+    this.selectIdMarcaVehiculo = ev.target.value;
   }
 /* metodo especifico para obtener el id del la seleccion de la causa del reclamo 
 ambiental */
@@ -177,12 +181,4 @@ ambiental */
     debugger
     this.selectIdinfoReclamo = ev.target.value;
   }
-
-  /*  obtenerNombreTipoReclamo(dato:any){
-    debugger
-    this.nombreTipoReclamo= dato.target.value;
-    console.log(this.nombreTipoReclamo);
-
-
-  } */
 }

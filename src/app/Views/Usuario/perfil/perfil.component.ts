@@ -4,11 +4,7 @@ import { Observable } from 'rxjs';
 import { datosperfil } from 'src/app/model/perfil';
 import { BackenApiService } from 'src/app/service/backen-api.service';
 import { ActivatedRoute } from '@angular/router';
-<<<<<<< HEAD
 import { TouchSequence } from 'selenium-webdriver';
-=======
-import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
->>>>>>> javi
 
 
 @Component({
