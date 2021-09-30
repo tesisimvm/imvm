@@ -8,7 +8,7 @@ import { marca } from 'src/app/model/marca';
 import { modelo } from 'src/app/model/modelo';
 import { FormControl, Validators } from '@angular/forms';
 import { DetalleReclamo } from 'src/app/model/detalleReclamo';
-
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reclamos',
@@ -59,7 +59,7 @@ export class ReclamosComponent implements OnInit {
   idrecambie:number=0;
 
   constructor(
-  
+    private toastr: ToastrService,
     private service: BackenApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -158,7 +158,7 @@ export class ReclamosComponent implements OnInit {
     console.log(RegistroDetReclamo);
     this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
       (res) => {
-        console.log(res);
+        this.showSuccess();
       },
       (err) => console.error(err)
     );
@@ -180,5 +180,9 @@ ambiental */
   obtenerHoraActual(){
     var today = new Date();
     var time = today.getHours() + ":" + today.getMinutes();
+  }
+
+  showSuccess() {
+    this.toastr.success('El estado del reclamo es pendiente', '¡Su reclamo fué creado correctamente!');
   }
 }

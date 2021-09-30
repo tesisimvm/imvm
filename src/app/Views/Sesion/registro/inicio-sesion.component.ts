@@ -4,6 +4,7 @@ import { BackenApiService } from 'src/app/service/backen-api.service';
 import { debounceTime } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { inicioSesion } from 'src/app/model/InicioSesion';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -30,6 +31,7 @@ export class InicioSesionComponent implements OnInit {
 
   
   constructor(
+    private toastr: ToastrService,
     public service: BackenApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -106,4 +108,7 @@ export class InicioSesionComponent implements OnInit {
     console.log(this.hora);
   }
 
+  showSuccess() {
+    this.toastr.success('Hello world!', 'Toastr fun!');
+  }
 }
