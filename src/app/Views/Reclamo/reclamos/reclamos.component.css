@@ -1,6 +1,3 @@
-@import '~ngx-toastr/toastr';
-@import '~ngx-toastr/toastr-bs4-alert';
-
 
 .mapa{
    margin-top: 20px;
@@ -19,6 +16,7 @@
 
 .form{
    margin-top: 20px;
+   
 }
 
 .titulos{

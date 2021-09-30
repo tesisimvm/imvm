@@ -22,8 +22,8 @@ import { HistorialComponent } from './Views/Reclamo/historial/historial.componen
 import { VehiculoComponent } from './Views/Vehiculo/vehiculo/vehiculo.component';
 import { ConfiguracionComponent } from './Views/Configuracion/configuracion/configuracion.component';
 import { NosotrosComponent } from './Views/Estructura/nosotros/nosotros.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
+
+
 
 @NgModule({
   declarations: [
@@ -53,8 +53,6 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule, /* agregado */
     HttpClientModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
   ],
   providers: [],
   bootstrap: [AppComponent]

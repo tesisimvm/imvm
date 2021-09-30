@@ -8,7 +8,7 @@ import { marca } from 'src/app/model/marca';
 import { modelo } from 'src/app/model/modelo';
 import { FormControl, Validators } from '@angular/forms';
 import { DetalleReclamo } from 'src/app/model/detalleReclamo';
-import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-reclamos',
@@ -59,7 +59,7 @@ export class ReclamosComponent implements OnInit {
   idrecambie:number=0;
 
   constructor(
-    private toastr: ToastrService,
+  
     private service: BackenApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute
