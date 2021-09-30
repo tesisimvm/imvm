@@ -158,7 +158,7 @@ export class ReclamosComponent implements OnInit {
     console.log(RegistroDetReclamo);
     this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
       (res) => {
-        this.showSuccess();
+        this.Notificacion();
       },
       (err) => console.error(err)
     );
@@ -182,7 +182,7 @@ ambiental */
     var time = today.getHours() + ":" + today.getMinutes();
   }
 
-  showSuccess() {
+  Notificacion() {
     this.toastr.success('El estado del reclamo es pendiente', '¡Su reclamo fué creado correctamente!');
   }
 }
