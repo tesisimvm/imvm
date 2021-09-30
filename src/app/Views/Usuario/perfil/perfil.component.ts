@@ -13,6 +13,7 @@ import { TouchSequence } from 'selenium-webdriver';
   styleUrls: ['./perfil.component.css']
 })
 
+
 export class PerfilComponent implements OnInit {
 
   datosPerfil: any;
@@ -43,10 +44,17 @@ export class PerfilComponent implements OnInit {
         console.log(error);
       }
     )
+    
+    // var id : any;
+    // id = this._route.snapshot.paramMap.get('id');
+    // console.log(id);
+
   }
 
   ngOnInit(): void {
+   
     // console.log(this.dPerfil.getdatosPerfil(4).subscribe(data => console.log(data)));
+    
   }
 
 }

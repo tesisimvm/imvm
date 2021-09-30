@@ -21,6 +21,11 @@ import { UsuarioComponent } from './Views/Usuario/usuario/usuario.component';
 import { HistorialComponent } from './Views/Reclamo/historial/historial.component';
 import { VehiculoComponent } from './Views/Vehiculo/vehiculo/vehiculo.component';
 import { ConfiguracionComponent } from './Views/Configuracion/configuracion/configuracion.component';
+import { NosotrosComponent } from './Views/Estructura/nosotros/nosotros.component';
+import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +39,8 @@ import { ConfiguracionComponent } from './Views/Configuracion/configuracion/conf
     UsuarioComponent,
     HistorialComponent,
     VehiculoComponent,
-    ConfiguracionComponent
+    ConfiguracionComponent,
+    NosotrosComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,10 @@ import { ConfiguracionComponent } from './Views/Configuracion/configuracion/conf
     MatListModule,
     FormsModule, /* agregado */
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CommonModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

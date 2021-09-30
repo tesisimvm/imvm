@@ -8,6 +8,7 @@ import { marca } from 'src/app/model/marca';
 import { modelo } from 'src/app/model/modelo';
 import { FormControl, Validators } from '@angular/forms';
 import { DetalleReclamo } from 'src/app/model/detalleReclamo';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-reclamos',
@@ -24,9 +25,11 @@ export class ReclamosComponent implements OnInit {
   ubicacionCtrl = new FormControl('', [Validators.required]);
   descripcionCtrl = new FormControl('', [Validators.required]);
   urlFotoCtrl = new FormControl('', [Validators.required]);
+  alturaCtrl = new FormControl('', [Validators.required]);
+  dominioCtrl=new FormControl('', [Validators.required]);
   ID_Reclamo = new FormControl('', [Validators.required]);
   
-  
+
   recla: Reclamo = {
     fecha: '',
     foto: '',
@@ -46,6 +49,7 @@ export class ReclamosComponent implements OnInit {
 
   selectIdTipoReclamo: number = 0; //se establece en 0 para que no se muestren los combobox de los reclamos
   selectIdinfoReclamo:number=0;
+  selectIdMarcaVehiculo:number=0;
   nombreTipoReclamo?: string;
   ruta:any;
   IDUsuario: any;
@@ -54,9 +58,8 @@ export class ReclamosComponent implements OnInit {
 
   idrecambie:number=0;
 
-
-
   constructor(
+    private toastr: ToastrService,
     private service: BackenApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute
@@ -64,6 +67,7 @@ export class ReclamosComponent implements OnInit {
     this.getListReclamoAmbiental();
     this.getListMarca();
     this.getListModelo();
+    this.obtenerHoraActual();
 
     //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
     this.ruta = window.location.pathname.split('/');
@@ -93,8 +97,6 @@ export class ReclamosComponent implements OnInit {
     this.service.getReclamoAmbiental().subscribe(
       (res) => {
         console.log(res);
-        debugger
-         
         this.ReclamoAmbie = res;
         
       },
@@ -105,7 +107,6 @@ export class ReclamosComponent implements OnInit {
   getListMarca(): void {
     this.service.getMarca().subscribe(
       (res) => {
-        debugger
         this.Mar = res;
       },
       (err) => console.error(err)
@@ -115,7 +116,6 @@ export class ReclamosComponent implements OnInit {
   getListModelo(): void {
     this.service.getModelo().subscribe(
       (res) => {
-        debugger
         this.Mod = res;
       },
       (err) => console.error(err)
@@ -123,7 +123,6 @@ export class ReclamosComponent implements OnInit {
   }
 
   registrarReclamo() {
-    debugger;
 
     var RegistroRecl: Reclamo = {
       fecha: this.fechaCtrl.value + '',
@@ -139,7 +138,6 @@ export class ReclamosComponent implements OnInit {
     console.log(RegistroRecl);
     this.service.postReclamo(RegistroRecl).subscribe(
       (res) => {
-        debugger;
         console.log(res);
         this.registrarDetalleReclamo(res);
       },
@@ -148,41 +146,43 @@ export class ReclamosComponent implements OnInit {
   }
 
   registrarDetalleReclamo(res: any) {
-    debugger
     var RegistroDetReclamo: DetalleReclamo = {
       descripcion: this.descripcionCtrl.value + '',
       direccion: this.ubicacionCtrl.value + '',
-      altura: 200,
+      altura: this.alturaCtrl.value,
+      dominio: this.dominioCtrl.value + '',
       ID_ReclamoAmbiental: Number(this.selectIdinfoReclamo),
-      ID_Vehiculo: 1,
+      ID_Vehiculo: Number(this.selectIdMarcaVehiculo),
       ID_Reclamo: res.idReclamo,
     };
     console.log(RegistroDetReclamo);
     this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
       (res) => {
-        console.log(res);
+        this.showSuccess();
       },
       (err) => console.error(err)
     );
   }
 
-  dataChanged(ev: any) {
-    debugger;
+  dataChangedTipoReclamo(ev: any) {
     this.selectIdTipoReclamo = ev.target.value;
     
+  }
+  dataChangedIdMarcaVehiculo(ev: any) {
+    this.selectIdMarcaVehiculo = ev.target.value;
   }
 /* metodo especifico para obtener el id del la seleccion de la causa del reclamo 
 ambiental */
   obtenerID(ev: any){
-    debugger
     this.selectIdinfoReclamo = ev.target.value;
   }
 
-  /*  obtenerNombreTipoReclamo(dato:any){
-    debugger
-    this.nombreTipoReclamo= dato.target.value;
-    console.log(this.nombreTipoReclamo);
+  obtenerHoraActual(){
+    var today = new Date();
+    var time = today.getHours() + ":" + today.getMinutes();
+  }
 
-
-  } */
+  showSuccess() {
+    this.toastr.success('El estado del reclamo es pendiente', '¡Su reclamo fué creado correctamente!');
+  }
 }
