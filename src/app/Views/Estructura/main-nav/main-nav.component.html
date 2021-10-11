@@ -24,6 +24,8 @@
       <div *ngIf="(IDRol==1 || IDRol==3)">
         <a mat-list-item class="btn-grad" routerLink="./perfil" routerLinkActive="active"> <i class="fas fa-user-circle"
             style="font-size:  22px;" routerLink="./perfil" routerLinkActive="active"></i> Perfil</a>
+        <a mat-list-item class="btn-grad" routerLink="./principal" routerLinkActive="active"><i class="fas fa-home"
+            style="font-size:  22px;" routerLink="./principal" routerLinkActive="active"></i> Inicio</a>
         <a mat-list-item class="btn-grad" routerLink="./reclamos"> <i class="fas fa-file-alt" style="font-size:  22px;"
             routerLink="./reclamos"></i> Reclamos</a>
         <a mat-list-item class="btn-grad" routerLink="./historial"> <i class="fas fa-heading" style="font-size:  22px;"
@@ -40,7 +42,8 @@
           Configuración</a>
         <a mat-list-item class="btn-grad"> <i class="fas fa-info" style="font-size:  22px;"></i>
           Ayuda</a>
-        <a mat-list-item class="btn-grad" (click)="goBack()" > <i class="fas fa-times" (click)="goBack()" style="font-size:  22px;"></i>
+        <a mat-list-item class="btn-grad" (click)="goBack()"> <i class="fas fa-times" (click)="goBack()"
+            style="font-size:  22px;"></i>
           Cerrar Sesión</a>
 
       </div>

@@ -92,7 +92,7 @@ export class InicioSesionComponent implements OnInit {
         
         /* desde aca ya se para al menu principal, despues de registrar la sesion */
         this.IDsesion = data.idSesion;
-        this.router.navigate(['main-nav', this.IDusuario,this.IDRol,this.IDsesion]); /* this.router.navigate(['main-nav', data[0].idUser]); */
+        this.router.navigate(['main-nav', this.IDusuario,this.IDRol,this.IDsesion,'principal']); /* this.router.navigate(['main-nav', data[0].idUser]); */
        
     
       },
