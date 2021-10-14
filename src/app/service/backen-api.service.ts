@@ -105,10 +105,18 @@ export class BackenApiService {
   }
 
   /****** Filtros Histrial ******/
-
-
   getFiltroEstadoHistorial(id:number): Observable<EstadoReclamo[]>{
     return this.http.get<EstadoReclamo[]>('https://localhost:44363/estadoreclamo/'+id);
+  }
 
+  /******* Vehiculo *******/
+  postVehiculo(vehiculo: any):Observable<any>{
+    debugger
+    
+    return this.http.post('https://localhost:44363/vehiculo', vehiculo, this.httpOptions);
+  }
+  postVehiculoxDetalle(vehiculoxDetalle: any):Observable<any>{
+    debugger
+    return this.http.post('https://localhost:44363/vehiculoxdetallereclamo', vehiculoxDetalle, this.httpOptions);
   }
 }
