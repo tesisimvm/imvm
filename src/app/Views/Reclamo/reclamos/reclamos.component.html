@@ -85,17 +85,18 @@
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-clock-o bigicon"
                     style="color: black; font-size: 25px;"></i> Hora</span>
                 <div class="col-md-12 text-center">
-                  <input id="Hora" name="email" type="time" placeholder="Hora" class="form-control inputs"
+                  <input id="Hora" name="tiempo" type="time" placeholder={{time}} class="form-control inputs"
                     [formControl]="horaCtrl" [(ngModel)]="obtenerHoraActual">
                 </div>
               </div>
+              
 
               <!-- Ubicacion -->
               <div class="form-group">
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-map-marker bigicon"
                     style="color: black; font-size: 25px;"></i> Dirección</span>
                 <div class="col-md-12 text-center">
-                  <input id="Ubicacion" name="phone" type="text" placeholder="Ubicación" class="form-control inputs"
+                  <input id="Ubicacion" name="phone" type="text" placeholder="No ingresó su ubicación" class="form-control inputs"
                     [formControl]="ubicacionCtrl">
                 </div>
               </div>
@@ -105,7 +106,7 @@
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-sort-numeric-up-alt bigicon"
                     style="color: black; font-size: 25px;"></i> Altura</span>
                 <div class="col-md-12 text-center">
-                  <input id="Altura" name="phone" type="number" placeholder="Altura" class="form-control inputs"
+                  <input id="Altura" name="phone" type="number" placeholder="No ingresó su altura de calle" class="form-control inputs"
                     [formControl]="alturaCtrl">
                 </div>
               </div>
@@ -119,7 +120,7 @@
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"
                     style="color: black; font-size: 25px;"></i> Descripción</span>
                 <div class="col-md-12 text-center">
-                  <textarea class="form-control inputs" id="Descripcion" name="message" placeholder="Descripción"
+                  <textarea class="form-control inputs" id="Descripcion" name="message" placeholder="No hay descripción"
                     rows="7" [formControl]="descripcionCtrl"></textarea>
                 </div>
               </div>
@@ -143,13 +144,14 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-12 text-center">
+            <div class="text-center">
               <button type="button" class="btn btn-success" style="width: 80%;"
-                (click)="registrarReclamo()">Enviar
-                Reclamo</button>
+              [disabled]="( (tipoReclamoCtrl.invalid && (reclamoAmbientalCtrl.invalid && marcaAutoCtrl.invalid && dominioCtrl.invalid)) || 
+               fechaCtrl.invalid || horaCtrl.invalid || ubicacionCtrl.invalid || alturaCtrl.invalid ||
+               urlFotoCtrl.invalid ||  descripcionCtrl.invalid)" (click)="registrarReclamo()">Enviar</button>
             </div>
           </div>
-
+          
         </fieldset>
       </form>
     </div>
@@ -157,6 +159,8 @@
 
 
   <script>
+   
+
     var rAmbiental;
     rAmbiental = document.getElementsByName("Tipos");
 

@@ -71,6 +71,7 @@ export class ReclamosComponent implements OnInit {
   idrecambie: number = 0;
   ID_Vehiculo:any; /* se usa para saber el id que tiene el auto recien registrado */
   ID_DetReclamo:any; /* para vehiculoXDetalle */
+  time:any;
 
   constructor(
     private toastr: ToastrService,
@@ -135,29 +136,53 @@ export class ReclamosComponent implements OnInit {
       (err) => console.error(err)
     );
   }
-
+ 
   registrarReclamo() {
-    var RegistroRecl: Reclamo = {
-      fecha: this.fechaCtrl.value + '',
-      foto: this.urlFotoCtrl.value + '',
-      hora: this.horaCtrl.value + '',
-      ID_Sesion: Number(this.IDsesion),
-      ID_TipoReclamo: Number(
-        this.selectIdTipoReclamo
-      ),
-      ID_Estado: 1 /* estado Activo */,
-    };
-    /* Obtengo el id para validar mas adelante en el detalle si es ambiental o vial */
-    this.validacionTipoReclamo = RegistroRecl.ID_TipoReclamo;
+    /* Validacion en el caso que registre un input vacio o cambie de tipo de reclamo y tenga un input vacio */
+    if (
+      this.tipoReclamoCtrl.value == '' ||
+      this.reclamoAmbientalCtrl.value == '' ||
+      this.marcaAutoCtrl.value == '' ||
+      this.modeloAutoCtrl.value == '' ||
+      this.fechaCtrl.value == '' ||
+      this.horaCtrl.value == '' ||
+      this.ubicacionCtrl.value == '' ||
+      this.descripcionCtrl.value == '' ||
+      this.urlFotoCtrl.value == '' ||
+      this.alturaCtrl.value == '' ||
+      this.dominioCtrl.value == ''
+    ) {
 
-    console.log(RegistroRecl);
-    this.service.postReclamo(RegistroRecl).subscribe(
-      (res) => {
-        console.log("reclamo creado: ",res);
-        this.registrarDetalleReclamo(res); /* metodo para registrar el detalle */
-      },
-      (err) => console.error(err)
-    );
+      this.toastr.warning('Faltan datos por rellenar, verifique y podrá enviar su reclamo','Cuidado!',{
+        timeOut:5000,
+        progressBar:true,
+      }
+      );
+
+    } else {
+      var RegistroRecl: Reclamo = {
+        fecha: this.fechaCtrl.value + '',
+        foto: this.urlFotoCtrl.value + '',
+        hora: this.horaCtrl.value + '',
+        ID_Sesion: Number(this.IDsesion),
+        ID_TipoReclamo: Number(this.selectIdTipoReclamo),
+        ID_Estado: 1 /* estado Activo */,
+      };
+      /* Obtengo el id para validar mas adelante en el detalle si es ambiental o vial */
+      this.validacionTipoReclamo = RegistroRecl.ID_TipoReclamo;
+      debugger
+      this.reclamoAmbientalCtrl.value();
+      console.log(RegistroRecl);
+      this.service.postReclamo(RegistroRecl).subscribe(
+        (res) => {
+          console.log('reclamo creado: ', res);
+          this.registrarDetalleReclamo(
+            res
+          ); /* metodo para registrar el detalle */
+        },
+        (err) => console.error(err)
+      );
+    }
   }
 
   registrarDetalleReclamo(infoRec: any) {
@@ -259,7 +284,7 @@ ambiental */
 
   obtenerHoraActual() {
     var today = new Date();
-    var time = today.getHours() + ':' + today.getMinutes();
+     this.time = today.getHours() + ':' + today.getMinutes();
   }
 
   Notificacion() {
