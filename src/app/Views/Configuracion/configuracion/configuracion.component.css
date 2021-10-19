@@ -1,0 +1,21 @@
+#cuerpoPrincipal{
+    background-color: #93a7937c ;
+    margin-top: 10px;
+    padding: 2%;
+    border-radius: 20px;
+}
+
+input.textoEstado{
+    border-radius: 8px;
+    background-color: #9ea99e7c;
+    color:white;
+}
+table, thead,tbody{
+    text-align: center;
+}
+
+.botonTabla{
+    font-size: 80%;
+}
+
+

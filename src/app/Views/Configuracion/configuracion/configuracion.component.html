@@ -1,1 +1,42 @@
-<p>configuracion works!</p>
+<div id="cuerpoPrincipal" class="container-fluid">
+
+    <!-- Dividirlo en card como los hace el facu -->
+
+    <div class="row">
+        <div class="col col-3">
+            <small style="text-align: center;">
+                <h4>Estados</h4>
+            </small>
+            <table class="table table-striped hover">
+
+                <thead>
+                    <tr>
+                        <th style="display:none;">ID</th>
+                        <th>Nombre</th>
+                        <th>Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="display:none;" >id</td>
+                        <td> Nombre Estado</td>
+                        <td>
+                            <button id="botonActualizar" class="btn btn-primary d-inline-block botonTabla" tabindex="0"
+                                data-bs-toggle="tooltip" title="Actualizar"><i class="fas fa-sync fa-sm"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="display:none;">id</td>
+                        <td> <input class="textoEstado" type="text" placeholder="Nombre Estado" id=""></td>
+                        <td> <button id="botonConfirmar" class="btn btn-success d-inline-block botonTabla" tabindex="0"
+                                data-bs-toggle="tooltip" title="Confrimar"><i class="fas fa-check fa-sm"></i></button>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+        
+    </div>
+
+</div>
