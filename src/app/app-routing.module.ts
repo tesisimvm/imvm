@@ -8,6 +8,7 @@ import { ReclamosComponent } from './Views/Reclamo/reclamos/reclamos.component';
 import { HistorialComponent } from './Views/Reclamo/historial/historial.component';
 import { NosotrosComponent } from './Views/Estructura/nosotros/nosotros.component';
 import { PprincipalComponent } from './pprincipal/pprincipal.component';
+import { ConfiguracionComponent } from './Views/Configuracion/configuracion/configuracion.component';
 
 const routes: Routes = [
   {path: '', component: InicioSesionComponent}, /* cuando se inicia el proyecto o cuando la url esta vacia */
@@ -24,7 +25,8 @@ const routes: Routes = [
     {path: 'perfil', component: PerfilComponent},
     {path: 'reclamos', component: ReclamosComponent},
     {path: 'historial', component: HistorialComponent},
-    {path: 'nosotros', component: NosotrosComponent}
+    {path: 'nosotros', component: NosotrosComponent},
+    {path: 'configuracion', component:ConfiguracionComponent}
   ]}, /* menu principal */
 
   {path: 'main-nav/historial', component: MainNavComponent, /* Estando en el historial se puede ir a reclamo para editar ese detalle o reclamo */

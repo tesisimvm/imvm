@@ -21,7 +21,7 @@
 
       </div>
       <!-- 1= administrador, 2= empleado y 3= usuario -->
-      <div *ngIf="(IDRol==1 || IDRol==3 || IDRol==2)">
+      <div  *ngIf="(IDRol==1 || IDRol==3 || IDRol==2)">
 
         <a mat-list-item class="btn-grad" routerLink="./perfil" routerLinkActive="active"> <i class="fas fa-user-circle"
             style="font-size:  22px;" routerLink="./perfil" routerLinkActive="active"></i> Perfil</a>
@@ -35,16 +35,17 @@
         <a mat-list-item class="btn-grad" routerLink="./historial"> <i class="fas fa-heading" style="font-size:  22px;"
             routerLink="./historial"></i>Historial</a>
 
-        <a *ngIf="(IDRol==3)" mat-list-item class="btn-grad"> <i class="fas fa-map-marked-alt" style="font-size:  22px;"></i>
+        <a *ngIf="(IDRol==3 || IDRol==1)" mat-list-item class="btn-grad"> <i class="fas fa-map-marked-alt" style="font-size:  22px;"></i>
           Mapa</a>
-        <a mat-list-item class="btn-grad" routerLink="./nosotros"> <i class="fas fa-users"
-            style="font-size:  22px;"></i>Nosotros</a>
-
+        
         <a *ngIf="(IDRol==1)" mat-list-item class="btn-grad"><i class="fas fa-clipboard" style="font-size:  22px;"></i>
           Reportes</a>
 
-        <a *ngIf="(IDRol==1)" mat-list-item class="btn-grad"><i class="fas fa-tools" style="font-size:  22px;"></i>
+        <a *ngIf="(IDRol==1)" mat-list-item class="btn-grad" routerLink="./configuracion" ><i class="fas fa-tools" style="font-size:  22px;" routerLink="./configuracion"></i>
           Configuración</a>
+
+          <a mat-list-item class="btn-grad" routerLink="./nosotros"> <i class="fas fa-users"
+            style="font-size:  22px;"></i>Nosotros</a>
 
         <a mat-list-item class="btn-grad"> <i class="fas fa-info" style="font-size:  22px;"></i>
           Ayuda</a>
