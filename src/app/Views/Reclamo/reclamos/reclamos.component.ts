@@ -11,6 +11,7 @@ import { DetalleReclamo, vehiculoXDetalle } from 'src/app/model/detalleReclamo';
 import { ToastrService } from 'ngx-toastr';
 import { Vehiculo } from 'src/app/model/vehiculo';
 
+
 @Component({
   selector: 'app-reclamos',
   templateUrl: './reclamos.component.html',
@@ -138,21 +139,36 @@ export class ReclamosComponent implements OnInit {
   }
  
   registrarReclamo() {
+    debugger
     /* Validacion en el caso que registre un input vacio o cambie de tipo de reclamo y tenga un input vacio */
-    if (
+    if (this.tipoReclamoCtrl.value==1 &&(
+      /* reclamo Ambiental */
       this.tipoReclamoCtrl.value == '' ||
       this.reclamoAmbientalCtrl.value == '' ||
-      this.marcaAutoCtrl.value == '' ||
-      this.modeloAutoCtrl.value == '' ||
       this.fechaCtrl.value == '' ||
       this.horaCtrl.value == '' ||
       this.ubicacionCtrl.value == '' ||
       this.descripcionCtrl.value == '' ||
       this.urlFotoCtrl.value == '' ||
-      this.alturaCtrl.value == '' ||
-      this.dominioCtrl.value == ''
+      this.alturaCtrl.value == '')
     ) {
 
+      this.toastr.warning('Faltan datos por rellenar, verifique y podrá enviar su reclamo','Cuidado!',{
+        timeOut:5000,
+        progressBar:true,
+      }
+      );
+
+      /* reclamo vial */
+    }else if (this.tipoReclamoCtrl.value==2&& ((this.dominioCtrl.value == '' ||
+    this.marcaAutoCtrl.value == '' ) &&
+    this.tipoReclamoCtrl.value == '' ||
+    this.fechaCtrl.value == '' ||
+    this.horaCtrl.value == '' ||
+    this.ubicacionCtrl.value == '' ||
+    this.descripcionCtrl.value == '' ||
+    this.urlFotoCtrl.value == '' ||
+    this.alturaCtrl.value == '')){
       this.toastr.warning('Faltan datos por rellenar, verifique y podrá enviar su reclamo','Cuidado!',{
         timeOut:5000,
         progressBar:true,
@@ -171,7 +187,7 @@ export class ReclamosComponent implements OnInit {
       /* Obtengo el id para validar mas adelante en el detalle si es ambiental o vial */
       this.validacionTipoReclamo = RegistroRecl.ID_TipoReclamo;
       debugger
-      this.reclamoAmbientalCtrl.value();
+     
       console.log(RegistroRecl);
       this.service.postReclamo(RegistroRecl).subscribe(
         (res) => {
@@ -199,14 +215,18 @@ export class ReclamosComponent implements OnInit {
         /* ID_Vehiculo: Number(this.selectIdMarcaVehiculo), */
         ID_Reclamo: infoRec.idReclamo,
       };
+
+      debugger
       this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
         (res) => {
           this.Notificacion();
           console.clear() /* limpio la consola */
+          
         },
         (err) => console.error(err)
       );
     } else {
+      debugger
       /* Cuando sea Vehicular */
       /* Primero el detalle de reclamo */
       var RegistroDetReclamo: DetalleReclamo = {
@@ -214,7 +234,7 @@ export class ReclamosComponent implements OnInit {
         direccion: this.ubicacionCtrl.value + '',
         altura: this.alturaCtrl.value,
         dominio: this.dominioCtrl.value + '',
-        ID_ReclamoAmbiental: Number(this.selectIdinfoReclamo),
+        ID_ReclamoAmbiental:0,
         /* ID_Vehiculo: Number(this.selectIdMarcaVehiculo), */
         ID_Reclamo: infoRec.idReclamo,
       };
