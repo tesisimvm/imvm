@@ -29,7 +29,7 @@ const routes: Routes = [
     {path: 'configuracion', component:ConfiguracionComponent}
   ]}, /* menu principal */
 
-  {path: 'main-nav/historial', component: MainNavComponent, /* Estando en el historial se puede ir a reclamo para editar ese detalle o reclamo */
+  {path: 'main-nav/:id/:id/:id/historial', component: MainNavComponent, /* Estando en el historial se puede ir a reclamo para editar ese detalle o reclamo */
     children:[
     {path: 'reclamos', component: ReclamosComponent}
   ]}, 

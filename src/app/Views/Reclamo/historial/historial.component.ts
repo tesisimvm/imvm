@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TransferState } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { EstadoReclamo } from 'src/app/model/filtrosHistorial/estadoReclamo';
 import { TipoReclamo } from 'src/app/model/tipoReclamo';
 import { BackenApiService } from 'src/app/service/backen-api.service';
@@ -14,6 +15,7 @@ export class HistorialComponent implements OnInit {
   ruta:any;
   IDUsuario: any;
   IDRol:any;
+  IDSesion:any;
   
   Dreclamos:any;
   TR: TipoReclamo[]=[]; /* le asigno el nombre del modelo a una variable */
@@ -23,12 +25,13 @@ export class HistorialComponent implements OnInit {
 
   selectIDTipReclamo=0; /* Variable para capturar el valor del tipo de reclamo */
 
-  constructor(public detalleReclamo:BackenApiService) { 
+  constructor(public detalleReclamo:BackenApiService, private router: Router) { 
     
     //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
     this.ruta = window.location.pathname.split('/');
     this.IDUsuario =this.ruta[2];
     this.IDRol=this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
+    this.IDSesion=this.ruta[4]
     console.log(this.IDRol);
     
 
@@ -82,6 +85,12 @@ export class HistorialComponent implements OnInit {
       
     );
 
+  }
+  
+  /* Funcion para ir de la pantalla historial hacia el reclamo y editarlo */
+  editarReclamo(){
+    console.log(this.ruta)
+    this.router.navigate(['main-nav', this.IDUsuario,this.IDRol,this.IDSesion,'historial','reclamos']);
   }
 
 }
