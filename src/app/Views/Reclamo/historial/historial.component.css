@@ -1,77 +1,79 @@
 body {
   background: #111 !important;
 }
-h5{
+h5 {
   font-size: 16px;
   text-align: justify;
   padding: 3px;
 }
-h6{
-  font-family: 'Courier New', Courier, monospace;
+h6 {
+  font-family: "Courier New", Courier, monospace;
 }
-img{
+img {
   height: 200px;
 }
-input{
+input {
   border: rgb(237, 83, 59) 2px solid;
   border-radius: 10px;
 }
-select{
+select {
   border: rgb(237, 83, 59) 2px solid;
   border-radius: 10px;
 }
 /*************  ID *************/
-#tituloHistorial{
+#tituloHistorial {
   text-align: center;
 }
-#filtros{
+#filtros {
   /* background-color: rgb(92, 92, 165); */
   padding: 15px;
   border: rgb(49, 49, 49) 1px solid;
   border-radius: 50px;
-  
 }
-#tituloFiltros{
+#tituloFiltros {
   padding: 5px;
   min-width: 100px;
-  
+
   border: rgb(182, 180, 180) 1px solid;
   border-radius: 50px;
   text-align: center;
   margin-bottom: 20px;
-  
-}
-#nombreUsuario{
-  width: 300px
 }
 
 #principal {
   border-radius: 63px;
-background: #252527;
-box-shadow:  20px 20px 20px #171719;
+  background: #252527;
+  box-shadow: 20px 20px 20px #171719;
   padding-top: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-#fecha{
+/************* Inputs *************/
+/* las clases de tipo de reclamo y estado */
+.form-select {
+  width: 100%;
+}
+
+.calendario {
   text-align: center;
+  width: 100%;
+}
+
+#nombreUsuario {
+  width: 100%;
 }
 /************* Clases ************ */
 
-.busquedaFiltros{
+.busquedaFiltros {
   text-align: center;
   /* border: rgb(182, 180, 180) 1px solid; */
   border-radius: 50px;
   padding: 20px;
 }
 
-
 :root {
   --gradient: linear-gradient(to left top, #3942c5 10%, #392fff 90%) !important;
 }
-
-
-
 
 .card {
   background: rgb(84, 10, 26); /* Color del fondo de la tarjeta */
@@ -80,29 +82,30 @@ box-shadow:  20px 20px 20px #171719;
   margin-bottom: 2rem;
 }
 
-.card-title{
-  font-family: 'Courier New', Courier, monospace;
+.card-title {
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* div del boton bsca */
+.buscar{
+  margin-top: 33px;
+}
+/* Boton buscar */
+.btn-primary {
+  width: 100%;
+  font-size: 22px;
+  border-radius: 10px;
+}
+/*icono de lupa del boton */
+.fa-search {
+  margin-right: 20px;
 }
 
 
-
-
-/* las clases de tipo de reclamo y estado */
-.form-select{
-  
-width: 300px;
-}
 
 /* .seleccionFiltros{
   margin-left: 50px;
 } */
-
-
-
-
-
-
-
 
 /* .btn {
    border: 5px solid;

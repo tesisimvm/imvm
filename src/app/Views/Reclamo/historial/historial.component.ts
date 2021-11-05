@@ -46,7 +46,7 @@ export class HistorialComponent implements OnInit {
     this.detalleReclamo.getDetalleReclamoUsuario(this.IDUsuario).subscribe(
       (info) => {
         console.log(info);
-        debugger
+        
 
         this.Dreclamos = info;
         console.log(this.Dreclamos)
@@ -68,14 +68,14 @@ export class HistorialComponent implements OnInit {
   }
 
   obtenerIDTipoReclamo(ev: any) {
-    debugger
+    
     this.selectIDTipReclamo = ev.target.value;
     console.log(this.selectIDTipReclamo);
     this.getEstadoReclamo(this.selectIDTipReclamo);
   }
 
   getEstadoReclamo(idTipoReclamo:number){
-    debugger
+    
     this.detalleReclamo.getFiltroEstadoHistorial(idTipoReclamo).subscribe(
       (res)=>{
         this.FER=res;
