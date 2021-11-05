@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { BackenApiService } from '../../../service/backen-api.service';
 import { Reclamo } from '../../../model/reclamo';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -30,6 +30,9 @@ export class ReclamosComponent implements OnInit {
   alturaCtrl = new FormControl('', [Validators.required]);
   dominioCtrl = new FormControl('', [Validators.required]);
   ID_Reclamo = new FormControl('', [Validators.required]);
+
+  
+
 
   recla: Reclamo = {
     fecha: '',
@@ -88,10 +91,10 @@ export class ReclamosComponent implements OnInit {
     //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
     this.ruta = window.location.pathname.split('/');
     this.IDUsuario = this.ruta[2];
-    this.IDRol =
-      this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
-    console.log(this.IDRol);
+    this.IDRol = this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
     this.IDsesion = this.ruta[4];
+    console.log(this.IDRol);
+    
 
     console.clear();
   }
@@ -221,6 +224,7 @@ export class ReclamosComponent implements OnInit {
         (res) => {
           this.Notificacion();
           console.clear() /* limpio la consola */
+          this.limpiarPantalla();
           
         },
         (err) => console.error(err)
@@ -286,6 +290,7 @@ export class ReclamosComponent implements OnInit {
          /* aca capturar el id del detalle de reclamo para insertarlo en vehiculoxDetalle */
          this.Notificacion()
          console.clear() /* limpio la consola */
+         this.limpiarPantalla()
        },
        (err) => console.error(err)
      );
@@ -312,5 +317,30 @@ ambiental */
       '¡Su reclamo fué creado correctamente!',
       'El estado del reclamo está pendiente'
     );
+  }
+
+  limpiarPantalla(){
+    this.tipoReclamoCtrl.reset();
+    this.reclamoAmbientalCtrl.reset();
+    this.marcaAutoCtrl.reset();
+    this.modeloAutoCtrl.reset();
+    this.fechaCtrl.reset();
+    this.horaCtrl.reset();
+    this.ubicacionCtrl.reset();
+    this.descripcionCtrl.reset();
+    this.urlFotoCtrl.reset();
+    this.alturaCtrl.reset();
+    this.dominioCtrl.reset();
+
+    this.toastr.info('Será redirigido al menú principal','Reclamo Cancelado',{
+      timeOut:2000,
+      progressBar:true,
+    }
+    
+    );
+    this.redireccion();
+  }
+  redireccion(){
+    this.router.navigate(['main-nav', this.IDUsuario,this.IDRol,this.IDsesion,'principal']);
   }
 }

@@ -144,13 +144,18 @@
             </div>
           </div>
           <div class="row">
-            <div class="text-center d-inline-block"data-bs-toggle="tooltip" data-bs-placement="top" title="Enviar Reclamo">
-              <button type="button" class="btn btn-success" style="width: 80%;"
+            <div class="text-center d-inline-block col col-6 botones" data-bs-toggle="tooltip" data-bs-placement="top" title="Enviar Reclamo">
+              <button type="button" class="btn btn-success" 
               [disabled]="( (tipoReclamoCtrl.invalid && (reclamoAmbientalCtrl.invalid && marcaAutoCtrl.invalid && dominioCtrl.invalid)) || 
                fechaCtrl.invalid || horaCtrl.invalid || ubicacionCtrl.invalid || alturaCtrl.invalid ||
                urlFotoCtrl.invalid ||  descripcionCtrl.invalid)" (click)="registrarReclamo()">Enviar</button>
             </div>
+            <div class="text-center d-inline-block col col-6 botones"data-bs-toggle="tooltip" data-bs-placement="top" title="Cancelar Reclamo" >
+              <button type="button" class="btn btn-danger" (click)="limpiarPantalla()" >Cancelar</button>
+            </div>
           </div>
+
+          
 
          
           
