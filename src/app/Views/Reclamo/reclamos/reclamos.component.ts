@@ -76,6 +76,7 @@ export class ReclamosComponent implements OnInit {
   ID_Vehiculo:any; /* se usa para saber el id que tiene el auto recien registrado */
   ID_DetReclamo:any; /* para vehiculoXDetalle */
   time:any;
+  banderaEdicionReclamo:boolean=false; /* se utiliza para validar controles cuando se navega desde historial hacia reclamo */
 
   constructor(
     private toastr: ToastrService,
@@ -94,6 +95,7 @@ export class ReclamosComponent implements OnInit {
     this.IDRol = this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
     this.IDsesion = this.ruta[4];
     console.log(this.IDRol);
+    this.metodo_VisualEditarReclamo()
     
 
     console.clear();
@@ -338,9 +340,20 @@ ambiental */
     }
     
     );
-    this.redireccion();
+    this.metodoRedireccion();
   }
-  redireccion(){
+  metodoRedireccion(){
     this.router.navigate(['main-nav', this.IDUsuario,this.IDRol,this.IDsesion,'principal']);
   }
+  metodo_VisualEditarReclamo(){
+    debugger
+    /* Este metodo se utiliza para controlar lo que se quiere ver cuando se desea editar un reclamo */
+    if(this.ruta[5]=="historial"){
+      this.banderaEdicionReclamo=true;
+
+    }else{
+      
+    }
+  }
+  
 }
