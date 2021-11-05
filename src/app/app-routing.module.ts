@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { InicioSesionComponent } from './Views/Sesion/registro/inicio-sesion.component';
 import { LoginComponent } from './Views/Sesion/login/login.component';
@@ -9,6 +9,7 @@ import { HistorialComponent } from './Views/Reclamo/historial/historial.componen
 import { NosotrosComponent } from './Views/Estructura/nosotros/nosotros.component';
 import { PprincipalComponent } from './pprincipal/pprincipal.component';
 import { ConfiguracionComponent } from './Views/Configuracion/configuracion/configuracion.component';
+import { ModalEditarComponent } from './Views/Usuario/modal-editar/modal-editar.component';
 
 const routes: Routes = [
   {path: '', component: InicioSesionComponent}, /* cuando se inicia el proyecto o cuando la url esta vacia */
@@ -22,17 +23,20 @@ const routes: Routes = [
   {path: 'main-nav/:id/:id/:id', component: MainNavComponent,/* usuario/rol/idsesion */
     children:[
     {path: 'principal', component: PprincipalComponent},
-    {path: 'perfil', component: PerfilComponent},
+    {path: 'perfil', component: PerfilComponent/*, children:[{path:'editarperfil',component:ModalEditarComponent}]*/},
     {path: 'reclamos', component: ReclamosComponent},
     {path: 'historial', component: HistorialComponent},
     {path: 'nosotros', component: NosotrosComponent},
-    {path: 'configuracion', component:ConfiguracionComponent}
+    {path: 'configuracion', component:ConfiguracionComponent},
   ]}, /* menu principal */
 
   {path: 'main-nav/historial', component: MainNavComponent, /* Estando en el historial se puede ir a reclamo para editar ese detalle o reclamo */
     children:[
     {path: 'reclamos', component: ReclamosComponent}
   ]}, 
+  
+
+
   
   {path: '**', component: InicioSesionComponent}, /* por defecto - cuando hay problemas o se escribe mal la url */
 ];

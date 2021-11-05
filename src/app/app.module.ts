@@ -25,6 +25,8 @@ import { NosotrosComponent } from './Views/Estructura/nosotros/nosotros.componen
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ModalEditarComponent } from './Views/Usuario/modal-editar/modal-editar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -40,7 +42,8 @@ import { ToastrModule } from 'ngx-toastr';
     HistorialComponent,
     VehiculoComponent,
     ConfiguracionComponent,
-    NosotrosComponent
+    NosotrosComponent,
+    ModalEditarComponent
   ],
   imports: [
     BrowserModule,
@@ -58,6 +61,7 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

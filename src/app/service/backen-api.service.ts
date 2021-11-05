@@ -93,6 +93,13 @@ export class BackenApiService {
     return this.http.get<datosperfil[]>('https://localhost:44363/usuario/' + id);
   }
 
+  metodoEditar(perfil:datosperfil){
+    //console.log(id)
+    //debugger
+    return this.http.put('https://localhost:44363/usuario/' + perfil.IDUsuario,perfil);
+  }
+  
+
   /* Metodo para obtener todos reclamos (historial) */
   getDetalleReclamo(): Observable<any> {
     /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
