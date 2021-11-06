@@ -23,6 +23,7 @@
     "@angular/router": "~11.2.12",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
     "@supabase/supabase-js": "^1.21.0",
+    "@swimlane/ngx-charts": "^19.1.0",
     "bootstrap": "^4.6.0",
     "jquery": "^3.6.0",
     "ngx-toastr": "^13.2.1",

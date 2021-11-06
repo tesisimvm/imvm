@@ -6,6 +6,7 @@ import { BackenApiService } from 'src/app/service/backen-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { TouchSequence } from 'selenium-webdriver';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class PerfilComponent implements OnInit {
   
   //idUsuarioMostrar : datosperfil.IDU;
 
-  constructor(public dPerfil: BackenApiService, private _route : ActivatedRoute,private toastr: ToastrService,) {
+  constructor(public dPerfil: BackenApiService, private _route : ActivatedRoute,private toastr: ToastrService, public modal:NgbModal) {
     /* aca seesta tratando de dividir la ruta de la url para obtener el id que esta entre
     '/main-nav/ y /perfil/  */
     debugger
