@@ -31,6 +31,9 @@ const routes: Routes = [
 
   {path: 'main-nav/:id/:id/:id/historial', component: MainNavComponent, /* Estando en el historial se puede ir a reclamo para editar ese detalle o reclamo */
     children:[
+  
+    {path: 'reclamos/:id', component: ReclamosComponent},
+  
     {path: 'principal', component: PprincipalComponent},
     {path: 'perfil', component: PerfilComponent},
     {path: 'reclamos', component: ReclamosComponent},

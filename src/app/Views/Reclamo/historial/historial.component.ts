@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TransferState } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { EstadoReclamo } from 'src/app/model/filtrosHistorial/estadoReclamo';
@@ -24,6 +24,8 @@ export class HistorialComponent implements OnInit {
   FER:EstadoReclamo[]=[]; /* filtro estadoRecmo.ts */
 
   selectIDTipReclamo=0; /* Variable para capturar el valor del tipo de reclamo */
+  @Input() dataEntrante:any;
+  objetoReclamo:any;
 
   constructor(public detalleReclamo:BackenApiService, private router: Router) { 
     
@@ -49,7 +51,7 @@ export class HistorialComponent implements OnInit {
         
 
         this.Dreclamos = info;
-        console.log(this.Dreclamos)
+        console.log("detalles de reclamos: ",this.Dreclamos)
       },
       (error) => {
         console.log(error);
@@ -88,9 +90,16 @@ export class HistorialComponent implements OnInit {
   }
   
   /* Funcion para ir de la pantalla historial hacia el reclamo y editarlo */
-  editarReclamo(){
-    console.log(this.ruta)
-    this.router.navigate(['main-nav', this.IDUsuario,this.IDRol,this.IDSesion,'historial','reclamos']);
+  editarReclamo(idDetalle:any){
+    console.clear();
+    
+    
+    
+    
+
+    this.router.navigate(['main-nav', this.IDUsuario,this.IDRol,this.IDSesion,'historial','reclamos',idDetalle]);
+   
+
   }
 
 }

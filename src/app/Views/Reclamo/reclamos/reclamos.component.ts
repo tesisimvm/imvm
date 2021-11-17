@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BackenApiService } from '../../../service/backen-api.service';
 import { Reclamo } from '../../../model/reclamo';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,7 +7,11 @@ import { ReclamoAmbiental } from 'src/app/model/reclamoAmbiental';
 import { marca } from 'src/app/model/marca';
 import { modelo } from 'src/app/model/modelo';
 import { FormControl, Validators } from '@angular/forms';
-import { DetalleReclamo, vehiculoXDetalle } from 'src/app/model/detalleReclamo';
+import {
+  DetalleReclamo,
+  DetalleReclamoActualizar,
+  vehiculoXDetalle,
+} from 'src/app/model/detalleReclamo';
 import { ToastrService } from 'ngx-toastr';
 import { Vehiculo } from 'src/app/model/vehiculo';
 
@@ -30,9 +34,6 @@ export class ReclamosComponent implements OnInit {
   alturaCtrl = new FormControl('', [Validators.required]);
   dominioCtrl = new FormControl('', [Validators.required]);
   ID_Reclamo = new FormControl('', [Validators.required]);
-
-  
-
 
   recla: Reclamo = {
     fecha: '',
@@ -61,6 +62,7 @@ export class ReclamosComponent implements OnInit {
   Mar: marca[] = [];
 
   Mod: modelo[] = [];
+  public arregloDetalleReclamo: any;
 
   validacionTipoReclamo: any;
 
@@ -72,11 +74,19 @@ export class ReclamosComponent implements OnInit {
   IDUsuario: any;
   IDRol: any;
   IDsesion: any;
+  IDDetalleR: any; /* ID DE LA RUTA DEL NAVEGADOR */
   idrecambie: number = 0;
-  ID_Vehiculo:any; /* se usa para saber el id que tiene el auto recien registrado */
-  ID_DetReclamo:any; /* para vehiculoXDetalle */
-  time:any;
-  banderaEdicionReclamo:boolean=false; /* se utiliza para validar controles cuando se navega desde historial hacia reclamo */
+  ID_Vehiculo: any; /* se usa para saber el id que tiene el auto recien registrado */
+  ID_DetReclamo: any; /* para vehiculoXDetalle */
+  time: any;
+  banderaEdicionReclamo: boolean =
+    false; /* se utiliza para validar controles cuando se navega desde historial hacia reclamo */
+
+  objetoHistorial: any;
+  idEstadoReclamo:any;
+  objetEstadoReclamo:any;
+
+  public datosHistorial: Array<any> = [];
 
   constructor(
     private toastr: ToastrService,
@@ -92,13 +102,18 @@ export class ReclamosComponent implements OnInit {
     //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
     this.ruta = window.location.pathname.split('/');
     this.IDUsuario = this.ruta[2];
-    this.IDRol = this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
+    this.IDRol =
+      this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
     this.IDsesion = this.ruta[4];
+    this.IDDetalleR = this.ruta[7];
     console.log(this.IDRol);
-    this.metodo_VisualEditarReclamo()
-    
+    console.log('ruta: ', this.ruta);
+    console.log(' iddetalle: ', this.ruta[7]);
 
-    console.clear();
+    /* this.getDatosReclamos(this.IDDetalleR); */
+    this.metodo_VisualEditarReclamo(this.IDDetalleR);
+
+    /* console.clear(); */
   }
 
   ngOnInit(): void {
@@ -106,6 +121,15 @@ export class ReclamosComponent implements OnInit {
   }
 
   getListTipoReclamos(): void {
+    this.service.getTipoReclamo().subscribe(
+      (res) => {
+        this.Tiporecla = res;
+        console.log('Recla:', this.Tiporecla);
+      },
+      (err) => console.error(err)
+    );
+  }
+  getListEstadosReclamos(): void {
     this.service.getTipoReclamo().subscribe(
       (res) => {
         this.Tiporecla = res;
@@ -142,44 +166,51 @@ export class ReclamosComponent implements OnInit {
       (err) => console.error(err)
     );
   }
- 
-  registrarReclamo() {
-    debugger
-    /* Validacion en el caso que registre un input vacio o cambie de tipo de reclamo y tenga un input vacio */
-    if (this.tipoReclamoCtrl.value==1 &&(
-      /* reclamo Ambiental */
-      this.tipoReclamoCtrl.value == '' ||
-      this.reclamoAmbientalCtrl.value == '' ||
-      this.fechaCtrl.value == '' ||
-      this.horaCtrl.value == '' ||
-      this.ubicacionCtrl.value == '' ||
-      this.descripcionCtrl.value == '' ||
-      this.urlFotoCtrl.value == '' ||
-      this.alturaCtrl.value == '')
-    ) {
 
-      this.toastr.warning('Faltan datos por rellenar, verifique y podrá enviar su reclamo','Cuidado!',{
-        timeOut:5000,
-        progressBar:true,
-      }
+  registrarReclamo() {
+    debugger;
+    /* Validacion en el caso que registre un input vacio o cambie de tipo de reclamo y tenga un input vacio */
+    if (
+      this.tipoReclamoCtrl.value == 1 &&
+      /* reclamo Ambiental */
+      (this.tipoReclamoCtrl.value == '' ||
+        this.reclamoAmbientalCtrl.value == '' ||
+        this.fechaCtrl.value == '' ||
+        this.horaCtrl.value == '' ||
+        this.ubicacionCtrl.value == '' ||
+        this.descripcionCtrl.value == '' ||
+        this.urlFotoCtrl.value == '' ||
+        this.alturaCtrl.value == '')
+    ) {
+      this.toastr.warning(
+        'Faltan datos por rellenar, verifique y podrá enviar su reclamo',
+        'Cuidado!',
+        {
+          timeOut: 5000,
+          progressBar: true,
+        }
       );
 
       /* reclamo vial */
-    }else if (this.tipoReclamoCtrl.value==2&& ((this.dominioCtrl.value == '' ||
-    this.marcaAutoCtrl.value == '' ) &&
-    this.tipoReclamoCtrl.value == '' ||
-    this.fechaCtrl.value == '' ||
-    this.horaCtrl.value == '' ||
-    this.ubicacionCtrl.value == '' ||
-    this.descripcionCtrl.value == '' ||
-    this.urlFotoCtrl.value == '' ||
-    this.alturaCtrl.value == '')){
-      this.toastr.warning('Faltan datos por rellenar, verifique y podrá enviar su reclamo','Cuidado!',{
-        timeOut:5000,
-        progressBar:true,
-      }
+    } else if (
+      this.tipoReclamoCtrl.value == 2 &&
+      (((this.dominioCtrl.value == '' || this.marcaAutoCtrl.value == '') &&
+        this.tipoReclamoCtrl.value == '') ||
+        this.fechaCtrl.value == '' ||
+        this.horaCtrl.value == '' ||
+        this.ubicacionCtrl.value == '' ||
+        this.descripcionCtrl.value == '' ||
+        this.urlFotoCtrl.value == '' ||
+        this.alturaCtrl.value == '')
+    ) {
+      this.toastr.warning(
+        'Faltan datos por rellenar, verifique y podrá enviar su reclamo',
+        'Cuidado!',
+        {
+          timeOut: 5000,
+          progressBar: true,
+        }
       );
-
     } else {
       var RegistroRecl: Reclamo = {
         fecha: this.fechaCtrl.value + '',
@@ -191,8 +222,8 @@ export class ReclamosComponent implements OnInit {
       };
       /* Obtengo el id para validar mas adelante en el detalle si es ambiental o vial */
       this.validacionTipoReclamo = RegistroRecl.ID_TipoReclamo;
-      debugger
-     
+      debugger;
+
       console.log(RegistroRecl);
       this.service.postReclamo(RegistroRecl).subscribe(
         (res) => {
@@ -221,18 +252,17 @@ export class ReclamosComponent implements OnInit {
         ID_Reclamo: infoRec.idReclamo,
       };
 
-      debugger
+      debugger;
       this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
         (res) => {
           this.Notificacion();
-          console.clear() /* limpio la consola */
+          console.clear(); /* limpio la consola */
           this.limpiarPantalla();
-          
         },
         (err) => console.error(err)
       );
     } else {
-      debugger
+      debugger;
       /* Cuando sea Vehicular */
       /* Primero el detalle de reclamo */
       var RegistroDetReclamo: DetalleReclamo = {
@@ -240,66 +270,67 @@ export class ReclamosComponent implements OnInit {
         direccion: this.ubicacionCtrl.value + '',
         altura: this.alturaCtrl.value,
         dominio: this.dominioCtrl.value + '',
-        ID_ReclamoAmbiental:0,
+        ID_ReclamoAmbiental: 0,
         /* ID_Vehiculo: Number(this.selectIdMarcaVehiculo), */
         ID_Reclamo: infoRec.idReclamo,
       };
       /* DETALLE RECLAMO */
       this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
         (resDetRecla) => {
-         
-          this.ID_DetReclamo=resDetRecla.idDetalleReclamo;/* se guarda el ID del detalle de reclamo recien creado
+          this.ID_DetReclamo =
+            resDetRecla.idDetalleReclamo; /* se guarda el ID del detalle de reclamo recien creado
           para no perder el dato y despues insertarlo en RegVehiculoxDetalle*/
-          this.RegVehiculo();/* Se procede a realizar el registro del vehiculo  */
-
+          this.RegVehiculo(); /* Se procede a realizar el registro del vehiculo  */
         },
         (err) => console.error(err)
       );
-    }  
+    }
   }
-  RegVehiculo(){
-     /* segundo el vehiculo */
-     
-     var RegistroVehiculo: Vehiculo = {
-       dominio: this.dominioCtrl.value + '',
-       color: ' - ',
-       numeroChasis: ' - ',
-       numeroMotor: ' - ',
-       ID_MarcaVehiculo: Number(this.selectIdMarcaVehiculo),
-       ID_Estado: 12 /* 12 es activo y 13 es inactivo*/,
-       ID_TipoVehiculo: 1 /* 1- Sin asignar */,
-     };
-     this.service.postVehiculo(RegistroVehiculo).subscribe(
-       (resVehiculo) => {
-         this.ID_Vehiculo=resVehiculo.idVehiculo;/* se guarda el ID del vehiculo recien creado
+  RegVehiculo() {
+    /* segundo el vehiculo */
+
+    var RegistroVehiculo: Vehiculo = {
+      dominio: this.dominioCtrl.value + '',
+      color: ' - ',
+      numeroChasis: ' - ',
+      numeroMotor: ' - ',
+      ID_MarcaVehiculo: Number(this.selectIdMarcaVehiculo),
+      ID_Estado: 12 /* 12 es activo y 13 es inactivo*/,
+      ID_TipoVehiculo: 1 /* 1- Sin asignar */,
+    };
+    this.service.postVehiculo(RegistroVehiculo).subscribe(
+      (resVehiculo) => {
+        this.ID_Vehiculo =
+          resVehiculo.idVehiculo; /* se guarda el ID del vehiculo recien creado
          para no perder el dato y despues insertarlo en RegVehiculoxDetalle*/
-         this.RegVehiculoxDetalle();
- 
-       },
-       (err) => console.error(err)
-     );
+        this.RegVehiculoxDetalle();
+      },
+      (err) => console.error(err)
+    );
   }
-  RegVehiculoxDetalle(){
-    
-     /* Ahora el vehiculoXdetalle */
-     var RegistroVehxDet: vehiculoXDetalle = {
-       ID_Vehiculo: this.ID_Vehiculo,
-       ID_DetalleReclamo: this.ID_DetReclamo,
-     };
-     debugger
-     this.service.postVehiculoxDetalle(RegistroVehxDet).subscribe(
-       (res) => {
-         /* aca capturar el id del detalle de reclamo para insertarlo en vehiculoxDetalle */
-         this.Notificacion()
-         console.clear() /* limpio la consola */
-         this.limpiarPantalla()
-       },
-       (err) => console.error(err)
-     );
+  RegVehiculoxDetalle() {
+    /* Ahora el vehiculoXdetalle */
+    var RegistroVehxDet: vehiculoXDetalle = {
+      ID_Vehiculo: this.ID_Vehiculo,
+      ID_DetalleReclamo: this.ID_DetReclamo,
+    };
+    debugger;
+    this.service.postVehiculoxDetalle(RegistroVehxDet).subscribe(
+      (res) => {
+        /* aca capturar el id del detalle de reclamo para insertarlo en vehiculoxDetalle */
+        this.Notificacion();
+        console.clear(); /* limpio la consola */
+        this.limpiarPantalla();
+      },
+      (err) => console.error(err)
+    );
   }
   dataChangedTipoReclamo(ev: any) {
     this.selectIdTipoReclamo = ev.target.value;
   }
+
+ 
+
   dataChangedIdMarcaVehiculo(ev: any) {
     this.selectIdMarcaVehiculo = ev.target.value;
   }
@@ -311,7 +342,8 @@ ambiental */
 
   obtenerHoraActual() {
     var today = new Date();
-     this.time = today.getHours() + ':' + today.getMinutes();
+
+    this.time = today.getHours() + ':' + today.getMinutes();
   }
 
   Notificacion() {
@@ -321,7 +353,7 @@ ambiental */
     );
   }
 
-  limpiarPantalla(){
+  limpiarPantalla() {
     this.tipoReclamoCtrl.reset();
     this.reclamoAmbientalCtrl.reset();
     this.marcaAutoCtrl.reset();
@@ -334,26 +366,114 @@ ambiental */
     this.alturaCtrl.reset();
     this.dominioCtrl.reset();
 
-    this.toastr.info('Será redirigido al menú principal','Reclamo Cancelado',{
-      timeOut:2000,
-      progressBar:true,
-    }
-    
-    );
+    this.toastr.info('Será redirigido al menú principal', 'Reclamo Cancelado', {
+      timeOut: 2000,
+      progressBar: true,
+    });
     this.metodoRedireccion();
   }
-  metodoRedireccion(){
-    this.router.navigate(['main-nav', this.IDUsuario,this.IDRol,this.IDsesion,'principal']);
+  metodoRedireccion() {
+    this.banderaEdicionReclamo = false;
+    delete this.arregloDetalleReclamo;
+    console.log(this.arregloDetalleReclamo);
+    this.router.navigate([
+      'main-nav',
+      this.IDUsuario,
+      this.IDRol,
+      this.IDsesion,
+      'principal',
+    ]);
   }
-  metodo_VisualEditarReclamo(){
+  metodo_VisualEditarReclamo(IDDetalle: any) {
     debugger
     /* Este metodo se utiliza para controlar lo que se quiere ver cuando se desea editar un reclamo */
-    if(this.ruta[5]=="historial"){
-      this.banderaEdicionReclamo=true;
+    if (this.ruta[5] == 'historial' && IDDetalle != undefined ) {
+      this.banderaEdicionReclamo = true;
 
-    }else{
-      
+      /* Metodo en el cual se usa para traer todos los datos del reclamo a actualizar */
+      this.service.getDetalleReclamoParaActualizar(IDDetalle).subscribe(
+        (info) => {
+          this.arregloDetalleReclamo = info;
+          console.log('Array detalle Reclamo: ', this.arregloDetalleReclamo);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.banderaEdicionReclamo == false;
     }
   }
-  
+
+  dataChangedEstadoReclamo(ev: any) {
+    /* Capturo el id y luego lo uso para traer sus estados */
+    this.idEstadoReclamo = ev.target.value;
+    this.service.getFiltroEstadoHistorial(this.idEstadoReclamo).subscribe(
+      (data) => {
+        this.objetEstadoReclamo = data;
+        console.log(this.objetEstadoReclamo);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+
+  }
+  /* MetodoEstadoReclamo(id:any){
+    console.log("EstadoReclamo: ",id)
+  } */
+
+  MetodoActualizarReclamo(){
+    debugger
+    var reclamo: Reclamo={
+      IDReclamo: this.arregloDetalleReclamo[0].iD_Reclamo,
+      fecha: this.arregloDetalleReclamo[0].fecha,
+      foto: this.arregloDetalleReclamo[0].foto,
+      hora: this.arregloDetalleReclamo[0].hora,
+      ID_Sesion: this.arregloDetalleReclamo[0].idSesion,
+      ID_TipoReclamo: this.arregloDetalleReclamo[0].idTipoRec,
+      ID_Estado: this.arregloDetalleReclamo[0].idEstado
+    }
+    
+    this.service.putActualizarReclamo(reclamo).subscribe(
+      (data) => {
+        console.log(data);
+        this.MetodoActualizarDetalleReclamo();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+    
+  }
+  MetodoActualizarDetalleReclamo(){
+    var detalleReclamo :DetalleReclamo ={
+      IDDetalleReclamo: this.arregloDetalleReclamo[0].idDetalleReclamo,
+      descripcion: this.arregloDetalleReclamo[0].descripcion,
+      direccion: this.arregloDetalleReclamo[0].direccion,
+      altura: this.arregloDetalleReclamo[0].altura,
+      dominio: this.arregloDetalleReclamo[0].dominio,
+      ID_ReclamoAmbiental: this.arregloDetalleReclamo[0].idRecAmb,
+      ID_Reclamo: this.arregloDetalleReclamo[0].iD_Reclamo
+
+    }
+    this.service.putActualizarDetalleReclamo(detalleReclamo).subscribe(
+      (data) => {
+        console.log(data);
+        this.MetodoActualizarDetalleReclamo();
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+ /*  getDatosReclamos(IDDetalle: any) {
+    debugger;
+    if (IDDetalle == undefined) {
+      this.banderaEdicionReclamo == false;
+    } else {
+      
+    }
+  } */
 }

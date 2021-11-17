@@ -27,7 +27,7 @@
           <div class="row">
 
             <div class="col-12">
-              <input [formControl]="userCtrl" type="text" class="form__input" placeholder="Usuario o e-mail">
+              <input id="iconoUsuario" [formControl]="userCtrl" type="text" class="form__input" placeholder="   Usuario o e-mail">
 
               <span>
                 <small id="mensajeUser" *ngIf="(userCtrl.hasError('required') && userCtrl.dirty)">
@@ -39,7 +39,7 @@
 
 
             <div class="col-12">
-              <input [formControl]="passwCtrl" type="password" class="form__input" placeholder="Contraseña">
+              <input id="iconoContrasenia" [formControl]="passwCtrl" type="password" class="form__input" placeholder="   Contraseña">
               <span>
                 <small id="mensajeUser" *ngIf="(passwCtrl.hasError('required') && passwCtrl.dirty)">
                   <i class="fa fa-times fa-2x"></i>
@@ -47,13 +47,14 @@
                 </small>
               </span>
             </div>
-            <div class="row">
+            
+          </div>
+          <div class="row">
               <div class="col col-12">
                 <button [disabled]="(userCtrl.invalid ||  passwCtrl.invalid)" type="button" (click)="Validacion()"
                   class="btn">Iniciar Sesión</button>
               </div>
             </div>
-          </div>
 
           <div class="row">
             <p>¿No tenés una cuenta? <a routerLink="/login">Registrate ahora!</a></p>
@@ -61,6 +62,7 @@
         </div>
       </div>
     </div>
+    
   </div>
 
   <app-footer></app-footer>

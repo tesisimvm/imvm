@@ -1,5 +1,7 @@
 <div class="container"
   style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol">
+
+
   <h2 id="tituloComponente" *ngIf="banderaEdicionReclamo==false">
     Crear Reclamo
   </h2>
@@ -27,6 +29,7 @@
                   </select>
                 </div>
               </div>
+
 
               <!-- Reclamo Ambiental -->
               <div class="form-group" id="ReclamoAmbiental" *ngIf="selectIdTipoReclamo==1">
@@ -124,7 +127,7 @@
                     style="color: black; font-size: 25px;"></i> Descripción</span>
                 <div class="col-md-12 text-center">
                   <textarea class="form-control inputs" id="Descripcion" name="message" placeholder="No hay descripción"
-                    rows="7" [formControl]="descripcionCtrl"></textarea>
+                    rows="6" [formControl]="descripcionCtrl"></textarea>
                 </div>
               </div>
 
@@ -143,38 +146,94 @@
                   <textarea class="form-control inputs" id="UrlFoto" name="urlFoto" placeholder="URL Foto" rows="1"
                     [formControl]="urlFotoCtrl"></textarea>
                 </div>
+                    <div class="form-group" *ngIf="banderaEdicionReclamo==true" >
+                      <h5>Estados del reclamo</h5>
+                      <div class="form-check form-check-inline" *ngFor="let item of Tiporecla">
+                        <input class="form-check-input"  (change)="dataChangedEstadoReclamo($event)" type="radio" name="r" 
+                        id="inlineRadio1" value="{{item.idTipoReclamo}}">
+                        <label class="form-check-label" for="inlineRadio1">{{item.nombre}}</label>
+                      </div>
+
+                      <div class=" text-center ">
+                        <select class="inputs" name="example" style="width: 100%;">
+                          <option value="{{item.idEstado}}" name="Tipos" *ngFor="let item of objetEstadoReclamo">{{item.nombre}}
+                          </option>
+                        </select>
+                      </div>
+                    </div> 
               </div>
+           
             </div>
+
           </div>
           <div class="row">
-            <div class="text-center d-inline-block col col-6 botones" data-bs-toggle="tooltip" data-bs-placement="top"
-              title="Enviar Reclamo" *ngIf="banderaEdicionReclamo==false">
-              
+            <div class="text-center d-inline-block col col-6 botones" *ngIf="banderaEdicionReclamo==false">
+
               <button type="button" class="btn btn-success" [disabled]="( (tipoReclamoCtrl.invalid && (reclamoAmbientalCtrl.invalid && marcaAutoCtrl.invalid && dominioCtrl.invalid)) || 
                fechaCtrl.invalid || horaCtrl.invalid || ubicacionCtrl.invalid || alturaCtrl.invalid ||
-               urlFotoCtrl.invalid ||  descripcionCtrl.invalid)" (click)="registrarReclamo()"><i class="far fa-check-circle fa-lg"></i>Enviar</button>
+               urlFotoCtrl.invalid ||  descripcionCtrl.invalid)" (click)="registrarReclamo()"  data-bs-toggle="tooltip" data-bs-placement="top"
+               title="Enviar Reclamo"><i
+                  class="far fa-check-circle fa-lg"></i>Enviar</button>
             </div>
 
-            <div class="text-center d-inline-block col col-6 botones" data-bs-toggle="tooltip" data-bs-placement="top"
-              title="Actualizar Reclamo" *ngIf="banderaEdicionReclamo==true">
-              
-              <button type="button" class="btn btn-primary"><i class="fas fa-sync-alt fa-lg"></i>Actualizar</button>
+            <div class="text-center d-inline-block col col-6 botones"  *ngIf="banderaEdicionReclamo==true">
+
+              <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+              title="Actualizar Reclamo" (click)="MetodoActualizarReclamo()" ><i class="fas fa-sync-alt fa-lg"></i>Actualizar</button>
             </div>
 
-            <div class="text-center d-inline-block col col-6 botones" data-bs-toggle="tooltip" data-bs-placement="top"
-              title="Cancelar Reclamo">
-              <button type="button" class="btn btn-danger" (click)="limpiarPantalla()"><i class="fas fa-times fa-lg"></i>Cancelar</button>
+            <div class="text-center d-inline-block col col-6 botones">
+              <button type="button" class="btn btn-danger"  data-bs-toggle="tooltip" data-bs-placement="top"
+              title="Cancelar Reclamo" (click)="limpiarPantalla()"><i
+                  class="fas fa-times fa-lg"></i>Cancelar</button>
             </div>
           </div>
-
-
-
-
-
         </fieldset>
+        
+
+   
       </form>
     </div>
+    
   </div>
+
+  <div id="contenedorMiReclamo" class="container-fluid" *ngFor="let item of arregloDetalleReclamo" style="text-align: center;" ><!--  -->
+    <h3>Mi Reclamo</h3>
+    <table class="table  table-striped table-bordered border-dark table-responsive">
+      <thead>
+        <tr >
+          <th scope="col">Tipo Reclamo</th>
+          <th scope="col">Motivo Del Reclamo {{item.nombreTRec}}</th>
+          
+          <th scope="col">Dominio</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Hora</th>
+          <th scope="col">Direccion</th>
+          <th scope="col">Altura</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Foto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{item.nombreTRec}}</td>
+          <td>{{item.nombreRecAmbiental}}</td>
+          <td>{{item.dominio}}</td>
+          <td>{{item.fecha}}</td>
+          <td>{{item.hora}}</td>
+          <td>{{item.direccion}}</td>
+          <td>{{item.altura}}</td>
+          <td>{{item.descripcion}}</td>
+          <td><img class="rounded-3" src="{{item.foto}}" alt="" style="width: 150px; height: 100px;"></td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  
+
+
 
 
   <script>
