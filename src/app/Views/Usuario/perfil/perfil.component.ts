@@ -7,6 +7,8 @@ import { ActivatedRoute } from '@angular/router';
 import { TouchSequence } from 'selenium-webdriver';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UsuarioComponent } from '../usuario/usuario.component';
+import { FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -16,23 +18,26 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 
 
+
 export class PerfilComponent implements OnInit {
 
+  editarUsuario = new FormControl('',[Validators.required]);
   datosPerfil: any;
   ruta:any;
 
   public IDusuario:any;
   
-  ideditar:any;
-  editar:boolean=false;
-  
-  //idUsuarioMostrar : datosperfil.IDU;
+   ideditar:any;
+   editar:boolean=false;
+   //usuarioEdit: UsuarioComponent[];
+   
+   //idUsuarioMostrar : datosperfil.IDU;
 
   constructor(public dPerfil: BackenApiService, private _route : ActivatedRoute,private toastr: ToastrService, public modal:NgbModal) {
     /* aca seesta tratando de dividir la ruta de la url para obtener el id que esta entre
     '/main-nav/ y /perfil/  */
     debugger
-    
+   
     //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
     this.ruta = window.location.pathname.split('/');
     
@@ -50,36 +55,29 @@ export class PerfilComponent implements OnInit {
       }
     )
     
-    // this.ideditar=this.ruta[2];
-    // if(this.ideditar){
-    //   this.editar = true;
-    //   this.datosPerfil.get().subscribe((data:datosperfil[])=>{
-    //     this.ediPerfil=data;
-    //     this.ediPerfil=this.datosPerfil.find((x)=>{return x.IDUsuario==this.ideditar});
-    //   },(error)=>{
-    //     console.log(error);
-    //   });
-    // }
-    // else{
-    //   this.editar=false;
-    // }
-    // var id : any;
-    // id = this._route.snapshot.paramMap.get('id');
-    // console.log(id);
+     
+      
   }
 
   ngOnInit(): void {
     // console.log(this.dPerfil.getdatosPerfil(4).subscribe(data => console.log(data)));
   }
 
-  guardarEdicion(){
-    if(this.editar){
-        this.datosPerfil.metodoEditar(this.dPerfil).subscribe(()=>{
-        this.NotificacionExito();
-      }, ()=>{
-        this.notificacionNoExito();
-      })
-    }
+  update():void{
+    // this.dPerfil.metodoEditar(this.datosPerfil).subscribe(
+      
+      this.editarUsuario.value;
+      console.log(this.editarUsuario.value);
+
+    // );
+
+    // if(this.editar){
+    //     this.datosPerfil.metodoEditar(this.dPerfil).subscribe(()=>{
+    //     this.NotificacionExito();
+    //   }, ()=>{
+    //     this.notificacionNoExito();
+    //   })
+    // }
   }
   NotificacionExito() {
     this.toastr.success(
@@ -87,8 +85,8 @@ export class PerfilComponent implements OnInit {
     );
   }
   notificacionNoExito() {
-    this.toastr.success(
-      '¡Error al intertar actualizar!',
+    this.toastr.error(
+      '¡Error al intentar actualizar!',
     );
   }
 }
