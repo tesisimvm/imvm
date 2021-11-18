@@ -15,7 +15,6 @@ import {
 import { ToastrService } from 'ngx-toastr';
 import { Vehiculo } from 'src/app/model/vehiculo';
 
-
 @Component({
   selector: 'app-reclamos',
   templateUrl: './reclamos.component.html',
@@ -34,6 +33,9 @@ export class ReclamosComponent implements OnInit {
   alturaCtrl = new FormControl('', [Validators.required]);
   dominioCtrl = new FormControl('', [Validators.required]);
   ID_Reclamo = new FormControl('', [Validators.required]);
+  estadoReclamoCtrl = new FormControl('', [
+    Validators.required,
+  ]); /* Se utiliza al actualizar */
 
   recla: Reclamo = {
     fecha: '',
@@ -83,8 +85,8 @@ export class ReclamosComponent implements OnInit {
     false; /* se utiliza para validar controles cuando se navega desde historial hacia reclamo */
 
   objetoHistorial: any;
-  idEstadoReclamo:any;
-  objetEstadoReclamo:any;
+  idEstadoReclamo: any;
+  objetEstadoReclamo: any;
 
   public datosHistorial: Array<any> = [];
 
@@ -97,7 +99,7 @@ export class ReclamosComponent implements OnInit {
     this.getListReclamoAmbiental();
     this.getListMarca();
     this.getListModelo();
-    this.obtenerHoraActual();
+    /* this.obtenerHoraActual(); */
 
     //Obtengo la URL y la separo en base a los / en lo que al final obtengo un array
     this.ruta = window.location.pathname.split('/');
@@ -329,8 +331,6 @@ export class ReclamosComponent implements OnInit {
     this.selectIdTipoReclamo = ev.target.value;
   }
 
- 
-
   dataChangedIdMarcaVehiculo(ev: any) {
     this.selectIdMarcaVehiculo = ev.target.value;
   }
@@ -385,9 +385,9 @@ ambiental */
     ]);
   }
   metodo_VisualEditarReclamo(IDDetalle: any) {
-    debugger
+    debugger;
     /* Este metodo se utiliza para controlar lo que se quiere ver cuando se desea editar un reclamo */
-    if (this.ruta[5] == 'historial' && IDDetalle != undefined ) {
+    if (this.ruta[5] == 'historial' && IDDetalle != undefined) {
       this.banderaEdicionReclamo = true;
 
       /* Metodo en el cual se usa para traer todos los datos del reclamo a actualizar */
@@ -406,7 +406,7 @@ ambiental */
   }
 
   dataChangedEstadoReclamo(ev: any) {
-    /* Capturo el id y luego lo uso para traer sus estados */
+    /* Capturo el id del tipo de reclamo y luego lo uso para traer sus estados */
     this.idEstadoReclamo = ev.target.value;
     this.service.getFiltroEstadoHistorial(this.idEstadoReclamo).subscribe(
       (data) => {
@@ -417,26 +417,75 @@ ambiental */
         console.log(error);
       }
     );
-
   }
   /* MetodoEstadoReclamo(id:any){
     console.log("EstadoReclamo: ",id)
   } */
 
-  MetodoActualizarReclamo(){
-    debugger
-    var reclamo: Reclamo={
-      IDReclamo: this.arregloDetalleReclamo[0].iD_Reclamo,
-      fecha: this.arregloDetalleReclamo[0].fecha,
-      foto: this.arregloDetalleReclamo[0].foto,
-      hora: this.arregloDetalleReclamo[0].hora,
-      ID_Sesion: this.arregloDetalleReclamo[0].idSesion,
-      ID_TipoReclamo: this.arregloDetalleReclamo[0].idTipoRec,
-      ID_Estado: this.arregloDetalleReclamo[0].idEstado
+  MetodoActualizarReclamo() {
+    var putfecha: any;
+    var putfoto: any;
+    var puthora: any;
+    var putID_TipoReclamo: any;
+    var putID_Estado: any;
+    debugger;
+    /*  this.dominioCtrl.value == '' || this.marcaAutoCtrl.value == '') &&
+        this.tipoReclamoCtrl.value == '') ||
+        this.fechaCtrl.value == '' ||
+        this.horaCtrl.value == '' ||
+        this.ubicacionCtrl.value == '' ||
+        this.descripcionCtrl.value == '' ||
+        this.urlFotoCtrl.value == '' ||
+        this.alturaCtrl.value == '' */
+
+    if (this.estadoReclamoCtrl.value == '') {
+      putID_Estado = this.arregloDetalleReclamo[0].idEstado;
     }
-    
+    if (this.estadoReclamoCtrl.value != '') {
+      putID_Estado = Number(this.estadoReclamoCtrl.value);
+    }
+    if (this.tipoReclamoCtrl.value == '') {
+      putID_TipoReclamo = this.arregloDetalleReclamo[0].idTipoRec;
+    }
+    if (this.tipoReclamoCtrl.value != '') {
+      putID_TipoReclamo = Number(this.selectIdTipoReclamo);
+    }
+    if (this.fechaCtrl.value == '') {
+      putfecha = this.arregloDetalleReclamo[0].fecha;
+    }
+    if (this.fechaCtrl.value != '') {
+      putfecha = this.fechaCtrl.value + '';
+    }
+    debugger;
+    if (this.horaCtrl.value == '') {
+      puthora = this.arregloDetalleReclamo[0].hora;
+    }
+
+    if (this.horaCtrl.value != '') {
+      puthora = this.horaCtrl.value + '';
+    }
+    if (this.urlFotoCtrl.value == '') {
+      putfoto = this.arregloDetalleReclamo[0].foto;
+    }
+    if (this.urlFotoCtrl.value != '') {
+      putfoto = this.urlFotoCtrl.value + '';
+    }
+
+    var reclamo: Reclamo = {
+      IDReclamo: this.arregloDetalleReclamo[0].iD_Reclamo,
+      fecha: putfecha,
+      foto: putfoto,
+      hora: puthora,
+      ID_Sesion: this.arregloDetalleReclamo[0].idSesion,
+      ID_TipoReclamo: putID_TipoReclamo,
+      ID_Estado: putID_Estado,
+    };
+
+    console.log('reclamo actualizado: ', reclamo);
+
     this.service.putActualizarReclamo(reclamo).subscribe(
       (data) => {
+        debugger;
         console.log(data);
         this.MetodoActualizarDetalleReclamo();
       },
@@ -444,23 +493,75 @@ ambiental */
         console.error(error);
       }
     );
-    
   }
-  MetodoActualizarDetalleReclamo(){
-    var detalleReclamo :DetalleReclamo ={
-      IDDetalleReclamo: this.arregloDetalleReclamo[0].idDetalleReclamo,
-      descripcion: this.arregloDetalleReclamo[0].descripcion,
-      direccion: this.arregloDetalleReclamo[0].direccion,
-      altura: this.arregloDetalleReclamo[0].altura,
-      dominio: this.arregloDetalleReclamo[0].dominio,
-      ID_ReclamoAmbiental: this.arregloDetalleReclamo[0].idRecAmb,
-      ID_Reclamo: this.arregloDetalleReclamo[0].iD_Reclamo
+  MetodoActualizarDetalleReclamo() {
+    var putDescripcion: any;
+    var putUbicacion: any;
+    var putAltura: any;
+    var putDominio: any;
+    var putID_ReclamoAmbiental: any;
 
+    if (this.selectIdinfoReclamo == 0) {
+      putID_ReclamoAmbiental = this.arregloDetalleReclamo[0].idRecAmb;
     }
+    if (this.selectIdinfoReclamo != 0) {
+      putID_ReclamoAmbiental = Number(this.selectIdinfoReclamo);
+    }
+
+    if (this.descripcionCtrl.value == '') {
+      putDescripcion = this.arregloDetalleReclamo[0].descripcion;
+    }
+    if (this.descripcionCtrl.value != '') {
+      putDescripcion = this.descripcionCtrl.value + '';
+    }
+    debugger;
+    if (this.ubicacionCtrl.value == '') {
+      putUbicacion = this.arregloDetalleReclamo[0].direccion;
+    }
+    if (this.ubicacionCtrl.value != '') {
+      putUbicacion = this.ubicacionCtrl.value + '';
+    }
+    if (this.alturaCtrl.value == '') {
+      putAltura = this.arregloDetalleReclamo[0].altura;
+    }
+    if (this.alturaCtrl.value != '') {
+      putAltura = this.alturaCtrl.value + '';
+    }
+    if (this.dominioCtrl.value == '') {
+      putDominio = this.arregloDetalleReclamo[0].dominio;
+    }
+    if (this.dominioCtrl.value != '') {
+      putDominio = this.dominioCtrl.value + '';
+    }
+
+    var detalleReclamo: DetalleReclamo = {
+      IDDetalleReclamo: this.arregloDetalleReclamo[0].idDetalleReclamo,
+      descripcion: putDescripcion,
+      direccion: putUbicacion /* ubicacion */,
+      altura: putAltura,
+      dominio: putDominio,
+      ID_ReclamoAmbiental: putID_ReclamoAmbiental,
+      ID_Reclamo: this.arregloDetalleReclamo[0].iD_Reclamo,
+    };
+    console.log('Detalle :', detalleReclamo);
     this.service.putActualizarDetalleReclamo(detalleReclamo).subscribe(
       (data) => {
         console.log(data);
-        this.MetodoActualizarDetalleReclamo();
+        this.tipoReclamoCtrl.reset();
+        this.reclamoAmbientalCtrl.reset();
+        this.marcaAutoCtrl.reset();
+        this.modeloAutoCtrl.reset();
+        this.fechaCtrl.reset();
+        this.horaCtrl.reset();
+        this.ubicacionCtrl.reset();
+        this.descripcionCtrl.reset();
+        this.urlFotoCtrl.reset();
+        this.alturaCtrl.reset();
+        this.dominioCtrl.reset();
+        this.toastr.success('Reclamo Actualizado con exito', ' ', {
+          timeOut: 5000,
+          progressBar: true,
+        });
       },
       (error) => {
         console.error(error);
@@ -468,7 +569,19 @@ ambiental */
     );
   }
 
- /*  getDatosReclamos(IDDetalle: any) {
+  regresarHistorial(){
+    this.router.navigate([
+      'main-nav',
+      this.IDUsuario,
+      this.IDRol,
+      this.IDsesion,
+      'historial',
+    ]);
+  }
+
+  
+
+  /*  getDatosReclamos(IDDetalle: any) {
     debugger;
     if (IDDetalle == undefined) {
       this.banderaEdicionReclamo == false;
