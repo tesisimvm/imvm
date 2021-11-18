@@ -7,7 +7,7 @@ import { PerfilComponent } from './Views/Usuario/perfil/perfil.component';
 import { ReclamosComponent } from './Views/Reclamo/reclamos/reclamos.component';
 import { HistorialComponent } from './Views/Reclamo/historial/historial.component';
 import { NosotrosComponent } from './Views/Estructura/nosotros/nosotros.component';
-import { PprincipalComponent } from './pprincipal/pprincipal.component';
+import { PprincipalComponent } from './Views/Estructura/pprincipal/pprincipal.component';
 import { ConfiguracionComponent } from './Views/Configuracion/configuracion/configuracion.component';
 import { ModalEditarComponent } from './Views/Usuario/modal-editar/modal-editar.component';
 
