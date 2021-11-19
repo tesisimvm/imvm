@@ -35,3 +35,32 @@ export interface DetalleReclamoActualizar {
   nick: string;
   foto: string;
 }
+
+export interface DetalleReclamoVehicularActualizar{
+  idDetalleReclamo: number;
+  descripcion: string;
+  altura: number;
+  direccion: string;
+  iD_Reclamo: number;
+  fecha: string;
+  hora: string;
+  idSesion: number;
+  iD_estadoRec:number;
+  
+  nombreMarca:string,
+  iD_Vehiculo:number;
+  colorAuto:string,
+  numeroChasis:string,
+  numeroMotor:string,
+  iD_marca: number,
+  iD_EstadoVehiculo: number;
+  iD_Tipovehiculo:number;
+  estadoVehiculo: string;
+  nombreTRec: string;
+  idTipoRec: number;
+  idRecAmb: number;
+  nombreRecAmbiental: string;
+  dominio: null;
+  nick: string;
+  foto: string;
+}

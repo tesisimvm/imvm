@@ -112,7 +112,8 @@ export class ReclamosComponent implements OnInit {
     console.log('ruta: ', this.ruta);
     console.log(' iddetalle: ', this.ruta[7]);
 
-    /* this.getDatosReclamos(this.IDDetalleR); */
+    /* Con este metodo traigo el reclamo y toda su información */
+    debugger;
     this.metodo_VisualEditarReclamo(this.IDDetalleR);
 
     /* console.clear(); */
@@ -384,6 +385,7 @@ ambiental */
       'principal',
     ]);
   }
+
   metodo_VisualEditarReclamo(IDDetalle: any) {
     debugger;
     /* Este metodo se utiliza para controlar lo que se quiere ver cuando se desea editar un reclamo */
@@ -393,8 +395,16 @@ ambiental */
       /* Metodo en el cual se usa para traer todos los datos del reclamo a actualizar */
       this.service.getDetalleReclamoParaActualizar(IDDetalle).subscribe(
         (info) => {
-          this.arregloDetalleReclamo = info;
-          console.log('Array detalle Reclamo: ', this.arregloDetalleReclamo);
+          debugger;
+          /* Acá pregunto si es ambiental o vial, si es ambiental sigo lo comun si es vial traigo los datos del auto */
+          if (info[0].idTipoRec == 1) {
+            this.arregloDetalleReclamo = info;
+            console.log('Array detalle Reclamo: ', this.arregloDetalleReclamo);
+          } else {
+            debugger
+            delete this.arregloDetalleReclamo;
+            this.getDetalleVehicularParaActualizar(info[0].idDetalleReclamo);
+          }
         },
         (error) => {
           console.log(error);
@@ -403,6 +413,24 @@ ambiental */
     } else {
       this.banderaEdicionReclamo == false;
     }
+  }
+  getDetalleVehicularParaActualizar(idDetalleReclamo: number) {
+    debugger;
+
+    this.service.getDetalleReclamoVehicular(idDetalleReclamo).subscribe(
+      (info) => {
+        debugger;
+
+        this.arregloDetalleReclamo = info;
+        console.log(
+          'Array detalle Reclamo Vehicular: ',
+          this.arregloDetalleReclamo
+        );
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   dataChangedEstadoReclamo(ev: any) {
@@ -546,22 +574,16 @@ ambiental */
     console.log('Detalle :', detalleReclamo);
     this.service.putActualizarDetalleReclamo(detalleReclamo).subscribe(
       (data) => {
-        console.log(data);
-        this.tipoReclamoCtrl.reset();
-        this.reclamoAmbientalCtrl.reset();
-        this.marcaAutoCtrl.reset();
-        this.modeloAutoCtrl.reset();
-        this.fechaCtrl.reset();
-        this.horaCtrl.reset();
-        this.ubicacionCtrl.reset();
-        this.descripcionCtrl.reset();
-        this.urlFotoCtrl.reset();
-        this.alturaCtrl.reset();
-        this.dominioCtrl.reset();
-        this.toastr.success('Reclamo Actualizado con exito', ' ', {
-          timeOut: 5000,
-          progressBar: true,
-        });
+        debugger
+        /*1= reclamo ambiental  */
+        if (this.arregloDetalleReclamo[0].idTipoRec == 1) {
+          console.log(data);
+          this.ResetearFormulariosActualizacionReclamo()
+          this.metodo_VisualEditarReclamo(this.IDDetalleR);
+         
+        } else if (this.arregloDetalleReclamo[0].idTipoRec == 2) {
+          this.MetodoActualizarVehiculo();
+        }
       },
       (error) => {
         console.error(error);
@@ -569,7 +591,52 @@ ambiental */
     );
   }
 
-  regresarHistorial(){
+  MetodoActualizarVehiculo() {
+    var putIDVehiculo: any;
+    var putDominio: any;
+    var putID_Marca: any;
+debugger
+
+    if (this.selectIdMarcaVehiculo == 0) {
+      putID_Marca = Number(this.arregloDetalleReclamo[0].iD_marca);
+    }
+    if (this.selectIdMarcaVehiculo != 0) {
+      putID_Marca = Number(this.selectIdMarcaVehiculo);
+    }
+
+    if (this.dominioCtrl.value == '') {
+      putDominio = this.arregloDetalleReclamo[0].dominio;
+    }
+    if (this.dominioCtrl.value != '') {
+      putDominio = this.dominioCtrl.value + '';
+    }
+    debugger
+    var vehiculo:Vehiculo= {
+      IDVehiculo: this.arregloDetalleReclamo[0].iD_Vehiculo,
+      dominio: putDominio,
+      color:this.arregloDetalleReclamo[0].colorAuto,
+      numeroChasis:this.arregloDetalleReclamo[0].numeroChasis,
+      numeroMotor:this.arregloDetalleReclamo[0].numeroMotor,
+      ID_MarcaVehiculo: putID_Marca,
+    
+      ID_Estado: this.arregloDetalleReclamo[0].iD_EstadoVehiculo,
+      ID_TipoVehiculo:this.arregloDetalleReclamo[0].iD_Tipovehiculo
+    };
+
+    this.service.putActualizarDetVehicular(vehiculo).subscribe(
+      (data) => {
+        this.ResetearFormulariosActualizacionReclamo()
+        this.metodo_VisualEditarReclamo(this.IDDetalleR);
+       
+      },
+      (error) => {
+        console.error(error);
+      }
+    )
+
+  }
+
+  regresarHistorial() {
     this.router.navigate([
       'main-nav',
       this.IDUsuario,
@@ -579,7 +646,24 @@ ambiental */
     ]);
   }
 
-  
+  ResetearFormulariosActualizacionReclamo(){
+    this.tipoReclamoCtrl.reset();
+    this.reclamoAmbientalCtrl.reset();
+    this.marcaAutoCtrl.reset();
+    this.modeloAutoCtrl.reset();
+    this.fechaCtrl.reset();
+    this.horaCtrl.reset();
+    this.ubicacionCtrl.reset();
+    this.descripcionCtrl.reset();
+    this.urlFotoCtrl.reset();
+    this.alturaCtrl.reset();
+    this.dominioCtrl.reset();
+    this.estadoReclamoCtrl.reset();
+    this.toastr.success('Reclamo Actualizado con exito', ' paso', {
+      timeOut: 7000,
+      progressBar: true,
+    });
+  }
 
   /*  getDatosReclamos(IDDetalle: any) {
     debugger;

@@ -45,7 +45,7 @@ export class HistorialComponent implements OnInit {
   }
 
   getDetalleReclamos(){
-    this.detalleReclamo.getDetalleReclamoUsuario(this.IDUsuario).subscribe(
+    this.detalleReclamo.getDetalleReclamoUsuario(this.IDUsuario,1).subscribe(
       (info) => {
         console.log(info);
         
@@ -93,13 +93,8 @@ export class HistorialComponent implements OnInit {
   editarReclamo(idDetalle:any){
     console.clear();
     
-    
-    
-    
-
     this.router.navigate(['main-nav', this.IDUsuario,this.IDRol,this.IDSesion,'historial','reclamos',idDetalle]);
    
-
   }
 
 }

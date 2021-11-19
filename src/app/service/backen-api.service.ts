@@ -8,8 +8,9 @@ import { TipoReclamo } from '../model/tipoReclamo';
 import { ReclamoAmbiental } from '../model/reclamoAmbiental';
 import { marca } from '../model/marca';
 import { modelo } from '../model/modelo';
-import { DetalleReclamo, DetalleReclamoActualizar } from '../model/detalleReclamo';
+import { DetalleReclamo, DetalleReclamoActualizar, DetalleReclamoVehicularActualizar } from '../model/detalleReclamo';
 import { EstadoReclamo } from '../model/filtrosHistorial/estadoReclamo';
+import { Vehiculo } from '../model/vehiculo';
 
 
 
@@ -103,14 +104,18 @@ export class BackenApiService {
     return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo');
   }
  /* Metodo para obtener todos reclamos del usuario (historial) */
-  getDetalleReclamoUsuario(idUsuario:number): Observable<any> {
+  getDetalleReclamoUsuario(idUsuario:number,id:number): Observable<any> {
     /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
-    return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo/'+idUsuario);/* Aca recibe parametro 0 iddetalle porque trae todos los del usuario */
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo/'+idUsuario+'/'+id);/* por ahora el id es 1 =pendiente - trae todos los pendientes */
   }
 
-  /* Metodo usado para traer los datos necesarios para actualizar el reclamo */
+  /* Metodo usado para traer los datos necesarios para actualizar el reclamo AMBIENTAL */
   getDetalleReclamoParaActualizar(idDetalleR:number): Observable<any>{
     return this.http.get<DetalleReclamoActualizar[]>('https://localhost:44363/ActualizarReclamo/'+idDetalleR);
+  }
+  /* Metodo usado para traer los datos necesarios para actualizar el reclamo VEHICULAR */
+  getDetalleReclamoVehicular(idDetalleR:number): Observable<any>{
+    return this.http.get<DetalleReclamoVehicularActualizar[]>('https://localhost:44363/ActualizarRecVehicular/'+idDetalleR);
   }
 
   putActualizarReclamo(Recla: Reclamo):Observable<any>{
@@ -123,11 +128,17 @@ export class BackenApiService {
     debugger
     return this.http.put('https://localhost:44363/detallereclamo/'+DetRecla.IDDetalleReclamo,dato,this.httpOptions)
   }
+  /* Aca se usa cuando se cambia la marca del auto */
+  putActualizarDetVehicular(DetoVehiculo: Vehiculo):Observable<any>{
+    var dato = JSON.stringify(DetoVehiculo);
+    debugger
+    return this.http.put('https://localhost:44363/ActualizarRecVehicular/'+DetoVehiculo.IDVehiculo,dato,this.httpOptions)
+  }
 
 
   /****** Filtros Histrial / tambien usado para los estados del reclamo para actualizar ******/
-  getFiltroEstadoHistorial(id:number): Observable<EstadoReclamo[]>{
-    return this.http.get<EstadoReclamo[]>('https://localhost:44363/estadoreclamo/'+id);
+  getFiltroEstadoHistorial(idTipoReclamo:number): Observable<EstadoReclamo[]>{
+    return this.http.get<EstadoReclamo[]>('https://localhost:44363/estadoreclamo/'+idTipoReclamo);
   }
 
   /******* Vehiculo *******/
