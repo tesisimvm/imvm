@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule} from '@angular/material/button';
 import { MainNavComponent } from './Views/Estructura/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -25,6 +25,12 @@ import { NosotrosComponent } from './Views/Estructura/nosotros/nosotros.componen
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ModalEditarComponent } from './Views/Usuario/modal-editar/modal-editar.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { PprincipalComponent } from './Views/Estructura/pprincipal/pprincipal.component';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 
@@ -41,7 +47,9 @@ import { ToastrModule } from 'ngx-toastr';
     HistorialComponent,
     VehiculoComponent,
     ConfiguracionComponent,
-    NosotrosComponent
+    NosotrosComponent,
+    ModalEditarComponent,
+    PprincipalComponent
   ],
   imports: [
     BrowserModule,
@@ -59,7 +67,8 @@ import { ToastrModule } from 'ngx-toastr';
     CommonModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
-   
+    NgbModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

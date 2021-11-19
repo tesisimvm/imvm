@@ -5,6 +5,10 @@ import { datosperfil } from 'src/app/model/perfil';
 import { BackenApiService } from 'src/app/service/backen-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { TouchSequence } from 'selenium-webdriver';
+import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { UsuarioComponent } from '../usuario/usuario.component';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -14,16 +18,30 @@ import { TouchSequence } from 'selenium-webdriver';
 })
 
 
+
 export class PerfilComponent implements OnInit {
 
+  editarUsuario = new FormControl('',[Validators.required]);
   datosPerfil: any;
   ruta:any;
-
+  lala:any;
+  username = new FormControl(['', [Validators.required]]);
+  personalname = new FormControl(['', [Validators.required]]);
+  lastname = new FormControl(['', [Validators.required]]);
+  dninumber = new FormControl(['', [Validators.required]]);
+  email = new FormControl(['', [Validators.required]]);
+  telephonenumber = new FormControl(['', [Validators.required]]);
+  
   public IDusuario:any;
   
-  //idUsuarioMostrar : datosperfil.IDU;
+   ideditar:any;
+   editar:boolean=false;
+   //usuarioEdit: UsuarioComponent[];
+   
+   //idUsuarioMostrar : datosperfil.IDU;
 
-  constructor(public dPerfil: BackenApiService, private _route : ActivatedRoute) {
+  constructor(public dPerfil: BackenApiService, private _route : ActivatedRoute,private toastr: ToastrService, public modal:NgbModal, 
+    private formBuilder:FormBuilder) {
     /* aca seesta tratando de dividir la ruta de la url para obtener el id que esta entre
     '/main-nav/ y /perfil/  */
     debugger
@@ -39,22 +57,30 @@ export class PerfilComponent implements OnInit {
         debugger
         this.datosPerfil = info;
         console.log(this.datosPerfil);
+        this.lala=info;
       },
       (error) => {
         console.log(error);
       }
     )
-    
-    // var id : any;
-    // id = this._route.snapshot.paramMap.get('id');
-    // console.log(id);
-
   }
 
   ngOnInit(): void {
-   
     // console.log(this.dPerfil.getdatosPerfil(4).subscribe(data => console.log(data)));
-    
+  }
+
+  update():void{
+    if(this.username.value == ""){}
+  } //listo trolo
+  NotificacionExito() {
+    this.toastr.success(
+      '¡Datos de usuario actualizados correctamenta!',
+    );
+  }
+  notificacionNoExito() {
+    this.toastr.error(
+      '¡Error al intentar actualizar!',
+    );
   }
 
 }
