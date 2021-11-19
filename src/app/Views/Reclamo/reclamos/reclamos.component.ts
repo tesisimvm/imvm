@@ -401,7 +401,7 @@ ambiental */
             this.arregloDetalleReclamo = info;
             console.log('Array detalle Reclamo: ', this.arregloDetalleReclamo);
           } else {
-            debugger
+            debugger;
             delete this.arregloDetalleReclamo;
             this.getDetalleVehicularParaActualizar(info[0].idDetalleReclamo);
           }
@@ -451,76 +451,90 @@ ambiental */
   } */
 
   MetodoActualizarReclamo() {
-    var putfecha: any;
-    var putfoto: any;
-    var puthora: any;
-    var putID_TipoReclamo: any;
-    var putID_Estado: any;
-    debugger;
-    /*  this.dominioCtrl.value == '' || this.marcaAutoCtrl.value == '') &&
-        this.tipoReclamoCtrl.value == '') ||
-        this.fechaCtrl.value == '' ||
-        this.horaCtrl.value == '' ||
-        this.ubicacionCtrl.value == '' ||
-        this.descripcionCtrl.value == '' ||
-        this.urlFotoCtrl.value == '' ||
-        this.alturaCtrl.value == '' */
-
+    debugger
+    /* idEstadoReclamo */
     if (this.estadoReclamoCtrl.value == '') {
-      putID_Estado = this.arregloDetalleReclamo[0].idEstado;
-    }
-    if (this.estadoReclamoCtrl.value != '') {
-      putID_Estado = Number(this.estadoReclamoCtrl.value);
-    }
-    if (this.tipoReclamoCtrl.value == '') {
-      putID_TipoReclamo = this.arregloDetalleReclamo[0].idTipoRec;
-    }
-    if (this.tipoReclamoCtrl.value != '') {
-      putID_TipoReclamo = Number(this.selectIdTipoReclamo);
-    }
-    if (this.fechaCtrl.value == '') {
-      putfecha = this.arregloDetalleReclamo[0].fecha;
-    }
-    if (this.fechaCtrl.value != '') {
-      putfecha = this.fechaCtrl.value + '';
-    }
-    debugger;
-    if (this.horaCtrl.value == '') {
-      puthora = this.arregloDetalleReclamo[0].hora;
-    }
+      this.toastr.warning(
+        'Para realizar la actualización ingrese el estado correspondiente al reclamo',
+        'Atención',
+        {
+          timeOut: 10000,
+          progressBar: true,
+        }
+      );
+    }else if(this.arregloDetalleReclamo[0].idTipoRec != this.idEstadoReclamo){
+      this.toastr.warning(
+        'Seleccione el estado correcto del reclamo',
+        'Atención',
+        {
+          timeOut: 10000,
+          progressBar: true,
+        }
+      );
+    }else {
+      var putfecha: any;
+      var putfoto: any;
+      var puthora: any;
+      var putID_TipoReclamo: any;
+      var putID_Estado: any;
+      debugger;
 
-    if (this.horaCtrl.value != '') {
-      puthora = this.horaCtrl.value + '';
-    }
-    if (this.urlFotoCtrl.value == '') {
-      putfoto = this.arregloDetalleReclamo[0].foto;
-    }
-    if (this.urlFotoCtrl.value != '') {
-      putfoto = this.urlFotoCtrl.value + '';
-    }
-
-    var reclamo: Reclamo = {
-      IDReclamo: this.arregloDetalleReclamo[0].iD_Reclamo,
-      fecha: putfecha,
-      foto: putfoto,
-      hora: puthora,
-      ID_Sesion: this.arregloDetalleReclamo[0].idSesion,
-      ID_TipoReclamo: putID_TipoReclamo,
-      ID_Estado: putID_Estado,
-    };
-
-    console.log('reclamo actualizado: ', reclamo);
-
-    this.service.putActualizarReclamo(reclamo).subscribe(
-      (data) => {
-        debugger;
-        console.log(data);
-        this.MetodoActualizarDetalleReclamo();
-      },
-      (error) => {
-        console.error(error);
+      if (this.estadoReclamoCtrl.value == '') {
+        putID_Estado = this.arregloDetalleReclamo[0].idEstado;
       }
-    );
+      if (this.estadoReclamoCtrl.value != '') {
+        putID_Estado = Number(this.estadoReclamoCtrl.value);
+      }
+      if (this.tipoReclamoCtrl.value == '') {
+        putID_TipoReclamo = this.arregloDetalleReclamo[0].idTipoRec;
+      }
+      if (this.tipoReclamoCtrl.value != '') {
+        putID_TipoReclamo = Number(this.selectIdTipoReclamo);
+      }
+      if (this.fechaCtrl.value == '') {
+        putfecha = this.arregloDetalleReclamo[0].fecha;
+      }
+      if (this.fechaCtrl.value != '') {
+        putfecha = this.fechaCtrl.value + '';
+      }
+      debugger;
+      if (this.horaCtrl.value == '') {
+        puthora = this.arregloDetalleReclamo[0].hora;
+      }
+
+      if (this.horaCtrl.value != '') {
+        puthora = this.horaCtrl.value + '';
+      }
+      if (this.urlFotoCtrl.value == '') {
+        putfoto = this.arregloDetalleReclamo[0].foto;
+      }
+      if (this.urlFotoCtrl.value != '') {
+        putfoto = this.urlFotoCtrl.value + '';
+      }
+
+      var reclamo: Reclamo = {
+        IDReclamo: this.arregloDetalleReclamo[0].iD_Reclamo,
+        fecha: putfecha,
+        foto: putfoto,
+        hora: puthora,
+        ID_Sesion: this.arregloDetalleReclamo[0].idSesion,
+        ID_TipoReclamo: putID_TipoReclamo,
+        ID_Estado: putID_Estado,
+      };
+
+      console.log('reclamo actualizado: ', reclamo);
+
+      this.service.putActualizarReclamo(reclamo).subscribe(
+        (data) => {
+          debugger;
+          console.log(data);
+          this.MetodoActualizarDetalleReclamo();
+        },
+        (error) => {
+          console.error(error);
+        }
+      );
+    }
   }
   MetodoActualizarDetalleReclamo() {
     var putDescripcion: any;
@@ -561,26 +575,25 @@ ambiental */
     if (this.dominioCtrl.value != '') {
       putDominio = this.dominioCtrl.value + '';
     }
-    debugger
+    debugger;
     var detalleReclamo: DetalleReclamo = {
-      IDDetalleReclamo: Number (this.arregloDetalleReclamo[0].idDetalleReclamo),
+      IDDetalleReclamo: Number(this.arregloDetalleReclamo[0].idDetalleReclamo),
       descripcion: String(putDescripcion),
-      direccion: String( putUbicacion),
+      direccion: String(putUbicacion),
       altura: Number(putAltura),
       dominio: String(putDominio),
-      ID_ReclamoAmbiental: Number( putID_ReclamoAmbiental),
-      ID_Reclamo: Number(this.arregloDetalleReclamo[0].iD_Reclamo)
+      ID_ReclamoAmbiental: Number(putID_ReclamoAmbiental),
+      ID_Reclamo: Number(this.arregloDetalleReclamo[0].iD_Reclamo),
     };
     console.log('Detalle :', detalleReclamo);
     this.service.putActualizarDetalleReclamo(detalleReclamo).subscribe(
       (data) => {
-        debugger
+        debugger;
         /*1= reclamo ambiental  */
         if (this.arregloDetalleReclamo[0].idTipoRec == 1) {
           console.log(data);
-          this.ResetearFormulariosActualizacionReclamo()
+          this.ResetearFormulariosActualizacionReclamo();
           this.metodo_VisualEditarReclamo(this.IDDetalleR);
-         
         } else if (this.arregloDetalleReclamo[0].idTipoRec == 2) {
           this.MetodoActualizarVehiculo();
         }
@@ -595,7 +608,7 @@ ambiental */
     var putIDVehiculo: any;
     var putDominio: any;
     var putID_Marca: any;
-debugger
+    debugger;
 
     if (this.selectIdMarcaVehiculo == 0) {
       putID_Marca = Number(this.arregloDetalleReclamo[0].iD_marca);
@@ -610,30 +623,28 @@ debugger
     if (this.dominioCtrl.value != '') {
       putDominio = this.dominioCtrl.value + '';
     }
-    debugger
-    var vehiculo:Vehiculo= {
+    debugger;
+    var vehiculo: Vehiculo = {
       IDVehiculo: this.arregloDetalleReclamo[0].iD_Vehiculo,
       dominio: putDominio,
-      color:this.arregloDetalleReclamo[0].colorAuto,
-      numeroChasis:this.arregloDetalleReclamo[0].numeroChasis,
-      numeroMotor:this.arregloDetalleReclamo[0].numeroMotor,
+      color: this.arregloDetalleReclamo[0].colorAuto,
+      numeroChasis: this.arregloDetalleReclamo[0].numeroChasis,
+      numeroMotor: this.arregloDetalleReclamo[0].numeroMotor,
       ID_MarcaVehiculo: putID_Marca,
-    
+
       ID_Estado: this.arregloDetalleReclamo[0].iD_EstadoVehiculo,
-      ID_TipoVehiculo:this.arregloDetalleReclamo[0].iD_Tipovehiculo
+      ID_TipoVehiculo: this.arregloDetalleReclamo[0].iD_Tipovehiculo,
     };
 
     this.service.putActualizarDetVehicular(vehiculo).subscribe(
       (data) => {
-        this.ResetearFormulariosActualizacionReclamo()
+        this.ResetearFormulariosActualizacionReclamo();
         this.metodo_VisualEditarReclamo(this.IDDetalleR);
-       
       },
       (error) => {
         console.error(error);
       }
-    )
-
+    );
   }
 
   regresarHistorial() {
@@ -646,7 +657,7 @@ debugger
     ]);
   }
 
-  ResetearFormulariosActualizacionReclamo(){
+  ResetearFormulariosActualizacionReclamo() {
     this.tipoReclamoCtrl.reset();
     this.reclamoAmbientalCtrl.reset();
     this.marcaAutoCtrl.reset();

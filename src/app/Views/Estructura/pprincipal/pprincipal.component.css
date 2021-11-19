@@ -6,3 +6,13 @@
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
   }
+
+
+  .contenedorReporte{
+    margin: 2%;
+  }
+
+ iframe{
+  width:100%;
+   height:600px;
+ }

@@ -42,7 +42,7 @@ export class ReclamosComponent implements OnInit {
   getListTipoReclamos(): void {
    this.service.getTipoReclamo().subscribe(
      (res) => {
-       this.Tiporecla = res;
+       /* this.Tiporecla = res; */
      },
      (err) => console.error(err)
    );
@@ -52,7 +52,7 @@ export class ReclamosComponent implements OnInit {
    this.service.getReclamoAmbiental().subscribe(
      (res) => {
        console.log(res);
-       this.ReclamoAmbie = res;
+       /* this.ReclamoAmbie = res; */
      },
      (err) => console.error(err)
    );
@@ -61,7 +61,7 @@ export class ReclamosComponent implements OnInit {
  getListMarca(): void {
    this.service.getMarca().subscribe(
      (res) => {
-       this.Mar = res;
+       /* this.Mar = res; */
      },
      (err) => console.error(err)
    );
@@ -70,7 +70,7 @@ export class ReclamosComponent implements OnInit {
  getListModelo(): void {
    this.service.getModelo().subscribe(
      (res) => {
-       this.Mod = res;
+       /* this.Mod = res; */
      },
      (err) => console.error(err)
    );
