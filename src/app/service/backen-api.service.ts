@@ -109,6 +109,12 @@ export class BackenApiService {
     return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo/'+idUsuario+'/'+id);/* por ahora el id es 1 =pendiente - trae todos los pendientes */
   }
 
+  /* Metodo para obtener todos reclamos siendo administrador o empleado */
+  getTodoslosDetalleReclamo(): Observable<any> {
+    /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo/');/* por ahora el id es 1 =pendiente - trae todos los pendientes */
+  }
+
   /* Metodo usado para traer los datos necesarios para actualizar el reclamo AMBIENTAL */
   getDetalleReclamoParaActualizar(idDetalleR:number): Observable<any>{
     return this.http.get<DetalleReclamoActualizar[]>('https://localhost:44363/ActualizarReclamo/'+idDetalleR);
@@ -140,6 +146,24 @@ export class BackenApiService {
   getFiltroEstadoHistorial(idTipoReclamo:number): Observable<EstadoReclamo[]>{
     return this.http.get<EstadoReclamo[]>('https://localhost:44363/estadoreclamo/'+idTipoReclamo);
   }
+
+  /****** Busqueda por filtros siendo admininistrador o empleado***/
+ /*  https://localhost:44363/FiltrosReclamos?idtipor=1&idestado=1 */
+  getDetalleReclamoFiltrado(idTipoR:number,idEstadoReclamo:number): Observable<any> {
+    /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idtipor='+idTipoR+"&"+'idestado='+idEstadoReclamo);
+  }
+
+   /****** Busqueda por filtros siendo admininistrador o empleado***/
+ 
+ getDetalleReclamoFiltradoUsuario(idTipoR:number,idEstadoReclamo:number,idUsuario:number): Observable<any> {
+  /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
+  return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos/'+idTipoR+'/'+idEstadoReclamo+'/'+idUsuario);
+}
+
+
+  
+
 
   /******* Vehiculo *******/
   postVehiculo(vehiculo: any):Observable<any>{

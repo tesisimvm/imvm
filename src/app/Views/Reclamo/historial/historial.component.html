@@ -2,7 +2,7 @@
   <h1> Historial </h1>
 </div>
 
-<div id="filtros" class="container-fluid">
+<form id="filtros" class="container-fluid">
   <div class="row">
     <div class="col-md-4">
 
@@ -20,7 +20,8 @@
         <h5>Tipo de Reclamo</h5>
         <div class="seleccionFiltros">
           <select class="form-select d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Tipo de Reclamo" placeholder="Clic para abrir" (change)="obtenerIDTipoReclamo($event)" aria-label="">
+            title="Tipo de Reclamo" placeholder="Clic para abrir" (change)="obtenerIDTipoReclamo($event)" aria-label=""
+            [formControl]="tipoReclamoCtrl">
             <!-- Default select example -->
             <option *ngFor="let item of TR" value="{{item.idTipoReclamo}}" selected>{{item.nombre}}</option>
 
@@ -34,8 +35,10 @@
         <h5>Estado</h5>
         <div class="seleccionFiltros">
           <select class="form-select d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Estado de Reclamo" aria-label="">
-            <option *ngFor="let item of FER" selected>{{item.nombre}}</option>
+            title="Estado de Reclamo" aria-label="" (change)="obtenerIDEstadoReclamo($event)"
+            [formControl]="estadoReclamoCtrl">
+            <option value="{{item.idEstado}}" *ngFor="let item of estadosReclamoFiltro" selected>{{item.nombre}}
+            </option>
 
           </select>
         </div>
@@ -48,12 +51,12 @@
           <div class="col-md-6">
             <h5>Fecha Inicio</h5>
             <input id="Fecha" class="calendario d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-              title="Fecha Inicio" name="name" type="date" placeholder="Fecha">
+              title="Fecha Inicio" name="name" type="date" placeholder="Fecha" [formControl]="fechaDesdeCtrl">
           </div>
           <div class="col-md-6">
             <h5 for="">Fecha Fin</h5>
             <input id="Fecha" class="calendario d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-              title="Fecha Fin" name="name" type="date" placeholder="Fecha">
+              title="Fecha Fin" name="name" type="date" placeholder="Fecha" [formControl]="fechaHastaCtrl">
           </div>
         </div>
       </div>
@@ -67,13 +70,14 @@
         <h5>Usuario</h5>
         <div class="seleccionFiltros">
           <input type="text" class="form-control d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Nombre del Usuario" id="nombreUsuario" placeholder="Nombre">
+            title="Nombre del Usuario" id="nombreUsuario" placeholder="Nombre" [formControl]="nombreUsuarioCtrl">
         </div>
       </div>
       <div class="col col-sm-12 col-md-6">
         <div class="buscar">
           <button class="btn btn-primary d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Buscar Reclamo"><i class="fas fa-search fa-lg"></i>Buscar</button>
+            title="Buscar Reclamo" (click)="btnBuscarReclamosFiltrados()"><i
+              class="fas fa-search fa-lg"></i>Buscar</button>
         </div>
 
       </div>
@@ -91,7 +95,8 @@
         <h5>Tipo de Reclamo</h5>
         <div class="seleccionFiltros">
           <select class="form-select d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Tipo de Reclamo" placeholder="Clic para abrir" (change)="obtenerIDTipoReclamo($event)" aria-label="">
+            title="Tipo de Reclamo" placeholder="Clic para abrir" (change)="obtenerIDTipoReclamo($event)" aria-label=""
+            [formControl]="tipoReclamoCtrl">
             <!-- Default select example -->
             <option *ngFor="let item of TR" value="{{item.idTipoReclamo}}" selected>{{item.nombre}}</option>
 
@@ -105,8 +110,10 @@
         <h5>Estado</h5>
         <div class="seleccionFiltros">
           <select class="form-select d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Estado del Reclamo" aria-label="">
-            <option *ngFor="let item of FER" selected>{{item.nombre}}</option>
+            title="Estado del Reclamo" aria-label="" (change)="obtenerIDEstadoReclamo($event)"
+            [formControl]="estadoReclamoCtrl">
+            <option value="{{item.idEstado}}" *ngFor="let item of estadosReclamoFiltro" selected>{{item.nombre}}
+            </option>
 
           </select>
         </div>
@@ -119,12 +126,12 @@
           <div class="col-md-6">
             <h5>Fecha Inicio</h5>
             <input id="Fecha" class="calendario d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-              title="Fecha Inicio" name="name" type="date" placeholder="Fecha">
+              title="Fecha Inicio" name="name" type="date" placeholder="Fecha" [formControl]="fechaDesdeCtrl">
           </div>
           <div class="col-md-6">
             <h5 for="">Fecha Fin</h5>
             <input id="Fecha" class="calendario d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-              title="Fecha Fin" name="name" type="date" placeholder="Fecha">
+              title="Fecha Fin" name="name" type="date" placeholder="Fecha" [formControl]="fechaHastaCtrl">
           </div>
         </div>
       </div>
@@ -135,7 +142,8 @@
       <div class="col col-sm-12 col-md-12 col-lg-12">
         <div class="buscar">
           <button class="btn btn-primary d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Buscar Reclamos"><i class="fas fa-search fa-lg"></i>Buscar</button>
+            title="Buscar Reclamos" (click)="btnBuscarReclamosFiltrados()"><i
+              class="fas fa-search fa-lg"></i>Buscar</button>
         </div>
 
       </div>
@@ -143,59 +151,62 @@
 
 
   </div>
-</div>
+</form>
+
+<form action="" [formControl]="formTarjetas">
+
+  <div id="principal" class="container-fluid">
+    <div class="container mx-auto mt-4">
+      <div class="row">
+        <div *ngFor="let item of Dreclamos " class="col-md-4">
+
+          <div class="card" style="width: 18rem;">
+            <img class="card-img-top" [src]="item.foto">
+
+            <div class="card-body">
+              <h5 class="card-title"> <i class="far fa-user"> Usuario: {{item.nick}} </i></h5>
+              <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Nrº Reclamo:
+                  {{item.iD_Reclamo}}</i>
+              </h6>
+              <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Estado: {{item.nombre}}</i></h6>
+              <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Reclamo:
+                  {{item.nombreRecAmbiental}}</i></h6>
+              <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Tipo: {{item.nombreTRec}}</i></h6>
 
 
-<div id="principal" class="container-fluid">
-  <div class="container mx-auto mt-4">
-    <div class="row">
-      <div *ngFor="let item of Dreclamos " class="col-md-4">
+              <p class="card-text"> <i class="far fa-comment-dots"> Descripcion: {{item.descripcion}}</i></p>
+              <p class="card-text"> <i class="far fa-calendar-alt"> Fecha: {{item.fecha}}</i></p>
 
-        <div class="card" style="width: 18rem;">
-          <img class="card-img-top" [src]="item.foto">
+              <p class="card-text"> <i class="far fa-clock"> Hora: {{item.hora}}</i></p>
+              <p class="card-text"> <i class="fas fa-car"> Dominio: {{item.dominio}}</i></p>
+              <p class="card-text"> <i class="fas fa-map-signs"> Dirección: {{item.direccion}}</i></p>
+              <p class="card-text"> <i class="fas fa-map-signs"> Altura: {{item.altura}}</i></p>
 
-          <div class="card-body">
-            <h5 class="card-title"> <i class="far fa-user"> Usuario: {{item.nick}} </i></h5>
-            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Nrº Reclamo:
-                {{item.iD_Reclamo}}</i>
-            </h6>
-            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Estado: {{item.nombre}}</i></h6>
-            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Reclamo:
-                {{item.nombreRecAmbiental}}</i></h6>
-            <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Tipo: {{item.nombreTRec}}</i></h6>
+              <div class="container">
+                <div class="row">
+                  <div *ngIf="(IDRol==1 || IDRol==2 || IDRol==3)" class="col col-3">
+                    <!-- 1 admin 2 empleado 3 usuario -->
+                    <button type="button" class="btn mr-2 btn-light d-inline-block" data-bs-toggle="tooltip"
+                      data-bs-placement="top" title="Editar Reclamo" (click)="editarReclamo(item.idDetalleReclamo)"><i
+                        class="fas fa-edit"></i>
 
+                      <!-- item.nombre,item.idTipoRec,item.idRecAmb,item.nombreRecAmbiental,item.nombreTRec,item.descripcion,item.fecha,item.hora,item.direccion,item.altura -->
+                    </button> <!-- routerLink="/main-nav/historial/reclamos" -->
+                  </div>
+                  <div class="col col-3">
+                    <button type="button" class="btn mr-2  btn-danger d-inline-block" data-bs-toggle="tooltip"
+                      data-bs-placement="top" title="Cancelar Reclamo"><i class="fas fa-trash-alt"></i>
+                    </button>
+                  </div>
 
-            <p class="card-text"> <i class="far fa-comment-dots"> Descripcion: {{item.descripcion}}</i></p>
-            <p class="card-text"> <i class="far fa-calendar-alt"> Fecha: {{item.fecha}}</i></p>
-
-            <p class="card-text"> <i class="far fa-clock"> Hora: {{item.hora}}</i></p>
-            <p class="card-text"> <i class="fas fa-car"> Dominio: {{item.dominio}}</i></p>
-            <p class="card-text"> <i class="fas fa-map-signs"> Dirección: {{item.direccion}}</i></p>
-            <p class="card-text"> <i class="fas fa-map-signs"> Altura: {{item.altura}}</i></p>
-
-            <div class="container">
-              <div class="row">
-                <div *ngIf="(IDRol==1 || IDRol==2 || IDRol==3)" class="col col-3">
-                  <!-- 1 admin 2 empleado 3 usuario -->
-                  <button type="button" class="btn mr-2 btn-light d-inline-block" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Editar Reclamo"
-                    (click)="editarReclamo(item.idDetalleReclamo)"><i class="fas fa-edit"></i>
-
-                    <!-- item.nombre,item.idTipoRec,item.idRecAmb,item.nombreRecAmbiental,item.nombreTRec,item.descripcion,item.fecha,item.hora,item.direccion,item.altura -->
-                  </button> <!-- routerLink="/main-nav/historial/reclamos" -->
-                </div>
-                <div class="col col-3">
-                  <button type="button" class="btn mr-2  btn-danger d-inline-block" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="Cancelar Reclamo"><i class="fas fa-trash-alt"></i>
-                  </button>
                 </div>
 
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+</form>
