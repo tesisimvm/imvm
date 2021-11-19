@@ -367,8 +367,8 @@ ambiental */
     this.alturaCtrl.reset();
     this.dominioCtrl.reset();
 
-    this.toastr.info('Será redirigido al menú principal', 'Reclamo Cancelado', {
-      timeOut: 2000,
+    this.toastr.info('Será redirigido al menú principal', '', {
+      timeOut: 9000,
       progressBar: true,
     });
     this.metodoRedireccion();
@@ -561,15 +561,15 @@ ambiental */
     if (this.dominioCtrl.value != '') {
       putDominio = this.dominioCtrl.value + '';
     }
-
+    debugger
     var detalleReclamo: DetalleReclamo = {
-      IDDetalleReclamo: this.arregloDetalleReclamo[0].idDetalleReclamo,
-      descripcion: putDescripcion,
-      direccion: putUbicacion /* ubicacion */,
-      altura: putAltura,
-      dominio: putDominio,
-      ID_ReclamoAmbiental: putID_ReclamoAmbiental,
-      ID_Reclamo: this.arregloDetalleReclamo[0].iD_Reclamo,
+      IDDetalleReclamo: Number (this.arregloDetalleReclamo[0].idDetalleReclamo),
+      descripcion: String(putDescripcion),
+      direccion: String( putUbicacion),
+      altura: Number(putAltura),
+      dominio: String(putDominio),
+      ID_ReclamoAmbiental: Number( putID_ReclamoAmbiental),
+      ID_Reclamo: Number(this.arregloDetalleReclamo[0].iD_Reclamo)
     };
     console.log('Detalle :', detalleReclamo);
     this.service.putActualizarDetalleReclamo(detalleReclamo).subscribe(
@@ -659,7 +659,7 @@ debugger
     this.alturaCtrl.reset();
     this.dominioCtrl.reset();
     this.estadoReclamoCtrl.reset();
-    this.toastr.success('Reclamo Actualizado con exito', ' paso', {
+    this.toastr.success('Reclamo Actualizado con exito', '', {
       timeOut: 7000,
       progressBar: true,
     });
