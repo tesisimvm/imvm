@@ -29,6 +29,7 @@ import { ModalEditarComponent } from './Views/Usuario/modal-editar/modal-editar.
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { PprincipalComponent } from './Views/Estructura/pprincipal/pprincipal.component';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -66,7 +67,8 @@ import { PprincipalComponent } from './Views/Estructura/pprincipal/pprincipal.co
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(),
     NgbModule,
-    NgxChartsModule
+    NgxChartsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

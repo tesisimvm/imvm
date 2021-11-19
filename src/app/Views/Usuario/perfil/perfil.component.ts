@@ -8,7 +8,7 @@ import { TouchSequence } from 'selenium-webdriver';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UsuarioComponent } from '../usuario/usuario.component';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -24,7 +24,14 @@ export class PerfilComponent implements OnInit {
   editarUsuario = new FormControl('',[Validators.required]);
   datosPerfil: any;
   ruta:any;
-
+  lala:any;
+  username = new FormControl(['', [Validators.required]]);
+  personalname = new FormControl(['', [Validators.required]]);
+  lastname = new FormControl(['', [Validators.required]]);
+  dninumber = new FormControl(['', [Validators.required]]);
+  email = new FormControl(['', [Validators.required]]);
+  telephonenumber = new FormControl(['', [Validators.required]]);
+  
   public IDusuario:any;
   
    ideditar:any;
@@ -33,7 +40,8 @@ export class PerfilComponent implements OnInit {
    
    //idUsuarioMostrar : datosperfil.IDU;
 
-  constructor(public dPerfil: BackenApiService, private _route : ActivatedRoute,private toastr: ToastrService, public modal:NgbModal) {
+  constructor(public dPerfil: BackenApiService, private _route : ActivatedRoute,private toastr: ToastrService, public modal:NgbModal, 
+    private formBuilder:FormBuilder) {
     /* aca seesta tratando de dividir la ruta de la url para obtener el id que esta entre
     '/main-nav/ y /perfil/  */
     debugger
@@ -49,14 +57,12 @@ export class PerfilComponent implements OnInit {
         debugger
         this.datosPerfil = info;
         console.log(this.datosPerfil);
+        this.lala=info;
       },
       (error) => {
         console.log(error);
       }
     )
-    
-     
-      
   }
 
   ngOnInit(): void {
@@ -64,21 +70,8 @@ export class PerfilComponent implements OnInit {
   }
 
   update():void{
-    // this.dPerfil.metodoEditar(this.datosPerfil).subscribe(
-      
-      this.editarUsuario.value;
-      console.log(this.editarUsuario.value);
-
-    // );
-
-    // if(this.editar){
-    //     this.datosPerfil.metodoEditar(this.dPerfil).subscribe(()=>{
-    //     this.NotificacionExito();
-    //   }, ()=>{
-    //     this.notificacionNoExito();
-    //   })
-    // }
-  }
+    if(this.username.value == ""){}
+  } //listo trolo
   NotificacionExito() {
     this.toastr.success(
       '¡Datos de usuario actualizados correctamenta!',
@@ -89,4 +82,5 @@ export class PerfilComponent implements OnInit {
       '¡Error al intentar actualizar!',
     );
   }
+
 }

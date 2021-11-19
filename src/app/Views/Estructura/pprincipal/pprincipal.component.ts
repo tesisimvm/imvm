@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { tipoDeReclamo } from 'src/app/model/Dashboard/tiposReclamo';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { BackenApiService } from 'src/app/service/backen-api.service';
 
 @Component({
   selector: 'app-pprincipal',
@@ -9,37 +13,36 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 })
 export class PprincipalComponent implements OnInit {
 
-  view: [number, number] = [700, 400];
+  data:tipoDeReclamo[]=[];
+
+  view: [number, number] = [400, 400];
+  view2: [number, number] = [500, 423];
 
   gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;
   isDoughnut: boolean = false;
+  showXAxis: boolean = true;
+  showYAxis: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Country';
+  showYAxisLabel: boolean = true;
+  yAxisLabel: string = 'Population';
+  legendTitle: string = 'Years';
 
   colorScheme = {
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
+    domain: ['#F2A873', '#6F9BDC', '#C7B42C', '#AAAAAA']
   };
 
-  single = [
-    {
-      "name": "Germany",
-      "value": 8940000
-    },
-    {
-      "name": "USA",
-      "value": 5000000
-    },
-    {
-      "name": "France",
-      "value": 7200000
-    },
-      {
-      "name": "UK",
-      "value": 6200000
-    }
-  ];
+  constructor( 
+    private toastr: ToastrService,
+    private service: BackenApiService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute) {}
 
-  constructor(  ) {}
+  // get data(){
+  //    return this.service.getReclamo;
+  // }
 
   onSelect(data: any): void {
     console.log('Item clicked', JSON.parse(JSON.stringify(data)));
@@ -54,6 +57,7 @@ export class PprincipalComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // this.data=tipoDeReclamo[];
   }
 
 }
