@@ -142,7 +142,10 @@ export class HistorialComponent implements OnInit {
   btnBuscarReclamosFiltrados() {
     var filtroIDTReclamo: any;
     var filtroIDEstadoReclamo: any;
+    var filtroFechaInicio:any;
+    var filtroFechaFin:any;
     debugger
+    /* Administrador y empleado */
     if (this.IDRol == 1 || this.IDRol == 2) {
       debugger;
       if (this.tipoReclamoCtrl.value != null) {
@@ -171,12 +174,15 @@ export class HistorialComponent implements OnInit {
           (err) => console.error(err)
         );
     }else{
+      debugger
       /* Filtro por usuario */
       if (this.tipoReclamoCtrl.value != null) {
         filtroIDTReclamo = this.selectIDTipReclamo;
         filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
+        filtroFechaInicio = this.fechaDesdeCtrl.value;
+        filtroFechaFin= this.fechaHastaCtrl.value;
       }
-      this.detalleReclamo.getDetalleReclamoFiltradoUsuario(filtroIDTReclamo, filtroIDEstadoReclamo,this.IDUsuario)
+      this.detalleReclamo.getDetalleReclamoFiltradoUsuario(filtroIDTReclamo, filtroIDEstadoReclamo,this.IDUsuario,filtroFechaInicio,filtroFechaFin)
         .subscribe(
           (res) => {
             this.formTarjetas.reset();

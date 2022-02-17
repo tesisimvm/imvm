@@ -163,9 +163,9 @@ export class BackenApiService {
 
    /****** Busqueda por filtros siendo admininistrador o empleado***/
  
- getDetalleReclamoFiltradoUsuario(idTipoR:number,idEstadoReclamo:number,idUsuario:number): Observable<any> {
+ getDetalleReclamoFiltradoUsuario(idTipoR:number,idEstadoReclamo:number,idUsuario:number,fechaInicio:string,fechaFin:string): Observable<any> {
   /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
-  return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos/'+idTipoR+'/'+idEstadoReclamo+'/'+idUsuario);
+  return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos/'+idTipoR+'/'+idEstadoReclamo+'/'+idUsuario+'/'+fechaInicio+'/'+fechaFin);
 }
 
 

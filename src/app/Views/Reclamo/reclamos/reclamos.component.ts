@@ -462,7 +462,7 @@ ambiental */
           progressBar: true,
         }
       );
-    }else if(this.arregloDetalleReclamo[0].idTipoRec != this.idEstadoReclamo){
+    }else if(this.arregloDetalleReclamo[0].idTipoRec != this.idEstadoReclamo ){ 
       this.toastr.warning(
         'Seleccione el estado correcto del reclamo',
         'Atención',

@@ -42,8 +42,8 @@ select {
 
 #principal {
   border-radius: 63px;
-  background: #252527;
-  box-shadow: 20px 20px 20px #171719;
+  background: #757580;
+  box-shadow: 5px 5px 10px #015bd1;
   padding-top: 2rem;
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -64,6 +64,10 @@ select {
 }
 /************* Clases ************ */
 
+.fotoReclamo {
+  font-size: 14px;  
+}
+
 .busquedaFiltros {
   text-align: center;
   /* border: rgb(182, 180, 180) 1px solid; */
@@ -76,7 +80,7 @@ select {
 }
 
 .card {
-  background: rgb(84, 10, 26); /* Color del fondo de la tarjeta */
+  background: rgb(5, 49, 107); /* Color del fondo de la tarjeta */
   border: 1px solid #918f8f;
   color: rgba(250, 250, 250, 0.8);
   margin-bottom: 2rem;
@@ -87,7 +91,7 @@ select {
 }
 
 /* div del boton bsca */
-.buscar{
+.buscar {
   margin-top: 33px;
 }
 /* Boton buscar */
@@ -100,8 +104,6 @@ select {
 .fa-search {
   margin-right: 20px;
 }
-
-
 
 /* .seleccionFiltros{
   margin-left: 50px;

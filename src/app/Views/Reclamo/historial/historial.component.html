@@ -161,17 +161,17 @@
         <div *ngFor="let item of Dreclamos " class="col-md-4">
 
           <div class="card" style="width: 18rem;">
-            <img class="card-img-top" [src]="item.foto">
+            <img class="card-img-top fotoReclamo"  alt="Foto" [src]="item.foto">
 
             <div class="card-body">
               <h5 class="card-title"> <i class="far fa-user"> Usuario: {{item.nick}} </i></h5>
-              <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Nrº Reclamo:
+              <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Nrº Reclamo:
                   {{item.iD_Reclamo}}</i>
               </h6>
-              <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Estado: {{item.nombre}}</i></h6>
-              <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Reclamo:
+              <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Estado: {{item.nombre}}</i></h6>
+              <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Reclamo:
                   {{item.nombreRecAmbiental}}</i></h6>
-              <h6 class="card-subtitle mb-2 text-muted"> <i class="far fa-bookmark"> Tipo: {{item.nombreTRec}}</i></h6>
+              <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Tipo: {{item.nombreTRec}}</i></h6>
 
 
               <p class="card-text"> <i class="far fa-comment-dots"> Descripcion: {{item.descripcion}}</i></p>
