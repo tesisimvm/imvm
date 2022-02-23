@@ -38,6 +38,9 @@ export class HistorialComponent implements OnInit {
   @Input() dataEntrante: any;
   objetoReclamo: any;
 
+   filtroNombreUsuario:string=""; //se va usar para filtrar por nombre de usuario (hacer una validacion al crear el usuario, que no haya 2 usuarios con el mismo nombre )
+
+
   constructor(
     public detalleReclamo: BackenApiService,
     private router: Router,
@@ -140,24 +143,48 @@ export class HistorialComponent implements OnInit {
   }
 
   btnBuscarReclamosFiltrados() {
+    //NOTA: si busco todos los reclamos de ambiental tengo que hacer una nueva funcion para ese mismo estado, solamente es (23/02/2022)
     var filtroIDTReclamo: any;
     var filtroIDEstadoReclamo: any;
-    var filtroFechaInicio:any;
-    var filtroFechaFin:any;
-    debugger
+    var filtroFechaInicio: any;
+    var filtroFechaFin: any;
+    debugger;
     /* Administrador y empleado */
     if (this.IDRol == 1 || this.IDRol == 2) {
       debugger;
-      if (this.tipoReclamoCtrl.value != null) {
+      /* Busqueda por tipo reclamo y estado (no ingreso el nombre de usuario) */
+      if ((this.tipoReclamoCtrl.value != null && this.estadoReclamoCtrl.value!=null) &&  this.nombreUsuarioCtrl==null ) {
         filtroIDTReclamo = this.selectIDTipReclamo;
         filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
+        this.detalleReclamo
+          .getDetalleReclamoFiltrado(filtroIDTReclamo, filtroIDEstadoReclamo).subscribe(
+            (res) => {
+              this.formTarjetas.reset();
+              delete this.Dreclamos;
+              debugger;
+              this.Dreclamos = res;
+              if (res.length == 0) {
+                this.toastr.info(
+                  'No se encuentran reclamos registrados para la busqueda seleccionada ',
+                  'Atención',
+                  {
+                    timeOut: 5000,
+                    progressBar: true,
+                  }
+                );
+              }
+            },
+            (err) => console.error(err)
+          );
       }
-      this.detalleReclamo
-        .getDetalleReclamoFiltrado(filtroIDTReclamo, filtroIDEstadoReclamo)
-        .subscribe(
+      /* Busqueda por nombre de usuario - siendo administrador */
+      if((this.tipoReclamoCtrl.value=="" && this.estadoReclamoCtrl.value=="" )&& this.nombreUsuarioCtrl.value!=""){
+        debugger
+        this.filtroNombreUsuario = this.nombreUsuarioCtrl.value+'';
+        this.detalleReclamo.getDetalleReclamoFiltradoNombreUsuario(this.filtroNombreUsuario).subscribe(
           (res) => {
-            this.formTarjetas.reset();
-            delete this.Dreclamos;
+            this.formTarjetas.reset();//elimino las tarjetas
+            delete this.Dreclamos;//borro el objeto con toda la informacion
             debugger;
             this.Dreclamos = res;
             if (res.length == 0) {
@@ -173,38 +200,45 @@ export class HistorialComponent implements OnInit {
           },
           (err) => console.error(err)
         );
-    }else{
-      debugger
+
+        }
+
+    } else {
+      debugger;
       /* Filtro por usuario */
       if (this.tipoReclamoCtrl.value != null) {
         filtroIDTReclamo = this.selectIDTipReclamo;
         filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
         filtroFechaInicio = this.fechaDesdeCtrl.value;
-        filtroFechaFin= this.fechaHastaCtrl.value;
+        filtroFechaFin = this.fechaHastaCtrl.value;
+
+        this.detalleReclamo
+          .getDetalleReclamoFiltradoUsuario(
+            filtroIDTReclamo,
+            filtroIDEstadoReclamo,
+            this.IDUsuario
+          )
+          .subscribe(
+            (res) => {
+              this.formTarjetas.reset();
+              delete this.Dreclamos;
+              debugger;
+              this.Dreclamos = res;
+              console.log(this.Dreclamos);
+              if (res.length == 0) {
+                this.toastr.info(
+                  'No se encuentran reclamos registrados para la busqueda seleccionada ',
+                  'Atención',
+                  {
+                    timeOut: 5000,
+                    progressBar: true,
+                  }
+                );
+              }
+            },
+            (err) => console.error(err)
+          );
       }
-      this.detalleReclamo.getDetalleReclamoFiltradoUsuario(filtroIDTReclamo, filtroIDEstadoReclamo,this.IDUsuario,filtroFechaInicio,filtroFechaFin)
-        .subscribe(
-          (res) => {
-            this.formTarjetas.reset();
-            delete this.Dreclamos;
-            debugger;
-            this.Dreclamos = res;
-            if (res.length == 0) {
-              this.toastr.info(
-                'No se encuentran reclamos registrados para la busqueda seleccionada ',
-                'Atención',
-                {
-                  timeOut: 5000,
-                  progressBar: true,
-                }
-              );
-            }
-          },
-          (err) => console.error(err)
-        );
-
-
-
     }
   }
 }

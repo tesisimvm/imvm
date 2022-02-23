@@ -28,7 +28,7 @@ select {
   /* background-color: rgb(92, 92, 165); */
   padding: 15px;
   border: rgb(49, 49, 49) 1px solid;
-  border-radius: 50px;
+  border-radius: 50px; 
 }
 #tituloFiltros {
   padding: 5px;
