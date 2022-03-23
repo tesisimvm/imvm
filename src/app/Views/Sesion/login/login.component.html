@@ -68,12 +68,12 @@
                 </span>
               </div>
               <input [formControl]="correoCtrl" id="email" type="email" name="email" placeholder="Email"
-                class="form-control bg-white border-left-0 border-md">
+                class="form-control bg-white border-left-0 border-md" (keyup)="validarEmail()">
             </div>
-            <div *ngIf="correoCtrl.hasError('required') && correoCtrl.dirty " style="margin-top: -4%;"
+            <div *ngIf="(correoCtrl.hasError('required') && correoCtrl.dirty) || (banderaAlerta==false)" style="margin-top: -4%;"
               class="col-6 mensajeAlerta">
               <span>
-                <i class="fa fa-times "><small class="mensaje">Se necesita su correo</small></i>
+                <i class="fa fa-times "><small class="mensaje">La dirección del correo es incorrecta. </small></i>
               </span>
             </div>
 
@@ -92,8 +92,7 @@
                 <option value="">+14</option>
               </select>
               <input [formControl]="celularCtrl" id="phoneNumber" type="number" name="phone"
-                placeholder="Número de celular" class="form-control bg-white border-md border-left-0 pl-3" onkeydown="javascript: return event.keyCode === 8 ||
-                                event.keyCode === 46 ? true : !isNaN(Number(event.key))">
+                placeholder="Número de celular" class="form-control bg-white border-md border-left-0 pl-3">
             </div>
             <div *ngIf="celularCtrl.hasError('required') && celularCtrl.dirty " style="margin-top: -4%;"
               class="col-6 mensajeAlerta">
@@ -128,7 +127,7 @@
             </div>
 
             <!-- Password Confirmation -->
-            <div class="input-group col-lg-12 mb-4">
+            <!-- <div class="input-group col-lg-12 mb-4">
               <div class="input-group-prepend">
                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                   <i class="fa fa-lock text-muted"></i>
@@ -146,7 +145,7 @@
                 <i *ngIf="contrasenia2Ctrl.hasError('minlength')" class="fa fa-times "><small class="mensaje">Ingrese
                     más de 8 caracteres</small></i>
               </span>
-            </div>
+            </div> -->
 
             <!-- Submit Button -->
             <div class=" col-lg-12 mx-auto mb-0">

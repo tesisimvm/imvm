@@ -16,13 +16,21 @@ export class LoginComponent implements OnInit {
     contraseniaCtrl = new FormControl('',[Validators.required,Validators.minLength(8)]);
     contrasenia2Ctrl = new FormControl('',[Validators.required,Validators.minLength(8)]);
 
+    banderaAlerta: boolean =true;
+
   constructor(public service: BackenApiService) {}
 
 
 
   ngOnInit(): void {}
 
-
+  validarEmail() {
+    if (/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i.test(this.correoCtrl.value)){
+     this.banderaAlerta=true; /* si el correo es correcto */
+    } else {
+     this.banderaAlerta=false; /* si el correo no es correcto */
+    }
+  }
   
 
   /* se establece la llamada Post para crear un usuario - registrar usuario */
