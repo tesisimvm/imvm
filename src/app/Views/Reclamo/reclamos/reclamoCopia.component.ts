@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+/* import { Component, OnInit } from '@angular/core';
 import { BackenApiService } from '../../../service/backen-api.service';
 import { Reclamo } from '../../../model/reclamo';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -7,13 +7,13 @@ import { ReclamoAmbiental } from 'src/app/model/reclamoAmbiental';
 import { marca } from 'src/app/model/marca';
 import { modelo } from 'src/app/model/modelo';
 import { FormControl, Validators } from '@angular/forms';
-import { DetalleReclamo } from 'src/app/model/detalleReclamo';
-@Component({
+import { DetalleReclamo } from 'src/app/model/detalleReclamo'; */
+/* @Component({
   selector: 'app-reclamos',
   templateUrl: './reclamos.component.html',
   styleUrls: ['./reclamos.component.css'],
-})
-export class ReclamosComponent implements OnInit {
+}) */
+/* export class ReclamosComponent implements OnInit {
   tipoReclamoCtrl = new FormControl('', [Validators.required]);
   reclamoAmbientalCtrl = new FormControl('', [Validators.required]);
   marcaAutoCtrl = new FormControl('', [Validators.required]);
@@ -42,7 +42,7 @@ export class ReclamosComponent implements OnInit {
   getListTipoReclamos(): void {
    this.service.getTipoReclamo().subscribe(
      (res) => {
-       /* this.Tiporecla = res; */
+       
      },
      (err) => console.error(err)
    );
@@ -52,7 +52,7 @@ export class ReclamosComponent implements OnInit {
    this.service.getReclamoAmbiental().subscribe(
      (res) => {
        console.log(res);
-       /* this.ReclamoAmbie = res; */
+       
      },
      (err) => console.error(err)
    );
@@ -61,7 +61,7 @@ export class ReclamosComponent implements OnInit {
  getListMarca(): void {
    this.service.getMarca().subscribe(
      (res) => {
-       /* this.Mar = res; */
+      
      },
      (err) => console.error(err)
    );
@@ -70,7 +70,7 @@ export class ReclamosComponent implements OnInit {
  getListModelo(): void {
    this.service.getModelo().subscribe(
      (res) => {
-       /* this.Mod = res; */
+      
      },
      (err) => console.error(err)
    );
@@ -118,4 +118,4 @@ export class ReclamosComponent implements OnInit {
      (err) => console.error(err)
    );
  }
-}
+} */

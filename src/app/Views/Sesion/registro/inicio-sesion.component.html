@@ -27,10 +27,10 @@
           <div class="row">
 
             <div class="col-12">
-              <input id="iconoUsuario" [formControl]="userCtrl" type="text" class="form__input" placeholder="   Usuario o e-mail">
+              <input id="iconoUsuario" (keyup)="validarEmail()" [formControl]="userCtrl" type="text" class="form__input" placeholder="   Usuario o e-mail">
 
               <span>
-                <small id="mensajeUser" *ngIf="(userCtrl.hasError('required') && userCtrl.dirty)">
+                <small id="mensajeUser" *ngIf="(userCtrl.hasError('required') && userCtrl.dirty) || (banderaAlerta==false)">
                   <i class="fa fa-times fa-2x"></i>
                   Este campo es requerido
                 </small>

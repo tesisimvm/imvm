@@ -66,7 +66,9 @@ import {MatCardModule} from '@angular/material/card';
     ReactiveFormsModule,
     CommonModule,
     BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      preventDuplicates: true,
+    }),
     NgbModule,
     MatCardModule
   ],
