@@ -52,12 +52,15 @@ export class InicioSesionComponent implements OnInit {
       this.toastr.success('La dirección de correo es correcta!', '', {
         timeOut: 5000,
         progressBar: true,
+        positionClass: 'toast-bottom-center',
+        
       });
     } else {
       this.banderaAlerta = false; /* si el correo no es correcto */
       this.toastr.warning('La dirección de correo es incorrecta!', '', {
-        timeOut: 5000,
+        timeOut: 3000,
         progressBar: true,
+        positionClass: 'toast-bottom-center',
       });
     }
   }

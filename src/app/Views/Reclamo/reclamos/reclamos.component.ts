@@ -453,21 +453,22 @@ ambiental */
   MetodoActualizarReclamo() {
     debugger
     /* idEstadoReclamo */
-    if (this.estadoReclamoCtrl.value == '') {
+    /* Roles 1=Administrador - 3=Usuario */
+    if (this.estadoReclamoCtrl.value == '' && this.IDRol==1) {
       this.toastr.warning(
         'Para realizar la actualización ingrese el estado correspondiente al reclamo',
         'Atención',
         {
-          timeOut: 10000,
+          timeOut: 5000,
           progressBar: true,
         }
       );
-    }else if(this.arregloDetalleReclamo[0].idTipoRec != this.idEstadoReclamo ){ 
+    }else if(this.arregloDetalleReclamo[0].idTipoRec != this.idEstadoReclamo &&  this.IDRol==1){ 
       this.toastr.warning(
         'Seleccione el estado correcto del reclamo',
         'Atención',
         {
-          timeOut: 10000,
+          timeOut: 5000,
           progressBar: true,
         }
       );
