@@ -151,7 +151,7 @@
             <div class=" col-lg-12 mx-auto mb-0">
               <div class="col col-12 ">
                 <button
-                  [disabled]="nombreCtrl.invalid || usuarioCtrl.invalid || correoCtrl.invalid || celularCtrl.invalid || contraseniaCtrl.invalid || contrasenia2Ctrl.invalid"
+                  [disabled]="nombreCtrl.invalid || usuarioCtrl.invalid || correoCtrl.invalid || celularCtrl.invalid || contraseniaCtrl.invalid || banderaAlerta==false"
                   type="button" class=" btn btn-primary btn-block py-2 font-weight-bold"
                   (click)="registrarUsuario()" routerLink="/inicio-sesion">Creá tu
                   cuenta</button>
