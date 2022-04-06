@@ -70,8 +70,8 @@
               <input [formControl]="correoCtrl" id="email" type="email" name="email" placeholder="Email"
                 class="form-control bg-white border-left-0 border-md" (keyup)="validarEmail()">
             </div>
-            <div *ngIf="(correoCtrl.hasError('required') && correoCtrl.dirty) || (banderaAlerta==false)" style="margin-top: -4%;"
-              class="col-6 mensajeAlerta">
+            <div *ngIf="(correoCtrl.hasError('required') && correoCtrl.dirty) || (banderaAlerta==false)"
+              style="margin-top: -4%;" class="col-6 mensajeAlerta">
               <span>
                 <i class="fa fa-times "><small class="mensaje">La dirección del correo es incorrecta. </small></i>
               </span>
@@ -114,7 +114,8 @@
                 </span>
               </div>
               <input [formControl]="contraseniaCtrl" id="password" type="password" name="password"
-                placeholder="Contraseña" class="form-control bg-white border-left-0 border-md">
+                placeholder="Contraseña" class="form-control bg-white border-left-0 border-md"
+                (keyup)="validarContrasenias()">
             </div>
             <div *ngIf="contraseniaCtrl.errors && contraseniaCtrl.dirty " style="margin-top: -4%;"
               class="col-6 mensajeAlerta">
@@ -127,7 +128,7 @@
             </div>
 
             <!-- Password Confirmation -->
-            <!-- <div class="input-group col-lg-12 mb-4">
+            <div class="input-group col-lg-12 mb-4">
               <div class="input-group-prepend">
                 <span class="input-group-text bg-white px-4 border-md border-right-0">
                   <i class="fa fa-lock text-muted"></i>
@@ -135,7 +136,7 @@
               </div>
               <input [formControl]="contrasenia2Ctrl" id="passwordConfirmation" type="password"
                 name="passwordConfirmation" placeholder="Confirmá tu contraseña"
-                class="form-control bg-white border-left-0 border-md">
+                class="form-control bg-white border-left-0 border-md" (keyup)="validarContrasenias()">
             </div>
             <div *ngIf="contrasenia2Ctrl.errors && contrasenia2Ctrl.dirty " style="margin-top: -4%;"
               class="col-6 mensajeAlerta">
@@ -144,16 +145,19 @@
                     el ingreso de una contraseña</small></i>
                 <i *ngIf="contrasenia2Ctrl.hasError('minlength')" class="fa fa-times "><small class="mensaje">Ingrese
                     más de 8 caracteres</small></i>
+                <i *ngIf="banderaContrasenia==false " class="fa fa-times "><small class="mensaje">Las contraseñas no
+                    coinciden</small></i>
+
               </span>
-            </div> -->
+            </div>
 
             <!-- Submit Button -->
             <div class=" col-lg-12 mx-auto mb-0">
               <div class="col col-12 ">
                 <button
-                  [disabled]="nombreCtrl.invalid || usuarioCtrl.invalid || correoCtrl.invalid || celularCtrl.invalid || contraseniaCtrl.invalid || banderaAlerta==false"
-                  type="button" class=" btn btn-primary btn-block py-2 font-weight-bold"
-                  (click)="registrarUsuario()" routerLink="/inicio-sesion">Creá tu
+                  [disabled]="nombreCtrl.invalid || usuarioCtrl.invalid || correoCtrl.invalid || celularCtrl.invalid || contraseniaCtrl.invalid  || banderaAlerta==false || banderaContrasenia==false || contrasenia2Ctrl.invalid "
+                  type="button" class=" btn btn-primary btn-block py-2 font-weight-bold" (click)="registrarUsuario()"
+                  routerLink="/inicio-sesion">Creá tu
                   cuenta</button>
               </div>
             </div>
