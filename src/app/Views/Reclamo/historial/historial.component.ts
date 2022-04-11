@@ -7,6 +7,8 @@ import { TipoReclamo } from 'src/app/model/tipoReclamo';
 import { BackenApiService } from 'src/app/service/backen-api.service';
 import { ToastrService } from 'ngx-toastr';
 
+
+
 @Component({
   selector: 'app-historial',
   templateUrl: './historial.component.html',
@@ -30,6 +32,7 @@ export class HistorialComponent implements OnInit {
   /* tiene que ser el mismo nombre sino angular no encuentra el modelo */
 
   estadosReclamoFiltro: any;
+  fecha:any;
 
   public FER: EstadoReclamo[] = []; /* filtro estadoRecmo.ts */
 
@@ -54,20 +57,24 @@ export class HistorialComponent implements OnInit {
     this.IDSesion = this.ruta[4];
     console.log(this.IDRol);
 
+    this.fechadehoy();
+    
+    debugger
     this.getTipoReclamo();
-    this.getDetalleReclamos();
+    this.getDetalleReclamosHoy(); /* Traer los reclamos del dia de hoy */
   }
 
   ngOnInit(): void {}
 
-  getDetalleReclamos() {
+  getDetalleReclamosHoy() {
     debugger;
     if (this.IDRol == 1 || this.IDRol == 2) {
-      this.detalleReclamo.getTodoslosDetalleReclamo().subscribe(
+      this.detalleReclamo.getHistorialHoy(this.fecha,this.IDUsuario,1,5,this.IDRol).subscribe(
         (info) => {
           console.log(info);
 
           this.Dreclamos = info;
+          console.log(info);
           console.log(
             'detalles de reclamos siendo admin o empleado: ',
             this.Dreclamos
@@ -78,7 +85,7 @@ export class HistorialComponent implements OnInit {
         }
       );
     } else {
-      this.detalleReclamo.getDetalleReclamoUsuario(this.IDUsuario, 1).subscribe(
+      this.detalleReclamo.getHistorialHoy(this.fecha,this.IDUsuario,1,5,this.IDRol).subscribe( /* getDetalleReclamoUsuario(this.IDUsuario, 1) */
         (info) => {
           console.log(info);
 
@@ -240,5 +247,18 @@ export class HistorialComponent implements OnInit {
           );
       }
     }
+  }
+
+  fechadehoy(){
+    /* Fecha del fia de hoy, para mostrar los reclamos del este día */
+    var today = new Date();
+    var mes;
+    mes=(today.getMonth()+1)
+    if(mes==1|| mes==2||mes==3||mes==4||mes==5|| mes==6||mes==7||mes==8|| mes==9){
+      mes='0'+mes;
+    }
+    this.fecha = today.getFullYear() + '-' + mes+'-'+ today.getDate();
+    console.log('El dia de hoy es:'+this.fecha);
+
   }
 }

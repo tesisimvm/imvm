@@ -173,18 +173,11 @@ export class ReclamosComponent implements OnInit {
   registrarReclamo() {
     debugger;
     /* Validacion en el caso que registre un input vacio o cambie de tipo de reclamo y tenga un input vacio */
-    if (
-      this.tipoReclamoCtrl.value == 1 &&
-      /* reclamo Ambiental */
-      (this.tipoReclamoCtrl.value == '' ||
-        this.reclamoAmbientalCtrl.value == '' ||
-        this.fechaCtrl.value == '' ||
-        this.horaCtrl.value == '' ||
-        this.ubicacionCtrl.value == '' ||
-        this.descripcionCtrl.value == '' ||
-        this.urlFotoCtrl.value == '' ||
-        this.alturaCtrl.value == '')
-    ) {
+    /* reclamo Ambiental */
+    if (this.tipoReclamoCtrl.value == 1 && (this.tipoReclamoCtrl.value == '' || this.reclamoAmbientalCtrl.value == '' ||
+        this.fechaCtrl.value == '' || this.horaCtrl.value == '' || this.ubicacionCtrl.value == '' ||
+        this.descripcionCtrl.value == '' || this.urlFotoCtrl.value == '' || this.alturaCtrl.value == ''))
+         {
       this.toastr.warning(
         'Faltan datos por rellenar, verifique y podrá enviar su reclamo',
         'Cuidado!',
@@ -195,17 +188,10 @@ export class ReclamosComponent implements OnInit {
       );
 
       /* reclamo vial */
-    } else if (
-      this.tipoReclamoCtrl.value == 2 &&
-      (((this.dominioCtrl.value == '' || this.marcaAutoCtrl.value == '') &&
-        this.tipoReclamoCtrl.value == '') ||
-        this.fechaCtrl.value == '' ||
-        this.horaCtrl.value == '' ||
-        this.ubicacionCtrl.value == '' ||
-        this.descripcionCtrl.value == '' ||
-        this.urlFotoCtrl.value == '' ||
-        this.alturaCtrl.value == '')
-    ) {
+    } else if (this.tipoReclamoCtrl.value == 2 && (((this.dominioCtrl.value == '' || this.marcaAutoCtrl.value == '') &&
+        this.tipoReclamoCtrl.value == '') || this.fechaCtrl.value == '' || this.horaCtrl.value == '' ||
+        this.ubicacionCtrl.value == '' || this.descripcionCtrl.value == '' || this.urlFotoCtrl.value == '' ||     this.alturaCtrl.value == '')) 
+        {
       this.toastr.warning(
         'Faltan datos por rellenar, verifique y podrá enviar su reclamo',
         'Cuidado!',

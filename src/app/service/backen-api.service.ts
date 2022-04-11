@@ -122,6 +122,12 @@ export class BackenApiService {
     return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo/');/* por ahora el id es 1 =pendiente - trae todos los pendientes */
   }
 
+  getHistorialHoy(fechaHoy:string,idUsuario:number,idEstadoA:number, idEstadoV:number,idRol:number):Observable<any>{
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/HistorialHoy?'+'fechaHoy='+fechaHoy+'&'+'idUsuario='+idUsuario+'&'+'idEstadoA='+idEstadoA+'&'+'idEstadoV='+idEstadoV+'&'+'idRol='+idRol);/*muestro los reclamos del dia de hoy y que sean estado pendiente (revisar) */
+
+    /* HistorialHoy?fechaHoy=2021-09-28&idUsuario=4&idEstadoA=1&idEstadoV=5&idRol=3  */
+  }
+
   /* Metodo usado para traer los datos necesarios para actualizar el reclamo AMBIENTAL */
   getDetalleReclamoParaActualizar(idDetalleR:number): Observable<any>{
     return this.http.get<DetalleReclamoActualizar[]>('https://localhost:44363/ActualizarReclamo/'+idDetalleR);
