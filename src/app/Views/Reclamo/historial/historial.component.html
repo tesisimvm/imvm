@@ -1,8 +1,7 @@
-<div id="tituloHistorial">
-  <h1> Historial </h1>
-</div>
-
-<form id="filtros" class="container-fluid">
+<form id="filtros" class="container-fluid shadow-lg p-3 mb-5 bg-body rounded-3" >
+  <div id="tituloHistorial">
+    <h1> Historial </h1>
+  </div>
   <div class="row">
     <div class="col-md-4">
 
@@ -12,7 +11,7 @@
     </div>
   </div>
 
-  <div *ngIf="(IDRol==1 || IDRol==2)" class="container-fluid busquedaFiltros">
+  <div *ngIf="(IDRol==1 || IDRol==2)" class="container-fluid busquedaFiltros" >
     <div class="row">
 
       <div class="col col-sm-6 col-md-6 col-lg-3 col-xl-3">
@@ -116,7 +115,7 @@
             </option>
 
           </select>
-        </div> 
+        </div>
 
       </div>
 
@@ -153,60 +152,81 @@
   </div>
 </form>
 
+<div *ngIf="banderaIconoCarga==true" id="IcoCarga" class="d-flex justify-content-center">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+  <small id="textoIcono" class="justify-content-center">Cargando Historial...</small>
+</div>
+
+<div *ngIf="banderaAlerta==true" id="IcoMensaje" class="d-flex justify-content-center">
+  <i class="fas fa-exclamation-triangle fa-2x"></i>
+  <small id="textoIcono" class="justify-content-center">{{mensajeCarga}}</small>
+</div>
+
 <form action="" [formControl]="formTarjetas">
 
-  <div id="principal" class="container-fluid">
-    <div class="container mx-auto mt-4">
-      <div class="row">
-        <div *ngFor="let item of Dreclamos " class="col-md-4">
-
-          <div class="card" style="width: 18rem;">
-            <img class="card-img-top fotoReclamo"  alt="Foto" [src]="item.foto">
-
-            <div class="card-body">
-              <h5 class="card-title"> <i class="far fa-user"> Usuario: {{item.nick}} </i></h5>
-              <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Nrº Reclamo:
-                  {{item.iD_Reclamo}}</i>
-              </h6>
-              <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Estado: {{item.nombre}}</i></h6>
-              <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Reclamo:
-                  {{item.nombreRecAmbiental}}</i></h6>
-              <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Tipo: {{item.nombreTRec}}</i></h6>
+  <!-- <div id="principal" class="container-fluid"> -->
 
 
-              <p class="card-text"> <i class="far fa-comment-dots"> Descripcion: {{item.descripcion}}</i></p>
-              <p class="card-text"> <i class="far fa-calendar-alt"> Fecha: {{item.fecha}}</i></p>
 
-              <p class="card-text"> <i class="far fa-clock"> Hora: {{item.hora}}</i></p>
-              <p class="card-text"> <i class="fas fa-car"> Dominio: {{item.dominio}}</i></p>
-              <p class="card-text"> <i class="fas fa-map-signs"> Dirección: {{item.direccion}}</i></p>
-              <p class="card-text"> <i class="fas fa-map-signs"> Altura: {{item.altura}}</i></p>
 
-              <div class="container">
-                <div class="row">
-                  <div *ngIf="(IDRol==1 || IDRol==2 || IDRol==3)" class="col col-3">
-                    <!-- 1 admin 2 empleado 3 usuario -->
-                    <button type="button" class="btn mr-2 btn-light d-inline-block" data-bs-toggle="tooltip"
-                      data-bs-placement="top" title="Editar Reclamo" (click)="editarReclamo(item.idDetalleReclamo)"><i
-                        class="fas fa-edit"></i>
 
-                      <!-- item.nombre,item.idTipoRec,item.idRecAmb,item.nombreRecAmbiental,item.nombreTRec,item.descripcion,item.fecha,item.hora,item.direccion,item.altura -->
-                    </button> <!-- routerLink="/main-nav/historial/reclamos" -->
-                  </div>
-                  <div class="col col-3">
-                    <button type="button" class="btn mr-2  btn-danger d-inline-block" data-bs-toggle="tooltip"
-                      data-bs-placement="top" title="Cancelar Reclamo"><i class="fas fa-trash-alt"></i>
-                    </button>
-                  </div>
 
+
+  <div class="container mx-auto mt-4">
+
+    <div class="row">
+      <div *ngFor="let item of Dreclamos " class="col-md-4 ">
+
+        <div class="card shadow " >
+          <img class="card-img-top fotoReclamo" alt="Foto" [src]="item.foto">
+
+          <div class="card-body">
+            <h5 class="card-title"> <i class="far fa-user"> Usuario: {{item.nick}} </i></h5>
+            <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Nrº Reclamo:
+                {{item.iD_Reclamo}}</i>
+            </h6>
+            <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Estado: {{item.nombre}}</i></h6>
+            <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Reclamo:
+                {{item.nombreRecAmbiental}}</i></h6>
+            <h6 class="card-subtitle mb-2"> <i class="far fa-bookmark"> Tipo: {{item.nombreTRec}}</i></h6>
+
+
+            <p class="card-text"> <i class="far fa-comment-dots"> Descripcion: {{item.descripcion}}</i></p>
+            <p class="card-text"> <i class="far fa-calendar-alt"> Fecha: {{item.fecha}}</i></p>
+
+            <p class="card-text"> <i class="far fa-clock"> Hora: {{item.hora}}</i></p>
+            <p class="card-text"> <i class="fas fa-car"> Dominio: {{item.dominio}}</i></p>
+            <p class="card-text"> <i class="fas fa-map-signs"> Dirección: {{item.direccion}}</i></p>
+            <p class="card-text"> <i class="fas fa-map-signs"> Altura: {{item.altura}}</i></p>
+
+            <div class="container">
+              <div class="row">
+                <div *ngIf="(IDRol==1 || IDRol==2 || IDRol==3)" class="col col-3">
+                  <!-- 1 admin 2 empleado 3 usuario -->
+                  <button type="button" class="btn mr-2 btn-light d-inline-block" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Editar Reclamo" (click)="editarReclamo(item.idDetalleReclamo)"><i
+                      class="fas fa-edit"></i>
+
+                    <!-- item.nombre,item.idTipoRec,item.idRecAmb,item.nombreRecAmbiental,item.nombreTRec,item.descripcion,item.fecha,item.hora,item.direccion,item.altura -->
+                  </button> <!-- routerLink="/main-nav/historial/reclamos" -->
+                </div>
+                <div class="col col-3">
+                  <button type="button" class="btn mr-2  btn-danger d-inline-block" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="Cancelar Reclamo"><i class="fas fa-trash-alt"></i>
+                  </button>
                 </div>
 
               </div>
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- </div> -->
+  <!-- fondo de las tarjetas -->
 
 </form>

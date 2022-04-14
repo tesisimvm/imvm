@@ -43,6 +43,10 @@ export class HistorialComponent implements OnInit {
 
    filtroNombreUsuario:string=""; //se va usar para filtrar por nombre de usuario (hacer una validacion al crear el usuario, que no haya 2 usuarios con el mismo nombre )
 
+   banderaIconoCarga:boolean =true;
+   banderaAlerta:boolean=false;
+   mensajeCarga:string='No Hay Reclamos...';
+
 
   constructor(
     public detalleReclamo: BackenApiService,
@@ -56,10 +60,7 @@ export class HistorialComponent implements OnInit {
       this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
     this.IDSesion = this.ruta[4];
     console.log(this.IDRol);
-
     this.fechadehoy();
-    
-    debugger
     this.getTipoReclamo();
     this.getDetalleReclamosHoy(); /* Traer los reclamos del dia de hoy */
   }
@@ -67,18 +68,35 @@ export class HistorialComponent implements OnInit {
   ngOnInit(): void {}
 
   getDetalleReclamosHoy() {
-    debugger;
+    
     if (this.IDRol == 1 || this.IDRol == 2) {
       this.detalleReclamo.getHistorialHoy(this.fecha,this.IDUsuario,1,5,this.IDRol).subscribe(
         (info) => {
           console.log(info);
 
-          this.Dreclamos = info;
-          console.log(info);
-          console.log(
+          if (info.length == 0) {
+            this.banderaAlerta=true;
+           
+            this.banderaIconoCarga=false;
+            this.toastr.info(
+              'No se encuentran reclamos registrados en el dia de hoy ',
+              'Atención',
+              {
+                timeOut: 3000,
+                progressBar: true,
+              }
+            );
+          }else{
+            this.Dreclamos = info;
+            console.log(info);
+            this.banderaIconoCarga=false;
+            console.log(
             'detalles de reclamos siendo admin o empleado: ',
             this.Dreclamos
           );
+          }
+
+          
         },
         (error) => {
           console.log(error);
@@ -88,7 +106,7 @@ export class HistorialComponent implements OnInit {
       this.detalleReclamo.getHistorialHoy(this.fecha,this.IDUsuario,1,5,this.IDRol).subscribe( /* getDetalleReclamoUsuario(this.IDUsuario, 1) */
         (info) => {
           console.log(info);
-
+          this.banderaIconoCarga=false;
           this.Dreclamos = info;
           console.log('detalles de reclamos: ', this.Dreclamos);
         },
@@ -117,7 +135,7 @@ export class HistorialComponent implements OnInit {
   }
 
   getEstadoReclamo(idTipoReclamo: number) {
-    debugger;
+    
     this.detalleReclamo.getFiltroEstadoHistorial(idTipoReclamo).subscribe(
       (res) => {
         this.estadosReclamoFiltro = res;
@@ -129,7 +147,7 @@ export class HistorialComponent implements OnInit {
     );
   }
   obtenerIDEstadoReclamo(ev: any) {
-    debugger;
+    
     this.selectIDEstadoReclamo = ev.target.value;
     console.log('IDEstadoReclamo: ', this.selectIDEstadoReclamo);
   }
@@ -155,12 +173,14 @@ export class HistorialComponent implements OnInit {
     var filtroIDEstadoReclamo: any;
     var filtroFechaInicio: any;
     var filtroFechaFin: any;
-    debugger;
+
+    this.banderaIconoCarga=true; /* se activa para que la animacion refleje que se están cargando los reclamos solicitados */
+    debugger
     /* Administrador y empleado */
     if (this.IDRol == 1 || this.IDRol == 2) {
-      debugger;
-      /* Busqueda por tipo reclamo y estado (no ingreso el nombre de usuario) */
-      if ((this.tipoReclamoCtrl.value != null && this.estadoReclamoCtrl.value!=null) &&  this.nombreUsuarioCtrl==null ) {
+      
+      /* Busqueda por tipo reclamo y estado (no ingreso el nombre de usuario ni la fecha) */
+      if ((this.tipoReclamoCtrl.value != '' && this.estadoReclamoCtrl.value!='') &&  this.nombreUsuarioCtrl.value=='' && this.fechaDesdeCtrl.value=='') {
         filtroIDTReclamo = this.selectIDTipReclamo;
         filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
         this.detalleReclamo
@@ -168,9 +188,12 @@ export class HistorialComponent implements OnInit {
             (res) => {
               this.formTarjetas.reset();
               delete this.Dreclamos;
-              debugger;
+
+              this.banderaIconoCarga =false; /* No se visualiza */
+              this.banderaAlerta=false;/* No se visualiza */
               this.Dreclamos = res;
               if (res.length == 0) {
+                this.banderaAlerta=true;/*se visualiza */
                 this.toastr.info(
                   'No se encuentran reclamos registrados para la busqueda seleccionada ',
                   'Atención',
@@ -183,16 +206,42 @@ export class HistorialComponent implements OnInit {
             },
             (err) => console.error(err)
           );
-      }
-      /* Busqueda por nombre de usuario - siendo administrador */
-      if((this.tipoReclamoCtrl.value=="" && this.estadoReclamoCtrl.value=="" )&& this.nombreUsuarioCtrl.value!=""){
+          /* Busqueda por tipo reclamo, estado y nombre (no ingresó la fecha) */
+      }else if((this.tipoReclamoCtrl.value != '' && this.estadoReclamoCtrl.value!='') &&  this.nombreUsuarioCtrl.value!='' && this.fechaDesdeCtrl.value==''){
+        filtroIDTReclamo = this.selectIDTipReclamo;
+        filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
+        this.detalleReclamo
+          .getDetalleReclamoFiltradoNombre(filtroIDTReclamo, filtroIDEstadoReclamo,this.nombreUsuarioCtrl.value).subscribe(
+            (res) => {
+              this.formTarjetas.reset();
+              delete this.Dreclamos;
+              debugger
+              this.banderaIconoCarga =false; /* No se visualiza */
+              this.banderaAlerta=false;/* No se visualiza */
+              this.Dreclamos = res;
+              if (res.length == 0) {
+                this.banderaAlerta=true;/*se visualiza */
+                this.toastr.info(
+                  'No se encuentran reclamos registrados para la busqueda seleccionada ',
+                  'Atención',
+                  {
+                    timeOut: 5000,
+                    progressBar: true,
+                  }
+                );
+              }
+            },
+            (err) => console.error(err)
+          );
+          /* Busqueda por nombre de usuario - siendo administrador */
+      }else if((this.tipoReclamoCtrl.value=="" && this.estadoReclamoCtrl.value=="" )&& this.nombreUsuarioCtrl.value!=""){
         debugger
         this.filtroNombreUsuario = this.nombreUsuarioCtrl.value+'';
         this.detalleReclamo.getDetalleReclamoFiltradoNombreUsuario(this.filtroNombreUsuario).subscribe(
           (res) => {
             this.formTarjetas.reset();//elimino las tarjetas
             delete this.Dreclamos;//borro el objeto con toda la informacion
-            debugger;
+            
             this.Dreclamos = res;
             if (res.length == 0) {
               this.toastr.info(
@@ -207,11 +256,96 @@ export class HistorialComponent implements OnInit {
           },
           (err) => console.error(err)
         );
+        /* Busqueda por una fecha, estado y tiporeclamo */
+      }else if((this.tipoReclamoCtrl.value!="" && this.estadoReclamoCtrl.value!="" )&& this.fechaDesdeCtrl.value!="" && this.nombreUsuarioCtrl.value==""){
+        debugger;
+        this.detalleReclamo.getDetalleReclamoPorfecha(this.tipoReclamoCtrl.value,this.estadoReclamoCtrl.value,this.fechaDesdeCtrl.value,this.IDRol).subscribe(
+          (res)=>{
+            debugger
+            this.formTarjetas.reset();//elimino las tarjetas
+            delete this.Dreclamos;//borro el objeto con toda la informacion
+            this.banderaIconoCarga =false;
+            this.banderaAlerta=false;
+            this.Dreclamos = res;
+            
+            if (res.length == 0) {
+              this.banderaAlerta=true;
+              this.banderaIconoCarga=false;
+              this.toastr.info(
+                'No se encuentran reclamos registrados para la busqueda seleccionada ',
+                'Atención',
+                {
+                  timeOut: 5000,
+                  progressBar: true,
+                }
+              );
+            }
 
-        }
+            
+          },
+          (err)=>console.error(err)
+        )
+          /* Busqueda por tipo reclamo, estado reclamo, fecha y nombre de usuario */
+      }else if((this.tipoReclamoCtrl.value!="" && this.estadoReclamoCtrl.value!="" )&& this.fechaDesdeCtrl.value!="" && this.nombreUsuarioCtrl.value!=""){
+        
+        this.detalleReclamo.getDetalleReclamoPorfechayNombreUsuario(this.tipoReclamoCtrl.value,this.estadoReclamoCtrl.value,this.fechaDesdeCtrl.value,this.IDRol,this.nombreUsuarioCtrl.value).subscribe(
+          (res)=>{
+            debugger
+            this.formTarjetas.reset();//elimino las tarjetas
+            delete this.Dreclamos;//borro el objeto con toda la informacion
+            this.banderaIconoCarga =false;
+            this.banderaAlerta=false;
+            this.Dreclamos = res;
+            
+            if (res.length == 0) {
+              this.banderaAlerta=true;
+              this.banderaIconoCarga=false;
+              this.toastr.info(
+                'No se encuentran reclamos registrados para la busqueda seleccionada ',
+                'Atención',
+                {
+                  timeOut: 5000,
+                  progressBar: true,
+                }
+              );
+            }
 
-    } else {
-      debugger;
+            
+          },
+          (err)=>console.error(err)
+        )
+
+      }else{
+        this.banderaAlerta=true;
+        this.banderaIconoCarga =false; 
+
+        this.toastr.info(
+          'No se puede realizar la accion deseasa',
+          'Atención',
+          {
+            timeOut: 5000,
+            progressBar: true,
+          }
+        );
+      }
+
+      /* {
+        this.banderaAlerta=true;
+        this.banderaIconoCarga =false; 
+
+        this.toastr.info(
+          'No se encuentran reclamos registrados para la busqueda seleccionada ',
+          'Atención',
+          {
+            timeOut: 5000,
+            progressBar: true,
+          }
+        );
+      
+    
+      } */
+
+    } else if(this.IDRol==3)  {
       /* Filtro por usuario */
       if (this.tipoReclamoCtrl.value != null) {
         filtroIDTReclamo = this.selectIDTipReclamo;
@@ -229,7 +363,7 @@ export class HistorialComponent implements OnInit {
             (res) => {
               this.formTarjetas.reset();
               delete this.Dreclamos;
-              debugger;
+
               this.Dreclamos = res;
               console.log(this.Dreclamos);
               if (res.length == 0) {

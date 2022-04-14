@@ -161,11 +161,17 @@ export class BackenApiService {
   }
 
   /****** Busqueda por filtros siendo admininistrador o empleado***/
+  /* Busqueda por tipo reclamo y estado (no ingreso el nombre de usuario ni la fecha) */
   /*  https://localhost:44363/FiltrosReclamos?idtipor=1&idestado=1 */
   getDetalleReclamoFiltrado(idTipoR:number,idEstadoReclamo:number): Observable<any> {
     debugger
    /* https://localhost:44363/FiltrosReclamos?idtipor=1&&idestado=1 */
     return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idtipor='+idTipoR+"&"+'idestado='+idEstadoReclamo);
+  }
+  /* Busqueda por tipo reclamo, estado y nombre (no ingresó la fecha) - administrador */
+  getDetalleReclamoFiltradoNombre(idTipoR:number,idEstadoReclamo:number, nombreUsuario:string): Observable<any>{
+    debugger
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idtipor='+idTipoR+"&"+'idestado='+idEstadoReclamo+'&'+'nombreUsuario='+nombreUsuario);
   }
 
    /****** Busqueda por filtros siendo admininistrador o empleado***/
@@ -175,10 +181,28 @@ export class BackenApiService {
    /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos/'+idTipoR+'/'+idEstadoReclamo+'/'+idUsuario);
   }
+
+  /* Busqueda de reclamos por filtro usando el nombre del usuario */
   getDetalleReclamoFiltradoNombreUsuario(nombreUsuario:string): Observable<any> {
     debugger
    /*https://localhost:44363/FiltroNombreReclamos?nombreUsuario=Omar */
    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroNombreReclamos?'+'nombreUsuario='+nombreUsuario);
+  }
+
+  /* Busqueda de reclamos por filtro usando tipo de reclamo, su estado y una fecha */
+
+  getDetalleReclamoPorfecha(idTipoR:number,idEstadoReclamo:number,fechaDesde:string, idrol:number){
+    /* https://localhost:44363/FiltroRangoFechas?idTipoReclamo=1&idEstado=1&fechaDesde=2021-10-13&fechaHasta=2021-10-22&idRol=1&nombreUsuario=- */
+
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroRangoFechas?'+'idTipoReclamo='+idTipoR+'&'+'idEstado='+idEstadoReclamo+'&'+'fechaDesde='+fechaDesde+'&'+'idRol='+idrol);
+  }
+
+  /* Busqueda de reclamos por filtro usando tipo de reclamo, su estado y una fecha */
+
+  getDetalleReclamoPorfechayNombreUsuario(idTipoR:number,idEstadoReclamo:number,fechaDesde:string, idrol:number,nombreUsuario:string ){
+    /* https://localhost:44363/FiltroRangoFechas?idTipoReclamo=1&idEstado=1&fechaDesde=2021-10-13&fechaHasta=2021-10-22&idRol=1&nombreUsuario=- */
+
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroRangoFechas?'+'idTipoReclamo='+idTipoR+'&'+'idEstado='+idEstadoReclamo+'&'+'fechaDesde='+fechaDesde+'&'+'idRol='+idrol+'&'+'nombreUsuario='+nombreUsuario);
   }
 
 

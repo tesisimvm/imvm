@@ -25,11 +25,11 @@ select {
   text-align: center;
 }
 #filtros {
-  /* background-color: rgb(92, 92, 165); */
-  padding: 15px;
-  border: rgb(49, 49, 49) 1px solid;
-  border-radius: 50px; 
+  /* padding: 15px;
+  border: rgb(49, 49, 49) 1px solid; */
+  margin-top: 15px;
 }
+
 #tituloFiltros {
   padding: 5px;
   min-width: 100px;
@@ -48,6 +48,18 @@ select {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
+
+#IcoCarga{
+  margin-top: 5%;
+}
+
+#textoIcono{
+  padding: 5px;
+  font-size: 18px;
+}
+#IcoMensaje{
+  margin-top: 5%;
+}
 /************* Inputs *************/
 /* las clases de tipo de reclamo y estado */
 .form-select {
@@ -63,6 +75,7 @@ select {
   width: 100%;
 }
 /************* Clases ************ */
+
 
 .fotoReclamo {
   font-size: 14px;  
