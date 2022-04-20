@@ -47,9 +47,7 @@ export class BackenApiService {
     return this.http.post('https://localhost:44363/detallereclamo', Detallereclamo, this.httpOptions);
   }
 
-  getTipoReclamo(): Observable<TipoReclamo[]> {
-    return this.http.get<TipoReclamo[]>('https://localhost:44363/tiporeclamo');
-  }
+  
  
 
   getReclamoAmbiental(): Observable<ReclamoAmbiental[]> {
@@ -122,11 +120,71 @@ export class BackenApiService {
     return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo/');/* por ahora el id es 1 =pendiente - trae todos los pendientes */
   }
 
-  getHistorialHoy(fechaHoy:string,idUsuario:number,idEstadoA:number, idEstadoV:number,idRol:number):Observable<any>{
-    return this.http.get<DetalleReclamo[]>('https://localhost:44363/HistorialHoy?'+'fechaHoy='+fechaHoy+'&'+'idUsuario='+idUsuario+'&'+'idEstadoA='+idEstadoA+'&'+'idEstadoV='+idEstadoV+'&'+'idRol='+idRol);/*muestro los reclamos del dia de hoy y que sean estado pendiente (revisar) */
+ 
 
+  //********* Metodos HISTORIAL **********
+
+  // GET
+  getTipoReclamo(): Observable<TipoReclamo[]> {
+    return this.http.get<TipoReclamo[]>('https://localhost:44363/tiporeclamo');
+  }
+
+  getHistorialHoy(fechaHoy:string,idUsuario:number,idEstadoA:number, idEstadoV:number,idRol:number):Observable<any>{
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/HistorialHoy?'+'fechaHoy='+fechaHoy+'&'+'idUsuario='+idUsuario+'&'+'idEstadoA='+idEstadoA+'&'+'idEstadoV='+idEstadoV+'&'+'idRol='+idRol);
     /* HistorialHoy?fechaHoy=2021-09-28&idUsuario=4&idEstadoA=1&idEstadoV=5&idRol=3  */
   }
+
+  /* Filtros Histrial / tambien usado para los estados del reclamo para actualizar ******/
+  getFiltroEstadoHistorial(idTipoReclamo:number): Observable<EstadoReclamo[]>{
+    return this.http.get<EstadoReclamo[]>('https://localhost:44363/estadoreclamo/'+idTipoReclamo);
+  }
+
+  /****** Busqueda por filtros siendo admininistrador, empleado o usuario ***/
+  /* Busqueda por tipo reclamo y estado (no ingreso el nombre de usuario ni la fecha) */
+  getDetalleReclamoFiltrado(idTipoR:number,idEstadoReclamo:number, idRol:number): Observable<any> {
+    debugger
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idtipor='+idTipoR+"&"+'idestado='+idEstadoReclamo+'&'+'idRol='+idRol);
+  }
+
+   /* Busqueda de reclamos por filtro usando tipo de reclamo, su estado y una fecha */
+   getDetalleReclamoPorfecha(idTipoR:number,idEstadoReclamo:number,fechaDesde:string, idrol:number){
+    /* https://localhost:44363/FiltroRangoFechas?idTipoReclamo=1&idEstado=1&fechaDesde=2021-10-13&fechaHasta=2021-10-22&idRol=1&nombreUsuario=- */
+     return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroRangoFechas?'+'idTipoReclamo='+idTipoR+'&'+'idEstado='+idEstadoReclamo+'&'+'fechaDesde='+fechaDesde+'&'+'idRol='+idrol);
+   }
+
+   /* Busqueda por tipo reclamo, estado y nombre (no ingresó la fecha) - administrador o usuario*/
+   getDetalleReclamoFiltradoNombre(idTipoR:number,idEstadoReclamo:number, nombreUsuario:string): Observable<any>{
+    debugger
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idtipor='+idTipoR+"&"+'idestado='+idEstadoReclamo+'&'+'nombreUsuario='+nombreUsuario);
+  }
+
+   /* Busqueda de reclamos por filtro usando el nombre del usuario - administrador */
+   getDetalleReclamoFiltradoNombreUsuario(nombreUsuario:string): Observable<any> {
+    debugger
+   /*https://localhost:44363/FiltroNombreReclamos?nombreUsuario=Omar */
+   return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroNombreReclamos?'+'nombreUsuario='+nombreUsuario);
+  }
+
+  /* Busqueda de reclamos por filtro usando tipo de reclamo, su estado y una fecha - administrador o usuario */
+  getDetalleReclamoPorfechayNombreUsuario(idTipoR:number,idEstadoReclamo:number,fechaDesde:string, idrol:number,nombreUsuario:string ){
+    /* https://localhost:44363/FiltroRangoFechas?idTipoReclamo=1&idEstado=1&fechaDesde=2021-10-13&fechaHasta=2021-10-22&idRol=1&nombreUsuario=- */
+    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroRangoFechas?'+'idTipoReclamo='+idTipoR+'&'+'idEstado='+idEstadoReclamo+'&'+'fechaDesde='+fechaDesde+'&'+'idRol='+idrol+'&'+'nombreUsuario='+nombreUsuario);
+  }
+
+   /****** Busqueda por filtros tipo reclamo y estado siendo usuario***/
+   getDetalleReclamoFiltradoUsuario(idTipoR:number,idEstado:number,idRol:number,idUsuario:number): Observable<any> {
+    debugger
+   return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idTipoR='+idTipoR+'&'+'idEstado='+idEstado+'&'+'idRol='+idRol+'&'+'idUsuario='+idUsuario);
+  }
+
+  /* Busqueda por filtros tipo reclamo, estado y fecha - siendo usuario */
+  getDetalleReclamoPorfechaDelUsuario(idTipoReclamo:number,idEstado:number,fechaDesde:string,idRol:number,idUsuario:number  ): Observable<any> {
+    debugger
+   return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroRangoFechas?'+'idTipoReclamo='+idTipoReclamo+'&'+'idEstado='+idEstado+'&'+'fechaDesde='+fechaDesde+'&'+'idRol='+idRol+'&'+'idUsuario='+idUsuario);
+  }
+
+
+
 
   /* Metodo usado para traer los datos necesarios para actualizar el reclamo AMBIENTAL */
   getDetalleReclamoParaActualizar(idDetalleR:number): Observable<any>{
@@ -155,55 +213,21 @@ export class BackenApiService {
   }
 
 
-  /****** Filtros Histrial / tambien usado para los estados del reclamo para actualizar ******/
-  getFiltroEstadoHistorial(idTipoReclamo:number): Observable<EstadoReclamo[]>{
-    return this.http.get<EstadoReclamo[]>('https://localhost:44363/estadoreclamo/'+idTipoReclamo);
-  }
+  
 
-  /****** Busqueda por filtros siendo admininistrador o empleado***/
-  /* Busqueda por tipo reclamo y estado (no ingreso el nombre de usuario ni la fecha) */
-  /*  https://localhost:44363/FiltrosReclamos?idtipor=1&idestado=1 */
-  getDetalleReclamoFiltrado(idTipoR:number,idEstadoReclamo:number): Observable<any> {
-    debugger
-   /* https://localhost:44363/FiltrosReclamos?idtipor=1&&idestado=1 */
-    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idtipor='+idTipoR+"&"+'idestado='+idEstadoReclamo);
-  }
-  /* Busqueda por tipo reclamo, estado y nombre (no ingresó la fecha) - administrador */
-  getDetalleReclamoFiltradoNombre(idTipoR:number,idEstadoReclamo:number, nombreUsuario:string): Observable<any>{
-    debugger
-    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idtipor='+idTipoR+"&"+'idestado='+idEstadoReclamo+'&'+'nombreUsuario='+nombreUsuario);
-  }
+  
 
-   /****** Busqueda por filtros siendo admininistrador o empleado***/
-  getDetalleReclamoFiltradoUsuario(idTipoR:number,idEstadoReclamo:number,idUsuario:number): Observable<any> {
-    debugger
-   /* ,fechaInicio:string,fechaFin:string */
-   /* return this.http.get<DetalleReclamo[]>('https://localhost:44363/detallereclamo); */
-   return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos/'+idTipoR+'/'+idEstadoReclamo+'/'+idUsuario);
-  }
+  
 
-  /* Busqueda de reclamos por filtro usando el nombre del usuario */
-  getDetalleReclamoFiltradoNombreUsuario(nombreUsuario:string): Observable<any> {
-    debugger
-   /*https://localhost:44363/FiltroNombreReclamos?nombreUsuario=Omar */
-   return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroNombreReclamos?'+'nombreUsuario='+nombreUsuario);
-  }
+ 
 
-  /* Busqueda de reclamos por filtro usando tipo de reclamo, su estado y una fecha */
+  
 
-  getDetalleReclamoPorfecha(idTipoR:number,idEstadoReclamo:number,fechaDesde:string, idrol:number){
-    /* https://localhost:44363/FiltroRangoFechas?idTipoReclamo=1&idEstado=1&fechaDesde=2021-10-13&fechaHasta=2021-10-22&idRol=1&nombreUsuario=- */
+ 
 
-    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroRangoFechas?'+'idTipoReclamo='+idTipoR+'&'+'idEstado='+idEstadoReclamo+'&'+'fechaDesde='+fechaDesde+'&'+'idRol='+idrol);
-  }
 
-  /* Busqueda de reclamos por filtro usando tipo de reclamo, su estado y una fecha */
 
-  getDetalleReclamoPorfechayNombreUsuario(idTipoR:number,idEstadoReclamo:number,fechaDesde:string, idrol:number,nombreUsuario:string ){
-    /* https://localhost:44363/FiltroRangoFechas?idTipoReclamo=1&idEstado=1&fechaDesde=2021-10-13&fechaHasta=2021-10-22&idRol=1&nombreUsuario=- */
-
-    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroRangoFechas?'+'idTipoReclamo='+idTipoR+'&'+'idEstado='+idEstadoReclamo+'&'+'fechaDesde='+fechaDesde+'&'+'idRol='+idrol+'&'+'nombreUsuario='+nombreUsuario);
-  }
+  
 
 
 

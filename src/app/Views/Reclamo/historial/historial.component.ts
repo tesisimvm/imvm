@@ -78,22 +78,12 @@ export class HistorialComponent implements OnInit {
             this.banderaAlerta=true;
            
             this.banderaIconoCarga=false;
-            this.toastr.info(
-              'No se encuentran reclamos registrados en el dia de hoy ',
-              'Atención',
-              {
-                timeOut: 3000,
-                progressBar: true,
-              }
-            );
+            this.mensajeDelDia();
           }else{
             this.Dreclamos = info;
-            console.log(info);
+            
             this.banderaIconoCarga=false;
-            console.log(
-            'detalles de reclamos siendo admin o empleado: ',
-            this.Dreclamos
-          );
+            
           }
 
           
@@ -105,10 +95,20 @@ export class HistorialComponent implements OnInit {
     } else {
       this.detalleReclamo.getHistorialHoy(this.fecha,this.IDUsuario,1,5,this.IDRol).subscribe( /* getDetalleReclamoUsuario(this.IDUsuario, 1) */
         (info) => {
-          console.log(info);
+          
           this.banderaIconoCarga=false;
           this.Dreclamos = info;
-          console.log('detalles de reclamos: ', this.Dreclamos);
+          if (info.length == 0) {
+            this.banderaAlerta=true;
+           
+            this.banderaIconoCarga=false;
+            this.mensajeDelDia();
+          }else{
+            this.Dreclamos = info;
+            
+            this.banderaIconoCarga=false;
+           
+          }
         },
         (error) => {
           console.log(error);
@@ -129,6 +129,7 @@ export class HistorialComponent implements OnInit {
   }
 
   obtenerIDTipoReclamo(ev: any) {
+    
     this.selectIDTipReclamo = ev.target.value;
     console.log(this.selectIDTipReclamo);
     this.getEstadoReclamo(this.selectIDTipReclamo);
@@ -184,7 +185,7 @@ export class HistorialComponent implements OnInit {
         filtroIDTReclamo = this.selectIDTipReclamo;
         filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
         this.detalleReclamo
-          .getDetalleReclamoFiltrado(filtroIDTReclamo, filtroIDEstadoReclamo).subscribe(
+          .getDetalleReclamoFiltrado(filtroIDTReclamo, filtroIDEstadoReclamo,this.IDRol).subscribe(
             (res) => {
               this.formTarjetas.reset();
               delete this.Dreclamos;
@@ -194,14 +195,7 @@ export class HistorialComponent implements OnInit {
               this.Dreclamos = res;
               if (res.length == 0) {
                 this.banderaAlerta=true;/*se visualiza */
-                this.toastr.info(
-                  'No se encuentran reclamos registrados para la busqueda seleccionada ',
-                  'Atención',
-                  {
-                    timeOut: 5000,
-                    progressBar: true,
-                  }
-                );
+                this.mensajeRespuestaErrordeBusqueda();
               }
             },
             (err) => console.error(err)
@@ -221,14 +215,7 @@ export class HistorialComponent implements OnInit {
               this.Dreclamos = res;
               if (res.length == 0) {
                 this.banderaAlerta=true;/*se visualiza */
-                this.toastr.info(
-                  'No se encuentran reclamos registrados para la busqueda seleccionada ',
-                  'Atención',
-                  {
-                    timeOut: 5000,
-                    progressBar: true,
-                  }
-                );
+                this.mensajeRespuestaErrordeBusqueda()
               }
             },
             (err) => console.error(err)
@@ -241,17 +228,13 @@ export class HistorialComponent implements OnInit {
           (res) => {
             this.formTarjetas.reset();//elimino las tarjetas
             delete this.Dreclamos;//borro el objeto con toda la informacion
+            this.banderaIconoCarga =false; /* No se visualiza */
+            this.banderaAlerta=false;/* No se visualiza */
             
             this.Dreclamos = res;
             if (res.length == 0) {
-              this.toastr.info(
-                'No se encuentran reclamos registrados para la busqueda seleccionada ',
-                'Atención',
-                {
-                  timeOut: 5000,
-                  progressBar: true,
-                }
-              );
+              this.banderaAlerta=true;/*se visualiza */
+              this.mensajeRespuestaErrordeBusqueda();
             }
           },
           (err) => console.error(err)
@@ -271,14 +254,7 @@ export class HistorialComponent implements OnInit {
             if (res.length == 0) {
               this.banderaAlerta=true;
               this.banderaIconoCarga=false;
-              this.toastr.info(
-                'No se encuentran reclamos registrados para la busqueda seleccionada ',
-                'Atención',
-                {
-                  timeOut: 5000,
-                  progressBar: true,
-                }
-              );
+              this.mensajeRespuestaErrordeBusqueda();
             }
 
             
@@ -300,14 +276,7 @@ export class HistorialComponent implements OnInit {
             if (res.length == 0) {
               this.banderaAlerta=true;
               this.banderaIconoCarga=false;
-              this.toastr.info(
-                'No se encuentran reclamos registrados para la busqueda seleccionada ',
-                'Atención',
-                {
-                  timeOut: 5000,
-                  progressBar: true,
-                }
-              );
+              this.mensajeRespuestaErrordeBusqueda();
             }
 
             
@@ -346,39 +315,67 @@ export class HistorialComponent implements OnInit {
       } */
 
     } else if(this.IDRol==3)  {
+      debugger
+      filtroIDTReclamo = this.selectIDTipReclamo;
+      filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
+      filtroFechaInicio = this.fechaDesdeCtrl.value;
+      filtroFechaFin = this.fechaHastaCtrl.value;
       /* Filtro por usuario */
-      if (this.tipoReclamoCtrl.value != null) {
-        filtroIDTReclamo = this.selectIDTipReclamo;
-        filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
-        filtroFechaInicio = this.fechaDesdeCtrl.value;
-        filtroFechaFin = this.fechaHastaCtrl.value;
-
+      /* Filtro los reclamos por el tipo y el estado pero sin fecha */
+      if ((this.tipoReclamoCtrl.value !='' && this.estadoReclamoCtrl.value!='') && this.fechaDesdeCtrl.value=='') {
+      
         this.detalleReclamo
-          .getDetalleReclamoFiltradoUsuario(
-            filtroIDTReclamo,
-            filtroIDEstadoReclamo,
-            this.IDUsuario
-          )
+          .getDetalleReclamoFiltradoUsuario(filtroIDTReclamo,filtroIDEstadoReclamo,this.IDRol,this.IDUsuario)
           .subscribe(
             (res) => {
               this.formTarjetas.reset();
               delete this.Dreclamos;
-
+              this.banderaIconoCarga =false; /* No se visualiza */
+              this.banderaAlerta=false;/* No se visualiza */
               this.Dreclamos = res;
               console.log(this.Dreclamos);
               if (res.length == 0) {
-                this.toastr.info(
-                  'No se encuentran reclamos registrados para la busqueda seleccionada ',
-                  'Atención',
-                  {
-                    timeOut: 5000,
-                    progressBar: true,
-                  }
-                );
+                this.banderaAlerta=true;
+                this.banderaIconoCarga=false;
+                this.mensajeRespuestaErrordeBusqueda();
               }
             },
             (err) => console.error(err)
           );
+
+          /* Filtro los reclamos por el tipo y el estado pero con fecha */
+      }else if ((this.tipoReclamoCtrl.value !='' && this.estadoReclamoCtrl.value!='') && this.fechaDesdeCtrl.value!=''){
+        
+        this.detalleReclamo.getDetalleReclamoPorfechaDelUsuario(filtroIDTReclamo,filtroIDEstadoReclamo,this.fechaDesdeCtrl.value,this.IDRol,this.IDUsuario)
+          .subscribe(
+            (res) => {
+              this.formTarjetas.reset();
+              delete this.Dreclamos;
+              this.banderaIconoCarga =false; /* No se visualiza */
+              this.banderaAlerta=false;/* No se visualiza */
+              this.Dreclamos = res;
+              console.log(this.Dreclamos);
+              if (res.length == 0) {
+                this.banderaAlerta=true;
+                this.banderaIconoCarga=false;
+                this.mensajeRespuestaErrordeBusqueda();
+              }
+            },
+            (err) => console.error(err)
+          );
+
+      }else{
+        this.banderaAlerta=true;
+        this.banderaIconoCarga =false; 
+
+        this.toastr.info(
+          'No se puede realizar la accion deseasa',
+          'Atención',
+          {
+            timeOut: 5000,
+            progressBar: true,
+          }
+        );
       }
     }
   }
@@ -392,7 +389,27 @@ export class HistorialComponent implements OnInit {
       mes='0'+mes;
     }
     this.fecha = today.getFullYear() + '-' + mes+'-'+ today.getDate();
-    console.log('El dia de hoy es:'+this.fecha);
+  }
 
+  mensajeDelDia(){
+    this.toastr.info(
+      'No se encuentran reclamos registrados en el dia de hoy ',
+      'Atención',
+      {
+        timeOut: 3000,
+        progressBar: true,
+      }
+    );
+  }
+
+  mensajeRespuestaErrordeBusqueda(){
+    this.toastr.info(
+      'No se encuentran reclamos registrados para la busqueda seleccionada ',
+      'Atención',
+      {
+        timeOut: 5000,
+        progressBar: true,
+      }
+    );
   }
 }

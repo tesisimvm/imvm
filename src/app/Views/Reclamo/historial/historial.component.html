@@ -11,7 +11,7 @@
     </div>
   </div>
 
-  <div *ngIf="(IDRol==1 || IDRol==2)" class="container-fluid busquedaFiltros" >
+  <div class="container-fluid busquedaFiltros" >
     <div class="row">
 
       <div class="col col-sm-6 col-md-6 col-lg-3 col-xl-3">
@@ -47,16 +47,16 @@
       <div class="col col-sm-12 col-md-12 col-lg-6 col-xl-6">
 
         <div class="row">
-          <div class="col-md-6">
+          <div class="col">
             <h5>Fecha Inicio</h5>
             <input id="Fecha" class="calendario d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
               title="Fecha Inicio" name="name" type="date" placeholder="Fecha" [formControl]="fechaDesdeCtrl">
           </div>
-          <div class="col-md-6">
+         <!--  <div class="col-md-6">
             <h5 for="">Fecha Fin</h5>
             <input id="Fecha" class="calendario d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
               title="Fecha Fin" name="name" type="date" placeholder="Fecha" [formControl]="fechaHastaCtrl">
-          </div>
+          </div> -->
         </div>
       </div>
 
@@ -72,7 +72,7 @@
             title="Nombre del Usuario" id="nombreUsuario" placeholder="Nombre" [formControl]="nombreUsuarioCtrl">
         </div>
       </div>
-      <div class="col col-sm-12 col-md-6">
+      <div *ngIf="(IDRol==1 || IDRol==2)" class="col col-sm-12 col-md-6">
         <div class="buscar">
           <button class="btn btn-primary d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
             title="Buscar Reclamo" (click)="btnBuscarReclamosFiltrados()"><i
@@ -80,13 +80,24 @@
         </div>
 
       </div>
+
+      <div *ngIf="( IDRol==3)" class="row">
+        <div class="col col-sm-12 col-md-12 col-lg-12">
+          <div class="buscar">
+            <button class="btn btn-primary d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
+              title="Buscar Reclamos" (click)="btnBuscarReclamosFiltrados()"><i
+                class="fas fa-search fa-lg"></i>Buscar</button>
+          </div>
+  
+        </div>
+      </div>
     </div>
 
 
   </div>
 
   <!-- Cuando se loguea el usuario -->
-  <div *ngIf="(IDRol==3)" class="container-fluid busquedaFiltros">
+  <!-- <div *ngIf="(IDRol==3)" class="container-fluid busquedaFiltros">
     <div class="row">
 
       <div class="col col-sm-6 col-md-6 col-lg-6 col-xl-3">
@@ -96,7 +107,7 @@
           <select class="form-select d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
             title="Tipo de Reclamo" placeholder="Clic para abrir" (change)="obtenerIDTipoReclamo($event)" aria-label=""
             [formControl]="tipoReclamoCtrl">
-            <!-- Default select example -->
+            
             <option *ngFor="let item of TR" value="{{item.idTipoReclamo}}" selected>{{item.nombre}}</option>
 
           </select>
@@ -122,8 +133,8 @@
       <div class="col col-sm-12 col-md-12 col-lg-12 col-xl-6">
 
         <div class="row">
-          <div class="col-md-6">
-            <h5>Fecha Inicio</h5>
+          <div class="col">
+            <h5>Fecha</h5>
             <input id="Fecha" class="calendario d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top"
               title="Fecha Inicio" name="name" type="date" placeholder="Fecha" [formControl]="fechaDesdeCtrl">
           </div>
@@ -136,7 +147,7 @@
       </div>
 
     </div>
-    <!-- Botón Buscar -->
+    
     <div class="row">
       <div class="col col-sm-12 col-md-12 col-lg-12">
         <div class="buscar">
@@ -149,7 +160,7 @@
     </div>
 
 
-  </div>
+  </div> -->
 </form>
 
 <div *ngIf="banderaIconoCarga==true" id="IcoCarga" class="d-flex justify-content-center">
