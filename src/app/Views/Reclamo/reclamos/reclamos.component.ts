@@ -209,6 +209,13 @@ export class ReclamosComponent implements OnInit {
         ID_TipoReclamo: Number(this.selectIdTipoReclamo),
         ID_Estado: 1 /* estado Activo */,
       };
+      debugger
+      /* si es vial que se agrege el estado pendiente de vial sino queda en 1 para el ambiental */
+      if(this.selectIdTipoReclamo==2){
+        RegistroRecl.ID_Estado=5;
+         
+      }
+
       /* Obtengo el id para validar mas adelante en el detalle si es ambiental o vial */
       this.validacionTipoReclamo = RegistroRecl.ID_TipoReclamo;
       debugger;
@@ -467,7 +474,7 @@ ambiental */
       debugger;
 
       if (this.estadoReclamoCtrl.value == '') {
-        putID_Estado = this.arregloDetalleReclamo[0].idEstado;
+        putID_Estado = this.arregloDetalleReclamo[0].iD_Estado;
       }
       if (this.estadoReclamoCtrl.value != '') {
         putID_Estado = Number(this.estadoReclamoCtrl.value);

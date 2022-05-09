@@ -1,65 +1,55 @@
-<!-- <div class="row" style="margin-top: 2%;">
-  <div class="col-md-6">
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Tipos de Reclamos</mat-card-title>
-        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-      <!-- </mat-card-header>
-      <p></p>
-      <mat-card-content>
-        <ngx-charts-advanced-pie-chart
-        [view]="view"
-        [scheme]="colorScheme"
-        [results]="data"
-        [gradient]="gradient"
-        (select)="onSelect($event)"
-        (activate)="onActivate($event)"
-        (deactivate)="onDeactivate($event)"
-        >
-      </ngx-charts-advanced-pie-chart>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Exportar en PDF</button>
-        <button mat-button>Exportar como Imagen</button>
-      </mat-card-actions>
-    </mat-card>    
-  </div>
 
-  <div class="col-md-6">
-    <mat-card class="example-card">
-      <mat-card-header>
-        <mat-card-title>Estados de Reclamos</mat-card-title>
-        <!-- <mat-card-subtitle>Dog Breed</mat-card-subtitle> -->
-      <!-- </mat-card-header>
-      <p></p>
-      <mat-card-content> -->
-        <!-- <ngx-charts-bar-vertical-2d
-        [view]="view2"
-        [scheme]="colorScheme"
-        [results]="multi"
-        [gradient]="gradient"
-        [xAxis]="showXAxis"
-        [yAxis]="showYAxis"
-        [legend]="showLegend"
-        [showXAxisLabel]="showXAxisLabel"
-        [showYAxisLabel]="showYAxisLabel"
-        [xAxisLabel]="xAxisLabel"
-        [yAxisLabel]="yAxisLabel"
-        [legendTitle]="legendTitle"
-        (select)="onSelect($event)"
-        (activate)="onActivate($event)"
-        (deactivate)="onDeactivate($event)">
-      </ngx-charts-bar-vertical-2d> -->
-      <!-- </mat-card-content>
-      <mat-card-actions>
-        <button mat-button>Exportar en PDF</button>
-        <button mat-button>Exportar como Imagen</button>
-      </mat-card-actions>
-    </mat-card>   
-  </div>
-</div> --> 
-
-
-<Div class="contenedorReporte zoom">
+<!-- <Div class="contenedorReporte zoom">
   <iframe  src="https://app.powerbi.com/reportEmbed?reportId=8cf37a37-a3b3-4bb8-9c04-801a07cbd95f&autoAuth=true&ctid=9c230c21-e33c-4189-8f00-98e6c371204e&config=eyJjbHVzdGVyVXJsIjoiaHR0cHM6Ly93YWJpLWJyYXppbC1zb3V0aC1iLXByaW1hcnktcmVkaXJlY3QuYW5hbHlzaXMud2luZG93cy5uZXQvIn0%3D" frameborder="0" allowFullScreen="true"></iframe>
-</Div>
+</Div> -->
+
+<div class="container-fluid bloquePrimario">
+
+  <div class="row">
+
+    <div class="col cajaPrincipal Centrado shadow-lg p-3 mb-5 rounded border border-2">
+      <ngx-charts-number-card [scheme]="colorScheme" [results]="recuentoTarjeta" [cardColor]="cardColor"
+        (select)="onSelect($event)">
+      </ngx-charts-number-card>
+    </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-5 cajaSecundaria Centrado shadow-lg p-3 mb-5 rounded border border-3 ">
+
+      <ngx-charts-pie-chart [scheme]="colorSchemeTorta" [results]="arregloTipoReclamos" [gradient]="gradientTorta"
+        [legend]="showLegend" [animations2]="animations2" [legendTitle]="legendtitleTorta" [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
+        (select)="onSelect($event)">
+      </ngx-charts-pie-chart>
+
+    </div>
+
+    <div class="col-1">
+
+    </div>
+
+    <div class="col-6 cajaTercera Centrado shadow-lg p-3 mb-5 rounded border border-3 ">
+      <ngx-charts-pie-grid [view3]="view3" [animations3]="animations3" scheme='fire' [results]="arregloReclamosAmbientales"
+      [legend]="showLegend3" [legendTitle]="legendtitle"  (select)="onSelect($event)">
+      </ngx-charts-pie-grid>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+    <div class="col-12 cajaCuarta Centrado shadow-lg p-3 mb-5 rounded border border-3">
+
+      <ngx-charts-bar-vertical-2d [view4]="view4" [scheme]="colorScheme4" [results]="multi" [gradient4]="gradient4"
+        [xAxis]="showXAxis" [yAxis]="showYAxis" [legend4]="showLegend4" [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel"
+        [legendTitle]="legendTitle" [animations4]="animations4" (select)="onSelect($event)">
+      </ngx-charts-bar-vertical-2d>
+
+    </div>
+
+  </div>
+
+</div>

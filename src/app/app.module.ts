@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,11 +30,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { PprincipalComponent } from './Views/Estructura/pprincipal/pprincipal.component';
 import {MatCardModule} from '@angular/material/card';
+import { NgxChartsModule, PieChartComponent } from '@swimlane/ngx-charts';
 
 
 
 
 @NgModule({
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
     AppComponent,
     MainNavComponent,
@@ -70,7 +72,8 @@ import {MatCardModule} from '@angular/material/card';
       preventDuplicates: true,
     }),
     NgbModule,
-    MatCardModule
+    MatCardModule,
+    NgxChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -35,8 +35,8 @@
         <a mat-list-item class="btn-grad" routerLink="./historial"> <i class="fas fa-heading" style="font-size:  22px;"
             routerLink="./historial"></i>Historial</a>
 
-        <a *ngIf="(IDRol==3 || IDRol==1)" mat-list-item class="btn-grad"> <i class="fas fa-map-marked-alt" style="font-size:  22px;"></i>
-          Mapa</a>
+        <a *ngIf="(IDRol==3 || IDRol==1)" mat-list-item class="btn-grad" routerLink="./mapas" > <i class="fas fa-map-marked-alt" style="font-size:  22px;" routerLink="./mapas"></i>Mapa</a>
+
         
         <a *ngIf="(IDRol==1)" mat-list-item class="btn-grad"><i class="fas fa-clipboard" style="font-size:  22px;"></i>
           Reportes</a>
@@ -49,8 +49,8 @@
 
         <a mat-list-item class="btn-grad"> <i class="fas fa-info" style="font-size:  22px;"></i>
           Ayuda</a>
-        <a mat-list-item class="btn-grad" (click)="goBack()"> <i class="fas fa-times" (click)="goBack()"
-            style="font-size:  22px;"></i>
+        <a mat-list-item class="btn-grad" (click)="goBack()" style="color: rgb(202, 9, 9);;"> <i class="fas fa-times" (click)="goBack()"
+            style="font-size: 22px; color: rgb(202, 9, 9);"></i>
           Cerrar Sesión</a>
 
       </div>

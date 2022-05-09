@@ -100,9 +100,9 @@ select {
 }
 
 .card {
-  background: rgb(5, 49, 107); /* Color del fondo de la tarjeta */
-  border: 1px solid #918f8f;
-  color: rgba(250, 250, 250, 0.8);
+  background-color: rgba(246, 245, 245, 0.776); /* Color del fondo de la tarjeta */
+  border: 2px solid #0c0c9f;
+  color: rgba(21, 21, 21, 0.8);
   margin-bottom: 2rem;
 }
 
@@ -123,6 +123,10 @@ select {
 /*icono de lupa del boton */
 .fa-search {
   margin-right: 20px;
+}
+
+.btnActualizar{
+  background-color: #7790af;
 }
 
 /* .seleccionFiltros{

@@ -381,14 +381,25 @@ export class HistorialComponent implements OnInit {
   }
 
   fechadehoy(){
+    debugger
     /* Fecha del fia de hoy, para mostrar los reclamos del este día */
     var today = new Date();
     var mes;
+    var dia:any;
+
     mes=(today.getMonth()+1)
-    if(mes==1|| mes==2||mes==3||mes==4||mes==5|| mes==6||mes==7||mes==8|| mes==9){
+    if(mes>=1 || mes<=9){
       mes='0'+mes;
     }
-    this.fecha = today.getFullYear() + '-' + mes+'-'+ today.getDate();
+
+    dia= (today.getDay());
+    if(dia>=1 || dia<=9){
+      dia= (today.getDay()+1);
+      dia='0'+dia;
+    }
+
+    console.log("dia: "+dia);
+    this.fecha = today.getFullYear() + '-' + mes+'-'+ dia;
   }
 
   mensajeDelDia(){

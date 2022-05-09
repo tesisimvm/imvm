@@ -75,6 +75,18 @@
 .btn-grad{
   font-family: Open Sans,sans-serif;
   font-size: 0.90em;
+  background-color:rgb(199, 202, 202);
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  /* text-transform: uppercase; */
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: rgb(0, 0, 0);
+  border-radius: 3px;
+  display: block;
+
+  border-radius: 10px; /* nuevo */
 }
 
 .spacer {
@@ -111,32 +123,7 @@
 
 /* estilo de color para los botones si se quiere cambiar
 ir a https://cssgradient.io/gradient-backgrounds/ */
-.btn-grad {
-  /* background-image: linear-gradient(
-    to right,
-    #ffffff 0%,
-    #ffffff 51%,
-    #4d4d4d 100%
-  ); */
-  background-color:rgb(199, 202, 202);
 
- /*  border: 1px solid rgb(0,0,0); */
-  
-
-}
-.btn-grad {
-  margin: 10px;
-  padding: 15px 45px;
-  text-align: center;
-  /* text-transform: uppercase; */
-  transition: 0.5s;
-  background-size: 200% auto;
-  color: rgb(0, 0, 0);
-  border-radius: 3px;
-  display: block;
-
-  border-radius: 10px; /* nuevo */
-}
 
 .botonConfiguracion{
   margin: 0 auto;

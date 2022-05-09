@@ -11,6 +11,10 @@ import { modelo } from '../model/modelo';
 import { DetalleReclamo, DetalleReclamoActualizar, DetalleReclamoVehicularActualizar } from '../model/detalleReclamo';
 import { EstadoReclamo } from '../model/filtrosHistorial/estadoReclamo';
 import { Vehiculo } from '../model/vehiculo';
+import { RecuentoTotal } from '../model/Dashboard/V_RecuentoTotal';
+import { RecuentoTarjetas } from '../model/Dashboard/V_RecuentoReclamos';
+import { RecuentoTipReclamos } from '../model/Dashboard/V_CantidadTipReclamoUsuario';
+import { RecuentoRecAmbiental } from '../model/Dashboard/V_CantidadRecAmbientalUsuario';
 
 
 
@@ -183,9 +187,6 @@ export class BackenApiService {
    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroRangoFechas?'+'idTipoReclamo='+idTipoReclamo+'&'+'idEstado='+idEstado+'&'+'fechaDesde='+fechaDesde+'&'+'idRol='+idRol+'&'+'idUsuario='+idUsuario);
   }
 
-
-
-
   /* Metodo usado para traer los datos necesarios para actualizar el reclamo AMBIENTAL */
   getDetalleReclamoParaActualizar(idDetalleR:number): Observable<any>{
     return this.http.get<DetalleReclamoActualizar[]>('https://localhost:44363/ActualizarReclamo/'+idDetalleR);
@@ -212,28 +213,6 @@ export class BackenApiService {
     return this.http.put('https://localhost:44363/ActualizarRecVehicular/'+DetoVehiculo.IDVehiculo,dato,this.httpOptions)
   }
 
-
-  
-
-  
-
-  
-
- 
-
-  
-
- 
-
-
-
-  
-
-
-
-  
-
-
   /******* Vehiculo *******/
   postVehiculo(vehiculo: any):Observable<any>{
     debugger
@@ -245,5 +224,30 @@ export class BackenApiService {
     return this.http.post('https://localhost:44363/vehiculoxdetallereclamo', vehiculoxDetalle, this.httpOptions);
   }
 
+  /* DASHBOARD  */
 
+  /* arregloTarjetas: Array<RecuentoTarjetas> = new Array<RecuentoTarjetas>(); */
+
+  /* Dashboard - devuelve la cantidad total de reclamos dependiendo de sus 3 estados en general */
+  getRecuentoReclamos():Observable<any>{ 
+    return  this.http.get<RecuentoTarjetas[]>('https://localhost:44363/cantidadxestados')
+  }
+
+  /* Dashboard - devuelve la cantidad total de reclamos del usuario dependiendo de los 3 estados */
+  getCantidadReclamosUsuario(idUsuario:number):Observable<any>{
+    return this.http.get<RecuentoTarjetas[]>('https://localhost:44363/V_CantidadxEstadoUsuario?'+'idUsuario='+idUsuario);
+  }
+  /* Dashboard - devuelve la cantidad total de reclamos */
+  getReclamosTotales(idUsuario:number):Observable<any>{
+    return this.http.get<RecuentoTotal[]>('https://localhost:44363/V_TotalReclamosRealizados/'+idUsuario);
+  }
+
+  /* Dashboard - devuelve la cantidad de tipos de reclamos para el usuario logeado */
+  getRecuentoTiposReclamosUsuario(idUsuario:number){
+    return this.http.get<RecuentoTipReclamos[]>('https://localhost:44363/V_CantidadTipReclamoUsuario/'+idUsuario)
+  }
+
+  getRecuentoReclamosAmbientalesUsuario(idUsuario:number){
+    return this.http.get<RecuentoRecAmbiental[]>('https://localhost:44363/V_CantidadRecAmbientalUsuario/'+idUsuario)
+  }
 }
