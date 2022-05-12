@@ -15,6 +15,7 @@ import { RecuentoTotal } from '../model/Dashboard/V_RecuentoTotal';
 import { RecuentoTarjetas } from '../model/Dashboard/V_RecuentoReclamos';
 import { RecuentoTipReclamos } from '../model/Dashboard/V_CantidadTipReclamoUsuario';
 import { RecuentoRecAmbiental } from '../model/Dashboard/V_CantidadRecAmbientalUsuario';
+import { CantReclamoMesyAnio } from '../model/Dashboard/V_CantidadRecPorMesyAnio';
 
 
 
@@ -238,16 +239,37 @@ export class BackenApiService {
     return this.http.get<RecuentoTarjetas[]>('https://localhost:44363/V_CantidadxEstadoUsuario?'+'idUsuario='+idUsuario);
   }
   /* Dashboard - devuelve la cantidad total de reclamos */
-  getReclamosTotales(idUsuario:number):Observable<any>{
-    return this.http.get<RecuentoTotal[]>('https://localhost:44363/V_TotalReclamosRealizados/'+idUsuario);
+  getReclamosTotales(idUsuario:number,idRol:number):Observable<any>{
+    debugger
+    if(idRol==1 || idRol==2){
+      return this.http.get<RecuentoTotal[]>('https://localhost:44363/V_TotalReclamosAdmin/'+idRol);
+    }else{
+      return this.http.get<RecuentoTotal[]>('https://localhost:44363/V_TotalReclamosRealizados/'+idUsuario+'/'+idRol);
+    }
+    
   }
 
-  /* Dashboard - devuelve la cantidad de tipos de reclamos para el usuario logeado */
-  getRecuentoTiposReclamosUsuario(idUsuario:number){
-    return this.http.get<RecuentoTipReclamos[]>('https://localhost:44363/V_CantidadTipReclamoUsuario/'+idUsuario)
+  /* Dashboard - devuelve la cantidad de tipos de reclamos para el usuario logeado o el admin */
+  getRecuentoTiposReclamosUsuario(idUsuario:number, idRol:number){
+    debugger
+    if(idRol==1 || idRol==2){
+      return this.http.get<RecuentoTipReclamos[]>('https://localhost:44363/V_TotalTipoReclamosAdmin/'+idRol)
+    }else{
+      return this.http.get<RecuentoTipReclamos[]>('https://localhost:44363/V_CantidadTipReclamoUsuario/'+idUsuario)
+    }
+    
   }
 
   getRecuentoReclamosAmbientalesUsuario(idUsuario:number){
     return this.http.get<RecuentoRecAmbiental[]>('https://localhost:44363/V_CantidadRecAmbientalUsuario/'+idUsuario)
+  }
+  /* Utilizado para el boton de buscar cantidad de reclamos dependiendo del año, rol y usuario */
+  getRecuentoReclamosDelAnio(idUsuario:number,anio:string,idRol:number){
+    if(idRol==1 || idRol==2){
+      return this.http.get<CantReclamoMesyAnio[]>('https://localhost:44363/V_TotalReclamosPorAnioAdmin/'+idRol+'/'+anio)
+    }else{
+      return this.http.get<CantReclamoMesyAnio[]>('https://localhost:44363/V_CantidadRecPorMesyAnio/'+idUsuario+'/'+anio)
+    }
+   
   }
 }
