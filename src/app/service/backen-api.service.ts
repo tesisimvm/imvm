@@ -43,7 +43,7 @@ export class BackenApiService {
   }
 
   postReclamo(Reclamo: any):Observable<any>{
-    debugger
+    
     console.log(Reclamo);
     return this.http.post('https://localhost:44363/reclamo', Reclamo, this.httpOptions);
   }
@@ -97,13 +97,13 @@ export class BackenApiService {
   /*Obtener los datos del usuario segun el ID*/
   getdatosPerfil(id:any): Observable<datosperfil[]>{
     console.log(id)
-    //debugger
+    //
     return this.http.get<datosperfil[]>('https://localhost:44363/usuario/' + id);
   }
 
   metodoEditar(perfil:datosperfil){
     //console.log(id)
-    //debugger
+    //
     return this.http.put('https://localhost:44363/usuario/' + perfil.IDUsuario,perfil);
   }
   
@@ -147,7 +147,7 @@ export class BackenApiService {
   /****** Busqueda por filtros siendo admininistrador, empleado o usuario ***/
   /* Busqueda por tipo reclamo y estado (no ingreso el nombre de usuario ni la fecha) */
   getDetalleReclamoFiltrado(idTipoR:number,idEstadoReclamo:number, idRol:number): Observable<any> {
-    debugger
+    
     return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idtipor='+idTipoR+"&"+'idestado='+idEstadoReclamo+'&'+'idRol='+idRol);
   }
 
@@ -159,13 +159,13 @@ export class BackenApiService {
 
    /* Busqueda por tipo reclamo, estado y nombre (no ingresó la fecha) - administrador o usuario*/
    getDetalleReclamoFiltradoNombre(idTipoR:number,idEstadoReclamo:number, nombreUsuario:string): Observable<any>{
-    debugger
+    
     return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idtipor='+idTipoR+"&"+'idestado='+idEstadoReclamo+'&'+'nombreUsuario='+nombreUsuario);
   }
 
    /* Busqueda de reclamos por filtro usando el nombre del usuario - administrador */
    getDetalleReclamoFiltradoNombreUsuario(nombreUsuario:string): Observable<any> {
-    debugger
+    
    /*https://localhost:44363/FiltroNombreReclamos?nombreUsuario=Omar */
    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroNombreReclamos?'+'nombreUsuario='+nombreUsuario);
   }
@@ -178,13 +178,13 @@ export class BackenApiService {
 
    /****** Busqueda por filtros tipo reclamo y estado siendo usuario***/
    getDetalleReclamoFiltradoUsuario(idTipoR:number,idEstado:number,idRol:number,idUsuario:number): Observable<any> {
-    debugger
+    
    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltrosReclamos?'+'idTipoR='+idTipoR+'&'+'idEstado='+idEstado+'&'+'idRol='+idRol+'&'+'idUsuario='+idUsuario);
   }
 
   /* Busqueda por filtros tipo reclamo, estado y fecha - siendo usuario */
   getDetalleReclamoPorfechaDelUsuario(idTipoReclamo:number,idEstado:number,fechaDesde:string,idRol:number,idUsuario:number  ): Observable<any> {
-    debugger
+    
    return this.http.get<DetalleReclamo[]>('https://localhost:44363/FiltroRangoFechas?'+'idTipoReclamo='+idTipoReclamo+'&'+'idEstado='+idEstado+'&'+'fechaDesde='+fechaDesde+'&'+'idRol='+idRol+'&'+'idUsuario='+idUsuario);
   }
 
@@ -199,29 +199,29 @@ export class BackenApiService {
 
   putActualizarReclamo(Recla: Reclamo):Observable<any>{
     var dato = JSON.stringify(Recla);
-    debugger
+    
     return this.http.put('https://localhost:44363/reclamo/'+Recla.IDReclamo,dato,this.httpOptions)
   }
   putActualizarDetalleReclamo(DetRecla: DetalleReclamo):Observable<any>{
     var dato = JSON.stringify(DetRecla);
-    debugger
+    
     return this.http.put('https://localhost:44363/detallereclamo/'+DetRecla.IDDetalleReclamo,dato,this.httpOptions)
   }
   /* Aca se usa cuando se cambia la marca del auto */
   putActualizarDetVehicular(DetoVehiculo: Vehiculo):Observable<any>{
     var dato = JSON.stringify(DetoVehiculo);
-    debugger
+    
     return this.http.put('https://localhost:44363/ActualizarRecVehicular/'+DetoVehiculo.IDVehiculo,dato,this.httpOptions)
   }
 
   /******* Vehiculo *******/
   postVehiculo(vehiculo: any):Observable<any>{
-    debugger
+    
     
     return this.http.post('https://localhost:44363/vehiculo', vehiculo, this.httpOptions);
   }
   postVehiculoxDetalle(vehiculoxDetalle: any):Observable<any>{
-    debugger
+    
     return this.http.post('https://localhost:44363/vehiculoxdetallereclamo', vehiculoxDetalle, this.httpOptions);
   }
 
@@ -240,7 +240,7 @@ export class BackenApiService {
   }
   /* Dashboard - devuelve la cantidad total de reclamos */
   getReclamosTotales(idUsuario:number,idRol:number):Observable<any>{
-    debugger
+    
     if(idRol==1 || idRol==2){
       return this.http.get<RecuentoTotal[]>('https://localhost:44363/V_TotalReclamosAdmin/'+idRol);
     }else{
@@ -251,7 +251,7 @@ export class BackenApiService {
 
   /* Dashboard - devuelve la cantidad de tipos de reclamos para el usuario logeado o el admin */
   getRecuentoTiposReclamosUsuario(idUsuario:number, idRol:number){
-    debugger
+    
     if(idRol==1 || idRol==2){
       return this.http.get<RecuentoTipReclamos[]>('https://localhost:44363/V_TotalTipoReclamosAdmin/'+idRol)
     }else{
@@ -260,8 +260,14 @@ export class BackenApiService {
     
   }
 
-  getRecuentoReclamosAmbientalesUsuario(idUsuario:number){
-    return this.http.get<RecuentoRecAmbiental[]>('https://localhost:44363/V_CantidadRecAmbientalUsuario/'+idUsuario)
+  getRecuentoReclamosAmbientalesUsuario(idUsuario:number,idRol:number){
+    
+    if(idRol==1 || idRol==2){
+      return this.http.get<RecuentoRecAmbiental[]>('https://localhost:44363/V_TotalRecAmbientalAdmin/')
+    }else{
+      return this.http.get<RecuentoRecAmbiental[]>('https://localhost:44363/V_CantidadRecAmbientalUsuario/'+idUsuario)
+    }
+    
   }
   /* Utilizado para el boton de buscar cantidad de reclamos dependiendo del año, rol y usuario */
   getRecuentoReclamosDelAnio(idUsuario:number,anio:string,idRol:number){

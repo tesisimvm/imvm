@@ -81,7 +81,7 @@ export class PprincipalComponent implements OnInit {
   isDoughnut: boolean = false;
   animations2: boolean = true;
   legendPosition: string = 'right';
-  legendtitleTorta:string='Tip.Reclamos';
+  legendtitleTorta:string='Categorías';
 
   colorSchemeTorta = {
     domain: ['#5AA454', '#FFAE00', '#C7B42C', '#AAAAAA']
@@ -99,14 +99,14 @@ export class PprincipalComponent implements OnInit {
   showlabels3: boolean=true;
   gradient3:   boolean=true;
 
-  legendtitle: string='Tip.Reclamos';
+  legendtitle: string='Causas';
   legendPosicion3: string = 'right';
 
   
   /*------------------------------------------------------------- */
 
   /* tabla vertical - cantidad de reclamos pormes del año */
-  
+ /*  viewTorta:[number,number] = [1000, 300]; */ /* ancho-alto */
   // options
   showXAxis5 = true;
   showYAxis5 = true;
@@ -154,10 +154,10 @@ export class PprincipalComponent implements OnInit {
   getRecuentoTotal() {
     /* Admin */
     if(this.IDRol==1 || this.IDRol==2){
-      debugger
+      
       this.Estadistica.getReclamosTotales(0,this.IDRol).subscribe(
         (resp) => {
-          debugger
+          
           this.arregloRecuentoTotal=resp;
 
           /* Se le adjunta el total a las tarjetas */
@@ -186,7 +186,7 @@ export class PprincipalComponent implements OnInit {
     
   }
 
-  /* Grafico Torta */
+  /* Grafico Torta - cantidad de reclamos */
   getRecuentoTiposReclamos(){
     /* Administrador */
     if(this.IDRol==1 || this.IDRol==2){
@@ -212,12 +212,21 @@ export class PprincipalComponent implements OnInit {
     }
   }
 
-  /* grafico de porcentajes */
+  /* grafico de torta tipos de reclamos ambientales */
   getRecuentoRecAmbientales(){
     if(this.IDRol==1 || this.IDRol==2){
 
+      this.Estadistica.getRecuentoReclamosAmbientalesUsuario(0,this.IDRol).subscribe(
+        (dato)=>{
+          this.arregloReclamosAmbientales=dato;
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+
     }else{
-      this.Estadistica.getRecuentoReclamosAmbientalesUsuario(this.IDUsuario).subscribe(
+      this.Estadistica.getRecuentoReclamosAmbientalesUsuario(this.IDUsuario,this.IDRol).subscribe(
         (dato)=>{
           this.arregloReclamosAmbientales=dato;
         },
@@ -230,12 +239,12 @@ export class PprincipalComponent implements OnInit {
 
   /* Grafico de barras verticales al abrir pantalla */
   getCantidadReclamosMesyAnio(){
-    debugger
+    
       this.anio=this.date.getFullYear();
 
       this.Estadistica.getRecuentoReclamosDelAnio(this.IDUsuario,this.anio+'',this.IDRol).subscribe(
         (dato)=>{
-          debugger
+          
           this.arregloReclamosDeMesesyAnio=dato;
         },
         (error) => {
@@ -258,7 +267,7 @@ export class PprincipalComponent implements OnInit {
 
     }else{
      
-        debugger
+        
         this.Estadistica.getRecuentoReclamosDelAnio(this.IDUsuario,this.txtAnio.value,this.IDRol).subscribe(
           (dato)=>{
             this.arregloReclamosDeMesesyAnio=dato;
