@@ -8,13 +8,15 @@
 
   <div class="row">
     <div class="col-12 cajaPrincipal shadow-lg p-3 mb-5 rounded border border-2">
-
+    
       <div class="row borde ">
         <div class="col-12 Centrado ">   
           <h5>Cantidad de Reclamos</h5>
         </div>
       </div>
+
       <div class="row">
+
         <div class="col-12 Centrado">   
           <ngx-charts-number-card [scheme]="colorScheme" [results]="recuentoTarjeta" [cardColor]="cardColor"
           (select)="onSelect($event)">
@@ -29,10 +31,10 @@
 
   <div class="row">
 
-    <div class="col-5 cajaSecundaria  shadow-lg p-3 mb-5 rounded border border-3 ">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-5  cajaSecundaria  shadow-lg p-3 mb-5 rounded border border-3 ">
 
       <div class="row borde">
-        <div class="col-12 Centrado ">   
+        <div class="col-12  Centrado ">   
           <h5>Cantidad General de Categorías</h5>
         </div>
       </div>
@@ -48,18 +50,18 @@
     
     </div>
 
-    <div class="col-1">
+    <div class="col-1 ">
 
     </div>
 
-    <div class="col-6 cajaTercera shadow-lg p-3 mb-5 rounded border border-3 ">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-6 cajaTercera shadow-lg p-3 mb-5 rounded border border-3 ">
       <div class="row borde">
-        <div class="col-12 Centrado ">   
+        <div class="col-12  Centrado ">   
           <h5>Causas Generales</h5>
         </div>
       </div>
       <div class="row">
-        <div class="col-12 Centrado SegundaFilaTorta2">
+        <div class="col-12  Centrado SegundaFilaTorta2">
           <ngx-charts-pie-chart 
            
             scheme='flame' 
@@ -76,8 +78,7 @@
     
       </div>
 
-      
-
+    
       <!-- <ngx-charts-pie-grid [view3]="view3" [animations3]="animations3" scheme='fire' [results]="arregloReclamosAmbientales"
       [legend]="showLegend3" [legendTitle]="legendtitle"  (select)="onSelect($event)">
       </ngx-charts-pie-grid> -->
@@ -126,7 +127,7 @@
         <div class="col-1">
 
         </div>
-        <div class="col-4 shadow-lg p-3 mb-5 rounded border border-3 ">
+        <div class="col-10 shadow-lg p-3 mb-5 rounded border border-3 ">
 
           <form class=" row g-3 needs-validation" novalidate>
     
@@ -147,6 +148,9 @@
             </div>
           </form>
     
+        </div>
+        <div class="col-1">
+
         </div>
       </div>
 
