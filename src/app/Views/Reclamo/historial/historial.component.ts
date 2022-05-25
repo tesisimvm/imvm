@@ -176,7 +176,7 @@ export class HistorialComponent implements OnInit {
     var filtroFechaFin: any;
 
     this.banderaIconoCarga=true; /* se activa para que la animacion refleje que se están cargando los reclamos solicitados */
-    debugger
+    
     /* Administrador y empleado */
     if (this.IDRol == 1 || this.IDRol == 2) {
       
@@ -209,7 +209,7 @@ export class HistorialComponent implements OnInit {
             (res) => {
               this.formTarjetas.reset();
               delete this.Dreclamos;
-              debugger
+              
               this.banderaIconoCarga =false; /* No se visualiza */
               this.banderaAlerta=false;/* No se visualiza */
               this.Dreclamos = res;
@@ -222,7 +222,7 @@ export class HistorialComponent implements OnInit {
           );
           /* Busqueda por nombre de usuario - siendo administrador */
       }else if((this.tipoReclamoCtrl.value=="" && this.estadoReclamoCtrl.value=="" )&& this.nombreUsuarioCtrl.value!=""){
-        debugger
+        
         this.filtroNombreUsuario = this.nombreUsuarioCtrl.value+'';
         this.detalleReclamo.getDetalleReclamoFiltradoNombreUsuario(this.filtroNombreUsuario).subscribe(
           (res) => {
@@ -241,10 +241,10 @@ export class HistorialComponent implements OnInit {
         );
         /* Busqueda por una fecha, estado y tiporeclamo */
       }else if((this.tipoReclamoCtrl.value!="" && this.estadoReclamoCtrl.value!="" )&& this.fechaDesdeCtrl.value!="" && this.nombreUsuarioCtrl.value==""){
-        debugger;
+        ;
         this.detalleReclamo.getDetalleReclamoPorfecha(this.tipoReclamoCtrl.value,this.estadoReclamoCtrl.value,this.fechaDesdeCtrl.value,this.IDRol).subscribe(
           (res)=>{
-            debugger
+            
             this.formTarjetas.reset();//elimino las tarjetas
             delete this.Dreclamos;//borro el objeto con toda la informacion
             this.banderaIconoCarga =false;
@@ -266,7 +266,7 @@ export class HistorialComponent implements OnInit {
         
         this.detalleReclamo.getDetalleReclamoPorfechayNombreUsuario(this.tipoReclamoCtrl.value,this.estadoReclamoCtrl.value,this.fechaDesdeCtrl.value,this.IDRol,this.nombreUsuarioCtrl.value).subscribe(
           (res)=>{
-            debugger
+            
             this.formTarjetas.reset();//elimino las tarjetas
             delete this.Dreclamos;//borro el objeto con toda la informacion
             this.banderaIconoCarga =false;
@@ -315,7 +315,7 @@ export class HistorialComponent implements OnInit {
       } */
 
     } else if(this.IDRol==3)  {
-      debugger
+      
       filtroIDTReclamo = this.selectIDTipReclamo;
       filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
       filtroFechaInicio = this.fechaDesdeCtrl.value;
@@ -381,7 +381,7 @@ export class HistorialComponent implements OnInit {
   }
 
   fechadehoy(){
-    debugger
+    
     /* Fecha del fia de hoy, para mostrar los reclamos del este día */
     var today = new Date();
     var mes;
