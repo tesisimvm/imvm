@@ -113,7 +113,7 @@ export class ReclamosComponent implements OnInit {
     console.log(' iddetalle: ', this.ruta[7]);
 
     /* Con este metodo traigo el reclamo y toda su información */
-    debugger;
+    ;
     this.metodo_VisualEditarReclamo(this.IDDetalleR);
 
     /* console.clear(); */
@@ -171,7 +171,7 @@ export class ReclamosComponent implements OnInit {
   }
 
   registrarReclamo() {
-    debugger;
+    ;
     /* Validacion en el caso que registre un input vacio o cambie de tipo de reclamo y tenga un input vacio */
     /* reclamo Ambiental */
     if (this.tipoReclamoCtrl.value == 1 && (this.tipoReclamoCtrl.value == '' || this.reclamoAmbientalCtrl.value == '' ||
@@ -209,7 +209,7 @@ export class ReclamosComponent implements OnInit {
         ID_TipoReclamo: Number(this.selectIdTipoReclamo),
         ID_Estado: 1 /* estado Activo */,
       };
-      debugger
+      
       /* si es vial que se agrege el estado pendiente de vial sino queda en 1 para el ambiental */
       if(this.selectIdTipoReclamo==2){
         RegistroRecl.ID_Estado=5;
@@ -218,7 +218,7 @@ export class ReclamosComponent implements OnInit {
 
       /* Obtengo el id para validar mas adelante en el detalle si es ambiental o vial */
       this.validacionTipoReclamo = RegistroRecl.ID_TipoReclamo;
-      debugger;
+      ;
 
       console.log(RegistroRecl);
       this.service.postReclamo(RegistroRecl).subscribe(
@@ -234,10 +234,10 @@ export class ReclamosComponent implements OnInit {
   }
 
   registrarDetalleReclamo(infoRec: any) {
-    debugger;
+    ;
     if (this.validacionTipoReclamo == 1) {
       /* Si es ambiental */
-      debugger;
+      ;
       var RegistroDetReclamo: DetalleReclamo = {
         descripcion: this.descripcionCtrl.value + '',
         direccion: this.ubicacionCtrl.value + '',
@@ -248,7 +248,7 @@ export class ReclamosComponent implements OnInit {
         ID_Reclamo: infoRec.idReclamo,
       };
 
-      debugger;
+      ;
       this.service.postDetalleReclamo(RegistroDetReclamo).subscribe(
         (res) => {
           this.Notificacion();
@@ -258,7 +258,7 @@ export class ReclamosComponent implements OnInit {
         (err) => console.error(err)
       );
     } else {
-      debugger;
+      ;
       /* Cuando sea Vehicular */
       /* Primero el detalle de reclamo */
       var RegistroDetReclamo: DetalleReclamo = {
@@ -310,7 +310,7 @@ export class ReclamosComponent implements OnInit {
       ID_Vehiculo: this.ID_Vehiculo,
       ID_DetalleReclamo: this.ID_DetReclamo,
     };
-    debugger;
+    ;
     this.service.postVehiculoxDetalle(RegistroVehxDet).subscribe(
       (res) => {
         /* aca capturar el id del detalle de reclamo para insertarlo en vehiculoxDetalle */
@@ -380,7 +380,7 @@ ambiental */
   }
 
   metodo_VisualEditarReclamo(IDDetalle: any) {
-    debugger;
+    ;
     /* Este metodo se utiliza para controlar lo que se quiere ver cuando se desea editar un reclamo */
     if (this.ruta[5] == 'historial' && IDDetalle != undefined) {
       this.banderaEdicionReclamo = true;
@@ -388,13 +388,13 @@ ambiental */
       /* Metodo en el cual se usa para traer todos los datos del reclamo a actualizar */
       this.service.getDetalleReclamoParaActualizar(IDDetalle).subscribe(
         (info) => {
-          debugger;
+          ;
           /* Acá pregunto si es ambiental o vial, si es ambiental sigo lo comun si es vial traigo los datos del auto */
           if (info[0].idTipoRec == 1) {
             this.arregloDetalleReclamo = info;
             console.log('Array detalle Reclamo: ', this.arregloDetalleReclamo);
           } else {
-            debugger;
+            ;
             delete this.arregloDetalleReclamo;
             this.getDetalleVehicularParaActualizar(info[0].idDetalleReclamo);
           }
@@ -408,11 +408,11 @@ ambiental */
     }
   }
   getDetalleVehicularParaActualizar(idDetalleReclamo: number) {
-    debugger;
+    ;
 
     this.service.getDetalleReclamoVehicular(idDetalleReclamo).subscribe(
       (info) => {
-        debugger;
+        ;
 
         this.arregloDetalleReclamo = info;
         console.log(
@@ -444,7 +444,7 @@ ambiental */
   } */
 
   MetodoActualizarReclamo() {
-    debugger
+    
     /* idEstadoReclamo */
     /* Roles 1=Administrador - 3=Usuario */
     if (this.estadoReclamoCtrl.value == '' && this.IDRol==1) {
@@ -471,7 +471,7 @@ ambiental */
       var puthora: any;
       var putID_TipoReclamo: any;
       var putID_Estado: any;
-      debugger;
+      ;
 
       if (this.estadoReclamoCtrl.value == '') {
         putID_Estado = this.arregloDetalleReclamo[0].iD_Estado;
@@ -491,7 +491,7 @@ ambiental */
       if (this.fechaCtrl.value != '') {
         putfecha = this.fechaCtrl.value + '';
       }
-      debugger;
+      ;
       if (this.horaCtrl.value == '') {
         puthora = this.arregloDetalleReclamo[0].hora;
       }
@@ -520,7 +520,7 @@ ambiental */
 
       this.service.putActualizarReclamo(reclamo).subscribe(
         (data) => {
-          debugger;
+          ;
           console.log(data);
           this.MetodoActualizarDetalleReclamo();
         },
@@ -550,7 +550,7 @@ ambiental */
     if (this.descripcionCtrl.value != '') {
       putDescripcion = this.descripcionCtrl.value + '';
     }
-    debugger;
+    ;
     if (this.ubicacionCtrl.value == '') {
       putUbicacion = this.arregloDetalleReclamo[0].direccion;
     }
@@ -569,7 +569,7 @@ ambiental */
     if (this.dominioCtrl.value != '') {
       putDominio = this.dominioCtrl.value + '';
     }
-    debugger;
+    ;
     var detalleReclamo: DetalleReclamo = {
       IDDetalleReclamo: Number(this.arregloDetalleReclamo[0].idDetalleReclamo),
       descripcion: String(putDescripcion),
@@ -582,7 +582,7 @@ ambiental */
     console.log('Detalle :', detalleReclamo);
     this.service.putActualizarDetalleReclamo(detalleReclamo).subscribe(
       (data) => {
-        debugger;
+        ;
         /*1= reclamo ambiental  */
         if (this.arregloDetalleReclamo[0].idTipoRec == 1) {
           console.log(data);
@@ -602,7 +602,7 @@ ambiental */
     var putIDVehiculo: any;
     var putDominio: any;
     var putID_Marca: any;
-    debugger;
+    ;
 
     if (this.selectIdMarcaVehiculo == 0) {
       putID_Marca = Number(this.arregloDetalleReclamo[0].iD_marca);
@@ -617,7 +617,7 @@ ambiental */
     if (this.dominioCtrl.value != '') {
       putDominio = this.dominioCtrl.value + '';
     }
-    debugger;
+    ;
     var vehiculo: Vehiculo = {
       IDVehiculo: this.arregloDetalleReclamo[0].iD_Vehiculo,
       dominio: putDominio,
@@ -671,7 +671,7 @@ ambiental */
   }
 
   /*  getDatosReclamos(IDDetalle: any) {
-    debugger;
+    ;
     if (IDDetalle == undefined) {
       this.banderaEdicionReclamo == false;
     } else {

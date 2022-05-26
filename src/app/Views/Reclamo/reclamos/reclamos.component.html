@@ -1,31 +1,12 @@
-<div class="container"
+<div class="container-fluid shadow-lg p-3 mb-5 rounded border border-2 contenedorPrincipal"
   style="font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol">
 
-  <h2 id="tituloComponente" *ngIf="banderaEdicionReclamo==false">Crear Reclamo</h2>
-  <h2 id="tituloComponente" *ngIf="banderaEdicionReclamo==true"> Actualizar Reclamo</h2>
-
-  <div class="row">
-   <!--  <div class="col-1">
-       <i class="fas fa-chevron-left fa-2x fa-align-left"> Historial</i> 
-      
-      
-    </div> -->
-    
-      
-
-      <div class=" col col-1 " style="padding: 5px; height: 50px;  margin-bottom: 20px;" >
-        <button type="button" class="btn btn-light" data-bs-toggle="tooltip" data-bs-placement="top"
-          title="Regresar al Historial" (click)='regresarHistorial()'><i class="fas fa-chevron-left"></i></button>
-      </div>
-
-     
-    
+  <div class="row borde">
+    <div class="col-12">
+      <h2 id="tituloComponente" *ngIf="banderaEdicionReclamo==false">Crear Reclamo</h2>
+      <h2 id="tituloComponente" *ngIf="banderaEdicionReclamo==true"> Actualizar Reclamo</h2>
+    </div>
   </div>
-
-
-
-
-
 
 
 
@@ -189,25 +170,41 @@
 
           </div>
           <div class="row">
-            <div class="text-center d-inline-block col col-6 botones" *ngIf="banderaEdicionReclamo==false">
+
+
+
+            <div class="text-center d-inline-block col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  botones"
+              *ngIf="banderaEdicionReclamo==false">
 
               <button type="button" class="btn btn-success" [disabled]="( (tipoReclamoCtrl.invalid && (reclamoAmbientalCtrl.invalid && marcaAutoCtrl.invalid && dominioCtrl.invalid)) || 
                fechaCtrl.invalid || horaCtrl.invalid || ubicacionCtrl.invalid || alturaCtrl.invalid ||
                urlFotoCtrl.invalid ||  descripcionCtrl.invalid)" (click)="registrarReclamo()" data-bs-toggle="tooltip"
-                data-bs-placement="top" title="Enviar Reclamo"><i class="far fa-check-circle fa-lg"></i>Enviar</button>
+                data-bs-placement="top" title="Enviar Reclamo">
+                <i class="far fa-check-circle fa-lg"></i>Enviar
+
+              </button>
             </div>
 
-            <div class="text-center d-inline-block col col-6 botones" *ngIf="banderaEdicionReclamo==true">
+
+            <div class="text-center d-inline-block col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  botones"
+              *ngIf="banderaEdicionReclamo==true">
 
               <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"
                 title="Actualizar Reclamo" (click)="MetodoActualizarReclamo()"><i
                   class="fas fa-sync-alt fa-lg"></i>Actualizar</button>
             </div>
 
-            <div class="text-center d-inline-block col col-6 botones">
+
+            <div class="text-center d-inline-block col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6  botones">
               <button type="button" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top"
-                title="Cancelar Reclamo" (click)="limpiarPantalla()"><i class="fas fa-times fa-lg"></i>Cancelar</button>
+                title="Cancelar Reclamo" (click)="limpiarPantalla()"><i class="fas fa-times fa-lg"></i>
+                Cancelar</button>
             </div>
+          </div>
+
+          <div class=" text-center d-inline-block col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  botones">
+            <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"
+              title="Regresar al Historial" (click)='regresarHistorial()'><i class="fas fa-undo"></i> Mi Historial</button>
           </div>
         </fieldset>
 
@@ -217,6 +214,7 @@
     </div>
 
   </div>
+
 
   <div id="contenedorMiReclamo" class="container-fluid" *ngFor="let item of arregloDetalleReclamo"
     style="text-align: center;">
