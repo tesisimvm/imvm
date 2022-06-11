@@ -16,6 +16,8 @@ import { RecuentoTarjetas } from '../model/Dashboard/V_RecuentoReclamos';
 import { RecuentoTipReclamos } from '../model/Dashboard/V_CantidadTipReclamoUsuario';
 import { RecuentoRecAmbiental } from '../model/Dashboard/V_CantidadRecAmbientalUsuario';
 import { CantReclamoMesyAnio } from '../model/Dashboard/V_CantidadRecPorMesyAnio';
+import { TipoEstado } from '../model/Configuracion/tipoEstadoAdmin';
+import { EstadosAdminConfig } from '../model/Configuracion/estadosAdmin';
 
 
 
@@ -276,6 +278,20 @@ export class BackenApiService {
     }else{
       return this.http.get<CantReclamoMesyAnio[]>('https://localhost:44363/V_CantidadRecPorMesyAnio/'+idUsuario+'/'+anio)
     }
-   
   }
+
+
+  /* ---------------------------- Configuracion ------------------------------------- */
+  getTipoEstadoAdmin(idRol:number){
+
+    return this.http.get<TipoEstado[]>('https://localhost:44363/tipoestadoadmin?idRol='+idRol)
+  }
+
+  getEstadosDelTipo(idTipoEstado:number){
+    
+    return this.http.get<EstadosAdminConfig[]>('https://localhost:44363/estadosadmin?idTipoEstado='+idTipoEstado)
+  }
+
+
+
 }

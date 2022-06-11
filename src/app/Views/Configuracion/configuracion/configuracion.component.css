@@ -1,21 +1,24 @@
-#cuerpoPrincipal{
-    background-color: #93a7937c ;
-    margin-top: 10px;
-    padding: 2%;
-    border-radius: 20px;
+.divPrimario{
+    margin-top: 20px;
+    background-color: rgb(228, 228, 228);
+
 }
 
-input.textoEstado{
-    border-radius: 8px;
-    background-color: #9ea99e7c;
-    color:white;
-}
-table, thead,tbody{
-    text-align: center;
-}
+.Centrado {
+    /*IMPORTANTE*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .Bordes{
+  
+    border-bottom: 2px solid rgba(35, 35, 35, 0.311);
+  }
 
-.botonTabla{
-    font-size: 80%;
+.config1{
+    margin-top: 20px;
 }
-
-
+.divTabla{
+    margin-top: 20px;
+}
