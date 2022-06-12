@@ -18,6 +18,8 @@ import { RecuentoRecAmbiental } from '../model/Dashboard/V_CantidadRecAmbientalU
 import { CantReclamoMesyAnio } from '../model/Dashboard/V_CantidadRecPorMesyAnio';
 import { TipoEstado } from '../model/Configuracion/tipoEstadoAdmin';
 import { EstadosAdminConfig } from '../model/Configuracion/estadosAdmin';
+import { TipoVehiculoConfig } from '../model/Configuracion/tipoVehiculo';
+import { DatosVehiculo } from '../model/Configuracion/vehiculo';
 
 
 
@@ -274,9 +276,9 @@ export class BackenApiService {
   /* Utilizado para el boton de buscar cantidad de reclamos dependiendo del año, rol y usuario */
   getRecuentoReclamosDelAnio(idUsuario:number,anio:string,idRol:number){
     if(idRol==1 || idRol==2){
-      return this.http.get<CantReclamoMesyAnio[]>('https://localhost:44363/V_TotalReclamosPorAnioAdmin/'+idRol+'/'+anio)
+      return this.http.get<CantReclamoMesyAnio[]>('https://localhost:44363/V_TotalReclamosPorAnioAdmin/'+idRol+'/'+anio);
     }else{
-      return this.http.get<CantReclamoMesyAnio[]>('https://localhost:44363/V_CantidadRecPorMesyAnio/'+idUsuario+'/'+anio)
+      return this.http.get<CantReclamoMesyAnio[]>('https://localhost:44363/V_CantidadRecPorMesyAnio/'+idUsuario+'/'+anio);
     }
   }
 
@@ -284,12 +286,21 @@ export class BackenApiService {
   /* ---------------------------- Configuracion ------------------------------------- */
   getTipoEstadoAdmin(idRol:number){
 
-    return this.http.get<TipoEstado[]>('https://localhost:44363/tipoestadoadmin?idRol='+idRol)
+    return this.http.get<TipoEstado[]>('https://localhost:44363/tipoestadoadmin?idRol='+idRol);
   }
 
   getEstadosDelTipo(idTipoEstado:number){
     
-    return this.http.get<EstadosAdminConfig[]>('https://localhost:44363/estadosadmin?idTipoEstado='+idTipoEstado)
+    return this.http.get<EstadosAdminConfig[]>('https://localhost:44363/estadosadmin?idTipoEstado='+idTipoEstado);
+  }
+
+  getTipVehiculo(){
+    return this.http.get<TipoVehiculoConfig[]>('https://localhost:44363/TipoVehiculoAdmin');
+  }
+
+  getListaTiposVehiculos(idTipoVehiculo:number){
+    
+    return this.http.get<DatosVehiculo[]>('https://localhost:44363/TipoVehiculoAdmin/'+idTipoVehiculo);
   }
 
 
