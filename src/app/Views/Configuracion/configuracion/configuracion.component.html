@@ -2,7 +2,8 @@
     <div class="container-fluid Centrado Bordes">
         <h3>Configuraciones</h3>
     </div>
-    <div class="accordion config1">
+
+    <div class="accordion margen">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne"
@@ -18,20 +19,29 @@
                         <div class="row">
                             <div class="col-12">
                                 <div class="container-fluid Centrado">
-                                    <h3>Tipo de Estados</h3>
-
+                                    <h3>Tipos de Estados</h3>
                                 </div>
-                                <div class="container-fluid Centrado">
-                                    <small>Seleccione el Tipo de Estado para poder realizar las configuraciones
-                                        necesarias</small>
+                                <div class="row">
+                                    <div class="col-11">
+                                        <div class="container-fluid Centrado">
+                                            <small>Seleccione el Tipo de Estado para poder realizar las configuraciones
+                                                necesarias</small>
+                                        </div>
+
+                                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                            (change)="obtenerIDTipoEstado($event)">
+                                            <option *ngFor="let item of objTipoEstado" value="{{item.idTipoEstado}}"
+                                                selected>
+                                                {{item.nombre}}</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="col-1">
+                                        <button type="button" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                    </div>
                                 </div>
 
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                    (change)="obtenerIDTipoEstado($event)">
-                                    <option *ngFor="let item of objTipoEstado" value="{{item.idTipoEstado}}" selected>
-                                        {{item.nombre}}</option>
 
-                                </select>
                             </div>
 
                             <div class="col-12 divTabla" *ngIf="selectIDTipEstado!=0">
@@ -66,12 +76,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th scope="row"> - </th>
-                                            <th> - </th>
-                                            <th> <button type="button" class="btn btn-outline-success btn-sm"><i
-                                                        class="fas fa-plus"> Agregar</i></button></th>
-                                        </tr>
+
                                     </tbody>
                                 </table>
 
@@ -86,34 +91,145 @@
         </div>
     </div>
 
-
-    <div class="accordion-item" style="margin-top:20px">
+    <div class="accordion-item margen">
         <h2 class="accordion-header" id="headingTwo">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Vehiculos
+                Tipos de Reclamos
             </button>
         </h2>
         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="container-fluid Centrado">
+                                <h3>Tipos de Reclamos</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-11">
+                                    <div class="container-fluid Centrado">
+                                        <small>Seleccione el Tipo de Reclamo para poder realizar las configuraciones
+                                            necesarias</small>
+                                    </div>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                        (change)="obtenerIDTipoReclamo($event)">
+
+                                        <option *ngFor="let item of objTipoDeReclamo" value="{{item.idTipoReclamo}}"
+                                            selected>
+                                            {{item.nombre}}</option>
+
+                                    </select>
+                                </div>
+                                <div class="col-1">
+                                    <button type="button" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+
+                        <div class="col-12 divTabla" *ngIf="selectIDTipReclamo!=0">
+                            <table class="table table-hover table-bordered table-striped">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Tipo Reclamo</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col"> - - </th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of objListaTipoReclamo">
+                                        <th scope="row">{{item.nombre}}</th>
+                                        <td>{{item.descripcion}}</td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <div class="btn-group" role="group">
+                                                    <button id="btnGroupDrop1" type="button"
+                                                        class="btn btn-outline-primary btn-sm dropdown-toggle"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                        <li><a class="dropdown-item"><i class="far fa-edit">
+                                                                    Editar</i></a></li>
+                                                        <li>
+                                                            <a class="dropdown-item"><i class="far fa-trash-alt">
+                                                                    Borrar</i>
+                                                            </a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+        </div>
+    </div>
+
+
+    <div class="accordion-item margen">
+        <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                Vehiculos
+            </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree"
             data-bs-parent="#accordionExample">
             <div class="accordion-body">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
                             <div class="container-fluid Centrado">
-                                <h3>Tipo de Vehiculo</h3>
+                                <h3>Tipos de Vehiculo</h3>
                             </div>
-                            <div class="container-fluid Centrado">
-                                <small>Seleccione el Tipo de Vehiculo para poder realizar las configuraciones
-                                    necesarias</small>
+
+                            <div class="row">
+                                <div class="col-11">
+                                    <div class="container-fluid Centrado">
+                                        <small>Seleccione el Tipo de Vehiculo para poder realizar las configuraciones
+                                            necesarias</small>
+                                    </div>
+                                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                                        (change)="obtenerIDTipoVehiculo($event)">
+                                        <option *ngFor="let item of objTipVehiculo" value="{{item.idTipoVehiculo}}"
+                                            selected>
+                                            {{item.nombre}}</option>
+    
+    
+                                    </select>
+                                </div>
+                                <div class="col-1">
+                                    <button type="button" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                </div>
                             </div>
-                            <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                (change)="obtenerIDTipoVehiculo($event)">
-                                <option *ngFor="let item of objTipVehiculo" value="{{item.idTipoVehiculo}}" selected>
-                                    {{item.nombre}}</option>
+                            
 
 
-                            </select>
                         </div>
 
                         <div class="col-12 divTabla" *ngIf="selectIDTipVehiculo!=0">
@@ -133,7 +249,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of objListaVehiculos">
-                                        <th scope="row">{{item.nombreTipoVehiculo}}</th>                                      
+                                        <th scope="row">{{item.nombreTipoVehiculo}}</th>
                                         <td>{{item.dominio}}</td>
                                         <td>{{item.marcaAuto}}</td>
                                         <td>{{item.nombreModelo}}</td>
@@ -160,18 +276,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row"> - </th>
-                                        <th> - </th>
-                                        <th> - </th>
-                                        <th> - </th>
-                                        <th> - </th>
-                                        <th> - </th>
-                                        <th> - </th>
-                                        <th> - </th>
-                                            <th> <button type="button" class="btn btn-outline-success btn-sm"><i
-                                                        class="fas fa-plus"> Agregar</i></button></th>
-                                    </tr>
+
                                 </tbody>
                             </table>
 
@@ -183,20 +288,103 @@
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
         </div>
     </div>
+
+    <div class="accordion-item margen">
+        <h2 class="accordion-header" id="cuarto">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseCuarto" aria-expanded="false" aria-controls="collapseCuarto">
+                Perfiles
+            </button>
+        </h2>
+        <div id="collapseCuarto" class="accordion-collapse collapse" aria-labelledby="headingCuarto"
+            data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="container-fluid Centrado">
+                                <h3>Perfiles</h3>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-11">
+                                    <div class="container-fluid Centrado">
+                                        <small>Seleccione el Tipo de Perfil para poder realizar las configuraciones
+                                            necesarias</small>
+                                    </div>
+                                    <select class="form-select form-select-sm " disabled
+                                        aria-label=".form-select-sm example" (change)="obtenerIDTipoPerfil($event)">
+                                        <option *ngFor="let item of objTipoPerfil" value="{{item.idPerfil}}" selected>
+                                            {{item.nombre}}</option>
+                                    </select>
+                                </div>
+                                <div class="col-1">
+                                    <button type="button" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+
+                        <div class="col-12 divTabla">
+                            <table class="table table-hover table-bordered table-striped">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">Tipo Perfil</th>
+                                        <th scope="col"> - - </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of objTipoPerfil">
+                                        <th scope="row">{{item.nombre}}</th>
+
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <div class="btn-group" role="group">
+                                                    <button id="btnGroupDrop1" type="button"
+                                                        class="btn btn-outline-primary btn-sm dropdown-toggle"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                        <li><a class="dropdown-item"><i class="far fa-edit">
+                                                                    Editar</i></a></li>
+                                                        <li><a class="dropdown-item"><i class="far fa-trash-alt">
+                                                                    Borrar</i></a></li>
+
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
 </div>
 
-    <!-- Dividirlo en card como los hace el facu -->
+<!-- Dividirlo en card como los hace el facu -->
 
-    <!--   <div class="row">
+<!--   <div class="row">
         <div class="col col-3">
             <small style="text-align: center;">
                 <h4>Estados</h4>

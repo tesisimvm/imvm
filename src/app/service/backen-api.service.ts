@@ -20,6 +20,7 @@ import { TipoEstado } from '../model/Configuracion/tipoEstadoAdmin';
 import { EstadosAdminConfig } from '../model/Configuracion/estadosAdmin';
 import { TipoVehiculoConfig } from '../model/Configuracion/tipoVehiculo';
 import { DatosVehiculo } from '../model/Configuracion/vehiculo';
+import { PerfilAdmin } from '../model/Configuracion/tipoPerfil';
 
 
 
@@ -301,6 +302,14 @@ export class BackenApiService {
   getListaTiposVehiculos(idTipoVehiculo:number){
     
     return this.http.get<DatosVehiculo[]>('https://localhost:44363/TipoVehiculoAdmin/'+idTipoVehiculo);
+  }
+
+  getListaTiposReclamos(idTipoReclamo:number){
+    return this.http.get<TipoReclamo[]>('https://localhost:44363/TipoReclamoAdmin/'+idTipoReclamo);
+  }
+
+  getTipoPerfil(){
+    return this.http.get<PerfilAdmin[]>('https://localhost:44363/TipoPerfilAdmin');
   }
 
 

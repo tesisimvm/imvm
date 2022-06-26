@@ -1,28 +1,30 @@
-.divPrimario{
-    margin-top: 20px;
-    background-color: rgb(228, 228, 228);
-
+.divPrimario {
+  margin-top: 20px;
+  background-color: rgb(228, 228, 228);
 }
 
 .Centrado {
-    /*IMPORTANTE*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
-  .Bordes{
-  
-    border-bottom: 2px solid rgba(35, 35, 35, 0.311);
-  }
+  /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Bordes {
+  border-bottom: 2px solid rgba(35, 35, 35, 0.311);
+}
 
-.config1{
+
+.divTabla {
+  margin-top: 20px;
+}
+
+small {
+  color: rgba(123, 123, 123, 0.771);
+}
+
+.botonTR {
+  margin-top: 20px;
+}
+.margen{
     margin-top: 20px;
-}
-.divTabla{
-    margin-top: 20px ;
-}
-
-small{
-    color: rgba(123, 123, 123, 0.771);
 }

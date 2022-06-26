@@ -8,13 +8,22 @@ import { BackenApiService } from 'src/app/service/backen-api.service';
 })
 export class ConfiguracionComponent implements OnInit {
 
-  objTipoEstado:any;
-  objEstadosDelTipo:any;
-  objTipVehiculo:any;
-  objListaVehiculos:any;
+  objTipoEstado:any; /* Select */
+  objEstadosDelTipo:any; /* Tabla */
   selectIDTipEstado = 0; /* Variable para capturar el valor del tipo de estado */
-  selectIDTipVehiculo=0;
   
+  objTipVehiculo:any; /* Select */
+  selectIDTipVehiculo=0; /* Tabla */
+  objListaVehiculos:any;
+  
+
+  objTipoDeReclamo:any; /* Select */
+  selectIDTipReclamo = 0; /* Variable para capturar el valor del tipo de reclamo */
+  objListaTipoReclamo:any;
+
+  objTipoPerfil:any; /* Select */
+  selectIDTipPerfil = 0; /* Variable para capturar el valor del tipo de reclamo */
+  objListaTipoPerfil:any;
   
 
   
@@ -32,7 +41,9 @@ export class ConfiguracionComponent implements OnInit {
      this.IDRol = this.ruta[3]; /* Siempre la posicion 3 es el ROL osea el tipo de usuario */
      this.IDSesion = this.ruta[4];
     this.getTipoEstado();
+    this.getTipoReclamo();
     this.getTipoVehiculo();
+    this.getTipoPerfil();
   }
   
   ngOnInit(): void {}
@@ -49,12 +60,8 @@ export class ConfiguracionComponent implements OnInit {
 
   obtenerIDTipoEstado(ev: any) {
     
-    
     this.selectIDTipEstado=0;
-    
-    this.selectIDTipEstado = ev.target.value;
-   
-    
+    this.selectIDTipEstado = ev.target.value; 
     this.servicio.getEstadosDelTipo(this.selectIDTipEstado).subscribe(
       (res) => {
         this.objEstadosDelTipo = res; /* res es la respuesta del servidor con todos los objetos y sus datos */ 
@@ -82,10 +89,52 @@ export class ConfiguracionComponent implements OnInit {
     this.servicio.getListaTiposVehiculos(this.selectIDTipVehiculo).subscribe(
       (res) => {
         this.objListaVehiculos = res;  
+        
       },
       (error) => console.error(error)
 
     )
+  }
+
+  getTipoReclamo(): void {
+    this.servicio.getTipoReclamo().subscribe(
+      (res) => {
+        this.objTipoDeReclamo = res; /* res es la respuesta del servidor con todos los objetos y sus datos */
+        
+      },
+      (err) => console.error(err)
+    );
+  }
+  
+  obtenerIDTipoReclamo(ev: any) {
+    this.selectIDTipReclamo=0;
+
+    this.selectIDTipReclamo = ev.target.value;
+    console.log(this.selectIDTipReclamo);
+    this.servicio.getListaTiposReclamos(this.selectIDTipReclamo).subscribe(
+      (res) => {
+        this.objListaTipoReclamo = res; /* Lista de datos del tipo de reclamo */
+        
+      },
+      (err) => console.error(err)
+    );
+    
+  }
+
+  getTipoPerfil(): void {
+    this.servicio.getTipoPerfil().subscribe(
+      (res) => {
+        this.objTipoPerfil = res; /* res es la respuesta del servidor con todos los objetos y sus datos */
+        
+      },
+      (err) => console.error(err)
+    );
+  }
+
+  obtenerIDTipoPerfil(ev:any){
+    this.selectIDTipPerfil=0;
+    this.selectIDTipReclamo = ev.target.value;
+
   }
 
  
