@@ -35,6 +35,7 @@ import { NgxChartsModule, PieChartComponent } from '@swimlane/ngx-charts';
 
 
 
+
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   declarations: [
@@ -51,7 +52,9 @@ import { NgxChartsModule, PieChartComponent } from '@swimlane/ngx-charts';
     ConfiguracionComponent,
     NosotrosComponent,
     ModalEditarComponent,
-    PprincipalComponent
+    PprincipalComponent,
+    
+    
   ],
   imports: [
     BrowserModule,

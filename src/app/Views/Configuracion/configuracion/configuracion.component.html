@@ -37,7 +37,12 @@
                                         </select>
                                     </div>
                                     <div class="col-1">
-                                        <button type="button" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                        <button type="button" class="btn btn-primary btn-sm botonTR"
+                                            data-bs-toggle="modal" data-bs-target="#modalEstados"
+                                            (click)="visualizarModal(modalEstados)">
+                                            Nuevo
+                                        </button>
+                                        <!--  data-bs-toggle="modal" data-bs-target="#modalEstados" -->
                                     </div>
                                 </div>
 
@@ -124,7 +129,8 @@
                                     </select>
                                 </div>
                                 <div class="col-1">
-                                    <button type="button" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                    <button type="button" class="btn btn-primary btn-sm botonTR "
+                                    (click)="visualizarModalTiposReclamos(modalTiposReclamos)">Nuevo</button>
                                 </div>
                             </div>
 
@@ -219,15 +225,15 @@
                                         <option *ngFor="let item of objTipVehiculo" value="{{item.idTipoVehiculo}}"
                                             selected>
                                             {{item.nombre}}</option>
-    
-    
+
+
                                     </select>
                                 </div>
                                 <div class="col-1">
                                     <button type="button" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
                                 </div>
                             </div>
-                            
+
 
 
                         </div>
@@ -381,6 +387,145 @@
     </div>
 
 </div>
+
+
+<!-- Modal Tipos de Estados  -->
+<ng-template #modalEstados let-modal>
+    <form class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Nuevo Estado</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="botonCerrarNuevoEstado()"></button>
+        </div>
+        <div class="modal-body">
+
+            <div class="container">
+                <div class="row">
+                   <div class="col-12">
+                        <label for="formGroupExampleInput" class="form-label">Nombre</label>
+
+                        <input type="text" class="form-control" id="formGroupExampleInput"
+                            placeholder="Escriba el nombre del estado deseado" [formControl]="nombreEstadoCtrl">
+                    </div>
+                    <div class="col-10 EstiloMargen" *ngIf="banderaSelectEstado!=true">
+                        <label for="formGroupExampleInput2" class="form-label">Tipo Estado</label>
+
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                            (change)="obtenerIDTipoEstadoModal($event)" [formControl]="listaTipoEstadoCtrl">
+                            <option *ngFor="let item of objModalTipoEstado" value="{{item.idTipoEstado}}" selected>
+                                {{item.nombre}}</option>
+                        </select>
+                    </div>
+                    <div class="col-1" *ngIf="banderaSelectEstado!=true">
+                        <button (click)="visualizarInput()" type="button" class="btn btn-primary btn-sm botonIndex">
+                            Nuevo
+                        </button>
+                    </div>
+                    <div *ngIf="banderaTextEstado!=false" class="col-12 EstiloMargen">
+                        <label for="formGroupExampleInput2" class="form-label">Nombre</label>
+
+                        <input type="text" class="form-control" id="formGroupExampleInput"
+                            placeholder="Escriba el nombre del Tipo de Estado deseado"
+                            [formControl]="nombreTipoEstadoCtrl">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                (click)="botonCerrarNuevoEstado()">Cerrar</button>
+            <button type="button" class="btn btn-primary" (click)="botonCrearNuevoEstado()">Crear</button>
+        </div>
+    </form>
+</ng-template>
+
+<!-- Modal Tipo Reclamo -->
+
+<ng-template #modalTiposReclamos let-modal>
+    <form class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Nuevo Tipo Reclamo</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                (click)="botonCerrarTipoReclamo()"></button>
+        </div>
+        <div class="modal-body">
+
+            <div class="container">
+                <div class="row">
+                   <div class="col-12">
+                        <label for="formGroupExampleInput" class="form-label">Nombre</label>
+
+                        <input type="text" class="form-control" id="formGroupExampleInput"
+                            placeholder="Escriba el nombre del Tipo de Reclamo deseado" [formControl]="nombreTipoReclamoCtrl">
+                    </div>
+                   
+                   
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                (click)="botonCerrarTipoReclamo()">Cerrar</button>
+            <button type="button" class="btn btn-primary" (click)="botonCrearNuevoTipoReclamo()">Crear</button>
+        </div>
+    </form>
+</ng-template>
+
+<!-- Modal configuracion Estado -->
+<!-- <div #contenido class="modal fade" id="modalEstados" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Nuevo Estado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-12">
+                            <label for="formGroupExampleInput" class="form-label">Nombre</label>
+
+                            <input type="text" class="form-control" id="formGroupExampleInput"
+                                placeholder="Escriba el nombre del estado deseado">
+                        </div>
+
+                        <div class="col-10 EstiloMargen">
+                            <label for="formGroupExampleInput2" class="form-label">Tipo Estado</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Lista</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-1">
+                            <button type="button" class="btn btn-primary btn-sm botonIndex">
+                                Nuevo
+                            </button>
+                        </div>
+                        <div class="col-12 EstiloMargen">
+                            <label for="formGroupExampleInput2" class="form-label">Nombre</label>
+                            <input class="form-control" type="text" placeholder="Escriba el Tipo de Estado"
+                                aria-label="default input example">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Crear</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
 
 <!-- Dividirlo en card como los hace el facu -->
 

@@ -7,11 +7,7 @@ import { ReclamoAmbiental } from 'src/app/model/reclamoAmbiental';
 import { marca } from 'src/app/model/marca';
 import { modelo } from 'src/app/model/modelo';
 import { FormControl, Validators } from '@angular/forms';
-import {
-  DetalleReclamo,
-  DetalleReclamoActualizar,
-  vehiculoXDetalle,
-} from 'src/app/model/detalleReclamo';
+import {DetalleReclamo, vehiculoXDetalle} from 'src/app/model/detalleReclamo';
 import { ToastrService } from 'ngx-toastr';
 import { Vehiculo } from 'src/app/model/vehiculo';
 
@@ -361,8 +357,8 @@ ambiental */
     this.dominioCtrl.reset();
 
     this.toastr.info('Será redirigido al menú principal', '', {
-      timeOut: 9000,
-      progressBar: true,
+      timeOut: 5000,
+      
     });
     this.metodoRedireccion();
   }

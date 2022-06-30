@@ -305,6 +305,7 @@ export class BackenApiService {
   }
 
   getListaTiposReclamos(idTipoReclamo:number){
+    
     return this.http.get<TipoReclamo[]>('https://localhost:44363/TipoReclamoAdmin/'+idTipoReclamo);
   }
 
