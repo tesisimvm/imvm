@@ -28,3 +28,12 @@ small {
 .margen{
     margin-top: 20px;
 }
+.margenTitulosModal{
+  margin-top: 10px;
+}
+#botonNuevoEstado{
+  margin-top: 45px;
+}
+#botonNuevoVehiculo{
+  margin-top: 35px;
+}
