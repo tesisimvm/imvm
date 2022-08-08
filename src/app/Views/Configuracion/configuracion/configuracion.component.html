@@ -3,6 +3,7 @@
         <h3>Configuraciones</h3>
     </div>
 
+    <!-- Estado -->
     <div class="accordion margen">
         <div class="accordion-item">
             <h2 class="accordion-header" id="headingOne">
@@ -92,7 +93,7 @@
         </div>
     </div>
 
-   
+
 
     <!-- Vehiculo -->
     <div class="accordion-item margen">
@@ -119,8 +120,11 @@
                                         <small>Seleccione la Marca para realizar las configuraciones
                                             necesarias</small>
                                     </div>
-                                    <select class="form-select form-select-sm " aria-label=".form-select-sm example">
-                                        <option *ngFor="" value="" selected>
+                                    <select class="form-select form-select-sm " aria-label=".form-select-sm example"
+                                        [formControl]="selectMarcaVehiculo" (change)="obtenerIDMarcaVehiculo($event)">
+                                        <option value="{{item.idMarca}}" style="color: black;"
+                                            *ngFor="let item of objListaMarcaVehiculo" selected>
+                                            {{item.marcaVehiculo}}
                                         </option>
                                     </select>
                                 </div>
@@ -129,8 +133,12 @@
                                         <small>Seleccione el Modelo para realizar las configuraciones
                                             necesarias</small>
                                     </div>
-                                    <select class="form-select form-select-sm " aria-label=".form-select-sm example">
-                                        <option *ngFor="" value="" selected>
+                                   
+                                    <select class="form-select form-select-sm " aria-label=".form-select-sm example"
+                                    [formControl]="selectModeloVehiculo" (change)="obtenerIDModeloVehiculo($event)">
+                                        <option value="{{item.idModelo}}" style="color: black;"
+                                            *ngFor="let item of objListaModeloVehiculo" selected>
+                                            {{item.modeloVehiculo}}
                                         </option>
                                     </select>
                                 </div>
@@ -138,7 +146,8 @@
                                     <button type="button" class="btn btn-success btn-sm botonTR ">Buscar</button>
                                 </div>
                                 <div class="col-1">
-                                    <button type="button" (click)="visualizarModalVehiculos(modalVehiculos)" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                    <button type="button" (click)="visualizarModalVehiculos(modalVehiculos)"
+                                        class="btn btn-primary btn-sm botonTR ">Nuevo</button>
                                 </div>
                             </div>
                         </div>
@@ -223,14 +232,17 @@
                                         <small>Seleccione la Marca para realizar las configuraciones
                                             necesarias</small>
                                     </div>
-                                    <select class="form-select form-select-sm "
-                                        aria-label=".form-select-sm example" >
-                                        <option *ngFor="let item of " value="" selected>
-                                            </option>
+                                    <select class="form-select form-select-sm " aria-label=".form-select-sm example"
+                                        [formControl]="selectMarca" (change)="obtenerIDMarca($event)">
+                                        <option value="{{item.idMarca}}" style="color: black;"
+                                            *ngFor="let item of objListaMarcaVehiculo" selected>
+                                            {{item.marcaVehiculo}}
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="col-1">
-                                    <button type="button" (click)="visualizarModalMarca(modalMarca)" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                    <button type="button" (click)="visualizarModalMarca(modalMarca)"
+                                        class="btn btn-primary btn-sm botonTR ">Nuevo</button>
                                 </div>
                             </div>
                         </div>
@@ -302,14 +314,17 @@
                                         <small>Seleccione el Modelo para realizar las configuraciones
                                             necesarias</small>
                                     </div>
-                                    <select class="form-select form-select-sm "
-                                        aria-label=".form-select-sm example" >
-                                        <option *ngFor="let item of " value="" selected>
-                                            </option>
+                                    <select class="form-select form-select-sm " aria-label=".form-select-sm example"
+                                    [formControl]="selectModelo" (change)="obtenerIDModelo($event)">
+                                        <option value="{{item.idModelo}}" style="color: black;"
+                                            *ngFor="let item of objListaModeloVehiculo" selected>
+                                            {{item.modeloVehiculo}}
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="col-1">
-                                    <button type="button" (click)="visualizarModalModelo(modalModelo)" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                    <button type="button" (click)="visualizarModalModelo(modalModelo)"
+                                        class="btn btn-primary btn-sm botonTR ">Nuevo</button>
                                 </div>
                             </div>
                         </div>
@@ -388,13 +403,10 @@
                                     </select>
                                 </div>
                                 <div class="col-1">
-                                    <button type="button" (click)="visualizarModalPerfil(modalPerfil)" class="btn btn-primary btn-sm botonTR ">Nuevo</button>
+                                    <button type="button" (click)="visualizarModalPerfil(modalPerfil)"
+                                        class="btn btn-primary btn-sm botonTR ">Nuevo</button>
                                 </div>
                             </div>
-
-
-
-
                         </div>
 
                         <div class="col-12 divTabla">
@@ -422,7 +434,6 @@
                                                                     Editar</i></a></li>
                                                         <li><a class="dropdown-item"><i class="far fa-trash-alt">
                                                                     Borrar</i></a></li>
-
                                                     </ul>
                                                 </div>
                                             </div>
@@ -433,22 +444,15 @@
                             </table>
 
                         </div>
-
-
-
-
                     </div>
                 </div>
-
-
-
             </div>
         </div>
     </div>
-  
 
-     <!-- Tipos de Reclamos -->
-     <div class="accordion-item margen">
+
+    <!-- Tipos de Reclamos -->
+    <div class="accordion-item margen">
         <h2 class="accordion-header" id="headingTiposReclamos">
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseTiposReclamos" aria-expanded="false" aria-controls="collapseTiposReclamos">
@@ -586,7 +590,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of objListaVehiculos">
+                                    <tr *ngFor="let item of objListaTipVehiculos">
                                         <th scope="row">{{item.nombreTipoVehiculo}}</th>
                                         <td>{{item.dominio}}</td>
                                         <td>{{item.marcaAuto}}</td>
@@ -750,57 +754,57 @@
                 aria-label="Close"></button>
         </div>
         <div class="modal-body">
-                <div class="row" >
+            <div class="row">
 
-                    <div class="col-12 ">
-                        <label for="formGroupExampleInput" class="form-label">Tipo Vehiculo</label>
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                            [formControl]="nombreTipoVehiculoCtrl">
-                        </select>
-                    </div>
+                <div class="col-12 ">
+                    <label for="formGroupExampleInput" class="form-label">Tipo Vehiculo</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        [formControl]="nombreTipoVehiculoCtrl">
+                    </select>
                 </div>
-               
-                <div class="row" >
-                    <div class="col-6 margenTitulosModal">
-                        <label for="formGroupExampleInput" class="form-label">Marca</label>
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                            [formControl]="marcaCtrl">
-                        </select>
+            </div>
 
-                    </div>
-                    <div class="col-6 margenTitulosModal">
-                        <label for="formGroupExampleInput" class="form-label">Modelo</label>
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                            [formControl]="modeloCtrl">
-                        </select>
+            <div class="row">
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">Marca</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        [formControl]="marcaCtrl">
+                    </select>
 
-                    </div>
                 </div>
-                <div class="row" >
-                    <div class="col-6 margenTitulosModal">
-                        <label for="formGroupExampleInput" class="form-label">Dominio</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput"
-                            placeholder="Número de Dominio" [formControl]="dominioCtrl">
-                    </div>
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">Modelo</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        [formControl]="modeloCtrl">
+                    </select>
 
-                    <div class="col-6 margenTitulosModal">
-                        <label for="formGroupExampleInput" class="form-label">Color</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput"
-                            placeholder="Nombre de Color" [formControl]="colorCtrl">
-                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">Dominio</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Número de Dominio"
+                        [formControl]="dominioCtrl">
                 </div>
 
-            
-            <div class="row" >
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre de Color"
+                        [formControl]="colorCtrl">
+                </div>
+            </div>
+
+
+            <div class="row">
                 <div class="col-6 margenTitulosModal">
                     <label for="formGroupExampleInput" class="form-label">N° Chasis</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput"
-                        placeholder="Número del Chasis" [formControl]="numChasisCtrl">
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Número del Chasis"
+                        [formControl]="numChasisCtrl">
                 </div>
                 <div class="col-6 margenTitulosModal">
                     <label for="formGroupExampleInput" class="form-label">N° Motor</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput"
-                        placeholder="Número de Motor" [formControl]="numMotorCtrl">
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Número de Motor"
+                        [formControl]="numMotorCtrl">
                 </div>
                 <div class="col-12 margenTitulosModal">
                     <label for="formGroupExampleInput" class="form-label">Estado</label>
@@ -834,8 +838,8 @@
 
                     <div class="col-12">
                         <label for="formGroupExampleInput" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput"
-                            placeholder="Nombre de Marca" [formControl]="nombreModalMarcaCrtl">
+                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre de Marca"
+                            [formControl]="nombreModalMarcaCrtl">
                     </div>
                 </div>
             </div>

@@ -11,11 +11,13 @@ import { ToastrService } from 'ngx-toastr';
   /*  providers: [NgbModalConfig, NgbModal], */
 })
 export class ConfiguracionComponent implements OnInit {
+  /* Modal Estados */
   nombreEstadoCtrl = new FormControl('', [Validators.required]);
   nombreTipoEstadoCtrl = new FormControl('', [Validators.required]);
   listaTipoEstadoCtrl = new FormControl('', [Validators.required]);
   nombreTipoReclamoCtrl = new FormControl('', [Validators.required]);
 
+  /* Modal Vehiculo */
   nombreTipoVehiculoCtrl = new FormControl('', [Validators.required]);
   dominioCtrl = new FormControl('', [Validators.required]);
   marcaCtrl = new FormControl('', [Validators.required]);
@@ -30,6 +32,13 @@ export class ConfiguracionComponent implements OnInit {
 
   nombreModalPerfil = new FormControl('', [Validators.required]);
 
+  selectMarcaVehiculo = new FormControl('', [Validators.required]);
+  selectModeloVehiculo = new FormControl('',[Validators.required]);
+
+  selectMarca = new FormControl('',[Validators.required]);
+  selectModelo=new FormControl('',[Validators.required]);
+  
+
   objTipoEstado: any; /* Select */
   objEstadosDelTipo: any; /* Tabla */
   selectIDTipEstado = 0; /* Variable para capturar el valor del tipo de estado */
@@ -39,7 +48,7 @@ export class ConfiguracionComponent implements OnInit {
 
   objTipVehiculo: any; /* Select */
   selectIDTipVehiculo = 0; /* Tabla */
-  objListaVehiculos: any;
+  objListaTipVehiculos: any;
 
   objTipoDeReclamo: any; /* Select */
   selectIDTipReclamo = 0; /* Variable para capturar el valor del tipo de reclamo */
@@ -48,6 +57,15 @@ export class ConfiguracionComponent implements OnInit {
   objTipoPerfil: any; /* Select */
   selectIDTipPerfil = 0; /* Variable para capturar el valor del tipo de reclamo */
   objListaTipoPerfil: any;
+
+  selectIDMarcaVehiculo=0;
+  objListaMarcaVehiculo:any;
+
+  objListaModeloVehiculo:any;
+  selectIDModeloVehiculo=0;
+
+  selecIDMarca=0;
+  selecIDModelo=0;
 
   banderaTextEstado: boolean = false;
   banderaSelectEstado: boolean = false;
@@ -78,6 +96,8 @@ export class ConfiguracionComponent implements OnInit {
     this.getTipoReclamo();
     this.getTipoVehiculo();
     this.getTipoPerfil();
+    this.getMarcaVehiculo();
+    this.getModeloVehiculo();
   }
 
   ngOnInit(): void {}
@@ -173,11 +193,6 @@ export class ConfiguracionComponent implements OnInit {
     }
   }
 
-  obtenerIDTipoEstadoModal(ev: any) {
-    this.selectIDTipEstadoModal = 0;
-    this.selectIDTipEstadoModal = ev.target.value;
-  }
-
   /* Modal Vehiculo */
   botonCrearVehiculo() {
     if (
@@ -195,7 +210,6 @@ export class ConfiguracionComponent implements OnInit {
       this.NotificacionRellenarCampos();
     }
   }
-
   limpiarModalEstado() {
     /* cuando se cierra el modal o se crea el estado o el tipo de estado */
     this.banderaTextEstado = false;
@@ -215,6 +229,9 @@ export class ConfiguracionComponent implements OnInit {
     this.numMotorCtrl.setValue('');
     this.listaEstadoVehiculoCtrl.setValue('');
   }
+
+  /* Metodos Get */
+
   getTipoEstado(): void {
     this.servicio.getTipoEstadoAdmin(this.IDRol).subscribe(
       (res) => {
@@ -225,34 +242,33 @@ export class ConfiguracionComponent implements OnInit {
     );
   }
 
-  obtenerIDTipoEstado(ev: any) {
-    this.selectIDTipEstado = 0;
-    this.selectIDTipEstado = ev.target.value;
-    this.servicio.getEstadosDelTipo(this.selectIDTipEstado).subscribe(
+  getMarcaVehiculo(){
+    /* Se utiliza en vehiculo y marca */
+    this.servicio.getMarca().subscribe(
       (res) => {
-        this.objEstadosDelTipo = res;
-      },
-      (error) => console.error(error)
+      this.objListaMarcaVehiculo = res;
+    },
+    (error) => console.error(error)
     );
   }
+
+  getModeloVehiculo(){
+    /* Se utiliza en vehiculo y modelo */
+    this.servicio.getModelo().subscribe(
+      (res) => {
+      this.objListaModeloVehiculo = res;
+    },
+    (error) => console.error(error)
+    );
+  }
+
+  
 
   getTipoVehiculo() {
     /* Relleno del select tipo vehiculo */
     this.servicio.getTipVehiculo().subscribe(
       (res) => {
         this.objTipVehiculo = res;
-      },
-      (error) => console.error(error)
-    );
-  }
-
-  obtenerIDTipoVehiculo(dato: any) {
-    this.selectIDTipVehiculo = 0;
-    /* selecciono un tipo y muestro la lista de esos tipos de vehiculos */
-    this.selectIDTipVehiculo = dato.target.value;
-    this.servicio.getListaTiposVehiculos(this.selectIDTipVehiculo).subscribe(
-      (res) => {
-        this.objListaVehiculos = res;
       },
       (error) => console.error(error)
     );
@@ -265,6 +281,57 @@ export class ConfiguracionComponent implements OnInit {
       },
       (err) => console.error(err)
     );
+  }
+
+  getTipoPerfil(): void {
+    this.servicio.getTipoPerfil().subscribe(
+      (res) => {
+        this.objTipoPerfil = res;
+      },
+      (err) => console.error(err)
+    );
+  }
+
+ 
+  /* Metodos para obtener los valores de los selec */
+  obtenerIDTipoEstado(ev: any) {
+    this.selectIDTipEstado = 0;
+    this.selectIDTipEstado = ev.target.value;
+    this.servicio.getEstadosDelTipo(this.selectIDTipEstado).subscribe(
+      (res) => {
+        this.objEstadosDelTipo = res;
+      },
+      (error) => console.error(error)
+    );
+  }
+
+  obtenerIDMarcaVehiculo(ev: any){
+    this.selectIDMarcaVehiculo=0;
+    this.selectIDMarcaVehiculo=ev.target.value;
+    console.log("marca vehiculo: "+this.selectIDMarcaVehiculo)
+  }
+
+  obtenerIDModeloVehiculo(ev:any){
+    this.selectIDModeloVehiculo=0;
+    this.selectIDModeloVehiculo=ev.target.value;
+    console.log("modelo Vehiculo: "+this.selectIDModeloVehiculo)
+  }
+
+  obtenerIDMarca(ev:any){
+    this.selecIDMarca=0;
+    this.selecIDMarca=ev.target.value;
+    console.log("marca: "+this.selecIDMarca)
+  }
+
+  obtenerIDModelo(ev:any){
+    this.selecIDModelo=0;
+    this.selecIDModelo=ev.target.value;
+    console.log("modelo: "+this.selecIDModelo)
+  }
+
+  obtenerIDTipoPerfil(ev: any) {
+    this.selectIDTipPerfil = 0;
+    this.selectIDTipReclamo = ev.target.value;
   }
 
   obtenerIDTipoReclamo(ev: any) {
@@ -280,19 +347,24 @@ export class ConfiguracionComponent implements OnInit {
     );
   }
 
-  getTipoPerfil(): void {
-    this.servicio.getTipoPerfil().subscribe(
+  obtenerIDTipoVehiculo(dato: any) {
+    this.selectIDTipVehiculo = 0;
+    /* selecciono un tipo y muestro la lista de esos tipos de vehiculos */
+    this.selectIDTipVehiculo = dato.target.value;
+    this.servicio.getListaTiposVehiculos(this.selectIDTipVehiculo).subscribe(
       (res) => {
-        this.objTipoPerfil = res;
+        this.objListaTipVehiculos = res;
       },
-      (err) => console.error(err)
+      (error) => console.error(error)
     );
   }
 
-  obtenerIDTipoPerfil(ev: any) {
-    this.selectIDTipPerfil = 0;
-    this.selectIDTipReclamo = ev.target.value;
+  /* Select Modal */
+  obtenerIDTipoEstadoModal(ev: any) {
+    this.selectIDTipEstadoModal = 0;
+    this.selectIDTipEstadoModal = ev.target.value;
   }
+
 
   NotificacionRellenarCampos() {
     this.toastr.warning(
