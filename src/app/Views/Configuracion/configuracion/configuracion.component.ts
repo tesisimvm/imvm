@@ -64,6 +64,8 @@ export class ConfiguracionComponent implements OnInit {
   objListaModeloVehiculo:any;
   selectIDModeloVehiculo=0;
 
+  objListaVehiculos:any;
+  objListaIDMarca:any;
   selecIDMarca=0;
   selecIDModelo=0;
 
@@ -262,8 +264,6 @@ export class ConfiguracionComponent implements OnInit {
     );
   }
 
-  
-
   getTipoVehiculo() {
     /* Relleno del select tipo vehiculo */
     this.servicio.getTipVehiculo().subscribe(
@@ -320,7 +320,12 @@ export class ConfiguracionComponent implements OnInit {
   obtenerIDMarca(ev:any){
     this.selecIDMarca=0;
     this.selecIDMarca=ev.target.value;
-    console.log("marca: "+this.selecIDMarca)
+    this.servicio.getIDMarca(this.selecIDMarca).subscribe(
+      (res) => {
+        this.objListaIDMarca= res;
+      },
+      (error) => console.error(error)
+    );
   }
 
   obtenerIDModelo(ev:any){
@@ -363,6 +368,18 @@ export class ConfiguracionComponent implements OnInit {
   obtenerIDTipoEstadoModal(ev: any) {
     this.selectIDTipEstadoModal = 0;
     this.selectIDTipEstadoModal = ev.target.value;
+  }
+
+
+  GetBuscarVehiculos(){
+
+    this.servicio.getConfiguracionVehiculos(this.selectIDMarcaVehiculo,this.selectIDModeloVehiculo).subscribe(
+      (res) => {
+        this.objListaVehiculos= res;
+      },
+      (error) => console.error(error)
+    )
+
   }
 
 

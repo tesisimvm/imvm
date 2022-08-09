@@ -313,6 +313,15 @@ export class BackenApiService {
     return this.http.get<PerfilAdmin[]>('https://localhost:44363/TipoPerfilAdmin');
   }
 
+  getConfiguracionVehiculos(idMarca:number,idModelo:number){
+    return this.http.get<DatosVehiculo[]>('https://localhost:44363/VehiculosAdmin/'+idMarca+'/'+idModelo);
+  }
+
+  getIDMarca(idMarca:number){
+    return this.http.get<marca[]>('https://localhost:44363/MarcaAdmin/'+idMarca)
+  }
+
+
 
 
 }

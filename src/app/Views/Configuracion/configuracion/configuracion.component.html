@@ -143,7 +143,7 @@
                                     </select>
                                 </div>
                                 <div class="col-1">
-                                    <button type="button" class="btn btn-success btn-sm botonTR ">Buscar</button>
+                                    <button type="button" class="btn btn-success btn-sm botonTR " (click)="GetBuscarVehiculos()">Buscar</button>
                                 </div>
                                 <div class="col-1">
                                     <button type="button" (click)="visualizarModalVehiculos(modalVehiculos)"
@@ -152,7 +152,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 divTabla" *ngIf="">
+                        <div class="col-12 divTabla" *ngIf="objListaVehiculos!=null">
                             <table class="table table-hover table-bordered table-striped">
                                 <thead class="table-light">
                                     <tr>
@@ -168,15 +168,16 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of ">
-                                        <th scope="row"></th>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                    <tr *ngFor="let item of objListaVehiculos">
+                                        
+                                        <th scope="row">{{item.nombreTipoVehiculo}}</th>
+                                        <td>{{item.dominio}}</td>
+                                        <td>{{item.marcaAuto}}</td>
+                                        <td>{{item.nombreModelo}}</td>
+                                        <td>{{item.color}}</td>
+                                        <td>{{item.chasis}}</td>
+                                        <td>{{item.numMotor}}</td>
+                                        <td>{{item.nombreEstado}}</td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <div class="btn-group" role="group">
@@ -247,7 +248,7 @@
                             </div>
                         </div>
 
-                        <div class="col-12 divTabla" *ngIf="">
+                        <div class="col-12 divTabla" *ngIf="objListaIDMarca!=null">
                             <table class="table table-hover table-bordered table-striped">
                                 <thead class="table-light">
                                     <tr>
@@ -256,8 +257,8 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let item of ">
-                                        <th scope="row"></th>
+                                    <tr *ngFor="let item of objListaIDMarca">
+                                        <th scope="row">{{item.nombre}}</th>
 
                                         <td>
                                             <div class="btn-group" role="group">
