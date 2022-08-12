@@ -133,9 +133,9 @@
                                         <small>Seleccione el Modelo para realizar las configuraciones
                                             necesarias</small>
                                     </div>
-                                   
+
                                     <select class="form-select form-select-sm " aria-label=".form-select-sm example"
-                                    [formControl]="selectModeloVehiculo" (change)="obtenerIDModeloVehiculo($event)">
+                                        [formControl]="selectModeloVehiculo" (change)="obtenerIDModeloVehiculo($event)">
                                         <option value="{{item.idModelo}}" style="color: black;"
                                             *ngFor="let item of objListaModeloVehiculo" selected>
                                             {{item.modeloVehiculo}}
@@ -143,7 +143,8 @@
                                     </select>
                                 </div>
                                 <div class="col-1">
-                                    <button type="button" class="btn btn-success btn-sm botonTR " (click)="GetBuscarVehiculos()">Buscar</button>
+                                    <button type="button" class="btn btn-success btn-sm botonTR "
+                                        (click)="GetBuscarVehiculos()">Buscar</button>
                                 </div>
                                 <div class="col-1">
                                     <button type="button" (click)="visualizarModalVehiculos(modalVehiculos)"
@@ -169,7 +170,7 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of objListaVehiculos">
-                                        
+
                                         <th scope="row">{{item.nombreTipoVehiculo}}</th>
                                         <td>{{item.dominio}}</td>
                                         <td>{{item.marcaAuto}}</td>
@@ -316,7 +317,7 @@
                                             necesarias</small>
                                     </div>
                                     <select class="form-select form-select-sm " aria-label=".form-select-sm example"
-                                    [formControl]="selectModelo" (change)="obtenerIDModelo($event)">
+                                        [formControl]="selectModelo" (change)="obtenerIDModelo($event)">
                                         <option value="{{item.idModelo}}" style="color: black;"
                                             *ngFor="let item of objListaModeloVehiculo" selected>
                                             {{item.modeloVehiculo}}
@@ -761,6 +762,8 @@
                     <label for="formGroupExampleInput" class="form-label">Tipo Vehiculo</label>
                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                         [formControl]="nombreTipoVehiculoCtrl">
+                        <option *ngFor="let item of objTipVehiculo" value="{{item.idTipoVehiculo}}" selected>
+                            {{item.nombre}}</option>
                     </select>
                 </div>
             </div>
@@ -770,6 +773,10 @@
                     <label for="formGroupExampleInput" class="form-label">Marca</label>
                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                         [formControl]="marcaCtrl">
+                        <option value="{{item.idMarca}}" style="color: black;"
+                            *ngFor="let item of objListaMarcaVehiculo" selected>
+                            {{item.marcaVehiculo}}
+                        </option>
                     </select>
 
                 </div>
@@ -777,6 +784,10 @@
                     <label for="formGroupExampleInput" class="form-label">Modelo</label>
                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                         [formControl]="modeloCtrl">
+                        <option value="{{item.idModelo}}" style="color: black;"
+                            *ngFor="let item of objListaModeloVehiculo" selected>
+                            {{item.modeloVehiculo}}
+                        </option>
                     </select>
 
                 </div>
@@ -809,8 +820,12 @@
                 </div>
                 <div class="col-12 margenTitulosModal">
                     <label for="formGroupExampleInput" class="form-label">Estado</label>
+                    
+
                     <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                         [formControl]="listaEstadoVehiculoCtrl">
+                        <option *ngFor="let item of objListaEstadoVehiculo" value="{{item.idEstado}}" selected>
+                            {{item.nombreEstado}}</option>
                     </select>
                 </div>
             </div>

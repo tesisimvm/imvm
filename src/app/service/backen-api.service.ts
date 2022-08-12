@@ -21,6 +21,7 @@ import { EstadosAdminConfig } from '../model/Configuracion/estadosAdmin';
 import { TipoVehiculoConfig } from '../model/Configuracion/tipoVehiculo';
 import { DatosVehiculo } from '../model/Configuracion/vehiculo';
 import { PerfilAdmin } from '../model/Configuracion/tipoPerfil';
+import { tipoEstadoVehiculo } from '../model/Configuracion/tipoEstadoVehiculo';
 
 
 
@@ -321,6 +322,10 @@ export class BackenApiService {
     return this.http.get<marca[]>('https://localhost:44363/MarcaAdmin/'+idMarca)
   }
 
+  getidActivoVehiculo(){
+    /* 4 devuelve estado activo e inactivo de vehiculo */
+   return this.http.get<tipoEstadoVehiculo[]>('https://localhost:44363/TipoEstadoVehiculoadmin/4');
+  }
 
 
 

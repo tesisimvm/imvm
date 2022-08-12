@@ -72,6 +72,8 @@ export class ConfiguracionComponent implements OnInit {
   banderaTextEstado: boolean = false;
   banderaSelectEstado: boolean = false;
 
+  objListaEstadoVehiculo:any;
+
   ruta: any;
   IDUsuario: any;
   IDRol: any;
@@ -100,6 +102,7 @@ export class ConfiguracionComponent implements OnInit {
     this.getTipoPerfil();
     this.getMarcaVehiculo();
     this.getModeloVehiculo();
+    this.getIdEstadoVehiculoModal();
   }
 
   ngOnInit(): void {}
@@ -244,6 +247,15 @@ export class ConfiguracionComponent implements OnInit {
     );
   }
 
+  GetBuscarVehiculos(){
+    this.servicio.getConfiguracionVehiculos(this.selectIDMarcaVehiculo,this.selectIDModeloVehiculo).subscribe(
+      (res) => {
+        this.objListaVehiculos= res;
+      },
+      (error) => console.error(error)
+    )
+  }
+
   getMarcaVehiculo(){
     /* Se utiliza en vehiculo y marca */
     this.servicio.getMarca().subscribe(
@@ -263,6 +275,8 @@ export class ConfiguracionComponent implements OnInit {
     (error) => console.error(error)
     );
   }
+
+  
 
   getTipoVehiculo() {
     /* Relleno del select tipo vehiculo */
@@ -370,19 +384,19 @@ export class ConfiguracionComponent implements OnInit {
     this.selectIDTipEstadoModal = ev.target.value;
   }
 
+  getIdEstadoVehiculoModal(){
 
-  GetBuscarVehiculos(){
-
-    this.servicio.getConfiguracionVehiculos(this.selectIDMarcaVehiculo,this.selectIDModeloVehiculo).subscribe(
+    this.servicio.getidActivoVehiculo().subscribe(
       (res) => {
-        this.objListaVehiculos= res;
+        this.objListaEstadoVehiculo= res;
       },
       (error) => console.error(error)
-    )
-
+    );
   }
 
+  
 
+/* Notificaciones */
   NotificacionRellenarCampos() {
     this.toastr.warning(
       'Complete el formulario para realizar la operación!',
@@ -393,6 +407,7 @@ export class ConfiguracionComponent implements OnInit {
       }
     );
   }
+
   NotificacionEstadoCreado() {
     this.toastr.success('Estado creado!', 'Atención', {
       timeOut: 2000,
