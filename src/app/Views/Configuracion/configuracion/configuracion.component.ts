@@ -3,6 +3,7 @@ import { BackenApiService } from 'src/app/service/backen-api.service';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { TipoEstado } from 'src/app/model/Configuracion/tipoEstadoAdmin';
 
 @Component({
   selector: 'app-configuracion',
@@ -16,6 +17,7 @@ export class ConfiguracionComponent implements OnInit {
   nombreTipoEstadoCtrl = new FormControl('', [Validators.required]);
   listaTipoEstadoCtrl = new FormControl('', [Validators.required]);
   nombreTipoReclamoCtrl = new FormControl('', [Validators.required]);
+  switchTipoEstadoCtrl = new FormControl('',[Validators.required])
 
   /* Modal Vehiculo */
   nombreTipoVehiculoCtrl = new FormControl('', [Validators.required]);
@@ -70,9 +72,12 @@ export class ConfiguracionComponent implements OnInit {
   selecIDModelo=0;
 
   banderaTextEstado: boolean = false;
-  banderaSelectEstado: boolean = false;
+  banderaSelectEstado: boolean = false; //false
 
   objListaEstadoVehiculo:any;
+
+  banderaSwitch: boolean = false;
+  animacionSwitch="";
 
   ruta: any;
   IDUsuario: any;
@@ -166,21 +171,28 @@ export class ConfiguracionComponent implements OnInit {
 
   botonCrearNuevoEstado() {
     debugger;
-    /* cuando quiero crear un estado para un tipo de estado ya existente */
-    if (
-      this.nombreEstadoCtrl.value != '' &&
-      this.selectIDTipEstadoModal != 0 &&
-      this.banderaSelectEstado == false
-    ) {
+    /* Crear solo un tipo de estado */
+    if(this.nombreEstadoCtrl.value!="" && this.selectIDTipEstadoModal == 0 && this.banderaSelectEstado == false && this.banderaSwitch==false){
+
+      var TipEstado: TipoEstado={
+        nombre: this.nombreEstadoCtrl.value,
+      }
+      debugger
+      this.servicio.postTipoEstado(TipEstado).subscribe(
+        (res) => {
+          this.NotificacionEstadoCreado();
+        },
+        (err) => console.error(err)
+      );
+
+
+    }else if (this.nombreEstadoCtrl.value != '' && this.selectIDTipEstadoModal != 0 && this.banderaSelectEstado == false) {
+      /* cuando quiero crear un estado para un tipo de estado ya existente */
       this.NotificacionEstadoCreado();
 
       this.limpiarModalEstado();
-    } else if (
-      this.nombreEstadoCtrl.value != '' &&
-      this.selectIDTipEstadoModal == 0 &&
-      this.banderaSelectEstado == true &&
-      this.nombreTipoEstadoCtrl.value != ''
-    ) {
+    }else if (this.nombreEstadoCtrl.value != '' && this.selectIDTipEstadoModal == 0 && this.banderaSelectEstado == true &&
+      this.nombreTipoEstadoCtrl.value != '') {
       this.NotificacionTipoEstadoCreado();
       /* Restablecimiento de variables */
       this.limpiarModalEstado();
@@ -219,6 +231,8 @@ export class ConfiguracionComponent implements OnInit {
     /* cuando se cierra el modal o se crea el estado o el tipo de estado */
     this.banderaTextEstado = false;
     this.banderaSelectEstado = false;
+    this.banderaSwitch = false;
+    this.animacionSwitch="off"
     this.selectIDTipEstadoModal = 0;
     this.nombreEstadoCtrl.setValue('');
     this.nombreTipoEstadoCtrl.setValue('');
@@ -246,7 +260,7 @@ export class ConfiguracionComponent implements OnInit {
       (error) => console.error(error)
     );
   }
-
+  
   GetBuscarVehiculos(){
     this.servicio.getConfiguracionVehiculos(this.selectIDMarcaVehiculo,this.selectIDModeloVehiculo).subscribe(
       (res) => {
@@ -276,8 +290,6 @@ export class ConfiguracionComponent implements OnInit {
     );
   }
 
-  
-
   getTipoVehiculo() {
     /* Relleno del select tipo vehiculo */
     this.servicio.getTipVehiculo().subscribe(
@@ -306,7 +318,6 @@ export class ConfiguracionComponent implements OnInit {
     );
   }
 
- 
   /* Metodos para obtener los valores de los selec */
   obtenerIDTipoEstado(ev: any) {
     this.selectIDTipEstado = 0;
@@ -384,14 +395,30 @@ export class ConfiguracionComponent implements OnInit {
     this.selectIDTipEstadoModal = ev.target.value;
   }
 
-  getIdEstadoVehiculoModal(){
+  switchTipoEstadoModal() {
 
+    debugger
+    if(this.banderaSwitch==false){
+      this.banderaSwitch=true; /* Se visualiza */
+     
+    }else{
+      this.banderaSwitch=false;
+      
+    }
+  }
+
+  getIdEstadoVehiculoModal(){
     this.servicio.getidActivoVehiculo().subscribe(
       (res) => {
         this.objListaEstadoVehiculo= res;
       },
       (error) => console.error(error)
     );
+  }
+
+  /* Crear nuevo tipo de estado */
+  postNuevoTipoEstado(){
+
   }
 
   

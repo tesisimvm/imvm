@@ -327,6 +327,11 @@ export class BackenApiService {
    return this.http.get<tipoEstadoVehiculo[]>('https://localhost:44363/TipoEstadoVehiculoadmin/4');
   }
 
+  /*------------------------ Configuracion Modal------------------------- */
+  postTipoEstado(tipoEstado: any ):Observable<any>{
+    return this.http.post('https://localhost:44363/TipoEstado', tipoEstado, this.httpOptions);
+  }
+
 
 
 }
