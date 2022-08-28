@@ -332,6 +332,10 @@ export class BackenApiService {
     return this.http.post('https://localhost:44363/TipoEstado', tipoEstado, this.httpOptions);
   }
 
+  postEstado(Estado:any):Observable<any>{
+    return this.http.post('https://localhost:44363/EstadosAdmin', Estado, this.httpOptions);
+  }
+
 
 
 }

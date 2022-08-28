@@ -638,7 +638,7 @@
 <ng-template #modalEstados let-modal>
     <form class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="staticBackdropLabel">Nuevo Tipo de Estado</h5>
+            <h5 class="modal-title" id="staticBackdropLabel">Nuevo {{textoEstadoModal}}</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                 (click)="botonCerrarNuevoEstado()"></button>
         </div>
@@ -650,7 +650,7 @@
                         <label for="formGroupExampleInput" class="form-label">Nombre</label>
 
                         <input type="text" class="form-control" id="formGroupExampleInput"
-                            placeholder="Escriba el nombre del estado deseado" [formControl]="nombreEstadoCtrl">
+                            placeholder={{textoEstadoModal}} [formControl]="nombreEstadoCtrl">
 
                     </div>
 
@@ -662,45 +662,25 @@
                         <div class="col-11">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" role="switch"
-                                    id="flexSwitchCheckDefault" (click)="switchTipoEstadoModal()" value="animacionSwitch" [formControl]="switchTipoEstadoCtrl">
-                                <label class="form-check-label" for="flexSwitchCheckDefault"> <small>Agregar un tipo de estado</small></label>
+                                    id="flexSwitchCheckDefault" (click)="switchTipoEstadoModal()"
+                                    value="animacionSwitch" [formControl]="switchTipoEstadoCtrl">
+                                <label class="form-check-label" for="flexSwitchCheckDefault"> <small>Agregar un tipo de
+                                        estado</small></label>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-12 margenTitulosModal" *ngIf="banderaSwitch!=false">
 
-                        <div class="row">
-                            <div  class="col-10" *ngIf="banderaSelectEstado!=true" >
+                        <label for="formGroupExampleInput2" class="form-label">Tipo Estado</label>
 
-                                <label for="formGroupExampleInput2" class="form-label">Tipo Estado</label>
-        
-                                <select class="form-select form-select-sm" aria-label=".form-select-sm example"
-                                    (change)="obtenerIDTipoEstadoModal($event)" [formControl]="listaTipoEstadoCtrl">
-                                    <option *ngFor="let item of objModalTipoEstado" value="{{item.idTipoEstado}}" selected>
-                                        {{item.nombre}}</option>
-                                </select>
-                            </div>
-                            <div class="col-1" *ngIf="banderaSelectEstado!=true">
-                                <button id="botonNuevoEstado" (click)="visualizarInput()" type="button"
-                                    class="btn btn-primary btn-sm">
-                                    Nuevo
-                                </button>
-                            </div>
-                            <div *ngIf="banderaTextEstado!=false" class="col-12 margenTitulosModal">
-                                <label for="formGroupExampleInput2" class="form-label">Nombre</label>
-        
-                                <input type="text" class="form-control" id="formGroupExampleInput"
-                                    placeholder="Escriba el nombre del Tipo de Estado deseado"
-                                    [formControl]="nombreTipoEstadoCtrl">
-                            </div>
-                        </div>
-
-                        
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                            (change)="obtenerIDTipoEstadoModal($event)" [formControl]="listaTipoEstadoCtrl">
+                            <option *ngFor="let item of objModalTipoEstado" value="{{item.idTipoEstado}}" selected>
+                                {{item.nombre}}</option>
+                        </select>
 
                     </div>
-                   
-                    
                 </div>
             </div>
         </div>

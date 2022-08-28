@@ -4,6 +4,7 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TipoEstado } from 'src/app/model/Configuracion/tipoEstadoAdmin';
+import { PostEstado } from 'src/app/model/Configuracion/estadosAdmin';
 
 @Component({
   selector: 'app-configuracion',
@@ -14,7 +15,7 @@ import { TipoEstado } from 'src/app/model/Configuracion/tipoEstadoAdmin';
 export class ConfiguracionComponent implements OnInit {
   /* Modal Estados */
   nombreEstadoCtrl = new FormControl('', [Validators.required]);
-  nombreTipoEstadoCtrl = new FormControl('', [Validators.required]);
+ /*  nombreTipoEstadoCtrl = new FormControl('', [Validators.required]); */
   listaTipoEstadoCtrl = new FormControl('', [Validators.required]);
   nombreTipoReclamoCtrl = new FormControl('', [Validators.required]);
   switchTipoEstadoCtrl = new FormControl('',[Validators.required])
@@ -70,8 +71,9 @@ export class ConfiguracionComponent implements OnInit {
   objListaIDMarca:any;
   selecIDMarca=0;
   selecIDModelo=0;
+  textoEstadoModal="Tipo de Estado";
 
-  banderaTextEstado: boolean = false;
+  /* banderaTextEstado: boolean = false; */
   banderaSelectEstado: boolean = false; //false
 
   objListaEstadoVehiculo:any;
@@ -136,16 +138,16 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   /* metodo para visualizar input del modal nuevo estado */
-  visualizarInput() {
+  /* visualizarInput() {
     debugger;
     if (this.banderaTextEstado == false) {
-      /* Se visualiza el texto*/
+      
       this.banderaTextEstado = true;
-      /* Se oculta el Select */
+      
       this.banderaSelectEstado = true;
       this.selectIDTipEstadoModal = 0;
     }
-  }
+  } */
 
   botonCerrarNuevoEstado() {
     this.limpiarModalEstado();
@@ -172,7 +174,7 @@ export class ConfiguracionComponent implements OnInit {
   botonCrearNuevoEstado() {
     debugger;
     /* Crear solo un tipo de estado */
-    if(this.nombreEstadoCtrl.value!="" && this.selectIDTipEstadoModal == 0 && this.banderaSelectEstado == false && this.banderaSwitch==false){
+    if(this.nombreEstadoCtrl.value!="" && this.selectIDTipEstadoModal == 0  && this.banderaSwitch==false){
 
       var TipEstado: TipoEstado={
         nombre: this.nombreEstadoCtrl.value,
@@ -180,22 +182,29 @@ export class ConfiguracionComponent implements OnInit {
       debugger
       this.servicio.postTipoEstado(TipEstado).subscribe(
         (res) => {
-          this.NotificacionEstadoCreado();
         },
         (err) => console.error(err)
       );
-
-
-    }else if (this.nombreEstadoCtrl.value != '' && this.selectIDTipEstadoModal != 0 && this.banderaSelectEstado == false) {
-      /* cuando quiero crear un estado para un tipo de estado ya existente */
       this.NotificacionEstadoCreado();
+      this.limpiarModalEstado();
 
+      /* Creo un estado con tipo de estado */
+    }else if (this.nombreEstadoCtrl.value != '' && this.selectIDTipEstadoModal != 0 && this.banderaSwitch==true) {
+      
+      var Estado: PostEstado={
+        nombre: this.nombreEstadoCtrl.value,
+        id_TipoEstado: Number(this.selectIDTipEstadoModal)
+      }
+      
+      this.servicio.postEstado(Estado).subscribe(
+        (res) => {
+          debugger
+        },
+        (err) => console.error(err)
+      )
+      this.NotificacionEstadoCreado();
       this.limpiarModalEstado();
-    }else if (this.nombreEstadoCtrl.value != '' && this.selectIDTipEstadoModal == 0 && this.banderaSelectEstado == true &&
-      this.nombreTipoEstadoCtrl.value != '') {
-      this.NotificacionTipoEstadoCreado();
-      /* Restablecimiento de variables */
-      this.limpiarModalEstado();
+      
     } else {
       this.NotificacionRellenarCampos();
     }
@@ -229,13 +238,10 @@ export class ConfiguracionComponent implements OnInit {
   }
   limpiarModalEstado() {
     /* cuando se cierra el modal o se crea el estado o el tipo de estado */
-    this.banderaTextEstado = false;
-    this.banderaSelectEstado = false;
     this.banderaSwitch = false;
-    this.animacionSwitch="off"
+    this.textoEstadoModal="Tipo De Estado";
     this.selectIDTipEstadoModal = 0;
     this.nombreEstadoCtrl.setValue('');
-    this.nombreTipoEstadoCtrl.setValue('');
     this.modal.dismissAll();
   }
   limpiarModalVehiculos() {
@@ -400,9 +406,12 @@ export class ConfiguracionComponent implements OnInit {
     debugger
     if(this.banderaSwitch==false){
       this.banderaSwitch=true; /* Se visualiza */
-     
+      this.textoEstadoModal="Estado"
+      this.selectIDTipEstadoModal = 0;
     }else{
       this.banderaSwitch=false;
+      this.textoEstadoModal="Tipo de Estado";
+      this.selectIDTipEstadoModal = 0;
       
     }
   }
@@ -417,9 +426,7 @@ export class ConfiguracionComponent implements OnInit {
   }
 
   /* Crear nuevo tipo de estado */
-  postNuevoTipoEstado(){
-
-  }
+ 
 
   
 
