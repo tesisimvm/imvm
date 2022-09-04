@@ -1,0 +1,26 @@
+<h1>Editar</h1>
+<ng-template #contenido let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Datos a editar</h4>
+        <button class="close" aria-label="close" type="button" 
+        (click)="modal.dismiss()">
+            <span aria-label="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">ç
+        <p>Nombre:</p><input type="text">  
+        <p>Apellido:</p><input type="text">
+        <p>DNI:</p><input type="text">
+        <p>Correo:</p><input type="text">
+        <p>Tel/Celular:</p><input type="number">
+        <P>Nombre Usuario:</P><input type="text">
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-success" 
+            (click)="modal.close()">
+        </button>
+    </div>
+</ng-template>
+
+
+<button type="button" class="btn btn-outline">Ejecutar modal</button>

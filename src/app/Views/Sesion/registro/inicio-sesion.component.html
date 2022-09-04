@@ -1,0 +1,70 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="Yinka Enoch Adedokun">
+
+  <title>Inicio Sesión</title>
+</head>
+
+<body>
+  <!-- Main Content -->
+  <div class="container-fluid" id="hola" style="font-family: 'Open Sans',sans-serif;">
+    <div class="row main-content bg-success text-center">
+      <div class="col-md-4 text-center company__info">
+
+
+        <div>
+          <img id="logo" src="../../../../assets/img/mejorada3.png" alt="logo">
+        </div>
+
+      </div>
+      <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+        <div class="container-fluid">
+          <div class="row" style="padding-top: 2%; padding-left: 2%;">
+            <h2>Iniciar Sesión</h2>
+          </div>
+          <!-- colocar usuario/correo -->
+          <div class="row">
+
+            <div class="col-12">
+              <input id="iconoUsuario" (keyup)="validarEmail()" [formControl]="userCtrl" type="text" class="form__input" placeholder="   Usuario o e-mail">
+
+              <span>
+                <small id="mensajeUser" *ngIf="(userCtrl.hasError('required') && userCtrl.dirty) || (banderaAlerta==false)">
+                  <i class="fa fa-times fa-2x"></i>
+                  Este campo es requerido
+                </small>
+              </span>
+            </div>
+
+
+            <div class="col-12">
+              <input id="iconoContrasenia" [formControl]="passwCtrl" type="password" class="form__input" placeholder="   Contraseña">
+              <span>
+                <small id="mensajeUser" *ngIf="(passwCtrl.hasError('required') && passwCtrl.dirty)">
+                  <i class="fa fa-times fa-2x"></i>
+                  Este campo es requerido
+                </small>
+              </span>
+            </div>
+            
+          </div>
+          <div class="row">
+              <div class="col col-12">
+                <button [disabled]="(userCtrl.invalid ||  passwCtrl.invalid)" type="button" (click)="Validacion()"
+                  class="btn">Iniciar Sesión</button>
+              </div>
+            </div>
+
+          <div class="row">
+            <p>¿No tenés una cuenta? <a routerLink="/login">Registrate ahora!</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <app-footer></app-footer>
+
+</body>

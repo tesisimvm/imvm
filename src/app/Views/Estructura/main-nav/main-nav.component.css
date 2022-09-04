@@ -1,0 +1,146 @@
+/* Color de fondo del menu */
+.mat-sidenav {
+ /*  background-image: linear-gradient(
+    94.3deg,
+    #005D7C 100%,
+    rgb(255, 255, 255) 87.1%
+  ); */
+
+  background-color:rgb(199, 202, 202);
+
+}
+/* texto de la cabecera de la barra del menu */
+.menu {
+  background-image: linear-gradient(
+    76.3deg,
+    #005D7C 12.6%,
+    rgb(255, 255, 255) 82.8%
+  );
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  /* padding-left: 30%; */
+}
+
+/* #textoCabecera{
+  margin: 0 auto;
+  background: -webkit-linear-gradient(#eee, rgb(0, 0, 0));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+} */
+
+/* contenedor del texto de la cabecera */
+#cabecera {
+  background: #e9e9e9;
+  color: #435262;
+}
+
+
+.button-menu {
+  width: 90%; /* ancho del menu de botones */
+}
+
+.sidenav-container {
+  height: 100%;
+}
+
+.sidenav {
+  width: 200px;
+}
+
+.user {
+  text-decoration: none;
+  text-transform: none;
+  text-decoration-style: none;
+  margin-top: 14px;
+  font-size: 12px;
+}
+
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+   /* padding-left: 43%; esto alinea el nombre de la app */
+  font-size: 30px;
+}
+
+.btn {
+  float: right;
+}
+
+.btn-grad{
+  font-family: Open Sans,sans-serif;
+  font-size: 0.90em;
+  background-color:rgb(199, 202, 202);
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  /* text-transform: uppercase; */
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: rgb(0, 0, 0);
+  border-radius: 3px;
+  display: block;
+
+  border-radius: 10px; /* nuevo */
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar a {
+  display: inline-block; 
+}
+
+#perfil-imagen {
+  height: 100px;
+  width: 100px;
+  margin-left: 25%;
+  margin-bottom: 5%;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  border-radius: 50%;
+  background-size: 100% auto;
+}
+
+.nombre-usuario {
+  text-align: center;
+  color: white;
+  font-size: 15px;
+}
+
+.icono {
+  height: 37px;
+  width: 37px;
+  margin-left: -6%;
+  margin-right: 6%;
+}
+
+/* estilo de color para los botones si se quiere cambiar
+ir a https://cssgradient.io/gradient-backgrounds/ */
+
+
+.botonConfiguracion{
+  margin: 0 auto;
+}
+
+.btn-grad:hover {
+  background-position: right center; 
+  background-color: #414c58;
+  color: rgb(252, 252, 252);
+  text-decoration: none;
+}
+
+.fas{
+  padding-right:10%;
+}
+
+
+
+
+
