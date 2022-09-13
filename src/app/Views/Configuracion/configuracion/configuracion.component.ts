@@ -5,6 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { TipoEstado } from 'src/app/model/Configuracion/tipoEstadoAdmin';
 import { PostEstado } from 'src/app/model/Configuracion/estadosAdmin';
+import { PerfilAdmin } from 'src/app/model/Configuracion/tipoPerfil';
 
 @Component({
   selector: 'app-configuracion',
@@ -149,6 +150,7 @@ export class ConfiguracionComponent implements OnInit {
     }
   } */
 
+  /* Cerrar Modales  */
   botonCerrarNuevoEstado() {
     this.limpiarModalEstado();
   }
@@ -169,91 +171,23 @@ export class ConfiguracionComponent implements OnInit {
   }
   botonCerrarModalPerfil(){
     this.modal.dismissAll();
+    this.nombreModalPerfil.setValue('');
   }
 
-  botonCrearNuevoEstado() {
-    debugger;
-    /* Crear solo un tipo de estado */
-    if(this.nombreEstadoCtrl.value!="" && this.selectIDTipEstadoModal == 0  && this.banderaSwitch==false){
-
-      var TipEstado: TipoEstado={
-        nombre: this.nombreEstadoCtrl.value,
-      }
-      debugger
-      this.servicio.postTipoEstado(TipEstado).subscribe(
-        (res) => {
-        },
-        (err) => console.error(err)
-      );
-      this.NotificacionEstadoCreado();
-      this.limpiarModalEstado();
-
-      /* Creo un estado con tipo de estado */
-    }else if (this.nombreEstadoCtrl.value != '' && this.selectIDTipEstadoModal != 0 && this.banderaSwitch==true) {
-      
-      var Estado: PostEstado={
-        nombre: this.nombreEstadoCtrl.value,
-        id_TipoEstado: Number(this.selectIDTipEstadoModal)
-      }
-      
-      this.servicio.postEstado(Estado).subscribe(
-        (res) => {
-          debugger
-        },
-        (err) => console.error(err)
-      )
-      this.NotificacionEstadoCreado();
-      this.limpiarModalEstado();
-      
-    } else {
-      this.NotificacionRellenarCampos();
-    }
-  }
+  /* Opcion Configuracion tipo de reclamo */
   botonCrearNuevoTipoReclamo() {
     if (this.nombreTipoReclamoCtrl.value != 0) {
       this.nombreTipoReclamoCtrl.setValue('');
       this.modal.dismissAll();
-      this.NotificacionTipoEstadoCreado();
+      this.NotificacionTipoReclamoCreado();
     } else {
       this.NotificacionRellenarCampos();
     }
   }
 
-  /* Modal Vehiculo */
-  botonCrearVehiculo() {
-    if (
-      this.nombreTipoVehiculoCtrl.value != '' &&
-      this.dominioCtrl.value != '' &&
-      this.marcaCtrl.value != '' &&
-      this.modeloCtrl.value != '' &&
-      this.colorCtrl.value != '' &&
-      this.numChasisCtrl.value != '' &&
-      this.numMotorCtrl.value &&
-      this.listaEstadoVehiculoCtrl.value != ''
-    ) {
-    } else {
-      
-      this.NotificacionRellenarCampos();
-    }
-  }
-  limpiarModalEstado() {
-    /* cuando se cierra el modal o se crea el estado o el tipo de estado */
-    this.banderaSwitch = false;
-    this.textoEstadoModal="Tipo De Estado";
-    this.selectIDTipEstadoModal = 0;
-    this.nombreEstadoCtrl.setValue('');
-    this.modal.dismissAll();
-  }
-  limpiarModalVehiculos() {
-    this.nombreTipoVehiculoCtrl.setValue('');
-    this.dominioCtrl.setValue('');
-    this.marcaCtrl.setValue('');
-    this.modeloCtrl.setValue('');
-    this.colorCtrl.setValue('');
-    this.numChasisCtrl.setValue('');
-    this.numMotorCtrl.setValue('');
-    this.listaEstadoVehiculoCtrl.setValue('');
-  }
+  
+ 
+  
 
   /* Metodos Get */
 
@@ -395,15 +329,51 @@ export class ConfiguracionComponent implements OnInit {
     );
   }
 
-  /* Select Modal */
+  /* Modal Estado */
+  botonCrearNuevoEstado() {
+    debugger;
+    /* Crear solo un tipo de estado */
+    if(this.nombreEstadoCtrl.value!="" && this.selectIDTipEstadoModal == 0  && this.banderaSwitch==false){
+
+      var TipEstado: TipoEstado={
+        nombre: this.nombreEstadoCtrl.value,
+      }
+      debugger
+      this.servicio.postTipoEstado(TipEstado).subscribe(
+        (res) => {
+        },
+        (err) => console.error(err)
+      );
+      this.NotificacionTipoEstadoCreado();
+      this.limpiarModalEstado();
+
+      /* Creo un estado con tipo de estado */
+    }else if (this.nombreEstadoCtrl.value != '' && this.selectIDTipEstadoModal != 0 && this.banderaSwitch==true) {
+      
+      var Estado: PostEstado={
+        nombre: this.nombreEstadoCtrl.value,
+        id_TipoEstado: Number(this.selectIDTipEstadoModal)
+      }
+      
+      this.servicio.postEstado(Estado).subscribe(
+        (res) => {
+          
+        },
+        (err) => console.error(err)
+      )
+      this.NotificacionEstadoCreado();
+      this.limpiarModalEstado();
+      
+    } else {
+      this.NotificacionRellenarCampos();
+    }
+  }
   obtenerIDTipoEstadoModal(ev: any) {
     this.selectIDTipEstadoModal = 0;
     this.selectIDTipEstadoModal = ev.target.value;
   }
 
   switchTipoEstadoModal() {
-
-    debugger
     if(this.banderaSwitch==false){
       this.banderaSwitch=true; /* Se visualiza */
       this.textoEstadoModal="Estado"
@@ -416,6 +386,7 @@ export class ConfiguracionComponent implements OnInit {
     }
   }
 
+  /* Modal Vehiculo */
   getIdEstadoVehiculoModal(){
     this.servicio.getidActivoVehiculo().subscribe(
       (res) => {
@@ -424,12 +395,71 @@ export class ConfiguracionComponent implements OnInit {
       (error) => console.error(error)
     );
   }
+  
+  botonCrearVehiculo() {
+    if (
+      this.nombreTipoVehiculoCtrl.value != '' &&
+      this.dominioCtrl.value != '' &&
+      this.marcaCtrl.value != '' &&
+      this.modeloCtrl.value != '' &&
+      this.colorCtrl.value != '' &&
+      this.numChasisCtrl.value != '' &&
+      this.numMotorCtrl.value &&
+      this.listaEstadoVehiculoCtrl.value != ''
+    ) {
+    } else {
+      
+      this.NotificacionRellenarCampos();
+    }
+  }
 
-  /* Crear nuevo tipo de estado */
+  /* Modal Perfil */
+  botonCrearPerfilModal(){
+    debugger
+    if(this.nombreModalPerfil.value!=''){
+
+      var objPerfil:PerfilAdmin={
+        nombre : this.nombreModalPerfil.value,
+      }
+      this.servicio.postPerfilModal(objPerfil).subscribe(
+        (resp)=>{
+
+          
+
+        },
+        (err) => console.error(err)
+
+      )
+      this.NotificacionPerfilCreado();
+      this.nombreModalPerfil.setValue('');
+
+
+    }else{
+      this.NotificacionRellenarCampos();
+    }
+
+  }
  
 
+  limpiarModalEstado() {
+    /* cuando se cierra el modal o se crea el estado o el tipo de estado */
+    this.banderaSwitch = false;
+    this.textoEstadoModal="Tipo De Estado";
+    this.selectIDTipEstadoModal = 0;
+    this.nombreEstadoCtrl.setValue('');
+    this.modal.dismissAll();
+  }
+  limpiarModalVehiculos() {
+    this.nombreTipoVehiculoCtrl.setValue('');
+    this.dominioCtrl.setValue('');
+    this.marcaCtrl.setValue('');
+    this.modeloCtrl.setValue('');
+    this.colorCtrl.setValue('');
+    this.numChasisCtrl.setValue('');
+    this.numMotorCtrl.setValue('');
+    this.listaEstadoVehiculoCtrl.setValue('');
+  }
   
-
 /* Notificaciones */
   NotificacionRellenarCampos() {
     this.toastr.warning(
@@ -450,7 +480,7 @@ export class ConfiguracionComponent implements OnInit {
   }
   NotificacionTipoEstadoCreado() {
     this.toastr.success(
-      'El tipo de estado con nuevo estado creado!',
+      'Tipo De Estado Creado!',
       'Atención',
       {
         timeOut: 2000,
@@ -458,6 +488,18 @@ export class ConfiguracionComponent implements OnInit {
       }
     );
   }
+
+  NotificacionPerfilCreado() {
+    this.toastr.success(
+      'Perfil creado!',
+      'Atención',
+      {
+        timeOut: 2000,
+        positionClass: 'toast-bottom-center',
+      }
+    );
+  }
+
   NotificacionTipoReclamoCreado() {
     this.toastr.success('El tipo de Reclamo a sido creado!', 'Atención', {
       timeOut: 2000,
