@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { TipoEstado } from 'src/app/model/Configuracion/tipoEstadoAdmin';
 import { PostEstado } from 'src/app/model/Configuracion/estadosAdmin';
 import { PerfilAdmin } from 'src/app/model/Configuracion/tipoPerfil';
+import { TipoReclamo } from 'src/app/model/tipoReclamo';
+import { TipoVehiculoModal } from 'src/app/model/Configuracion/tipoVehiculo';
 
 @Component({
   selector: 'app-configuracion',
@@ -19,10 +21,12 @@ export class ConfiguracionComponent implements OnInit {
  /*  nombreTipoEstadoCtrl = new FormControl('', [Validators.required]); */
   listaTipoEstadoCtrl = new FormControl('', [Validators.required]);
   nombreTipoReclamoCtrl = new FormControl('', [Validators.required]);
+  descripcionTipoReclamoCtrl = new FormControl('',[Validators.required])
   switchTipoEstadoCtrl = new FormControl('',[Validators.required])
 
   /* Modal Vehiculo */
   nombreTipoVehiculoCtrl = new FormControl('', [Validators.required]);
+ 
   dominioCtrl = new FormControl('', [Validators.required]);
   marcaCtrl = new FormControl('', [Validators.required]);
   modeloCtrl = new FormControl('', [Validators.required]);
@@ -41,6 +45,10 @@ export class ConfiguracionComponent implements OnInit {
 
   selectMarca = new FormControl('',[Validators.required]);
   selectModelo=new FormControl('',[Validators.required]);
+
+  /* Modal TipoVehiculo */
+  descripcionTipoVehiculoModal = new FormControl('', [Validators.required]);
+  nombreTipoVehiculoCtrlModal = new FormControl('', [Validators.required]);
   
 
   objTipoEstado: any; /* Select */
@@ -155,9 +163,14 @@ export class ConfiguracionComponent implements OnInit {
     this.limpiarModalEstado();
   }
   botonCerrarTipoReclamo() {
+    this.nombreTipoReclamoCtrl.setValue('');
+    this.descripcionTipoReclamoCtrl.setValue('');
     this.modal.dismissAll();
+    
   }
-  botonCerrarNuevoTipoVehiculo() {
+  botonCerrarNuevoTipoVehiculoModal() {
+    this.nombreTipoVehiculoCtrlModal.setValue('');
+    this.descripcionTipoVehiculoModal.setValue('');
     this.modal.dismissAll();
   }
   botonCerrarVehiculo() {
@@ -174,20 +187,6 @@ export class ConfiguracionComponent implements OnInit {
     this.nombreModalPerfil.setValue('');
   }
 
-  /* Opcion Configuracion tipo de reclamo */
-  botonCrearNuevoTipoReclamo() {
-    if (this.nombreTipoReclamoCtrl.value != 0) {
-      this.nombreTipoReclamoCtrl.setValue('');
-      this.modal.dismissAll();
-      this.NotificacionTipoReclamoCreado();
-    } else {
-      this.NotificacionRellenarCampos();
-    }
-  }
-
-  
- 
-  
 
   /* Metodos Get */
 
@@ -425,7 +424,6 @@ export class ConfiguracionComponent implements OnInit {
         (resp)=>{
 
           
-
         },
         (err) => console.error(err)
 
@@ -438,6 +436,48 @@ export class ConfiguracionComponent implements OnInit {
       this.NotificacionRellenarCampos();
     }
 
+  }
+
+  /* Modal Tipo Reclamo */
+  botonCrearNuevoTipoReclamo() {
+    debugger
+    if (this.nombreTipoReclamoCtrl.value != '' && this.descripcionTipoReclamoCtrl.value!='') {
+
+      var tipoRec: TipoReclamo ={
+        nombre: this.nombreTipoReclamoCtrl.value,
+        descripcion: this.descripcionTipoReclamoCtrl.value,
+      }
+      
+      this.servicio.postTipoReclamoModal(tipoRec).subscribe(
+        (resp)=>{
+          
+        },
+        (err) => console.error(err)
+      ) 
+      this.NotificacionTipoReclamoCreado();
+    } else {
+      this.NotificacionRellenarCampos();
+    }
+  }
+
+  /* Modal Tipo Vehiculo */
+  botonCrearTipoVehiculoModal(){
+    debugger
+    if(this.nombreTipoVehiculoCtrlModal.value!='' && this.descripcionTipoVehiculoModal.value!=''){
+
+      var objTipoVehiculo:TipoVehiculoModal ={
+        nombre: this.nombreTipoVehiculoCtrlModal.value,
+        descripcion: this.descripcionTipoVehiculoModal.value,
+      }
+      this.servicio.postTipoVehiculoModal(objTipoVehiculo).subscribe(
+        (resp)=>{ 
+        },
+        (err) => console.error(err)
+      )
+      this.NotificacionTipoVehiculoCreado();
+    }else{
+      this.NotificacionRellenarCampos();
+    }
   }
  
 
@@ -458,6 +498,12 @@ export class ConfiguracionComponent implements OnInit {
     this.numChasisCtrl.setValue('');
     this.numMotorCtrl.setValue('');
     this.listaEstadoVehiculoCtrl.setValue('');
+  }
+
+  limpiarModalTipoReclamos(){
+    this.nombreTipoReclamoCtrl.setValue('');
+    this.descripcionTipoReclamoCtrl.setValue('');
+     this.modal.dismissAll();
   }
   
 /* Notificaciones */
@@ -499,11 +545,30 @@ export class ConfiguracionComponent implements OnInit {
       }
     );
   }
-
-  NotificacionTipoReclamoCreado() {
-    this.toastr.success('El tipo de Reclamo a sido creado!', 'Atención', {
-      timeOut: 2000,
-      positionClass: 'toast-bottom-center',
-    });
+  NotificacionTipoReclamoCreado(){
+    this.toastr.success(
+      'Tipo De Reclam Creado!',
+      'Atención',
+      {
+        timeOut: 2000,
+        positionClass: 'toast-bottom-center',
+      }
+    );
+    this.botonCerrarTipoReclamo();
   }
+
+  NotificacionTipoVehiculoCreado(){
+    this.toastr.success(
+      'Tipo De Vehiculo Creado!',
+      'Atención',
+      {
+        timeOut: 2000,
+        positionClass: 'toast-bottom-center',
+      }
+    );
+    this.botonCerrarNuevoTipoVehiculoModal();
+  }
+ 
+
+  
 }

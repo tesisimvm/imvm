@@ -344,7 +344,12 @@ export class BackenApiService {
     return this.http.post('https://localhost:44363/TipoPerfilAdmin', perfil, this.httpOptions);
   }
   /*------------------------ Configuracion Modal Tipo Reclamo ------------------------- */
+  postTipoReclamoModal(tipoReclamo:any):Observable<any>{
+    return this.http.post('https://localhost:44363/TipoReclamoAdmin', tipoReclamo, this.httpOptions);
+  }
   /*------------------------ Configuracion Modal Tipo Vehiculo ------------------------- */
-
+  postTipoVehiculoModal(tipoVehiculo:any):Observable<any>{
+    return this.http.post('https://localhost:44363/TipoVehiculoAdmin', tipoVehiculo, this.httpOptions);
+  }
 
 }

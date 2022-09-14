@@ -706,14 +706,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <label for="formGroupExampleInput" class="form-label">Nombre</label>
+                        <label for="formGroupExampleInput"  class="form-label">Nombre</label>
 
                         <input type="text" class="form-control" id="formGroupExampleInput"
                             placeholder="Escriba el nombre del Tipo de Reclamo deseado"
                             [formControl]="nombreTipoReclamoCtrl">
                     </div>
-
-
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="formGroupExampleInput" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput"           
+                            [formControl]="descripcionTipoReclamoCtrl">
+                    </div>
                 </div>
             </div>
         </div>
@@ -730,26 +735,32 @@
     <form class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="staticBackdropLabel">Nuevo Tipo De Vehiculo</h5>
-            <button (click)="botonCerrarNuevoTipoVehiculo()" type="button" class="btn-close" data-bs-dismiss="modal"
+            <button (click)="botonCerrarNuevoTipoVehiculoModal()" type="button" class="btn-close" data-bs-dismiss="modal"
                 aria-label="Close"></button>
         </div>
         <div class="modal-body">
 
             <div class="container">
                 <div class="row">
-
                     <div class="col-12">
                         <label for="formGroupExampleInput" class="form-label">Nombre</label>
                         <input type="text" class="form-control" id="formGroupExampleInput"
-                            placeholder="Nombre del Tipo de Vehiculo deseado" [formControl]="nombreTipoVehiculoCtrl">
+                            placeholder="Nombre del Tipo de Vehiculo deseado" [formControl]="nombreTipoVehiculoCtrlModal">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="formGroupExampleInput" class="form-label">Descripción</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput"           
+                            [formControl]="descripcionTipoVehiculoModal">
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <button (click)="botonCerrarNuevoTipoVehiculo()" type="button" class="btn btn-secondary"
+            <button (click)="botonCerrarNuevoTipoVehiculoModal()" type="button" class="btn btn-secondary"
                 data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary">Crear</button>
+            <button type="button" class="btn btn-primary" (click)="botonCrearTipoVehiculoModal()">Crear</button>
         </div>
     </form>
 </ng-template>
