@@ -169,6 +169,7 @@ export class HistorialComponent implements OnInit {
   }
 
   btnBuscarReclamosFiltrados() {
+    debugger
     //NOTA: si busco todos los reclamos de ambiental tengo que hacer una nueva funcion para ese mismo estado, solamente es (23/02/2022)
     var filtroIDTReclamo: any;
     var filtroIDEstadoReclamo: any;
@@ -315,7 +316,7 @@ export class HistorialComponent implements OnInit {
       } */
 
     } else if(this.IDRol==3)  {
-      
+      debugger
       filtroIDTReclamo = this.selectIDTipReclamo;
       filtroIDEstadoReclamo = this.selectIDEstadoReclamo;
       filtroFechaInicio = this.fechaDesdeCtrl.value;
@@ -323,7 +324,8 @@ export class HistorialComponent implements OnInit {
       /* Filtro por usuario */
       /* Filtro los reclamos por el tipo y el estado pero sin fecha */
       if ((this.tipoReclamoCtrl.value !='' && this.estadoReclamoCtrl.value!='') && this.fechaDesdeCtrl.value=='') {
-      
+    
+        debugger
         this.detalleReclamo
           .getDetalleReclamoFiltradoUsuario(filtroIDTReclamo,filtroIDEstadoReclamo,this.IDRol,this.IDUsuario)
           .subscribe(
@@ -333,6 +335,7 @@ export class HistorialComponent implements OnInit {
               this.banderaIconoCarga =false; /* No se visualiza */
               this.banderaAlerta=false;/* No se visualiza */
               this.Dreclamos = res;
+              debugger
               console.log(this.Dreclamos);
               if (res.length == 0) {
                 this.banderaAlerta=true;
@@ -345,7 +348,7 @@ export class HistorialComponent implements OnInit {
 
           /* Filtro los reclamos por el tipo y el estado pero con fecha */
       }else if ((this.tipoReclamoCtrl.value !='' && this.estadoReclamoCtrl.value!='') && this.fechaDesdeCtrl.value!=''){
-        
+        debugger
         this.detalleReclamo.getDetalleReclamoPorfechaDelUsuario(filtroIDTReclamo,filtroIDEstadoReclamo,this.fechaDesdeCtrl.value,this.IDRol,this.IDUsuario)
           .subscribe(
             (res) => {

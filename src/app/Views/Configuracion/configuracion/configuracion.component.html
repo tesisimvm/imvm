@@ -693,7 +693,6 @@
 </ng-template>
 
 <!-- Modal Tipo Reclamo -->
-
 <ng-template #modalTiposReclamos let-modal>
     <form class="modal-content">
         <div class="modal-header">
@@ -828,12 +827,12 @@
             <div class="row">
                 <div class="col-6 margenTitulosModal">
                     <label for="formGroupExampleInput" class="form-label">N° Chasis</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Número del Chasis"
+                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Número de Chasis"
                         [formControl]="numChasisCtrl">
                 </div>
                 <div class="col-6 margenTitulosModal">
                     <label for="formGroupExampleInput" class="form-label">N° Motor</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Número de Motor"
+                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Número de Motor"
                         [formControl]="numMotorCtrl">
                 </div>
                 <div class="col-12 margenTitulosModal">

@@ -8,6 +8,8 @@ import { PostEstado } from 'src/app/model/Configuracion/estadosAdmin';
 import { PerfilAdmin } from 'src/app/model/Configuracion/tipoPerfil';
 import { TipoReclamo } from 'src/app/model/tipoReclamo';
 import { TipoVehiculoModal } from 'src/app/model/Configuracion/tipoVehiculo';
+import { autoPost } from 'src/app/model/Configuracion/vehiculo';
+import { marcaxmodeloPost } from 'src/app/model/Configuracion/marxmodelo';
 
 @Component({
   selector: 'app-configuracion',
@@ -175,6 +177,7 @@ export class ConfiguracionComponent implements OnInit {
   }
   botonCerrarVehiculo() {
     this.modal.dismissAll();
+    this.limpiarModalVehiculos();
   }
   botonCerrarMarca() {
     this.modal.dismissAll();
@@ -396,20 +399,64 @@ export class ConfiguracionComponent implements OnInit {
   }
   
   botonCrearVehiculo() {
-    if (
-      this.nombreTipoVehiculoCtrl.value != '' &&
-      this.dominioCtrl.value != '' &&
-      this.marcaCtrl.value != '' &&
-      this.modeloCtrl.value != '' &&
-      this.colorCtrl.value != '' &&
-      this.numChasisCtrl.value != '' &&
-      this.numMotorCtrl.value &&
-      this.listaEstadoVehiculoCtrl.value != ''
-    ) {
-    } else {
-      
+    debugger
+
+    if((this.nombreTipoVehiculoCtrl.value === null || this.dominioCtrl.value === null ||  this.marcaCtrl.value === null ||  this.modeloCtrl.value === null ||
+      this.colorCtrl.value=== null || this.numChasisCtrl.value === null ||  this.numMotorCtrl.value===null ||  this.listaEstadoVehiculoCtrl.value === null)
+      || 
+      (this.nombreTipoVehiculoCtrl.value === '' || this.dominioCtrl.value === '' ||   this.marcaCtrl.value === '' ||   this.modeloCtrl.value === '' || 
+      this.colorCtrl.value === '' ||  this.numChasisCtrl.value === '' ||   this.numMotorCtrl.value=== '' ||   this.listaEstadoVehiculoCtrl.value=== '')){
+
       this.NotificacionRellenarCampos();
-    }
+
+    } else  {
+      debugger
+      var auto: autoPost = {
+        dominio: this.dominioCtrl.value,
+        color: this.colorCtrl.value,
+        numeroChasis:  this.numChasisCtrl.value+'',
+        numeroMotor: this.numMotorCtrl.value+'',
+        id_MarcaVehiculo: Number(this.marcaCtrl.value),
+        id_Estado: Number(this.listaEstadoVehiculoCtrl.value),
+        id_TipoVehiculo: Number(this.nombreTipoVehiculoCtrl.value)
+      }
+
+      var marcaxmodelo : marcaxmodeloPost={
+        id_Marca: Number(this.marcaCtrl.value),
+        id_Modelo: Number(this.modeloCtrl.value)
+      }
+
+      this.servicio.postVehiculoModal(auto).subscribe(
+        (res)=>{
+          
+        },
+        (err)=> console.log(err)
+        );
+
+        this.postMarcaxModelo(marcaxmodelo);
+      
+     
+      this.limpiarModalVehiculos();
+      
+    } 
+  }
+  postMarcaxModelo(objMarcaxModelo:any){
+    debugger
+   this.servicio.postMarcaxModeloModal(objMarcaxModelo).subscribe(
+    (res) => {
+    },
+    (err) => console.error(err)
+   )
+    this.toastr.success(
+      'Vehiculo Creado!','Atención',
+      {
+        timeOut: 2000,
+        positionClass: 'toast-bottom-center',
+      }
+      );
+
+    this.limpiarModalVehiculos();
+        
   }
 
   /* Modal Perfil */
@@ -422,11 +469,8 @@ export class ConfiguracionComponent implements OnInit {
       }
       this.servicio.postPerfilModal(objPerfil).subscribe(
         (resp)=>{
-
-          
         },
         (err) => console.error(err)
-
       )
       this.NotificacionPerfilCreado();
       this.nombreModalPerfil.setValue('');
@@ -568,6 +612,8 @@ export class ConfiguracionComponent implements OnInit {
     );
     this.botonCerrarNuevoTipoVehiculoModal();
   }
+
+
  
 
   

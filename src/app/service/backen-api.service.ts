@@ -286,6 +286,7 @@ export class BackenApiService {
 
 
   /* ---------------------------- Configuracion ------------------------------------- */
+
   getTipoEstadoAdmin(idRol:number){
 
     return this.http.get<TipoEstado[]>('https://localhost:44363/tipoestadoadmin?idRol='+idRol);
@@ -336,6 +337,17 @@ export class BackenApiService {
     return this.http.post('https://localhost:44363/EstadosAdmin', Estado, this.httpOptions);
   }
   /*------------------------ Configuracion Modal Vehiculo ------------------------- */
+
+  postVehiculoModal(vehiculo:any):Observable<any>{
+    return this.http.post('https://localhost:44363/VehiculosAdmin', vehiculo, this.httpOptions);
+
+  }
+  /*------------------------ Configuracion Modal MarcaxModelo ------------------------- */
+  postMarcaxModeloModal(marcaxmodelo:any):Observable<any>{
+    return this.http.post('https://localhost:44363/MarcaXModeloAdmin', marcaxmodelo, this.httpOptions);
+
+  }
+
   /*------------------------ Configuracion Modal Marcas ------------------------- */
   /*------------------------ Configuracion Modal Modelo ------------------------- */
   /*------------------------ Configuracion Modal Perfil ------------------------- */

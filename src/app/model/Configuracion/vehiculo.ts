@@ -13,3 +13,14 @@ export class DatosVehiculo{
     nombreModelo: number=0;
     nombreEstado: string="";
 }
+
+export class autoPost{
+    idVehiculo?: number=0;
+    dominio: string="";
+    color: string="";
+    numeroChasis: string="";
+    numeroMotor: string="";
+    id_MarcaVehiculo: number=0;
+    id_Estado: number=0;
+    id_TipoVehiculo: number=0;
+}
