@@ -900,8 +900,9 @@
 
                     <div class="col-12">
                         <label for="formGroupExampleInput" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput"
-                            placeholder="Nombre del Modelo" [formControl]="nombreModalModelo">
+                        <input type="number" class="form-control" id="formGroupExampleInput"
+                            placeholder="Ej: 2022" [formControl]="nombreModalModelo"
+                            >
                     </div>
                 </div>
             </div>
@@ -909,7 +910,7 @@
         <div class="modal-footer">
             <button (click)="botonCerrarModelo()" type="button" class="btn btn-secondary"
                 data-bs-dismiss="modal">Cerrar</button>
-            <button type="button" class="btn btn-primary">Crear</button>
+            <button type="button" class="btn btn-primary" (click)="postModeloVehiculo()">Crear</button>
         </div>
     </form>
 </ng-template>

@@ -340,13 +340,7 @@ export class BackenApiService {
 
   postVehiculoModal(vehiculo:any):Observable<any>{
     return this.http.post('https://localhost:44363/VehiculosAdmin', vehiculo, this.httpOptions);
-
   }
-  /*------------------------ Configuracion Modal MarcaxModelo ------------------------- */
- /*  postMarcaxModeloModal(marcaxmodelo:any):Observable<any>{
-    return this.http.post('https://localhost:44363/MarcaXModeloAdmin', marcaxmodelo, this.httpOptions);
-
-  } */
 
   /*------------------------ Configuracion Modal Marcas ------------------------- */
   postMarcaModal(marca:any):Observable<any>{
@@ -354,6 +348,10 @@ export class BackenApiService {
 
   }
   /*------------------------ Configuracion Modal Modelo ------------------------- */
+  postModeloModal(modelo:any):Observable<any>{
+    return this.http.post('https://localhost:44363/ModeloAdmin', modelo, this.httpOptions);
+  }
+
   
   /*------------------------ Configuracion Modal Perfil ------------------------- */
 

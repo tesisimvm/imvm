@@ -9,8 +9,8 @@ import { PerfilAdmin } from 'src/app/model/Configuracion/tipoPerfil';
 import { TipoReclamo } from 'src/app/model/tipoReclamo';
 import { TipoVehiculoModal } from 'src/app/model/Configuracion/tipoVehiculo';
 import { autoPost } from 'src/app/model/Configuracion/vehiculo';
-import { marcaxmodeloPost } from 'src/app/model/Configuracion/marxmodelo';
 import { postMarca } from 'src/app/model/Configuracion/marcaVehiculo';
+import { postModeloVehiculo } from 'src/app/model/Configuracion/modeloVehiculo';
 
 @Component({
   selector: 'app-configuracion',
@@ -185,6 +185,7 @@ export class ConfiguracionComponent implements OnInit {
     this.modal.dismissAll();
   }
   botonCerrarModelo() {
+    this.nombreModalModelo.setValue('');
     this.modal.dismissAll();
   }
   botonCerrarModalPerfil(){
@@ -440,24 +441,6 @@ export class ConfiguracionComponent implements OnInit {
       this.limpiarModalVehiculos(); 
     } 
   }
- /*  postMarcaxModelo(objMarcaxModelo:any){
-    debugger
-   this.servicio.postMarcaxModeloModal(objMarcaxModelo).subscribe(
-    (res) => {
-    },
-    (err) => console.error(err)
-   )
-    this.toastr.success(
-      'Vehiculo Creado!','Atención',
-      {
-        timeOut: 2000,
-        positionClass: 'toast-bottom-center',
-      }
-    );
-
-    this.limpiarModalVehiculos();
-        
-  } */
 
   /* ****************************** Modal Marca ****************************** */
 
@@ -480,13 +463,41 @@ export class ConfiguracionComponent implements OnInit {
               positionClass: 'toast-bottom-center',
             }
           );
-
           this.botonCerrarMarca();
-
-
-
         },
         (err)=>console.error()
+      )
+    }
+  }
+
+  
+  /* ****************************** Modal Modelos ****************************** */
+
+  postModeloVehiculo(){
+    debugger
+    if(this.nombreModalModelo.value === ''){
+
+      this.NotificacionRellenarCampos();
+
+    }else{
+      var modelo:postModeloVehiculo={
+        nombre:this.nombreModalModelo.value+'',
+      }
+
+      this.servicio.postModeloModal(modelo).subscribe(
+        (res)=>{
+          res=res
+          this.toastr.success(
+            'Modelo Creado!','Atención',
+            {
+              timeOut: 2000,
+              positionClass: 'toast-bottom-center',
+            }
+          );
+          this.botonCerrarModelo();      
+        },
+        (err)=>console.error()
+
       )
     }
   }
