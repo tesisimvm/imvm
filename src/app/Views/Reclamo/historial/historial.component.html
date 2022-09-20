@@ -207,7 +207,7 @@
             <p class="card-text"> <i class="far fa-calendar-alt"> Fecha: {{item.fecha}}</i></p>
 
             <p class="card-text"> <i class="far fa-clock"> Hora: {{item.hora}}</i></p>
-            <p class="card-text"> <i class="fas fa-car"> Dominio: {{item.dominio}}</i></p>
+            <p *ngIf="item.dominio!='' " class="card-text" > <i class="fas fa-car"> Dominio: {{item.dominio}}</i></p>
             <p class="card-text"> <i class="fas fa-map-signs"> Dirección: {{item.direccion}}</i></p>
             <p class="card-text"> <i class="fas fa-map-signs"> Altura: {{item.altura}}</i></p>
 

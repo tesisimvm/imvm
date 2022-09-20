@@ -10,6 +10,7 @@ import { TipoReclamo } from 'src/app/model/tipoReclamo';
 import { TipoVehiculoModal } from 'src/app/model/Configuracion/tipoVehiculo';
 import { autoPost } from 'src/app/model/Configuracion/vehiculo';
 import { marcaxmodeloPost } from 'src/app/model/Configuracion/marxmodelo';
+import { postMarca } from 'src/app/model/Configuracion/marcaVehiculo';
 
 @Component({
   selector: 'app-configuracion',
@@ -180,6 +181,7 @@ export class ConfiguracionComponent implements OnInit {
     this.limpiarModalVehiculos();
   }
   botonCerrarMarca() {
+    this.nombreModalMarcaCrtl.setValue('');
     this.modal.dismissAll();
   }
   botonCerrarModelo() {
@@ -388,7 +390,7 @@ export class ConfiguracionComponent implements OnInit {
     }
   }
 
-  /* Modal Vehiculo */
+  /* ****************************** Modal Vehiculo ****************************** */
   getIdEstadoVehiculoModal(){
     this.servicio.getidActivoVehiculo().subscribe(
       (res) => {
@@ -397,10 +399,9 @@ export class ConfiguracionComponent implements OnInit {
       (error) => console.error(error)
     );
   }
-  
-  botonCrearVehiculo() {
-    debugger
 
+  botonCrearVehiculo() {
+   
     if((this.nombreTipoVehiculoCtrl.value === null || this.dominioCtrl.value === null ||  this.marcaCtrl.value === null ||  this.modeloCtrl.value === null ||
       this.colorCtrl.value=== null || this.numChasisCtrl.value === null ||  this.numMotorCtrl.value===null ||  this.listaEstadoVehiculoCtrl.value === null)
       || 
@@ -408,9 +409,8 @@ export class ConfiguracionComponent implements OnInit {
       this.colorCtrl.value === '' ||  this.numChasisCtrl.value === '' ||   this.numMotorCtrl.value=== '' ||   this.listaEstadoVehiculoCtrl.value=== '')){
 
       this.NotificacionRellenarCampos();
-
     } else  {
-      debugger
+     
       var auto: autoPost = {
         dominio: this.dominioCtrl.value,
         color: this.colorCtrl.value,
@@ -418,29 +418,29 @@ export class ConfiguracionComponent implements OnInit {
         numeroMotor: this.numMotorCtrl.value+'',
         id_MarcaVehiculo: Number(this.marcaCtrl.value),
         id_Estado: Number(this.listaEstadoVehiculoCtrl.value),
-        id_TipoVehiculo: Number(this.nombreTipoVehiculoCtrl.value)
+        id_TipoVehiculo: Number(this.nombreTipoVehiculoCtrl.value),
+        id_modelo: Number(this.modeloCtrl.value)
       }
 
-      var marcaxmodelo : marcaxmodeloPost={
-        id_Marca: Number(this.marcaCtrl.value),
-        id_Modelo: Number(this.modeloCtrl.value)
-      }
+      
 
       this.servicio.postVehiculoModal(auto).subscribe(
-        (res)=>{
-          
+        (res)=>{     
         },
         (err)=> console.log(err)
         );
 
-        this.postMarcaxModelo(marcaxmodelo);
-      
-     
-      this.limpiarModalVehiculos();
-      
+        this.toastr.success(
+          'Vehiculo Creado!','Atención',
+          {
+            timeOut: 2000,
+            positionClass: 'toast-bottom-center',
+          }
+        );
+      this.limpiarModalVehiculos(); 
     } 
   }
-  postMarcaxModelo(objMarcaxModelo:any){
+ /*  postMarcaxModelo(objMarcaxModelo:any){
     debugger
    this.servicio.postMarcaxModeloModal(objMarcaxModelo).subscribe(
     (res) => {
@@ -453,13 +453,46 @@ export class ConfiguracionComponent implements OnInit {
         timeOut: 2000,
         positionClass: 'toast-bottom-center',
       }
-      );
+    );
 
     this.limpiarModalVehiculos();
         
+  } */
+
+  /* ****************************** Modal Marca ****************************** */
+
+  PostMarcaModal(){
+    debugger
+    if(this.nombreModalMarcaCrtl.value===null || this.nombreModalMarcaCrtl.value ===''){
+      this.NotificacionRellenarCampos();
+    }else{ 
+      var marca : postMarca={
+        nombre: this.nombreModalMarcaCrtl.value,
+      }
+
+      this.servicio.postMarcaModal(marca).subscribe(
+        (res)=>{
+          res=res;
+          this.toastr.success(
+            'Marca Creada!','Atención',
+            {
+              timeOut: 2000,
+              positionClass: 'toast-bottom-center',
+            }
+          );
+
+          this.botonCerrarMarca();
+
+
+
+        },
+        (err)=>console.error()
+      )
+    }
   }
 
-  /* Modal Perfil */
+
+  /* ****************************** Modal Perfil ****************************** */
   botonCrearPerfilModal(){
     debugger
     if(this.nombreModalPerfil.value!=''){
@@ -482,7 +515,7 @@ export class ConfiguracionComponent implements OnInit {
 
   }
 
-  /* Modal Tipo Reclamo */
+  /* ****************************** Modal Tipo Reclamo ****************************** */
   botonCrearNuevoTipoReclamo() {
     debugger
     if (this.nombreTipoReclamoCtrl.value != '' && this.descripcionTipoReclamoCtrl.value!='') {
@@ -504,7 +537,7 @@ export class ConfiguracionComponent implements OnInit {
     }
   }
 
-  /* Modal Tipo Vehiculo */
+  /* ******************************  Modal Tipo Vehiculo ****************************** */
   botonCrearTipoVehiculoModal(){
     debugger
     if(this.nombreTipoVehiculoCtrlModal.value!='' && this.descripcionTipoVehiculoModal.value!=''){

@@ -23,4 +23,5 @@ export class autoPost{
     id_MarcaVehiculo: number=0;
     id_Estado: number=0;
     id_TipoVehiculo: number=0;
+    id_modelo:number=0;
 }

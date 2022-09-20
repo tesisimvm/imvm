@@ -67,6 +67,7 @@ export class ReclamosComponent implements OnInit {
   selectIdTipoReclamo: number = 0; //se establece en 0 para que no se muestren los combobox de los reclamos
   selectIdinfoReclamo: number = 0;
   selectIdMarcaVehiculo: number = 0;
+  selectIdModeloVehiculo:number=0;
   nombreTipoReclamo?: string;
   ruta: any;
   IDUsuario: any;
@@ -161,13 +162,14 @@ export class ReclamosComponent implements OnInit {
     this.service.getModelo().subscribe(
       (res) => {
         this.Mod = res;
+        console.log("Modelo: ", this.Mod)
       },
       (err) => console.error(err)
     );
   }
 
   registrarReclamo() {
-    ;
+    debugger
     /* Validacion en el caso que registre un input vacio o cambie de tipo de reclamo y tenga un input vacio */
     /* reclamo Ambiental */
     if (this.tipoReclamoCtrl.value == 1 && (this.tipoReclamoCtrl.value == '' || this.reclamoAmbientalCtrl.value == '' ||
@@ -186,7 +188,8 @@ export class ReclamosComponent implements OnInit {
       /* reclamo vial */
     } else if (this.tipoReclamoCtrl.value == 2 && (((this.dominioCtrl.value == '' || this.marcaAutoCtrl.value == '') &&
         this.tipoReclamoCtrl.value == '') || this.fechaCtrl.value == '' || this.horaCtrl.value == '' ||
-        this.ubicacionCtrl.value == '' || this.descripcionCtrl.value == '' || this.urlFotoCtrl.value == '' ||     this.alturaCtrl.value == '')) 
+        this.ubicacionCtrl.value == '' || this.descripcionCtrl.value == '' || this.urlFotoCtrl.value == '' || this.alturaCtrl.value == '' ||
+        this.modeloAutoCtrl.value == '' )) 
         {
       this.toastr.warning(
         'Faltan datos por rellenar, verifique y podrá enviar su reclamo',
@@ -279,8 +282,8 @@ export class ReclamosComponent implements OnInit {
     }
   }
   RegVehiculo() {
-    /* segundo el vehiculo */
 
+    /* segundo el vehiculo */
     var RegistroVehiculo: Vehiculo = {
       dominio: this.dominioCtrl.value + '',
       color: ' - ',
@@ -289,6 +292,7 @@ export class ReclamosComponent implements OnInit {
       ID_MarcaVehiculo: Number(this.selectIdMarcaVehiculo),
       ID_Estado: 12 /* 12 es activo y 13 es inactivo*/,
       ID_TipoVehiculo: 1 /* 1- Sin asignar */,
+      ID_Modelo: Number(this.selectIdModeloVehiculo) /* Agregar modelos en reclamo y al actualizarlo, al igual que en la tabla y el historial */
     };
     this.service.postVehiculo(RegistroVehiculo).subscribe(
       (resVehiculo) => {
@@ -324,6 +328,11 @@ export class ReclamosComponent implements OnInit {
   dataChangedIdMarcaVehiculo(ev: any) {
     this.selectIdMarcaVehiculo = ev.target.value;
   }
+
+  obtenerIDModeloVehiculo(ev: any) {
+    this.selectIdModeloVehiculo = ev.target.value;
+  }
+
   /* metodo especifico para obtener el id del la seleccion de la causa del reclamo 
 ambiental */
   obtenerID(ev: any) {
@@ -356,6 +365,8 @@ ambiental */
     this.alturaCtrl.reset();
     this.dominioCtrl.reset();
 
+    
+
     this.toastr.info('Será redirigido al menú principal', '', {
       timeOut: 5000,
       
@@ -376,7 +387,7 @@ ambiental */
   }
 
   metodo_VisualEditarReclamo(IDDetalle: any) {
-    ;
+    debugger
     /* Este metodo se utiliza para controlar lo que se quiere ver cuando se desea editar un reclamo */
     if (this.ruta[5] == 'historial' && IDDetalle != undefined) {
       this.banderaEdicionReclamo = true;
@@ -384,13 +395,13 @@ ambiental */
       /* Metodo en el cual se usa para traer todos los datos del reclamo a actualizar */
       this.service.getDetalleReclamoParaActualizar(IDDetalle).subscribe(
         (info) => {
-          ;
+          
           /* Acá pregunto si es ambiental o vial, si es ambiental sigo lo comun si es vial traigo los datos del auto */
           if (info[0].idTipoRec == 1) {
             this.arregloDetalleReclamo = info;
             console.log('Array detalle Reclamo: ', this.arregloDetalleReclamo);
           } else {
-            ;
+            
             delete this.arregloDetalleReclamo;
             this.getDetalleVehicularParaActualizar(info[0].idDetalleReclamo);
           }
@@ -404,8 +415,8 @@ ambiental */
     }
   }
   getDetalleVehicularParaActualizar(idDetalleReclamo: number) {
-    ;
-
+    
+    debugger
     this.service.getDetalleReclamoVehicular(idDetalleReclamo).subscribe(
       (info) => {
         ;
@@ -440,6 +451,7 @@ ambiental */
   } */
 
   MetodoActualizarReclamo() {
+    debugger
     
     /* idEstadoReclamo */
     /* Roles 1=Administrador - 3=Usuario */
@@ -467,7 +479,7 @@ ambiental */
       var puthora: any;
       var putID_TipoReclamo: any;
       var putID_Estado: any;
-      ;
+      debugger
 
       if (this.estadoReclamoCtrl.value == '') {
         putID_Estado = this.arregloDetalleReclamo[0].iD_Estado;
@@ -527,6 +539,7 @@ ambiental */
     }
   }
   MetodoActualizarDetalleReclamo() {
+    debugger
     var putDescripcion: any;
     var putUbicacion: any;
     var putAltura: any;
@@ -598,7 +611,9 @@ ambiental */
     var putIDVehiculo: any;
     var putDominio: any;
     var putID_Marca: any;
-    ;
+    var putID_Modelo:any;
+    
+    debugger
 
     if (this.selectIdMarcaVehiculo == 0) {
       putID_Marca = Number(this.arregloDetalleReclamo[0].iD_marca);
@@ -607,13 +622,21 @@ ambiental */
       putID_Marca = Number(this.selectIdMarcaVehiculo);
     }
 
+    if(this.selectIdModeloVehiculo ==  0 ){
+      putID_Modelo = Number(this.arregloDetalleReclamo[0].iD_Modelo);
+    }
+    if(this.selectIdModeloVehiculo !=  0){
+      putID_Modelo = Number(this.selectIdModeloVehiculo)
+    }
+
     if (this.dominioCtrl.value == '') {
       putDominio = this.arregloDetalleReclamo[0].dominio;
     }
     if (this.dominioCtrl.value != '') {
       putDominio = this.dominioCtrl.value + '';
     }
-    ;
+   
+    
     var vehiculo: Vehiculo = {
       IDVehiculo: this.arregloDetalleReclamo[0].iD_Vehiculo,
       dominio: putDominio,
@@ -624,6 +647,7 @@ ambiental */
 
       ID_Estado: this.arregloDetalleReclamo[0].iD_EstadoVehiculo,
       ID_TipoVehiculo: this.arregloDetalleReclamo[0].iD_Tipovehiculo,
+      ID_Modelo: putID_Modelo /* Agregar los modelos en el reclamo */
     };
 
     this.service.putActualizarDetVehicular(vehiculo).subscribe(

@@ -23,11 +23,23 @@
                     style="font-size: 25px;">
                   </i> Tipo Reclamo</span>
                 <div class="col-md-12 text-center ">
-                  <select class="inputs" name="example" style="width: 100%;" [formControl]="tipoReclamoCtrl"
+
+
+
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                    [formControl]="tipoReclamoCtrl" (change)="dataChangedTipoReclamo($event)">
+                    <option value="{{item.idTipoReclamo}}" style="color: black;" *ngFor="let item of Tiporecla">
+                      {{item.nombre}}
+
+                    </option>
+                  </select>
+
+                  <!--  <select class="inputs" name="example" style="width: 100%;" [formControl]="tipoReclamoCtrl"
                     (change)="dataChangedTipoReclamo($event)">
                     <option value="{{item.idTipoReclamo}}" name="Tipos" *ngFor="let item of Tiporecla">{{item.nombre}}
                     </option>
-                  </select>
+                  </select> -->
+
                 </div>
               </div>
 
@@ -39,14 +51,22 @@
                   </i> Reclamo Ambiental</span>
                 <div class="col-md-12 text-center">
 
-                  <select class="inputs" id="TipoReclamo" name="example" style="width: 100%;"
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                    [formControl]="reclamoAmbientalCtrl" (change)="obtenerID($event)">
+                    <option id="dato" value="{{item.idReclamoAmbiental}}" style="color: black;"
+                      *ngFor="let item of ReclamoAmbie">{{item.nombreRecAmbiental}}
+
+                    </option>
+                  </select>
+
+                  <!--  <select class="inputs" id="TipoReclamo" name="example" style="width: 100%;"
                     [formControl]="reclamoAmbientalCtrl" (change)="obtenerID($event)">
 
                     <option id="dato" value="{{item.idReclamoAmbiental}}" style="color: black;"
                       *ngFor="let item of ReclamoAmbie">{{item.nombreRecAmbiental}}
                     </option>
 
-                  </select>
+                  </select> -->
 
                 </div>
               </div>
@@ -57,16 +77,46 @@
                     style="font-size: 25px;">
                   </i> Marca de auto</span>
                 <div class="col-md-12 text-center">
+
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                    [formControl]="marcaAutoCtrl" (change)="dataChangedIdMarcaVehiculo($event)">
+                    <option value="{{item.idMarca}}" style="color: black;" *ngFor="let item of Mar">
+                      {{item.marcaVehiculo}}
+
+                    </option>
+                  </select>
+
+                  <!--  <br>
+                  <br>
+
                   <select class="inputs" name="example" style="width: 100%;" [formControl]="marcaAutoCtrl"
                     (change)="dataChangedIdMarcaVehiculo($event)">
                     <option value="{{item.idMarca}}" style="color: black;" *ngFor="let item of Mar">
                       {{item.marcaVehiculo}}</option>
-                  </select>
-
+                  </select> -->
                 </div>
               </div>
 
-              <!-- Modelo Auto -->
+              <!-- Modelo auto -->
+              <div class="form-group" id="ReclamoVial" *ngIf="selectIdTipoReclamo==2">
+                <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-list-ol"
+                    style="font-size: 25px;"></i> Modelo de auto</span>
+
+                    <div class="col-md-12 text-center">
+                      <select class="form-select form-select-sm" aria-label=".form-select-sm example" [formControl]="modeloAutoCtrl"
+                      (change)="obtenerIDModeloVehiculo($event)">
+                        <option value="{{item.idModelo}}" style="color: black;" *ngFor="let item of Mod ">
+                          {{item.modeloVehiculo}}
+      
+                        </option>
+                      </select>
+      
+                    </div>
+
+              </div>
+            
+
+              <!-- Dominio Auto -->
               <div class="form-group" id="ReclamoVial" *ngIf="selectIdTipoReclamo==2">
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-car"
                     style="font-size: 25px;">
@@ -204,7 +254,8 @@
 
           <div class=" text-center d-inline-block col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12  botones">
             <button type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top"
-              title="Regresar al Historial" (click)='regresarHistorial()'><i class="fas fa-undo"></i> Mi Historial</button>
+              title="Regresar al Historial" (click)='regresarHistorial()'><i class="fas fa-undo"></i> Mi
+              Historial</button>
           </div>
         </fieldset>
 
@@ -227,6 +278,7 @@
           <th scope="col">Motivo Del Reclamo {{item.nombreTRec}}</th>
 
           <th scope="col">Dominio</th>
+          <th scope="col">Modelo</th>
           <th scope="col">Marca Auto</th>
           <th scope="col">Fecha</th>
           <th scope="col">Hora</th>
@@ -241,6 +293,7 @@
           <td>{{item.nombreTRec}}</td>
           <td>{{item.nombreRecAmbiental}}</td>
           <td>{{item.dominio}}</td>
+          <td>{{item.nombreModelo}}</td>
           <td>{{item.nombreMarca}}</td>
           <td>{{item.fecha}}</td>
           <td>{{item.hora}}</td>

@@ -343,13 +343,18 @@ export class BackenApiService {
 
   }
   /*------------------------ Configuracion Modal MarcaxModelo ------------------------- */
-  postMarcaxModeloModal(marcaxmodelo:any):Observable<any>{
+ /*  postMarcaxModeloModal(marcaxmodelo:any):Observable<any>{
     return this.http.post('https://localhost:44363/MarcaXModeloAdmin', marcaxmodelo, this.httpOptions);
 
-  }
+  } */
 
   /*------------------------ Configuracion Modal Marcas ------------------------- */
+  postMarcaModal(marca:any):Observable<any>{
+    return this.http.post('https://localhost:44363/MarcaAdmin', marca, this.httpOptions);
+
+  }
   /*------------------------ Configuracion Modal Modelo ------------------------- */
+  
   /*------------------------ Configuracion Modal Perfil ------------------------- */
 
   postPerfilModal(perfil:any):Observable<any>{
