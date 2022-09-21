@@ -199,20 +199,48 @@ export class ConfiguracionComponent implements OnInit {
   getTipoEstado(): void {
     this.servicio.getTipoEstadoAdmin(this.IDRol).subscribe(
       (res) => {
-        this.objTipoEstado = res;
-        this.objModalTipoEstado = res;
+        debugger
+        if(res.length!=0){
+          this.objTipoEstado = res;
+          this.objModalTipoEstado = res;
+        }else{
+          this.notificacionDatosInexistentes(res);
+          delete this.objTipoEstado
+          delete this.objModalTipoEstado
+        }
+        
+
       },
       (error) => console.error(error)
     );
   }
   
   GetBuscarVehiculos(){
-    this.servicio.getConfiguracionVehiculos(this.selectIDMarcaVehiculo,this.selectIDModeloVehiculo).subscribe(
-      (res) => {
-        this.objListaVehiculos= res;
-      },
-      (error) => console.error(error)
-    )
+    
+    if(this.selectIDMarcaVehiculo!=0 && this.selectIDModeloVehiculo!=0){
+
+      this.servicio.getConfiguracionVehiculos(this.selectIDMarcaVehiculo,this.selectIDModeloVehiculo).subscribe(
+        (res) => {
+          if(res.length!=0){
+            this.objListaVehiculos= res;
+          }else{
+            this.notificacionDatosInexistentes(res);
+            this.selectIDMarcaVehiculo=0;
+            this.selectIDModeloVehiculo=0;
+            delete this.objListaVehiculos
+            this.selectMarcaVehiculo.setValue('');
+            this.selectModeloVehiculo.setValue('');
+          }
+          
+         
+        },
+        (error) => console.error(error)
+      )
+    }else{
+      this.NotificacionRellenarCampos();
+    }
+
+    
   }
 
   getMarcaVehiculo(){
@@ -267,12 +295,18 @@ export class ConfiguracionComponent implements OnInit {
   obtenerIDTipoEstado(ev: any) {
     this.selectIDTipEstado = 0;
     this.selectIDTipEstado = ev.target.value;
-    this.servicio.getEstadosDelTipo(this.selectIDTipEstado).subscribe(
-      (res) => {
-        this.objEstadosDelTipo = res;
-      },
-      (error) => console.error(error)
-    );
+    if(this.selectIDTipEstado!=0){
+      this.servicio.getEstadosDelTipo(this.selectIDTipEstado).subscribe(
+        (res) => {
+          this.objEstadosDelTipo = res;
+  
+          this.notificacionDatosInexistentes(res);
+        },
+        (error) => console.error(error)
+      );
+
+    }
+    
   }
 
   obtenerIDMarcaVehiculo(ev: any){
@@ -326,12 +360,29 @@ export class ConfiguracionComponent implements OnInit {
     this.selectIDTipVehiculo = 0;
     /* selecciono un tipo y muestro la lista de esos tipos de vehiculos */
     this.selectIDTipVehiculo = dato.target.value;
-    this.servicio.getListaTiposVehiculos(this.selectIDTipVehiculo).subscribe(
-      (res) => {
-        this.objListaTipVehiculos = res;
-      },
-      (error) => console.error(error)
-    );
+
+    if( this.selectIDTipVehiculo!=0){
+
+      
+
+      this.servicio.getListaTiposVehiculos(this.selectIDTipVehiculo).subscribe(
+        (res) => {
+
+          if(res.length!=0){
+            this.objListaTipVehiculos = res;
+          }else{
+            this.notificacionDatosInexistentes(res);
+            delete this.objListaTipVehiculos;
+            this.selectIDTipVehiculo=0;
+          }
+          
+        },
+        (error) => console.error(error)
+      );
+    }else{
+      this.NotificacionRellenarCampos();
+    }
+    
   }
 
   /* Modal Estado */
@@ -601,7 +652,7 @@ export class ConfiguracionComponent implements OnInit {
       'Atención',
       {
         timeOut: 2000,
-        positionClass: 'toast-bottom-center',
+        /* positionClass: 'toast-bottom-center', */
       }
     );
   }
@@ -657,6 +708,17 @@ export class ConfiguracionComponent implements OnInit {
     this.botonCerrarNuevoTipoVehiculoModal();
   }
 
+  notificacionDatosInexistentes(res:any){
+    if(res.length==0){
+      this.toastr.info(
+        'No hay datos para la busqueda requerida',
+        'Atención',
+        {
+          timeOut: 2000,
+        }
+      );
+    }
+  }
 
  
 
