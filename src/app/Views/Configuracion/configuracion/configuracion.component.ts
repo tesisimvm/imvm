@@ -93,6 +93,9 @@ export class ConfiguracionComponent implements OnInit {
   banderaSwitch: boolean = false;
   animacionSwitch="";
 
+  /* modal put vehiculo - actualizar */
+  objVehiculoModal:any;
+
   ruta: any;
   IDUsuario: any;
   IDRol: any;
@@ -147,6 +150,22 @@ export class ConfiguracionComponent implements OnInit {
   }
   visualizarModalPerfil(content: any) {
     this.modal.open(content);
+  }
+
+  /* Visualizar Modal para ACTUALIZAR */
+  openPutModalVehiculo(putModalVehiculo:any,idvehiculo:number){
+    this.modal.open(putModalVehiculo);
+    
+    this.servicio.getActualizarModalVehiculo(idvehiculo).subscribe(
+      (res) => {
+        this.objVehiculoModal=res;
+        console.log(this.objVehiculoModal)
+        
+      },
+      (err) => console.error(err)
+
+    )
+    
   }
 
   /* metodo para visualizar input del modal nuevo estado */
@@ -222,6 +241,7 @@ export class ConfiguracionComponent implements OnInit {
       this.servicio.getConfiguracionVehiculos(this.selectIDMarcaVehiculo,this.selectIDModeloVehiculo).subscribe(
         (res) => {
           if(res.length!=0){
+            debugger
             this.objListaVehiculos= res;
           }else{
             this.notificacionDatosInexistentes(res);

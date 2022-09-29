@@ -71,9 +71,11 @@
                                                             <i class="fas fa-chevron-down"></i>
                                                         </button>
                                                         <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                            <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-edit">
+                                                            <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                        class="far fa-edit">
                                                                         Editar</i></a></li>
-                                                            <li style="cursor: pointer"><a class="dropdown-item"><i class="far fa-trash-alt">
+                                                            <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                        class="far fa-trash-alt">
                                                                         Borrar</i></a></li>
 
                                                         </ul>
@@ -91,8 +93,6 @@
             </div>
         </div>
     </div>
-
-
 
     <!-- Vehiculo -->
     <div class="accordion-item margen">
@@ -156,6 +156,7 @@
                             <table class="table table-hover table-bordered table-striped">
                                 <thead class="table-light">
                                     <tr>
+                                        <th scope="col">N Vehiculo</th>
                                         <th scope="col">Tipo Vehiculo</th>
                                         <th scope="col">Dominio</th>
                                         <th scope="col">Marca</th>
@@ -169,7 +170,8 @@
                                 </thead>
                                 <tbody>
                                     <tr *ngFor="let item of objListaVehiculos">
-
+                                        <!-- style="display: none" -->
+                                        <td>{{item.idVehiculo}}</td>
                                         <th scope="row">{{item.nombreTipoVehiculo}}</th>
                                         <td>{{item.dominio}}</td>
                                         <td>{{item.marcaAuto}}</td>
@@ -187,10 +189,12 @@
                                                         <i class="fas fa-chevron-down"></i>
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-edit">
-                                                                    Editar</i></a></li>
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-trash-alt">
-                                                                    Borrar</i></a></li>
+                                                        <li style="cursor: pointer"><a
+                                                                (click)="openPutModalVehiculo(modalPutVehiculo,item.idVehiculo)"
+                                                                class="dropdown-item"><i
+                                                                    class="far fa-edit">Editar</i></a></li>
+                                                        <li style="cursor: pointer"><a class="dropdown-item">
+                                                                <i class="far fa-trash-alt">Borrar</i></a></li>
 
                                                     </ul>
                                                 </div>
@@ -269,9 +273,11 @@
                                                         <i class="fas fa-chevron-down"></i>
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                        <li style="cursor: pointer"><a class="dropdown-item"><i class="far fa-edit">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-edit">
                                                                     Editar</i></a></li>
-                                                        <li style="cursor: pointer"><a class="dropdown-item"><i class="far fa-trash-alt">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-trash-alt">
                                                                     Borrar</i></a></li>
 
                                                     </ul>
@@ -351,9 +357,11 @@
                                                         <i class="fas fa-chevron-down"></i>
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-edit">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-edit">
                                                                     Editar</i></a></li>
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-trash-alt">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-trash-alt">
                                                                     Borrar</i></a></li>
 
                                                     </ul>
@@ -431,9 +439,11 @@
                                                         <i class="fas fa-chevron-down"></i>
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-edit">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-edit">
                                                                     Editar</i></a></li>
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-trash-alt">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-trash-alt">
                                                                     Borrar</i></a></li>
                                                     </ul>
                                                 </div>
@@ -514,9 +524,11 @@
                                                         <i class="fas fa-chevron-down"></i>
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-edit">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-edit">
                                                                     Editar</i></a></li>
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-trash-alt">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-trash-alt">
                                                                     Borrar</i>
                                                             </a>
                                                         </li>
@@ -607,9 +619,11 @@
                                                         <i class="fas fa-chevron-down"></i>
                                                     </button>
                                                     <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-edit">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-edit">
                                                                     Editar</i></a></li>
-                                                        <li style="cursor: pointer" ><a class="dropdown-item"><i class="far fa-trash-alt">
+                                                        <li style="cursor: pointer"><a class="dropdown-item"><i
+                                                                    class="far fa-trash-alt">
                                                                     Borrar</i></a></li>
 
                                                     </ul>
@@ -941,6 +955,113 @@
     </form>
 </ng-template>
 
+
+<!-- ************************* MODAL PARA ACTUALIZAR DATOS ************************* -->
+
+
+<!-- Put Modal Estados -->
+
+<!-- Put Modal Vehiculos -->
+<ng-template #modalPutVehiculo let-modal>
+    <form class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Actualizar Vehiculo</h5>
+            <button (click)="botonCerrarVehiculo()" type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+
+                <div class="col-12 ">
+                    <label for="formGroupExampleInput" class="form-label">Tipo Vehiculo</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        [formControl]="nombreTipoVehiculoCtrl">
+                        <option value="{{item.id_TipoVehiculo}}" *ngFor="let item of objVehiculoModal"  selected>
+                            {{item.nombreTipoVehiculo}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">Marca</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        [formControl]="marcaCtrl">
+                        <option value="{{item.id_Marcavehiculo}}" style="color: black;"
+                            *ngFor="let item of objVehiculoModal" selected>
+                            {{item.marcaAuto}}
+                        </option>
+                    </select>
+
+                </div>
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">Modelo</label>
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        [formControl]="modeloCtrl">
+                        <option value="{{item.id_ModeloV}}" style="color: black;"
+                            *ngFor="let item of objVehiculoModal" selected>
+                            {{item.nombreModelo}}
+                        </option>
+                    </select>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">Dominio</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Número de Dominio"
+                        [formControl]="dominioCtrl"> 
+                </div>
+
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre de Color"
+                        [formControl]="colorCtrl"> 
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">N° Chasis</label>
+                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Número de Chasis"
+                        [formControl]="numChasisCtrl">
+                </div>
+                <div class="col-6 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">N° Motor</label>
+                    <input type="number" class="form-control" id="formGroupExampleInput" placeholder="Número de Motor"
+                        [formControl]="numMotorCtrl"> 
+                </div>
+                <div class="col-12 margenTitulosModal">
+                    <label for="formGroupExampleInput" class="form-label">Estado</label>
+
+
+                    <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                        [formControl]="listaEstadoVehiculoCtrl">
+                        <option *ngFor="let item of objVehiculoModal" value="{{item.id_Estado}}" selected>
+                            {{item.nombreEstado}}</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button (click)="botonCerrarVehiculo()" type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" (click)="botonCrearVehiculo()" class="btn btn-primary">Crear</button>
+        </div>
+    </form>
+</ng-template>
+
+<!-- Put Modal Marca -->
+
+<!-- Put Modal Modelo -->
+
+<!-- Put Modal Perfil -->
+
+<!-- Put Modal Tipo Reclamo -->
+
+<!-- Put Modal Tipo Vehiculo -->
 
 
 <!-- Modal configuracion Estado -->

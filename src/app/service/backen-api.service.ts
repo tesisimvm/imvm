@@ -367,4 +367,11 @@ export class BackenApiService {
     return this.http.post('https://localhost:44363/TipoVehiculoAdmin', tipoVehiculo, this.httpOptions);
   }
 
+  /*------------------------ MODAL PARA ACTUALIZAR ------------------------- */
+
+  getActualizarModalVehiculo(idVehiculo:number){
+    return this.http.get<DatosVehiculo[]>('https://localhost:44363/ModalPutVehiculo/'+idVehiculo);
+  }
+
+
 }
