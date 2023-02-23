@@ -6,27 +6,12 @@ h5 {
   text-align: justify;
   padding: 3px;
 }
-h6 {
-  font-family: "Courier New", Courier, monospace;
-}
+
 img {
   height: 200px;
-}
-input {
-  border: rgb(237, 83, 59) 2px solid;
-  border-radius: 10px;
-}
-select {
-  border: rgb(237, 83, 59) 2px solid;
-  border-radius: 10px;
+  
 }
 
-/* .card{
-  display: grid;
-  grid-template-columns: repeat (auto-fit,
-  minmax(200px, 1fr));
-  gap: 20px;
-} */
 /*************  ID *************/
 #tituloHistorial {
   text-align: center;
@@ -84,10 +69,6 @@ select {
 /************* Clases ************ */
 
 
-.fotoReclamo {
-  font-size: 14px;  
-}
-
 .busquedaFiltros {
   text-align: center;
   /* border: rgb(182, 180, 180) 1px solid; */
@@ -95,19 +76,11 @@ select {
   padding: 20px;
 }
 
-:root {
-  --gradient: linear-gradient(to left top, #3942c5 10%, #392fff 90%) !important;
-}
 
 .card {
   background-color: rgba(246, 245, 245, 0.776); /* Color del fondo de la tarjeta */
-  border: 2px solid #0c0c9f;
   color: rgba(21, 21, 21, 0.8);
   margin-bottom: 2rem;
-}
-
-.card-title {
-  font-family: "Courier New", Courier, monospace;
 }
 
 /* div del boton bsca */
@@ -126,32 +99,27 @@ select {
 }
 
 .btnActualizar{
-  background-color: #7790af;
+ /*  background-color: #f5f5f5; */
+  height: 3rem;
+  width: 3rem;
 }
 
+.btnEliminar{
+  height: 3rem;
+  width: 3rem;
+}
 
-/* .seleccionFiltros{
-  margin-left: 50px;
-} */
+.span-text{
+  font-weight: 700;
+}
 
-/* .btn {
-   border: 5px solid;
-   border-image-slice: 1;
-   background: var(--gradient) !important;
-   -webkit-background-clip: text !important;
-   -webkit-text-fill-color: transparent !important;
-   border-image-source:  var(--gradient) !important; 
-   text-decoration: none;
-   transition: all .4s ease;
- } */
+.tarjeta--informacion{
+  padding: 1rem 0 0 0;
+}
+.tarjeta--informacion p{
+  margin: .3rem 0 .3rem 0;
+}
 
-/* .btn:hover, .btn:focus {
-       background: var(--gradient) !important;
-   -webkit-background-clip: none !important;
-   -webkit-text-fill-color: #fff !important;
-   border: 5px solid #fff !important; 
-   box-shadow: #222 1px 0 10px;
-   text-decoration: underline;
- } */
-
-/* Filtro */
+.botones--informacion{ /* padre */
+  margin-top: 1rem;
+}
