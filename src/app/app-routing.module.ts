@@ -19,6 +19,7 @@ const routes: Routes = [
   {path: 'reclamos', component: ReclamosComponent},
   {path: 'nosotros', component: NosotrosComponent},
   
+  
   // {path: 'pantallaprincipal', component: PprincipalComponent},
   {path: 'main-nav/:id/:id/:id', component: MainNavComponent,/* usuario/rol/idsesion */
     children:[
@@ -28,7 +29,7 @@ const routes: Routes = [
     {path: 'historial', component: HistorialComponent},
     {path: 'nosotros', component: NosotrosComponent},
     {path: 'configuracion', component:ConfiguracionComponent},
-    {path: '**', component: PprincipalComponent},
+    
   ]}, /* menu principal */
 
   {path: 'main-nav/:id/:id/:id/historial', component: MainNavComponent, /* Estando en el historial se puede ir a reclamo para editar ese detalle o reclamo */
@@ -41,10 +42,11 @@ const routes: Routes = [
     {path: 'reclamos', component: ReclamosComponent},
     {path: 'historial', component: HistorialComponent},
     {path: 'nosotros', component: NosotrosComponent},
-    {path: 'configuracion', component:ConfiguracionComponent}
+    {path: 'configuracion', component:ConfiguracionComponent},
+    {path: '**', component: PprincipalComponent}
   ]}, 
   
-  /* {path: '**', component: PprincipalComponent} ,*/ /* por defecto - cuando hay problemas o se escribe mal la url */
+  /* {path: '**', component: PprincipalComponent} , */ /* por defecto - cuando hay problemas o se escribe mal la url */
 ];
 
 @NgModule({
