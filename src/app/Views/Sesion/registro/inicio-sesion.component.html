@@ -6,13 +6,11 @@
   <title>Inicio Sesión</title>
 </head>
 
-<body>
-  <!-- Main Content -->
-  <div class="container-fluid" id="hola" style="font-family: 'Open Sans',sans-serif;">
-    <div class="row main-content bg-success text-center">
-      <div class="col-md-4 text-center company__info">
+<body class="cuerpo">
 
-
+  <div class="container-fluid contenedor">
+    <div class="row main-content text-center  ">
+      <div class="col-md-4 text-center company__info ">
         <div>
           <img id="logo" src="../../../../assets/img/mejorada3.png" alt="logo">
         </div>
@@ -23,14 +21,16 @@
           <div class="row" style="padding-top: 2%; padding-left: 2%;">
             <h2>Iniciar Sesión</h2>
           </div>
-          <!-- colocar usuario/correo -->
+
           <div class="row">
 
             <div class="col-12">
-              <input id="iconoUsuario" (keyup)="validarEmail()" [formControl]="userCtrl" type="text" class="form__input" placeholder="   Usuario o e-mail">
+              <input id="iconoUsuario" (keyup)="validarEmail()" [formControl]="userCtrl" type="text" class="form__input"
+                placeholder="   Usuario o e-mail">
 
               <span>
-                <small id="mensajeUser" *ngIf="(userCtrl.hasError('required') && userCtrl.dirty) || (banderaAlerta==false)">
+                <small id="mensajeUser"
+                  *ngIf="(userCtrl.hasError('required') && userCtrl.dirty) || (banderaAlerta==false)">
                   <i class="fa fa-times fa-2x"></i>
                   Este campo es requerido
                 </small>
@@ -39,7 +39,8 @@
 
 
             <div class="col-12">
-              <input id="iconoContrasenia" [formControl]="passwCtrl" type="password" class="form__input" placeholder="   Contraseña">
+              <input id="iconoContrasenia" [formControl]="passwCtrl" type="password" class="form__input"
+                placeholder="   Contraseña">
               <span>
                 <small id="mensajeUser" *ngIf="(passwCtrl.hasError('required') && passwCtrl.dirty)">
                   <i class="fa fa-times fa-2x"></i>
@@ -47,14 +48,14 @@
                 </small>
               </span>
             </div>
-            
+
           </div>
           <div class="row">
-              <div class="col col-12">
-                <button [disabled]="(userCtrl.invalid ||  passwCtrl.invalid)" type="button" (click)="Validacion()"
-                  class="btn">Iniciar Sesión</button>
-              </div>
+            <div class="col col-12">
+              <button [disabled]="(userCtrl.invalid ||  passwCtrl.invalid)" type="button" (click)="Validacion()"
+                class="btn">Iniciar Sesión</button>
             </div>
+          </div>
 
           <div class="row">
             <p>¿No tenés una cuenta? <a routerLink="/login">Registrate ahora!</a></p>
@@ -62,9 +63,9 @@
         </div>
       </div>
     </div>
-    
+
   </div>
 
-  <app-footer></app-footer>
+
 
 </body>

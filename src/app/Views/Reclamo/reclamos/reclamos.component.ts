@@ -10,6 +10,7 @@ import { FormControl, Validators } from '@angular/forms';
 import {DetalleReclamo, vehiculoXDetalle} from 'src/app/model/detalleReclamo';
 import { ToastrService } from 'ngx-toastr';
 import { Vehiculo } from 'src/app/model/vehiculo';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-reclamos',
@@ -87,11 +88,16 @@ export class ReclamosComponent implements OnInit {
 
   public datosHistorial: Array<any> = [];
 
+  /* para la foto */
+  public archivos: any = [];
+  public previsualizacion:  string ="";
+
   constructor(
     private toastr: ToastrService,
     private service: BackenApiService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private sanitizer: DomSanitizer
   ) {
     this.getListReclamoAmbiental();
     this.getListMarca();
@@ -698,4 +704,37 @@ ambiental */
       
     }
   } */
+
+  capturarFoto(event:any){
+    const archivoCapturado = event.target.files[0];
+    this.extraerBase64(archivoCapturado).then( (imagen:any) => {
+      this.previsualizacion = imagen.base;
+      console.log(imagen)
+    });
+    this.archivos.push(archivoCapturado);
+   /*  console.log(event.target.files); */
+  }
+
+  extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
+    try {
+      const unsafeImg = window.URL.createObjectURL($event);
+      const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
+      const reader = new FileReader();
+      reader.readAsDataURL($event);
+      reader.onload = () => {
+        resolve({
+          base: reader.result
+        });
+      };
+      reader.onerror = error => {
+        resolve({
+          base: null
+        });
+      };
+      return reader;
+
+    } catch (e) {
+      return null;
+    }
+  })
 }

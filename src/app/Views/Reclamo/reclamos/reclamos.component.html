@@ -102,19 +102,19 @@
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-list-ol"
                     style="font-size: 25px;"></i> Modelo de auto</span>
 
-                    <div class="col-md-12 text-center">
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example" [formControl]="modeloAutoCtrl"
-                      (change)="obtenerIDModeloVehiculo($event)">
-                        <option value="{{item.idModelo}}" style="color: black;" *ngFor="let item of Mod ">
-                          {{item.modeloVehiculo}}
-      
-                        </option>
-                      </select>
-      
-                    </div>
+                <div class="col-md-12 text-center">
+                  <select class="form-select form-select-sm" aria-label=".form-select-sm example"
+                    [formControl]="modeloAutoCtrl" (change)="obtenerIDModeloVehiculo($event)">
+                    <option value="{{item.idModelo}}" style="color: black;" *ngFor="let item of Mod ">
+                      {{item.modeloVehiculo}}
+
+                    </option>
+                  </select>
+
+                </div>
 
               </div>
-            
+
 
               <!-- Dominio Auto -->
               <div class="form-group" id="ReclamoVial" *ngIf="selectIdTipoReclamo==2">
@@ -194,6 +194,22 @@
                 <div class="container-photo">
                   <img id="photo" class="photo">
                 </div> -->
+
+                  <div class="input-group mb-3">
+                    <input type="file" (change)="capturarFoto($event)" class="form-control" id="inputGroupFile02">
+                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                  </div>
+
+                  <!-- preview foto -->
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div  class="col-12 text-center contenedor--foto " >
+                        <img *ngIf="previsualizacion" class="preview--Foto" [src]="previsualizacion" alt="">
+
+                      </div>
+                    </div>
+                  </div>
+
                   <textarea class="form-control inputs" id="UrlFoto" name="urlFoto" placeholder="URL Foto" rows="1"
                     [formControl]="urlFotoCtrl"></textarea>
                 </div>
@@ -216,9 +232,10 @@
                 </div>
               </div>
 
-            </div>
+            </div> <!-- .descripcion -->
 
           </div>
+
           <div class="row">
 
 
@@ -260,7 +277,7 @@
 
           </div>
 
-          
+
         </fieldset>
 
 

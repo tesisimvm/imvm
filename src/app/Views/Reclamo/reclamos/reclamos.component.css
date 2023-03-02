@@ -93,8 +93,15 @@ table {
   margin-right: 10px;
 }
 
+/* ---- Preview Foto */
+.contenedor--foto{
+  margin:1rem 0 1rem 0;
+}
 
-
+.preview--Foto{
+  width: 50%;
+  
+}
 
 
 
