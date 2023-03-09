@@ -7,7 +7,7 @@ import { ReclamoAmbiental } from 'src/app/model/reclamoAmbiental';
 import { marca } from 'src/app/model/marca';
 import { modelo } from 'src/app/model/modelo';
 import { FormControl, Validators } from '@angular/forms';
-import {DetalleReclamo, vehiculoXDetalle} from 'src/app/model/detalleReclamo';
+import { DetalleReclamo, vehiculoXDetalle } from 'src/app/model/detalleReclamo';
 import { ToastrService } from 'ngx-toastr';
 import { Vehiculo } from 'src/app/model/vehiculo';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -68,7 +68,7 @@ export class ReclamosComponent implements OnInit {
   selectIdTipoReclamo: number = 0; //se establece en 0 para que no se muestren los combobox de los reclamos
   selectIdinfoReclamo: number = 0;
   selectIdMarcaVehiculo: number = 0;
-  selectIdModeloVehiculo:number=0;
+  selectIdModeloVehiculo: number = 0;
   nombreTipoReclamo?: string;
   ruta: any;
   IDUsuario: any;
@@ -90,7 +90,7 @@ export class ReclamosComponent implements OnInit {
 
   /* para la foto */
   public archivos: any = [];
-  public previsualizacion:  string ="";
+  public previsualizacion: string = "";
 
   constructor(
     private toastr: ToastrService,
@@ -179,9 +179,8 @@ export class ReclamosComponent implements OnInit {
     /* Validacion en el caso que registre un input vacio o cambie de tipo de reclamo y tenga un input vacio */
     /* reclamo Ambiental */
     if (this.tipoReclamoCtrl.value == 1 && (this.tipoReclamoCtrl.value == '' || this.reclamoAmbientalCtrl.value == '' ||
-        this.fechaCtrl.value == '' || this.horaCtrl.value == '' || this.ubicacionCtrl.value == '' ||
-        this.descripcionCtrl.value == '' || this.urlFotoCtrl.value == '' || this.alturaCtrl.value == ''))
-         {
+      this.fechaCtrl.value == '' || this.horaCtrl.value == '' || this.ubicacionCtrl.value == '' ||
+      this.descripcionCtrl.value == '' || this.urlFotoCtrl.value == '' || this.alturaCtrl.value == '')) {
       this.toastr.warning(
         'Faltan datos por rellenar, verifique y podrá enviar su reclamo',
         'Cuidado!',
@@ -193,10 +192,9 @@ export class ReclamosComponent implements OnInit {
 
       /* reclamo vial */
     } else if (this.tipoReclamoCtrl.value == 2 && (((this.dominioCtrl.value == '' || this.marcaAutoCtrl.value == '') &&
-        this.tipoReclamoCtrl.value == '') || this.fechaCtrl.value == '' || this.horaCtrl.value == '' ||
-        this.ubicacionCtrl.value == '' || this.descripcionCtrl.value == '' || this.urlFotoCtrl.value == '' || this.alturaCtrl.value == '' ||
-        this.modeloAutoCtrl.value == '' )) 
-        {
+      this.tipoReclamoCtrl.value == '') || this.fechaCtrl.value == '' || this.horaCtrl.value == '' ||
+      this.ubicacionCtrl.value == '' || this.descripcionCtrl.value == '' || this.urlFotoCtrl.value == '' || this.alturaCtrl.value == '' ||
+      this.modeloAutoCtrl.value == '')) {
       this.toastr.warning(
         'Faltan datos por rellenar, verifique y podrá enviar su reclamo',
         'Cuidado!',
@@ -214,11 +212,11 @@ export class ReclamosComponent implements OnInit {
         ID_TipoReclamo: Number(this.selectIdTipoReclamo),
         ID_Estado: 1 /* estado Activo */,
       };
-      
+
       /* si es vial que se agrege el estado pendiente de vial sino queda en 1 para el ambiental */
-      if(this.selectIdTipoReclamo==2){
-        RegistroRecl.ID_Estado=5;
-         
+      if (this.selectIdTipoReclamo == 2) {
+        RegistroRecl.ID_Estado = 5;
+
       }
 
       /* Obtengo el id para validar mas adelante en el detalle si es ambiental o vial */
@@ -371,11 +369,11 @@ ambiental */
     this.alturaCtrl.reset();
     this.dominioCtrl.reset();
 
-    
+
 
     this.toastr.info('Será redirigido al menú principal', '', {
       timeOut: 5000,
-      
+
     });
     this.metodoRedireccion();
   }
@@ -401,13 +399,13 @@ ambiental */
       /* Metodo en el cual se usa para traer todos los datos del reclamo a actualizar */
       this.service.getDetalleReclamoParaActualizar(IDDetalle).subscribe(
         (info) => {
-          
+
           /* Acá pregunto si es ambiental o vial, si es ambiental sigo lo comun si es vial traigo los datos del auto */
           if (info[0].idTipoRec == 1) {
             this.arregloDetalleReclamo = info;
             console.log('Array detalle Reclamo: ', this.arregloDetalleReclamo);
           } else {
-            
+
             delete this.arregloDetalleReclamo;
             this.getDetalleVehicularParaActualizar(info[0].idDetalleReclamo);
           }
@@ -421,7 +419,7 @@ ambiental */
     }
   }
   getDetalleVehicularParaActualizar(idDetalleReclamo: number) {
-    
+
     debugger
     this.service.getDetalleReclamoVehicular(idDetalleReclamo).subscribe(
       (info) => {
@@ -458,10 +456,10 @@ ambiental */
 
   MetodoActualizarReclamo() {
     debugger
-    
+
     /* idEstadoReclamo */
     /* Roles 1=Administrador - 3=Usuario */
-    if (this.estadoReclamoCtrl.value == '' && this.IDRol==1) {
+    if (this.estadoReclamoCtrl.value == '' && this.IDRol == 1) {
       this.toastr.warning(
         'Para realizar la actualización ingrese el estado correspondiente al reclamo',
         'Atención',
@@ -470,7 +468,7 @@ ambiental */
           progressBar: true,
         }
       );
-    }else if(this.arregloDetalleReclamo[0].idTipoRec != this.idEstadoReclamo &&  this.IDRol==1){ 
+    } else if (this.arregloDetalleReclamo[0].idTipoRec != this.idEstadoReclamo && this.IDRol == 1) {
       this.toastr.warning(
         'Seleccione el estado correcto del reclamo',
         'Atención',
@@ -479,7 +477,7 @@ ambiental */
           progressBar: true,
         }
       );
-    }else {
+    } else {
       var putfecha: any;
       var putfoto: any;
       var puthora: any;
@@ -617,8 +615,8 @@ ambiental */
     var putIDVehiculo: any;
     var putDominio: any;
     var putID_Marca: any;
-    var putID_Modelo:any;
-    
+    var putID_Modelo: any;
+
     debugger
 
     if (this.selectIdMarcaVehiculo == 0) {
@@ -628,10 +626,10 @@ ambiental */
       putID_Marca = Number(this.selectIdMarcaVehiculo);
     }
 
-    if(this.selectIdModeloVehiculo ==  0 ){
+    if (this.selectIdModeloVehiculo == 0) {
       putID_Modelo = Number(this.arregloDetalleReclamo[0].iD_Modelo);
     }
-    if(this.selectIdModeloVehiculo !=  0){
+    if (this.selectIdModeloVehiculo != 0) {
       putID_Modelo = Number(this.selectIdModeloVehiculo)
     }
 
@@ -641,8 +639,8 @@ ambiental */
     if (this.dominioCtrl.value != '') {
       putDominio = this.dominioCtrl.value + '';
     }
-   
-    
+
+
     var vehiculo: Vehiculo = {
       IDVehiculo: this.arregloDetalleReclamo[0].iD_Vehiculo,
       dominio: putDominio,
@@ -705,14 +703,14 @@ ambiental */
     }
   } */
 
-  capturarFoto(event:any){
+  capturarFoto(event: any) {
     const archivoCapturado = event.target.files[0];
-    this.extraerBase64(archivoCapturado).then( (imagen:any) => {
+    this.extraerBase64(archivoCapturado).then((imagen: any) => {
       this.previsualizacion = imagen.base;
       console.log(imagen)
     });
     this.archivos.push(archivoCapturado);
-   /*  console.log(event.target.files); */
+    /*  console.log(event.target.files); */
   }
 
   extraerBase64 = async ($event: any) => new Promise((resolve, reject) => {
@@ -737,4 +735,8 @@ ambiental */
       return null;
     }
   })
+
+ 
+
+
 }

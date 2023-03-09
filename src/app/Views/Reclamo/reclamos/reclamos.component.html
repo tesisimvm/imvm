@@ -195,6 +195,8 @@
                   <img id="photo" class="photo">
                 </div> -->
 
+              
+
                   <div class="input-group mb-3">
                     <input type="file" (change)="capturarFoto($event)" class="form-control" id="inputGroupFile02">
                     <label class="input-group-text" for="inputGroupFile02">Upload</label>
@@ -203,7 +205,7 @@
                   <!-- preview foto -->
                   <div class="container-fluid">
                     <div class="row">
-                      <div  class="col-12 text-center contenedor--foto " >
+                      <div class="col-12 text-center contenedor--foto ">
                         <img *ngIf="previsualizacion" class="preview--Foto" [src]="previsualizacion" alt="">
 
                       </div>
