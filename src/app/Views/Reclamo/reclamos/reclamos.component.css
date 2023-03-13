@@ -102,6 +102,28 @@ table {
   width: 50%;
   
 }
+.titulo--dispositivo{
+  /* font-size: 1.75rem; */
+}
+.dispositivos{
+  color: #495057;
+}
+.boton--foto{
+  width: auto;
+  height: auto;
+  font-size: 1rem;
+}
+
+.contenedor--camara,
+.subir--Foto{
+  
+  margin: 1rem 0 0 0;
+  
+}
+.camara--visor{
+  width: 40%;
+}
+
 
 
 

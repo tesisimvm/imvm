@@ -22,10 +22,8 @@
                 <span class=" titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-tasks"
                     style="font-size: 25px;">
                   </i> Tipo Reclamo</span>
+
                 <div class="col-md-12 text-center ">
-
-
-
                   <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                     [formControl]="tipoReclamoCtrl" (change)="dataChangedTipoReclamo($event)">
                     <option value="{{item.idTipoReclamo}}" style="color: black;" *ngFor="let item of Tiporecla">
@@ -49,8 +47,8 @@
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-exclamation-triangle"
                     style="font-size: 25px;">
                   </i> Reclamo Ambiental</span>
-                <div class="col-md-12 text-center">
 
+                <div class="col-md-12 text-center">
                   <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                     [formControl]="reclamoAmbientalCtrl" (change)="obtenerID($event)">
                     <option id="dato" value="{{item.idReclamoAmbiental}}" style="color: black;"
@@ -76,8 +74,8 @@
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fas fa-car-side"
                     style="font-size: 25px;">
                   </i> Marca de auto</span>
-                <div class="col-md-12 text-center">
 
+                <div class="col-md-12 text-center">
                   <select class="form-select form-select-sm" aria-label=".form-select-sm example"
                     [formControl]="marcaAutoCtrl" (change)="dataChangedIdMarcaVehiculo($event)">
                     <option value="{{item.idMarca}}" style="color: black;" *ngFor="let item of Mar">
@@ -167,12 +165,8 @@
                     class="form-control inputs" [formControl]="alturaCtrl">
                 </div>
               </div>
-            </div>
 
-
-
-            <!-- Descripcion -->
-            <div class="col-md-7">
+              <!-- Descripcion -->
               <div class="form-group">
                 <span class="titulos col-md-1 col-md-offset-2 text-center"><i class="fa fa-pencil-square-o bigicon"
                     style="color: black; font-size: 25px;"></i> Descripción</span>
@@ -181,41 +175,98 @@
                     rows="6" [formControl]="descripcionCtrl"></textarea>
                 </div>
               </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="col-md-7">
 
               <!-- Foto -->
               <div class="col-md-12">
-                <div class="form-group">
-                  <span class="titulos col-md-1 col-md-offset-2 text-center">
-                    <i class="fa fa-camera bigicon" style="color: black; font-size: 25px;"></i>
-                    Foto</span>
-                </div>
-                <div class="form-group">
+
+              <!--   <span class="titulos col-md-1 col-md-offset-2 text-center">
+                  <i class="fa fa-camera bigicon" style="color: black; font-size: 25px;"></i>
+                  Foto / Dispositivos
+                </span>
+
+                <div class="row">
+                  <div class="col-12  col-lg-3">
+                    <button type="button" class="btn btn-outline-secondary boton--foto" id="boton">Tomar Foto</button>
+                  </div>
+                  <div class="col-12 col-lg-9">
+                    
+                    <select class="form-select dispositivos" aria-label="Default select example"
+                      name="listaDeDispositivos" id="listaDeDispositivos"></select>
+                  </div>
+
+                </div> -->
+
+                <div class="form-group" style="margin-top: 1rem;">
                   <!-- <input type="file" accept="image/*" capture="camera" id="camera" class="inputget">
                 <div class="container-photo">
                   <img id="photo" class="photo">
                 </div> -->
 
-              
+                  <div class="form-group">
+                    <span class="titulos col-md-1 col-md-offset-2 text-center subir--Foto">
+                      <i class="far fa-images" style="color: black; font-size: 25px;"></i>
+                      Buscar Foto</span>
 
-                  <div class="input-group mb-3">
-                    <input type="file" (change)="capturarFoto($event)" class="form-control" id="inputGroupFile02">
-                    <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                  </div>
+                    <div class="input-group mb-3 ">
 
-                  <!-- preview foto -->
-                  <div class="container-fluid">
-                    <div class="row">
-                      <div class="col-12 text-center contenedor--foto ">
-                        <img *ngIf="previsualizacion" class="preview--Foto" [src]="previsualizacion" alt="">
+                      <input type="file" (change)="capturarFoto($event)" class="form-control" id="inputGroupFile02">
+                      <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                    </div>
+
+                    <div class="container-fluid">
+                      <!-- webcam -->
+                     <!--  <div class="row"> 
+
+                        <div class=" col-12 contenedor--camara text-center">
+                          <div>
+                            <video class="camara--visor" muted="muted" id="video"></video>
+                            <canvas id="canvas" style="display: none;"></canvas>
+                          </div>
+                        </div>
+
+                      </div> -->
+                      <div class="row">
+                        <!-- preview foto -->
+                        <div class="col-12 text-center contenedor--foto ">
+                          <img *ngIf="previsualizacion" class="preview--Foto" [src]="previsualizacion" alt="">
+
+                        </div>
+
 
                       </div>
+
                     </div>
+
+
+
+
+
+                    <textarea class="form-control inputs" id="UrlFoto" name="urlFoto" placeholder="URL Foto" rows="1"
+                      [formControl]="urlFotoCtrl"></textarea>
+
+
+
                   </div>
 
-                  <textarea class="form-control inputs" id="UrlFoto" name="urlFoto" placeholder="URL Foto" rows="1"
-                    [formControl]="urlFotoCtrl"></textarea>
+
                 </div>
 
+                <!-- Estados Reclamos -->
                 <div class="form-group" *ngIf="banderaEdicionReclamo==true && (IDRol==1 || IDRol==2)">
                   <h5>Estados del reclamo</h5>
                   <div class="form-check form-check-inline" *ngFor="let item of Tiporecla">
@@ -278,6 +329,7 @@
 
 
           </div>
+
 
 
         </fieldset>

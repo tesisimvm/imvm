@@ -31,6 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PprincipalComponent } from './Views/Estructura/pprincipal/pprincipal.component';
 import {MatCardModule} from '@angular/material/card';
 import { NgxChartsModule, PieChartComponent } from '@swimlane/ngx-charts';
+import { CamaraService } from './service/camara/camara.service';
 
 
 
@@ -78,7 +79,7 @@ import { NgxChartsModule, PieChartComponent } from '@swimlane/ngx-charts';
     MatCardModule,
     NgxChartsModule
   ],
-  providers: [],
+  providers: [CamaraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

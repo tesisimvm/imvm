@@ -11,6 +11,7 @@ import { DetalleReclamo, vehiculoXDetalle } from 'src/app/model/detalleReclamo';
 import { ToastrService } from 'ngx-toastr';
 import { Vehiculo } from 'src/app/model/vehiculo';
 import { DomSanitizer } from '@angular/platform-browser';
+import { CamaraService } from 'src/app/service/camara/camara.service';
 
 @Component({
   selector: 'app-reclamos',
@@ -97,8 +98,10 @@ export class ReclamosComponent implements OnInit {
     private service: BackenApiService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private carga: CamaraService
   ) {
+    /* this.carga.loadScript(); */ /* Activar camara web */
     this.getListReclamoAmbiental();
     this.getListMarca();
     this.getListModelo();
@@ -391,7 +394,7 @@ ambiental */
   }
 
   metodo_VisualEditarReclamo(IDDetalle: any) {
-    debugger
+    
     /* Este metodo se utiliza para controlar lo que se quiere ver cuando se desea editar un reclamo */
     if (this.ruta[5] == 'historial' && IDDetalle != undefined) {
       this.banderaEdicionReclamo = true;
