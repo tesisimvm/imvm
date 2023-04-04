@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeolocalizacionService } from 'src/app/service/geolocalizacion/geolocalizacion.service';
 
 @Component({
   selector: 'app-mapa',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapaComponent implements OnInit {
 
-  constructor() { }
+  constructor(private localizacion: GeolocalizacionService) { }
 
   ngOnInit(): void {
+    this.getLocation();
   }
+
+  latitud: string='';
+  longitud : string='';
+
+  getLocation() {
+    this.localizacion.getPosition().then(pos => {
+        this.latitud = pos.lat;
+        this.longitud = pos.lng;
+    });
+}
 
 }
