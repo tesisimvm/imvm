@@ -12,6 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Vehiculo } from 'src/app/model/vehiculo';
 import { DomSanitizer } from '@angular/platform-browser';
 import { CamaraService } from 'src/app/service/camara/camara.service';
+import { Byte } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-reclamos',
@@ -92,6 +93,7 @@ export class ReclamosComponent implements OnInit {
   /* para la foto */
   public archivos: any = [];
   public previsualizacion: string = "";
+  public imagenBase64: string = "";
 
   constructor(
     private toastr: ToastrService,
@@ -207,6 +209,7 @@ export class ReclamosComponent implements OnInit {
         }
       );
     } else {
+      debugger
       var RegistroRecl: Reclamo = {
         fecha: this.fechaCtrl.value + '',
         foto: this.urlFotoCtrl.value + '',
@@ -224,11 +227,13 @@ export class ReclamosComponent implements OnInit {
 
       /* Obtengo el id para validar mas adelante en el detalle si es ambiental o vial */
       this.validacionTipoReclamo = RegistroRecl.ID_TipoReclamo;
-      ;
+      
 
       console.log(RegistroRecl);
+      debugger
       this.service.postReclamo(RegistroRecl).subscribe(
         (res) => {
+          debugger
           console.log('reclamo creado: ', res);
           this.registrarDetalleReclamo(
             res
@@ -708,8 +713,12 @@ ambiental */
 
   capturarFoto(event: any) {
     const archivoCapturado = event.target.files[0];
+    debugger
     this.extraerBase64(archivoCapturado).then((imagen: any) => {
       this.previsualizacion = imagen.base;
+      this.imagenBase64 = imagen.base; /*aca tengo la foto en binario */
+      debugger
+      console.log('Imagen 64: '+this.imagenBase64);
       console.log(imagen)
     });
     this.archivos.push(archivoCapturado);

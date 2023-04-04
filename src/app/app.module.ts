@@ -32,6 +32,7 @@ import { PprincipalComponent } from './Views/Estructura/pprincipal/pprincipal.co
 import {MatCardModule} from '@angular/material/card';
 import { NgxChartsModule, PieChartComponent } from '@swimlane/ngx-charts';
 import { CamaraService } from './service/camara/camara.service';
+import { MapaComponent } from './Views/Mapas/mapa/mapa.component';
 
 
 
@@ -54,6 +55,7 @@ import { CamaraService } from './service/camara/camara.service';
     NosotrosComponent,
     ModalEditarComponent,
     PprincipalComponent,
+    MapaComponent,
     
     
   ],

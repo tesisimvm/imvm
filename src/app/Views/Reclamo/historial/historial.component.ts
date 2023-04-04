@@ -6,6 +6,7 @@ import { EstadoReclamo } from 'src/app/model/filtrosHistorial/estadoReclamo';
 import { TipoReclamo } from 'src/app/model/tipoReclamo';
 import { BackenApiService } from 'src/app/service/backen-api.service';
 import { ToastrService } from 'ngx-toastr';
+import { formatDate } from '@angular/common';
 
 
 
@@ -93,6 +94,7 @@ export class HistorialComponent implements OnInit {
         }
       );
     } else {
+      debugger
       this.detalleReclamo.getHistorialHoy(this.fecha,this.IDUsuario,1,5,this.IDRol).subscribe( /* getDetalleReclamoUsuario(this.IDUsuario, 1) */
         (info) => {
           
@@ -384,9 +386,9 @@ export class HistorialComponent implements OnInit {
   }
 
   fechadehoy(){
-    
+    debugger
     /* Fecha del fia de hoy, para mostrar los reclamos del este día */
-    var today = new Date();
+    /* var today = new Date();
     var mes;
     var dia:any;
 
@@ -402,7 +404,8 @@ export class HistorialComponent implements OnInit {
     }
 
     console.log("dia: "+dia);
-    this.fecha = today.getFullYear() + '-' + mes+'-'+ dia;
+    this.fecha = today.getFullYear() + '-' + mes+'-'+ dia; */
+    this.fecha = formatDate(new Date(), 'yyyy-MM-dd', 'en-US')
   }
 
   mensajeDelDia(){

@@ -9,18 +9,24 @@ import { HistorialComponent } from './Views/Reclamo/historial/historial.componen
 import { NosotrosComponent } from './Views/Estructura/nosotros/nosotros.component';
 import { PprincipalComponent } from './Views/Estructura/pprincipal/pprincipal.component';
 import { ConfiguracionComponent } from './Views/Configuracion/configuracion/configuracion.component';
+import { MapaComponent } from './Views/Mapas/mapa/mapa.component';
 import { ModalEditarComponent } from './Views/Usuario/modal-editar/modal-editar.component';
+import { path } from 'd3';
+
 
 const routes: Routes = [
+  /* primera pantalla al inicar el proyecto  */
   {path: '', component: InicioSesionComponent}, /* cuando se inicia el proyecto o cuando la url esta vacia */
-  {path: 'inicio-sesion', component: InicioSesionComponent}, /* cuando te logueas para entrar a tu usuario */
-  {path: 'login', component: LoginComponent}, /* para registrate */
+  {path: 'inicio-sesion', component: InicioSesionComponent}, 
+  {path: 'login', component: LoginComponent}, 
   {path: 'perfil', component: PerfilComponent},
   {path: 'reclamos', component: ReclamosComponent},
   {path: 'nosotros', component: NosotrosComponent},
+  {path: 'mapa', component: MapaComponent},
   
   
-  // {path: 'pantallaprincipal', component: PprincipalComponent},
+  
+  // /* luego de iniciar sesion estas en el menu principal */
   {path: 'main-nav/:id/:id/:id', component: MainNavComponent,/* usuario/rol/idsesion */
     children:[
     {path: 'principal', component: PprincipalComponent},
@@ -29,6 +35,8 @@ const routes: Routes = [
     {path: 'historial', component: HistorialComponent},
     {path: 'nosotros', component: NosotrosComponent},
     {path: 'configuracion', component:ConfiguracionComponent},
+    {path: 'mapa', component: MapaComponent},
+    {path: '**', component: PprincipalComponent}
     
   ]}, /* menu principal */
 
@@ -43,6 +51,7 @@ const routes: Routes = [
     {path: 'historial', component: HistorialComponent},
     {path: 'nosotros', component: NosotrosComponent},
     {path: 'configuracion', component:ConfiguracionComponent},
+    {path: 'mapa', component: MapaComponent},
     {path: '**', component: PprincipalComponent}
   ]}, 
   

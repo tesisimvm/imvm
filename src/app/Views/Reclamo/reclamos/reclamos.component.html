@@ -179,22 +179,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
             <div class="col-md-7">
 
               <!-- Foto -->
               <div class="col-md-12">
 
-              <!--   <span class="titulos col-md-1 col-md-offset-2 text-center">
+                <!--   <span class="titulos col-md-1 col-md-offset-2 text-center">
                   <i class="fa fa-camera bigicon" style="color: black; font-size: 25px;"></i>
                   Foto / Dispositivos
                 </span>
@@ -224,13 +214,14 @@
 
                     <div class="input-group mb-3 ">
 
-                      <input type="file" (change)="capturarFoto($event)" class="form-control" id="inputGroupFile02">
+                      <input type="file" (change)="capturarFoto($event)" class="form-control" id="inputGroupFile02" >
+
                       <label class="input-group-text" for="inputGroupFile02">Upload</label>
                     </div>
 
                     <div class="container-fluid">
                       <!-- webcam -->
-                     <!--  <div class="row"> 
+                      <!--  <div class="row"> 
 
                         <div class=" col-12 contenedor--camara text-center">
                           <div>
@@ -241,15 +232,12 @@
 
                       </div> -->
                       <div class="row">
+
                         <!-- preview foto -->
                         <div class="col-12 text-center contenedor--foto ">
                           <img *ngIf="previsualizacion" class="preview--Foto" [src]="previsualizacion" alt="">
-
                         </div>
-
-
                       </div>
-
                     </div>
 
 
@@ -257,7 +245,7 @@
 
 
                     <textarea class="form-control inputs" id="UrlFoto" name="urlFoto" placeholder="URL Foto" rows="1"
-                      [formControl]="urlFotoCtrl"></textarea>
+                    [formControl]="urlFotoCtrl" ></textarea>
 
 
 
